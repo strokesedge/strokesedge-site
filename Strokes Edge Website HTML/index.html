@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="StrokesEdge — quantitative PGA Tour golf betting picks and analysis. Strokes gained modeling, course-fit profiling, and weekly value plays. No narratives. No gut feels.">
+<title>StrokesEdge — PGA Tour Golf Betting Analysis & Picks</title>
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://strokesedge.com/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://strokesedge.com/">
+<meta property="og:title" content="StrokesEdge — PGA Tour Golf Betting Analysis & Picks">
+<meta property="og:description" content="Quantitative PGA Tour golf betting picks and analysis. Strokes gained modeling, course-fit profiling, and weekly value plays. No narratives. No gut feels.">
+<meta property="og:image" content="https://strokesedge.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@StrokesEdge">
+<meta name="twitter:title" content="StrokesEdge — PGA Tour Golf Betting Analysis & Picks">
+<meta name="twitter:description" content="Quantitative PGA Tour golf betting picks and analysis. Strokes gained modeling, course-fit profiling, and weekly value plays.">
+<meta name="twitter:image" content="https://strokesedge.com/og-image.png">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --g:#6ab83a;--g2:#3d7a18;--g3:#1a3a08;--r:#e05252;--y:#f0b429;
+  --g-glow:rgba(106,184,58,0.12);
+  --bg:#080b07;--bg2:#0c0f0b;--bg3:#111610;--sur:#141a12;
+  --bdr:rgba(106,184,58,0.18);--bdr2:rgba(255,255,255,0.07);
+  --txt:#e6ede0;--txt2:#8a9e80;--txt3:#3a4a34;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--txt);font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.6;overflow-x:hidden}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:1;opacity:0.6}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(106,184,58,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(106,184,58,0.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;z-index:0}
+
+/* ── CUSTOM CURSOR — desktop only ── */
+@media(hover:hover){
+  body,*{cursor:none}
+  .cursor{position:fixed;width:8px;height:8px;background:var(--g);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform 0.1s}
+  .cursor-ring{position:fixed;width:32px;height:32px;border:1px solid rgba(106,184,58,0.4);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all 0.15s ease}
+}
+@media(hover:none){.cursor,.cursor-ring{display:none}}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1rem 1.5rem;border-bottom:1px solid var(--bdr2);background:rgba(8,11,7,0.95);backdrop-filter:blur(16px)}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:0.08em;color:var(--txt);text-decoration:none;flex-shrink:0}
+.nav-logo span{color:var(--g)}
+.nav-links{display:flex;align-items:center;gap:1.5rem}
+.nav-link{font-size:12px;font-weight:400;color:var(--txt2);text-decoration:none;letter-spacing:0.06em;text-transform:uppercase;transition:color 0.2s}
+.nav-link:hover{color:var(--txt)}
+.nav-link.active{color:var(--g)}
+.nav-cta{font-family:'DM Mono',monospace;font-size:12px;padding:8px 18px;border:1px solid var(--g);border-radius:2px;color:var(--g);text-decoration:none;letter-spacing:0.06em;transition:all 0.2s;white-space:nowrap}
+.nav-cta:hover{background:var(--g-glow)}
+.nav-drop{position:relative}
+.nav-drop-btn{font-size:12px;color:var(--txt2);background:none;border:none;cursor:pointer;letter-spacing:.06em;text-transform:uppercase;display:flex;align-items:center;gap:5px;padding:0;font-family:'DM Sans',sans-serif;transition:color .2s;white-space:nowrap;outline:none}
+.nav-drop-btn:hover,.nav-drop-btn.open{color:var(--txt)}
+.nav-drop-btn::after{content:'▾';font-size:9px;transition:transform .2s;display:inline-block}
+.nav-drop-btn.open::after{transform:rotate(180deg)}
+.drop-menu{display:none;position:absolute;top:100%;left:0;min-width:220px;z-index:200}
+.drop-menu.open{display:block}
+.drop-menu-box{background:rgba(8,11,7,.98);border:1px solid var(--bdr);border-radius:4px;overflow:hidden;backdrop-filter:blur(16px)}
+.drop-item{display:block;padding:.7rem 1.1rem;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--txt2);text-decoration:none;border-bottom:1px solid var(--bdr2);transition:all .15s;white-space:nowrap}
+.drop-item:last-child{border-bottom:none}
+.drop-item:hover{color:var(--g);background:rgba(106,184,58,.05)}
+.drop-item .drop-sub{display:block;font-size:9px;color:var(--txt3);margin-top:2px;letter-spacing:.04em;text-transform:none}
+
+/* ── HAMBURGER ── */
+.hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:none;border:none;cursor:pointer;padding:6px;z-index:201}
+.hamburger span{display:block;width:22px;height:2px;background:var(--txt2);border-radius:2px;transition:all .25s}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);background:var(--g)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);background:var(--g)}
+.mobile-menu{display:none;position:fixed;top:57px;left:0;right:0;background:rgba(8,11,7,.98);backdrop-filter:blur(16px);border-bottom:1px solid var(--bdr2);z-index:99;flex-direction:column;padding:1rem 1.5rem 1.5rem;max-height:80vh;overflow-y:auto}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'DM Mono',monospace;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--txt2);text-decoration:none;padding:.7rem 0;border-bottom:1px solid var(--bdr2);transition:color .2s;display:block}
+.mobile-menu a:hover{color:var(--txt)}
+.mobile-menu a.active{color:var(--g)}
+.mob-section{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--txt3);padding:.6rem 0 .2rem;display:block}
+.mob-indent{padding-left:.75rem!important;font-size:11px!important}
+.mob-cta{border-bottom:none!important;margin-top:.5rem;padding:.85rem 1rem!important;border:1px solid var(--g)!important;border-radius:2px;color:var(--g)!important;text-align:center}
+@media(max-width:860px){.nav-link,.nav-drop,.nav-cta{display:none}.hamburger{display:flex}}
+
+/* ── HERO ── */
+.hero{position:relative;z-index:2;min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:4rem;padding:8rem 1.5rem 5rem;max-width:1200px;margin:0 auto}
+.hero-tag{display:inline-flex;align-items:center;gap:10px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.14em;color:var(--g);text-transform:uppercase;margin-bottom:2rem;opacity:0;animation:up 0.7s 0.1s forwards}
+.hero-tag-dot{width:6px;height:6px;border-radius:50%;background:var(--g);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(0.8)}}
+.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(64px,8vw,110px);line-height:0.92;letter-spacing:0.03em;color:var(--txt);margin-bottom:2rem;opacity:0;animation:up 0.7s 0.2s forwards}
+.hero-title span{color:var(--g);display:block}
+.hero-sub{font-size:17px;font-weight:300;color:var(--txt2);line-height:1.75;max-width:460px;margin-bottom:2.5rem;opacity:0;animation:up 0.7s 0.35s forwards}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;opacity:0;animation:up 0.7s 0.5s forwards}
+.btn-primary{display:inline-block;padding:14px 36px;background:var(--g);color:#fff;font-family:'DM Mono',monospace;font-size:13px;letter-spacing:0.06em;text-decoration:none;border-radius:2px;transition:all 0.2s}
+.btn-primary:hover{background:#7acc44;transform:translateY(-2px)}
+.btn-ghost{display:inline-block;padding:14px 36px;border:1px solid var(--bdr2);color:var(--txt2);font-family:'DM Mono',monospace;font-size:13px;letter-spacing:0.06em;text-decoration:none;border-radius:2px;transition:all 0.2s}
+.btn-ghost:hover{border-color:var(--bdr);color:var(--txt)}
+.hero-right{opacity:0;animation:up 0.8s 0.6s forwards}
+.live-card{background:var(--sur);border:1px solid var(--bdr);border-radius:4px;overflow:hidden}
+.live-card-header{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.25rem;border-bottom:1px solid var(--bdr2);background:rgba(106,184,58,0.04)}
+.live-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--g);display:flex;align-items:center;gap:7px}
+.live-dot{width:5px;height:5px;background:var(--g);border-radius:50%;animation:pulse 1.5s infinite}
+.live-event{font-family:'DM Mono',monospace;font-size:10px;color:var(--txt3);letter-spacing:0.06em;text-transform:uppercase}
+.pick-row{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.25rem;border-bottom:1px solid var(--bdr2);transition:background 0.2s}
+.pick-row:hover{background:rgba(106,184,58,0.03)}
+.pick-row:last-child{border-bottom:none}
+.pick-row.value-row{background:rgba(106,184,58,0.05);border-left:2px solid var(--g)}
+.pick-tier-tag{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--g);margin-bottom:4px}
+.pick-player{font-size:16px;font-weight:400;color:var(--txt);margin-bottom:2px}
+.pick-note{font-size:12px;color:var(--txt2)}
+.pick-number{font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--g);letter-spacing:0.04em;flex-shrink:0;line-height:1;margin-top:4px}
+
+/* ── TICKER ── */
+.ticker{position:relative;z-index:2;border-top:1px solid var(--bdr2);border-bottom:1px solid var(--bdr2);background:var(--bg2);padding:12px 0;overflow:hidden;margin:3rem 0}
+.ticker-track{display:flex;gap:4rem;animation:tick 25s linear infinite;white-space:nowrap}
+.ticker-item{font-family:'DM Mono',monospace;font-size:11px;color:var(--txt3);letter-spacing:0.08em;text-transform:uppercase;flex-shrink:0}
+.ticker-item b{color:var(--g);font-weight:400}
+@keyframes tick{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ── SEASON RECORD BAR ── */
+.record-bar{position:relative;z-index:2;max-width:1200px;margin:0 auto 1.5rem;padding:0 1.5rem}
+.record-inner{background:var(--bg2);border:1px solid var(--bdr);border-radius:4px;overflow:hidden}
+.record-header{display:flex;justify-content:space-between;align-items:center;padding:0.9rem 1.5rem;border-bottom:1px solid var(--bdr2)}
+.record-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.14em;color:var(--g);text-transform:uppercase;display:flex;align-items:center;gap:8px}
+.record-label::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--g)}
+.record-link{font-family:'DM Mono',monospace;font-size:10px;color:var(--txt3);letter-spacing:0.06em;text-decoration:none;text-transform:uppercase;transition:color 0.2s}
+.record-link:hover{color:var(--g)}
+.record-cells{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--bdr2)}
+.record-cell{background:var(--bg2);padding:1.25rem 1rem;text-align:center;transition:background 0.2s}
+.record-cell:hover{background:var(--sur)}
+.record-cell.loading{opacity:0.3}
+.record-n{font-family:'Bebas Neue',sans-serif;font-size:36px;line-height:1;margin-bottom:5px;letter-spacing:0.03em;color:var(--txt3)}
+.record-n.green{color:var(--g)}
+.record-n.red{color:var(--r)}
+.record-n.yellow{color:var(--y)}
+.record-l{font-family:'DM Mono',monospace;font-size:9px;color:var(--txt3);letter-spacing:0.1em;text-transform:uppercase;line-height:1.4}
+.hits-row{display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;padding:0.75rem 1.5rem;border-top:1px solid var(--bdr2);background:rgba(106,184,58,0.02)}
+.hits-label{font-family:'DM Mono',monospace;font-size:9px;color:var(--txt3);letter-spacing:0.1em;text-transform:uppercase;margin-right:4px;white-space:nowrap}
+.hit-badge{font-family:'DM Mono',monospace;font-size:9px;padding:3px 9px;border-radius:2px;letter-spacing:0.08em;text-transform:uppercase;background:rgba(106,184,58,0.1);color:var(--g);border:1px solid rgba(106,184,58,0.22);white-space:nowrap}
+
+/* ── STATS ── */
+.stats{position:relative;z-index:2;display:grid;grid-template-columns:repeat(3,1fr);max-width:1200px;margin:0 auto 6rem;padding:0 1.5rem;gap:1px;background:var(--bdr2);border:1px solid var(--bdr2);border-radius:4px;overflow:hidden}
+.stat-cell{background:var(--bg2);padding:3rem 2rem;text-align:center}
+.stat-n{font-family:'Bebas Neue',sans-serif;font-size:64px;color:var(--g);line-height:1;margin-bottom:8px;letter-spacing:0.03em}
+.stat-l{font-family:'DM Mono',monospace;font-size:10px;color:var(--txt2);letter-spacing:0.1em;text-transform:uppercase;line-height:1.5}
+
+/* ── SECTIONS ── */
+.section{position:relative;z-index:2;max-width:1200px;margin:0 auto 7rem;padding:0 1.5rem}
+.sec-eyebrow{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.14em;color:var(--g);text-transform:uppercase;margin-bottom:1.25rem;display:flex;align-items:center;gap:12px}
+.sec-eyebrow::after{content:'';height:1px;width:48px;background:var(--bdr)}
+.sec-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,5vw,68px);letter-spacing:0.04em;line-height:1;margin-bottom:1.5rem;color:var(--txt)}
+.sec-title span{color:var(--g)}
+.sec-body{font-size:16px;color:var(--txt2);max-width:520px;line-height:1.8;margin-bottom:3rem}
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--bdr2);border:1px solid var(--bdr2);border-radius:4px;overflow:hidden}
+.pillar{background:var(--bg2);padding:2.5rem 2rem;transition:background 0.2s}
+.pillar:hover{background:var(--sur)}
+.pillar-n{font-family:'Bebas Neue',sans-serif;font-size:48px;color:var(--g3);line-height:1;margin-bottom:1.25rem;letter-spacing:0.04em}
+.pillar-t{font-size:15px;font-weight:400;color:var(--txt);margin-bottom:0.75rem;line-height:1.3}
+.pillar-b{font-size:13px;color:var(--txt2);line-height:1.7}
+
+/* ── PICKS GRID ── */
+.picks-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
+.p-card{background:var(--sur);border:1px solid var(--bdr2);border-radius:4px;padding:1.75rem;display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;transition:all 0.2s}
+.p-card:hover{border-color:var(--bdr);transform:translateY(-2px)}
+.p-card.feat{border-color:var(--g2);background:rgba(106,184,58,0.04)}
+.p-tier{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--g);margin-bottom:8px}
+.p-name{font-size:18px;font-weight:400;color:var(--txt);margin-bottom:6px}
+.p-why{font-size:13px;color:var(--txt2);line-height:1.6}
+.p-odds{font-family:'Bebas Neue',sans-serif;font-size:38px;color:var(--g);letter-spacing:0.04em;flex-shrink:0;line-height:1;margin-top:4px}
+
+/* ── CTA ── */
+.cta-wrap{position:relative;z-index:2;max-width:1200px;margin:0 auto 5rem;padding:0 1.5rem}
+.cta-box{background:var(--bg2);border:1px solid var(--bdr);border-radius:4px;padding:5rem 4rem;text-align:center;position:relative;overflow:hidden}
+.cta-box::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:50%;height:1px;background:linear-gradient(90deg,transparent,var(--g),transparent)}
+.cta-box::after{content:'STROKESEDGE';position:absolute;bottom:-20px;left:50%;transform:translateX(-50%);font-family:'Bebas Neue',sans-serif;font-size:120px;color:rgba(106,184,58,0.03);letter-spacing:0.08em;white-space:nowrap;pointer-events:none}
+.cta-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,5vw,64px);letter-spacing:0.04em;line-height:1;margin-bottom:1.25rem;color:var(--txt)}
+.cta-title span{color:var(--g)}
+.cta-sub{font-size:16px;color:var(--txt2);max-width:440px;margin:0 auto 2.5rem;line-height:1.75}
+.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+
+/* ── FOOTER ── */
+footer{position:relative;z-index:2;border-top:1px solid var(--bdr2);padding:2rem 1.5rem;display:flex;justify-content:space-between;align-items:center;max-width:1200px;margin:0 auto}
+.foot-logo{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:0.08em;color:var(--txt2)}
+.foot-logo span{color:var(--g)}
+.foot-note{font-family:'DM Mono',monospace;font-size:11px;color:var(--txt3);letter-spacing:0.04em}
+
+/* ── LEAD MAGNET STRIP ── */
+.lead-strip{position:relative;z-index:2;background:rgba(106,184,58,0.08);border-top:1px solid rgba(106,184,58,0.2);border-bottom:1px solid rgba(106,184,58,0.2);padding:0.85rem 1.5rem}
+.lead-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.lead-tag{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;background:var(--g);color:#fff;padding:3px 8px;border-radius:2px;white-space:nowrap;flex-shrink:0}
+.lead-copy{font-size:13px;color:var(--txt2);line-height:1.5;flex:1;min-width:200px}
+.lead-copy strong{color:var(--txt);font-weight:400}
+.lead-cta{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.06em;color:var(--g);text-decoration:none;border:1px solid rgba(106,184,58,0.4);padding:6px 16px;border-radius:2px;white-space:nowrap;flex-shrink:0;transition:all 0.2s}
+.lead-cta:hover{background:var(--g-glow);border-color:var(--g)}
+.lead-close{background:none;border:none;color:var(--txt3);cursor:pointer;font-size:12px;padding:4px;flex-shrink:0;transition:color 0.2s;line-height:1}
+.lead-close:hover{color:var(--txt2)}
+@media(max-width:640px){.lead-inner{gap:0.6rem}.lead-copy{font-size:12px}}
+
+@keyframes up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;padding:7rem 1.5rem 4rem;gap:3rem;min-height:auto}
+  .hero-right{display:none}
+  .record-cells{grid-template-columns:repeat(3,1fr)}
+  .record-n{font-size:28px}
+  .stats{grid-template-columns:1fr}
+  .pillars{grid-template-columns:1fr}
+  .picks-grid{grid-template-columns:1fr}
+  .cta-box{padding:3rem 1.5rem}
+}
+@media(max-width:480px){
+  .record-cells{grid-template-columns:repeat(2,1fr)}
+  .record-n{font-size:24px}
+  .stat-n{font-size:48px}
+  .stat-cell{padding:2rem 1rem}
+  .cta-btns{flex-direction:column;align-items:center}
+  .btn-primary,.btn-ghost{width:100%;max-width:280px;text-align:center}
+  footer{flex-direction:column;gap:1rem;text-align:center}
+}
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D398EHRP6Y"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-D398EHRP6Y');</script>
+</head>
+<body>
+
+<div class="cursor" id="cur"></div>
+<div class="cursor-ring" id="ring"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">Strokes<span>Edge</span></a>
+  <div class="nav-links">
+    <a href="index.html" class="nav-link active">Home</a>
+    <a href="methodology.html" class="nav-link">Methodology</a>
+    <a href="picks.html" class="nav-link">Pick Tracker</a>
+    <div class="nav-drop">
+      <button class="nav-drop-btn" data-drop="courses">Courses</button>
+      <div class="drop-menu" id="drop-courses"><div class="drop-menu-box">
+        <a href="courses.html" class="drop-item">All Course Guides<span class="drop-sub">Full library</span></a>
+        <a href="course-shinnecock-hills.html" class="drop-item">Shinnecock Hills<span class="drop-sub">U.S. Open · Jun</span></a>
+        <a href="course-quail-hollow.html" class="drop-item">Quail Hollow<span class="drop-sub">Truist · May</span></a>
+        <a href="course-colonial.html" class="drop-item">Colonial CC<span class="drop-sub">Schwab Challenge · May</span></a>
+        <a href="course-doral.html" class="drop-item">Blue Monster / Doral<span class="drop-sub">Cadillac · Apr–May</span></a>
+        <a href="course-aronimink.html" class="drop-item">Aronimink<span class="drop-sub">PGA Championship · May</span></a>
+        <a href="course-augusta-national.html" class="drop-item">Augusta National<span class="drop-sub">The Masters · Apr</span></a>
+        <a href="course-harbour-town.html" class="drop-item">Harbour Town<span class="drop-sub">RBC Heritage · Apr</span></a>
+        <a href="course-tpc-louisiana.html" class="drop-item">TPC Louisiana<span class="drop-sub">Zurich Classic · Apr</span></a>
+        <a href="course-tpc-craig-ranch.html" class="drop-item">TPC Craig Ranch<span class="drop-sub">CJ Cup Byron Nelson · May</span></a>
+      </div></div>
+    </div>
+    <div class="nav-drop">
+      <button class="nav-drop-btn" data-drop="analysis">Analysis</button>
+      <div class="drop-menu" id="drop-analysis"><div class="drop-menu-box">
+        <a href="analysis.html" class="drop-item">Current Analysis<span class="drop-sub">Charles Schwab 2026</span></a>
+        <a href="analysis-pga-2026.html" class="drop-item">PGA Championship 2026<span class="drop-sub">Aronimink · May 14–17</span></a>
+        <a href="analysis-truist-2026.html" class="drop-item">Truist Championship 2026<span class="drop-sub">Quail Hollow · May 7–10</span></a>
+        <a href="analysis-cadillac-2026.html" class="drop-item">Cadillac Championship 2026<span class="drop-sub">Doral · Apr 30–May 3</span></a>
+        <a href="analysis-heritage-2026.html" class="drop-item">RBC Heritage 2026<span class="drop-sub">Harbour Town · Apr 16–19</span></a>
+        <a href="analysis-masters-2026.html" class="drop-item">Masters 2026<span class="drop-sub">Augusta National · Apr 9–12</span></a>
+        <a href="analysis-valero-2026.html" class="drop-item">Valero Texas Open 2026<span class="drop-sub">TPC San Antonio · Apr 2–6</span></a>
+        <a href="analysis-cj-cup-byron-nelson-2025.html" class="drop-item">CJ Cup Byron Nelson 2025<span class="drop-sub">TPC Craig Ranch · May</span></a>
+      </div></div>
+    </div>
+    <a href="https://strokesedge.substack.com" class="nav-cta" target="_blank">Subscribe →</a>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html" class="active">Home</a>
+  <a href="methodology.html">Methodology</a>
+  <a href="picks.html">Pick Tracker</a>
+  <span class="mob-section">— Courses —</span>
+  <a href="courses.html" class="mob-indent">All Course Guides</a>
+  <a href="course-shinnecock-hills.html" class="mob-indent">Shinnecock Hills</a>
+  <a href="course-quail-hollow.html" class="mob-indent">Quail Hollow</a>
+  <a href="course-colonial.html" class="mob-indent">Colonial CC</a>
+  <a href="course-doral.html" class="mob-indent">Blue Monster / Doral</a>
+  <a href="course-aronimink.html" class="mob-indent">Aronimink</a>
+  <a href="course-augusta-national.html" class="mob-indent">Augusta National</a>
+  <a href="course-harbour-town.html" class="mob-indent">Harbour Town</a>
+  <a href="course-tpc-louisiana.html" class="mob-indent">TPC Louisiana</a>
+  <a href="course-tpc-craig-ranch.html" class="mob-indent">TPC Craig Ranch</a>
+  <span class="mob-section">— Analysis —</span>
+  <a href="analysis.html" class="mob-indent">Current Analysis</a>
+  <a href="analysis-pga-2026.html" class="mob-indent">PGA Championship 2026</a>
+  <a href="analysis-truist-2026.html" class="mob-indent">Truist Championship 2026</a>
+  <a href="analysis-cadillac-2026.html" class="mob-indent">Cadillac Championship 2026</a>
+  <a href="analysis-heritage-2026.html" class="mob-indent">RBC Heritage 2026</a>
+  <a href="analysis-masters-2026.html" class="mob-indent">Masters 2026</a>
+  <a href="analysis-valero-2026.html" class="mob-indent">Valero Texas Open 2026</a>
+  <a href="analysis-cj-cup-byron-nelson-2025.html" class="mob-indent">CJ Cup Byron Nelson 2025</a>
+  <a href="https://strokesedge.substack.com" class="mob-cta" target="_blank">Subscribe →</a>
+</div>
+
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-tag"><div class="hero-tag-dot"></div>Quantitative Golf Analysis</div>
+    <h1 class="hero-title">Strokes<span>Edge.</span></h1>
+    <p class="hero-sub">The same edge-finding frameworks used in financial markets — applied to the PGA Tour every single week. No narratives. No gut feels. Just the numbers.</p>
+    <div class="hero-actions">
+      <a href="https://strokesedge.substack.com" class="btn-primary" target="_blank">Get the picks →</a>
+      <a href="methodology.html" class="btn-ghost">How it works</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="live-card">
+      <div class="live-card-header">
+        <div class="live-label"><div class="live-dot"></div>Live Analysis</div>
+        <div class="live-event" id="live-event-label">Loading...</div>
+      </div>
+      <div id="live-picks-rows">
+        <div style="padding:2rem;font-family:'DM Mono',monospace;font-size:11px;color:var(--txt3);text-align:center;letter-spacing:0.08em">Loading picks...</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <div class="lead-strip" id="lead-strip">
+  <div class="lead-inner">
+    <div class="lead-text">
+      <span class="lead-tag">Free</span>
+      <span class="lead-copy">Get this week's <strong>Truist Championship picks</strong> — full Quail Hollow regression, course history overlay, and the 11-position bankroll card.</span>
+    </div>
+    <a href="https://strokesedge.substack.com" class="lead-cta" target="_blank">Get it free →</a>
+    <button class="lead-close" id="lead-close" aria-label="Dismiss">✕</button>
+  </div>
+</div>
+
+  <div class="ticker">
+  <div class="ticker-track" id="ticker-track">
+    <span class="ticker-item"><b>THIS WEEK</b> Truist Championship · Quail Hollow</span>
+    <span class="ticker-item"><b>Model</b> Tee-to-green + course history</span>
+    <span class="ticker-item"><b>Edge</b> GIR 175-200 yard precision filter</span>
+    <span class="ticker-item"><b>0</b> Gut feels. Ever.</span>
+    <span class="ticker-item"><b>THIS WEEK</b> Truist Championship · Quail Hollow</span>
+    <span class="ticker-item"><b>Model</b> Tee-to-green + course history</span>
+    <span class="ticker-item"><b>Edge</b> GIR 175-200 yard precision filter</span>
+    <span class="ticker-item"><b>0</b> Gut feels. Ever.</span>
+  </div>
+</div>
+
+<div class="record-bar">
+  <div class="record-inner">
+    <div class="record-header">
+      <div class="record-label">2026 Season Record · Settled Bets</div>
+      <a href="picks.html" class="record-link">Full tracker →</a>
+    </div>
+    <div class="record-cells" id="record-cells">
+      <div class="record-cell loading"><div class="record-n">—</div><div class="record-l">Net Profit<br>2026 Season</div></div>
+      <div class="record-cell loading"><div class="record-n">—</div><div class="record-l">Winning<br>Bets</div></div>
+      <div class="record-cell loading"><div class="record-n">—</div><div class="record-l">Losing<br>Bets</div></div>
+      <div class="record-cell loading"><div class="record-n">—</div><div class="record-l">ROI<br>Settled</div></div>
+      <div class="record-cell loading"><div class="record-n">—</div><div class="record-l">Tournaments<br>Tracked</div></div>
+    </div>
+    <div class="hits-row" id="hits-row">
+      <span class="hits-label">Notable hits →</span>
+    </div>
+  </div>
+</div>
+
+<div class="stats">
+  <div class="stat-cell">
+    <div class="stat-n">5+</div>
+    <div class="stat-l">Years of course<br>data modeled</div>
+  </div>
+  <div class="stat-cell">
+    <div class="stat-n">3</div>
+    <div class="stat-l">Primary stat<br>filters per course</div>
+  </div>
+  <div class="stat-cell">
+    <div class="stat-n">0</div>
+    <div class="stat-l">Gut feels.<br>Ever.</div>
+  </div>
+</div>
+
+<section class="section" id="method">
+  <div class="sec-eyebrow">Methodology</div>
+  <h2 class="sec-title">Built like a <span>quant model.</span><br>Applied to golf.</h2>
+  <p class="sec-body">The same systematic edge-finding frameworks used in financial markets — applied to the PGA Tour. Every week. Every course. No shortcuts. See how it works on the <a href="analysis-truist-2026.html" style="color:var(--g);text-decoration:none">Truist Championship 2026 analysis</a> — the current tournament in focus.</p>
+  <div class="pillars">
+    <div class="pillar">
+      <div class="pillar-n">01</div>
+      <div class="pillar-t">Strokes Gained Modeling</div>
+      <div class="pillar-b">We identify which SG categories actually predict finishing position at each course — not what the narrative says. What the data says.</div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-n">02</div>
+      <div class="pillar-t">Course-Fit Profiling</div>
+      <div class="pillar-b">Every course has a unique fingerprint. We match player stat profiles to course demands and find the players whose game fits best.</div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-n">03</div>
+      <div class="pillar-t">Value Screening</div>
+      <div class="pillar-b">Course-fit score vs. market odds. When the gap is wide enough — that's the edge. We find it systematically, every single tournament.</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="picks">
+  <div class="sec-eyebrow" id="picks-eyebrow">This Week</div>
+  <h2 class="sec-title">Where the <span>model</span><br>sees value.</h2>
+  <p class="sec-body">A sample of this week's analysis. Full breakdown, all picks, course profile, weather, and fades, for subscribers only.</p>
+  <div class="picks-grid" id="picks-grid">
+    <div style="padding:2rem;font-family:'DM Mono',monospace;font-size:11px;color:var(--txt3);letter-spacing:0.08em">Loading...</div>
+  </div>
+</section>
+
+<div class="cta-wrap">
+  <div class="cta-box">
+    <h2 class="cta-title">Get the full <span>edge</span><br>every week.</h2>
+    <p class="cta-sub">Tournament previews, full pick breakdowns, course profiles, and value plays. Delivered before every PGA Tour event.</p>
+    <div class="cta-btns">
+      <a href="https://strokesedge.substack.com" class="btn-primary" target="_blank">Subscribe on Substack →</a>
+      <a href="https://strokesedge.substack.com" class="btn-ghost" target="_blank">Read free picks first</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="foot-logo">Strokes<span>Edge</span></div>
+  <div class="foot-note">Not financial advice. Gamble responsibly.</div>
+</footer>
+
+<script>// ── Nav dropdowns ──
+document.querySelectorAll('.nav-drop-btn').forEach(function(btn){
+  btn.addEventListener('click',function(e){
+    e.preventDefault();
+    e.stopPropagation();
+    var id='drop-'+btn.getAttribute('data-drop');
+    var menu=document.getElementById(id);
+    var isOpen=menu.classList.contains('open');
+    document.querySelectorAll('.drop-menu').forEach(function(m){m.classList.remove('open');});
+    document.querySelectorAll('.nav-drop-btn').forEach(function(b){b.classList.remove('open');});
+    if(!isOpen){menu.classList.add('open');btn.classList.add('open');}
+  });
+});
+document.addEventListener('click',function(e){
+  if(!e.target.closest('.nav-drop')){
+    document.querySelectorAll('.drop-menu').forEach(function(m){m.classList.remove('open');});
+    document.querySelectorAll('.nav-drop-btn').forEach(function(b){b.classList.remove('open');});
+  }
+});
+
+// ── Hamburger ──
+var hbg=document.getElementById('hamburger'),mob=document.getElementById('mobile-menu');
+if(hbg&&mob){
+  hbg.addEventListener('click',function(e){
+    e.stopPropagation();
+    hbg.classList.toggle('open');
+    mob.classList.toggle('open');
+  });
+  document.addEventListener('click',function(e){
+    if(!hbg.contains(e.target)&&!mob.contains(e.target)){
+      hbg.classList.remove('open');
+      mob.classList.remove('open');
+    }
+  });
+}
+
+var SHEET_ID='2PACX-1vRn7eBjHWBs4nag5K5QHxnKiyeC-UEobNINAfjmEKsnBgX6aqm3lEZCY1i4lg5t5Lwy3I2p8ZLrR4Gc';
+var DIRECT_URL='https://docs.google.com/spreadsheets/d/e/'+SHEET_ID+'/pub?gid=0&single=true&output=csv';
+var PROXY_URL='https://corsproxy.io/?'+encodeURIComponent(DIRECT_URL);
+
+function parseCSV(text){
+  var lines=text.trim().split('\n');
+  if(lines.length<2)return[];
+  var headers=splitLine(lines[0]);
+  var rows=[];
+  for(var i=1;i<lines.length;i++){
+    if(!lines[i].trim())continue;
+    var vals=splitLine(lines[i]);
+    var obj={};
+    headers.forEach(function(h,idx){obj[h.trim().toLowerCase()]=vals[idx]?vals[idx].trim():'';});
+    rows.push(obj);
+  }
+  return rows;
+}
+
+function splitLine(line){
+  var result=[],cur='',inQ=false;
+  for(var i=0;i<line.length;i++){
+    var c=line[i];
+    if(c==='"'){inQ=!inQ;}
+    else if(c===','&&!inQ){result.push(cur);cur='';}
+    else{cur+=c;}
+  }
+  result.push(cur);
+  return result;
+}
+
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+
+function processData(picks){
+  var settled=picks.filter(function(p){return p.result!=='open';});
+  var open=picks.filter(function(p){return p.result==='open';});
+  var won=settled.filter(function(p){return p.result==='won'||p.result==='placed';});
+  var lost=settled.filter(function(p){return p.result==='lost';});
+  var wagered=settled.reduce(function(s,p){return s+p.wager;},0);
+  var returned=settled.reduce(function(s,p){return s+p.payout;},0);
+  var net=returned-wagered;
+  var roi=wagered>0?(net/wagered)*100:0;
+  var tourns=new Set(settled.map(function(p){return p.tournament;})).size;
+
+  var netStr=(net>=0?'+':'-')+'$'+Math.abs(net).toFixed(0);
+  var roiStr=(roi>=0?'+':'-')+Math.abs(roi).toFixed(0)+'%';
+
+  document.getElementById('record-cells').innerHTML=
+    rcell(netStr,net>=0?'green':'red','Net Profit<br>2026 Season')+
+    rcell(won.length,'green','Winning<br>Bets')+
+    rcell(lost.length,'red','Losing<br>Bets')+
+    rcell(roiStr,roi>=0?'green':'red','ROI<br>Settled')+
+    rcell(tourns,'green','Tournaments<br>Tracked');
+
+  var topHits=won.slice().sort(function(a,b){return b.payout-a.payout;}).slice(0,5);
+  var hitsHtml='<span class="hits-label">Notable hits →</span>';
+  topHits.forEach(function(h){
+    hitsHtml+='<span class="hit-badge">'+esc(h.player.split(' ').pop())+' '+esc(h.odds)+'</span>';
+  });
+  document.getElementById('hits-row').innerHTML=hitsHtml;
+
+  var currentTourn=open.length>0?open[0].tournament:'';
+
+  if(currentTourn){
+    var tickerItems=[
+      '<b>NOW</b> '+esc(currentTourn),
+      '<b>#1 STAT</b> SG: Approach',
+      '<b>MODEL</b> 5yr course-fit profiling',
+      '<b>NET</b> '+netStr+' · 2026 Season',
+      '<b>ROI</b> '+roiStr+' · Settled bets',
+      '<b>0</b> Gut feels. Ever.',
+    ];
+    var doubled=tickerItems.concat(tickerItems);
+    document.getElementById('ticker-track').innerHTML=doubled.map(function(t){
+      return'<span class="ticker-item">'+t+'</span>';
+    }).join('');
+  }
+
+  document.getElementById('live-event-label').textContent=currentTourn||'Season Complete';
+  document.getElementById('picks-eyebrow').textContent=currentTourn?'This Week · '+currentTourn:'Latest Picks';
+
+  var heroOpen=open.filter(function(p){
+    return p.type==='Winner'||p.type==='E/W Winner'||p.type==='Top 20'||p.type==='Top 5';
+  }).slice(0,4);
+  if(!heroOpen.length)heroOpen=open.slice(0,4);
+
+  var tierLabels={'Winner':'Outright Pick','E/W Winner':'Each Way Play','Top 20':'Top-20 Lock','Top 5':'Top-5 Play','Top 10':'Top-10 Play'};
+
+  if(heroOpen.length){
+    document.getElementById('live-picks-rows').innerHTML=heroOpen.map(function(p,i){
+      var cls=i===0?'pick-row value-row':'pick-row';
+      var tierLabel=tierLabels[p.type]||p.type;
+      return'<div class="'+cls+'">'
+        +'<div>'
+        +'<div class="pick-tier-tag">'+esc(tierLabel)+'</div>'
+        +'<div class="pick-player">'+esc(p.player)+'</div>'
+        +'<div class="pick-note">'+esc(p.tournament)+' · '+esc(p.date)+'</div>'
+        +'</div>'
+        +'<div class="pick-number">'+esc(p.odds)+'</div>'
+        +'</div>';
+    }).join('');
+  } else {
+    document.getElementById('live-picks-rows').innerHTML='<div style="padding:1.5rem 1.25rem;font-family:\'DM Mono\',monospace;font-size:11px;color:var(--txt3);letter-spacing:0.08em">No open picks — check back before the next event.</div>';
+  }
+
+  var gridPicks=open.filter(function(p){
+    return p.type==='Winner'||p.type==='E/W Winner';
+  }).slice(0,4);
+  if(!gridPicks.length)gridPicks=open.slice(0,4);
+
+  var tierColors={'Winner':'Value Play','E/W Winner':'Each Way','Top 20':'Top-20 Lock','Top 5':'Top-5 Pick','Top 10':'Top-10 Pick','Longshot':'Longshot'};
+
+  if(gridPicks.length){
+    document.getElementById('picks-grid').innerHTML=gridPicks.map(function(p,i){
+      var cls=i===0?'p-card feat':'p-card';
+      var tier=tierColors[p.type]||p.type;
+      return'<div class="'+cls+'">'
+        +'<div>'
+        +'<div class="p-tier">'+esc(tier)+'</div>'
+        +'<div class="p-name">'+esc(p.player)+'</div>'
+        +'<div class="p-why">'+esc(p.tournament)+' · '+esc(p.type)+'</div>'
+        +'</div>'
+        +'<div class="p-odds">'+esc(p.odds)+'</div>'
+        +'</div>';
+    }).join('');
+  } else {
+    document.getElementById('picks-grid').innerHTML='<div style="padding:2rem;font-family:\'DM Mono\',monospace;font-size:11px;color:var(--txt3);letter-spacing:0.08em;grid-column:1/-1">No open picks right now — check back before the next event or <a href="picks.html" style="color:var(--g)">view full tracker</a>.</div>';
+  }
+}
+
+function rcell(val,cls,label){
+  return'<div class="record-cell"><div class="record-n '+cls+'">'+val+'</div><div class="record-l">'+label+'</div></div>';
+}
+
+function loadSheet(){
+  fetch(DIRECT_URL)
+    .then(function(r){if(!r.ok)throw new Error();return r.text();})
+    .then(function(csv){processData(parseCSV(csv).map(norm).filter(function(p){return p.player;}));})
+    .catch(function(){
+      fetch(PROXY_URL)
+        .then(function(r){if(!r.ok)throw new Error();return r.text();})
+        .then(function(csv){processData(parseCSV(csv).map(norm).filter(function(p){return p.player;}));})
+        .catch(function(){
+          document.getElementById('record-cells').innerHTML=
+            rcell('—','green','Net Profit<br>2026 Season')+
+            rcell('—','green','Winning<br>Bets')+
+            rcell('—','red','Losing<br>Bets')+
+            rcell('—','green','ROI<br>Settled')+
+            rcell('—','green','Tournaments<br>Tracked');
+        });
+    });
+}
+
+function norm(row){
+  return{
+    player:row.player||'',
+    tournament:row.tournament||'',
+    date:row.date||'',
+    type:row.type||'',
+    odds:row.odds||'',
+    wager:parseFloat(row.wager)||0,
+    payout:parseFloat(row.payout)||0,
+    result:(row.result||'open').toLowerCase().trim()
+  };
+}
+
+// ── Custom cursor (desktop only) ──
+if(window.matchMedia('(hover:hover)').matches){
+  var cur=document.getElementById('cur'),ring=document.getElementById('ring');
+  var mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+  (function loop(){rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(loop);})();
+  document.querySelectorAll('a,button').forEach(function(el){
+    el.addEventListener('mouseenter',function(){ring.style.width='48px';ring.style.height='48px';ring.style.borderColor='rgba(106,184,58,0.6)';});
+    el.addEventListener('mouseleave',function(){ring.style.width='32px';ring.style.height='32px';ring.style.borderColor='rgba(106,184,58,0.4)';});
+  });
+}
+
+// ── Lead strip dismiss ──
+var closeBtn=document.getElementById('lead-close');
+var leadStrip=document.getElementById('lead-strip');
+if(closeBtn&&leadStrip){
+  if(localStorage.getItem('se-lead-dismissed')){leadStrip.style.display='none';}
+  closeBtn.addEventListener('click',function(){
+    leadStrip.style.display='none';
+    try{localStorage.setItem('se-lead-dismissed','1');}catch(e){}
+  });
+}
+
+loadSheet();
+</script>
+</body>
+</html>

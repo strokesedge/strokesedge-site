@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="How StrokesEdge works — strokes gained modeling, course-fit profiling, and value screening. A systematic, data-driven framework for finding edge in PGA Tour betting markets.">
+<title>Golf Betting Model — How StrokesEdge Works | StrokesEdge</title>
+<link rel="canonical" href="https://strokesedge.com/methodology.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://strokesedge.com/methodology.html">
+<meta property="og:title" content="Golf Betting Model — How StrokesEdge Works | StrokesEdge">
+<meta property="og:description" content="How StrokesEdge works — strokes gained modeling, course-fit profiling, and value screening. A systematic, data-driven framework for finding edge in PGA Tour betting markets.">
+<meta property="og:image" content="https://strokesedge.com/og-image.png">
+<meta property="og:site_name" content="StrokesEdge">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@StrokesEdge">
+<meta name="twitter:title" content="Golf Betting Model — How StrokesEdge Works | StrokesEdge">
+<meta name="twitter:description" content="Strokes gained modeling, course-fit profiling, and value screening. The full framework behind StrokesEdge picks.">
+<meta name="twitter:image" content="https://strokesedge.com/og-image.png">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --g:#6ab83a;--g2:#3d7a18;--g3:#1a3a08;
+  --g-glow:rgba(106,184,58,0.12);
+  --bg:#080b07;--bg2:#0c0f0b;--sur:#141a12;
+  --bdr:rgba(106,184,58,0.18);--bdr2:rgba(255,255,255,0.07);
+  --txt:#e6ede0;--txt2:#8a9e80;--txt3:#3a4a34;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--txt);font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.6;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(106,184,58,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(106,184,58,0.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;z-index:-1}
+
+/* Cursor — desktop only */
+@media(hover:hover){
+  body,*{cursor:none}
+  .cursor{position:fixed;width:8px;height:8px;background:var(--g);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%)}
+  .cursor-ring{position:fixed;width:32px;height:32px;border:1px solid rgba(106,184,58,0.4);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all 0.15s ease}
+}
+@media(hover:none){.cursor,.cursor-ring{display:none}}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1rem 1.5rem;border-bottom:1px solid var(--bdr2);background:rgba(8,11,7,0.95);backdrop-filter:blur(16px)}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:0.08em;color:var(--txt);text-decoration:none;flex-shrink:0}
+.nav-logo span{color:var(--g)}
+.nav-links{display:flex;align-items:center;gap:1.5rem}
+.nav-link{font-size:12px;color:var(--txt2);text-decoration:none;letter-spacing:0.06em;text-transform:uppercase;transition:color 0.2s}
+.nav-link:hover{color:var(--txt)}
+.nav-link.active{color:var(--g)}
+.nav-cta{font-family:'DM Mono',monospace;font-size:12px;padding:8px 18px;border:1px solid var(--g);border-radius:2px;color:var(--g);text-decoration:none;letter-spacing:0.06em;transition:all 0.2s;white-space:nowrap}
+.nav-cta:hover{background:var(--g-glow)}
+.nav-drop{position:relative}
+.nav-drop-btn{font-size:12px;color:var(--txt2);background:none;border:none;cursor:pointer;letter-spacing:.06em;text-transform:uppercase;display:flex;align-items:center;gap:5px;padding:0;font-family:'DM Sans',sans-serif;transition:color .2s;white-space:nowrap;outline:none}
+.nav-drop-btn:hover,.nav-drop-btn.open{color:var(--txt)}
+.nav-drop-btn::after{content:'▾';font-size:9px;transition:transform .2s;display:inline-block}
+.nav-drop-btn.open::after{transform:rotate(180deg)}
+.drop-menu{display:none;position:absolute;top:100%;left:0;min-width:220px;z-index:200}
+.drop-menu.open{display:block}
+.drop-menu-box{background:rgba(8,11,7,.98);border:1px solid var(--bdr);border-radius:4px;overflow:hidden;backdrop-filter:blur(16px)}
+.drop-item{display:block;padding:.7rem 1.1rem;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--txt2);text-decoration:none;border-bottom:1px solid var(--bdr2);transition:all .15s;white-space:nowrap}
+.drop-item:last-child{border-bottom:none}
+.drop-item:hover{color:var(--g);background:rgba(106,184,58,.05)}
+.drop-item .drop-sub{display:block;font-size:9px;color:var(--txt3);margin-top:2px;letter-spacing:.04em;text-transform:none}
+
+/* ── HAMBURGER ── */
+.hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:none;border:none;cursor:pointer;padding:6px;z-index:201}
+.hamburger span{display:block;width:22px;height:2px;background:var(--txt2);border-radius:2px;transition:all .25s}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);background:var(--g)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);background:var(--g)}
+.mobile-menu{display:none;position:fixed;top:57px;left:0;right:0;background:rgba(8,11,7,.98);backdrop-filter:blur(16px);border-bottom:1px solid var(--bdr2);z-index:99;flex-direction:column;padding:1rem 1.5rem 1.5rem;max-height:80vh;overflow-y:auto}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'DM Mono',monospace;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--txt2);text-decoration:none;padding:.7rem 0;border-bottom:1px solid var(--bdr2);transition:color .2s;display:block}
+.mobile-menu a:hover{color:var(--txt)}
+.mobile-menu a.active{color:var(--g)}
+.mob-section{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--txt3);padding:.6rem 0 .2rem;display:block}
+.mob-indent{padding-left:.75rem!important;font-size:11px!important}
+.mob-cta{border-bottom:none!important;margin-top:.5rem;padding:.85rem 1rem!important;border:1px solid var(--g)!important;border-radius:2px;color:var(--g)!important;text-align:center}
+@media(max-width:860px){.nav-link,.nav-drop,.nav-cta{display:none}.hamburger{display:flex}}
+
+/* ── HERO ── */
+.hero{padding:9rem 3rem 4rem;max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:end}
+.hero-eyebrow{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.14em;color:var(--g);text-transform:uppercase;margin-bottom:1.5rem;display:flex;align-items:center;gap:10px;opacity:0;animation:up 0.6s 0.1s forwards}
+.hero-eyebrow::before{content:'';width:24px;height:1px;background:var(--g);flex-shrink:0}
+.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(56px,7vw,96px);line-height:0.92;letter-spacing:0.03em;margin-bottom:1.5rem;opacity:0;animation:up 0.7s 0.2s forwards}
+.hero-title span{color:var(--g);display:block}
+.hero-sub{font-size:17px;color:var(--txt2);line-height:1.8;max-width:480px;opacity:0;animation:up 0.7s 0.35s forwards}
+.hero-right{opacity:0;animation:up 0.8s 0.5s forwards}
+.hero-stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--bdr2);border:1px solid var(--bdr2);border-radius:4px;overflow:hidden}
+.hero-stat{background:var(--bg2);padding:1.75rem 1.5rem}
+.hero-stat-n{font-family:'Bebas Neue',sans-serif;font-size:42px;color:var(--g);line-height:1;margin-bottom:6px;letter-spacing:0.03em}
+.hero-stat-l{font-family:'DM Mono',monospace;font-size:10px;color:var(--txt2);letter-spacing:0.1em;text-transform:uppercase;line-height:1.5}
+
+/* ── DIVIDERS / SECTIONS ── */
+.section-divider{max-width:1200px;margin:0 auto;padding:0 3rem}
+.divider-line{height:1px;background:var(--bdr2);margin:0 0 4rem}
+.section{max-width:1200px;margin:0 auto 6rem;padding:0 3rem}
+.sec-number{font-family:'DM Mono',monospace;font-size:11px;color:var(--g);letter-spacing:0.1em;margin-bottom:1rem;display:flex;align-items:center;gap:12px}
+.sec-number::after{content:'';height:1px;width:40px;background:var(--bdr)}
+.sec-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,5vw,60px);line-height:1;letter-spacing:0.04em;margin-bottom:1.5rem;color:var(--txt)}
+.sec-title span{color:var(--g)}
+.sec-intro{font-size:16px;color:var(--txt2);max-width:600px;line-height:1.85;margin-bottom:3rem}
+
+/* ── STEPS ── */
+.steps{display:grid;grid-template-columns:1fr;gap:1px;background:var(--bdr2);border:1px solid var(--bdr2);border-radius:4px;overflow:hidden}
+.step{background:var(--bg2);padding:2.5rem;display:grid;grid-template-columns:80px 1fr;gap:2rem;align-items:start;transition:background 0.2s}
+.step:hover{background:var(--sur)}
+.step-num{font-family:'Bebas Neue',sans-serif;font-size:64px;color:var(--g3);line-height:1;letter-spacing:0.04em;padding-top:4px}
+.step-title{font-size:18px;font-weight:400;color:var(--txt);margin-bottom:0.75rem;line-height:1.3}
+.step-desc{font-size:14px;color:var(--txt2);line-height:1.75;margin-bottom:1rem}
+.step-tags{display:flex;gap:0.5rem;flex-wrap:wrap}
+.step-tag{font-family:'DM Mono',monospace;font-size:10px;padding:4px 10px;border:1px solid var(--bdr);border-radius:2px;color:var(--g);letter-spacing:0.06em;text-transform:uppercase}
+
+/* ── GLOSSARY ── */
+.glossary{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.gloss-card{background:var(--sur);border:1px solid var(--bdr2);border-radius:4px;padding:1.5rem;transition:border-color 0.2s}
+.gloss-card:hover{border-color:var(--bdr)}
+.gloss-term{font-family:'DM Mono',monospace;font-size:12px;color:var(--g);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px}
+.gloss-def{font-size:14px;color:var(--txt2);line-height:1.7}
+.gloss-example{font-family:'DM Mono',monospace;font-size:11px;color:var(--txt3);margin-top:8px;padding-top:8px;border-top:1px solid var(--bdr2);line-height:1.5}
+
+/* ── FRAMEWORK ── */
+.framework{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.fw-card{background:var(--sur);border:1px solid var(--bdr2);border-radius:4px;padding:1.75rem;transition:all 0.2s;position:relative;overflow:hidden}
+.fw-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--g);opacity:0;transition:opacity 0.2s}
+.fw-card:hover{border-color:var(--bdr)}
+.fw-card:hover::before{opacity:1}
+.fw-icon{font-family:'Bebas Neue',sans-serif;font-size:40px;color:var(--g3);margin-bottom:1rem;letter-spacing:0.04em}
+.fw-title{font-size:15px;font-weight:400;color:var(--txt);margin-bottom:0.75rem}
+.fw-desc{font-size:13px;color:var(--txt2);line-height:1.7}
+
+/* ── PRINCIPLES ── */
+.principles{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--bdr2);border:1px solid var(--bdr2);border-radius:4px;overflow:hidden}
+.principle{background:var(--bg2);padding:2rem;transition:background 0.2s}
+.principle:hover{background:var(--sur)}
+.principle-label{font-family:'DM Mono',monospace;font-size:10px;color:var(--g);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.75rem}
+.principle-text{font-size:15px;color:var(--txt);line-height:1.65}
+.principle-sub{font-size:13px;color:var(--txt2);margin-top:0.5rem;line-height:1.6}
+
+/* ── CALLOUT ── */
+.callout{background:var(--sur);border:1px solid var(--bdr);border-radius:4px;padding:2.5rem;position:relative;overflow:hidden}
+.callout::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--g)}
+.callout-label{font-family:'DM Mono',monospace;font-size:10px;color:var(--g);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1rem}
+.callout-text{font-size:16px;color:var(--txt);line-height:1.75;font-style:italic}
+.callout-attr{font-family:'DM Mono',monospace;font-size:11px;color:var(--txt3);margin-top:1rem}
+
+/* ── CTA ── */
+.cta-wrap{max-width:1200px;margin:0 auto 5rem;padding:0 3rem}
+.cta-box{background:var(--bg2);border:1px solid var(--bdr);border-radius:4px;padding:4rem 3rem;text-align:center;position:relative;overflow:hidden}
+.cta-box::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:50%;height:1px;background:linear-gradient(90deg,transparent,var(--g),transparent)}
+.cta-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(32px,5vw,56px);letter-spacing:0.04em;line-height:1;margin-bottom:1rem;color:var(--txt)}
+.cta-title span{color:var(--g)}
+.cta-sub{font-size:16px;color:var(--txt2);max-width:440px;margin:0 auto 2rem;line-height:1.75}
+.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn-primary{display:inline-block;padding:13px 32px;background:var(--g);color:#fff;font-family:'DM Mono',monospace;font-size:13px;letter-spacing:0.06em;text-decoration:none;border-radius:2px;transition:all 0.2s;white-space:nowrap}
+.btn-primary:hover{background:#7acc44;transform:translateY(-2px)}
+.btn-ghost{display:inline-block;padding:13px 32px;border:1px solid var(--bdr2);color:var(--txt2);font-family:'DM Mono',monospace;font-size:13px;letter-spacing:0.06em;text-decoration:none;border-radius:2px;transition:all 0.2s;white-space:nowrap}
+.btn-ghost:hover{border-color:var(--bdr);color:var(--txt)}
+
+footer{border-top:1px solid var(--bdr2);padding:2rem 3rem;display:flex;justify-content:space-between;align-items:center;max-width:1200px;margin:0 auto}
+.foot-logo{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:0.08em;color:var(--txt2)}
+.foot-logo span{color:var(--g)}
+.foot-note{font-family:'DM Mono',monospace;font-size:11px;color:var(--txt3)}
+
+@keyframes up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+
+/* ─────────────────────────────────────────
+   MOBILE
+───────────────────────────────────────── */
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;padding:6rem 1.25rem 3rem;gap:2.5rem}
+  .hero-title{font-size:clamp(56px,12vw,80px)}
+  .hero-sub{font-size:15px}
+  /* Show stats grid on mobile */
+  .hero-right{display:block}
+  .hero-stat-grid{grid-template-columns:repeat(4,1fr)}
+  .hero-stat{padding:1.25rem 1rem}
+  .hero-stat-n{font-size:32px}
+  .hero-stat-l{font-size:9px}
+
+  .section-divider{padding:0 1.25rem}
+  .section{padding:0 1.25rem;margin-bottom:4rem}
+
+  /* Steps: single column layout */
+  .step{grid-template-columns:1fr;padding:1.75rem 1.25rem;gap:0.75rem}
+  .step-num{font-size:40px;padding-top:0}
+
+  .glossary{grid-template-columns:1fr}
+  .framework{grid-template-columns:1fr 1fr}
+  .principles{grid-template-columns:1fr}
+
+  .cta-wrap{padding:0 1.25rem}
+  .cta-box{padding:2.5rem 1.5rem}
+  footer{flex-direction:column;gap:1rem;text-align:center;padding:1.5rem}
+}
+
+@media(max-width:480px){
+  .hero{padding:5.5rem 1rem 2.5rem}
+  .hero-title{font-size:clamp(52px,16vw,72px)}
+
+  /* Stats: 2x2 grid on tiny screens */
+  .hero-stat-grid{grid-template-columns:1fr 1fr}
+  .hero-stat-n{font-size:36px}
+
+  .framework{grid-template-columns:1fr}
+  .glossary{grid-template-columns:1fr}
+
+  /* Callout padding */
+  .callout{padding:1.75rem 1.25rem 1.75rem 1.75rem}
+  .callout-text{font-size:15px}
+
+  /* CTA buttons full width */
+  .cta-btns{flex-direction:column;align-items:center}
+  .btn-primary,.btn-ghost{width:100%;max-width:280px;text-align:center}
+
+  .step-tags{gap:0.35rem}
+  .step-tag{font-size:9px;padding:3px 8px}
+}
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D398EHRP6Y"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-D398EHRP6Y');
+</script>
+</head>
+<body>
+<div class="cursor" id="cur"></div>
+<div class="cursor-ring" id="ring"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">Strokes<span>Edge</span></a>
+  <div class="nav-links">
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="methodology.html" class="nav-link active">Methodology</a>
+    <a href="picks.html" class="nav-link">Pick Tracker</a>
+    <div class="nav-drop">
+      <button class="nav-drop-btn" data-drop="courses">Courses</button>
+      <div class="drop-menu" id="drop-courses"><div class="drop-menu-box">
+        <a href="courses.html" class="drop-item">All Course Guides<span class="drop-sub">Full library</span></a>
+        <a href="course-shinnecock-hills.html" class="drop-item">Shinnecock Hills<span class="drop-sub">U.S. Open · Jun</span></a>
+        <a href="course-quail-hollow.html" class="drop-item">Quail Hollow<span class="drop-sub">Truist · May</span></a>
+        <a href="course-colonial.html" class="drop-item">Colonial CC<span class="drop-sub">Schwab Challenge · May</span></a>
+        <a href="course-doral.html" class="drop-item">Blue Monster / Doral<span class="drop-sub">Cadillac · Apr–May</span></a>
+        <a href="course-aronimink.html" class="drop-item">Aronimink<span class="drop-sub">PGA Championship · May</span></a>
+        <a href="course-augusta-national.html" class="drop-item">Augusta National<span class="drop-sub">The Masters · Apr</span></a>
+        <a href="course-harbour-town.html" class="drop-item">Harbour Town<span class="drop-sub">RBC Heritage · Apr</span></a>
+        <a href="course-tpc-louisiana.html" class="drop-item">TPC Louisiana<span class="drop-sub">Zurich Classic · Apr</span></a>
+        <a href="course-tpc-craig-ranch.html" class="drop-item">TPC Craig Ranch<span class="drop-sub">CJ Cup Byron Nelson · May</span></a>
+      </div></div>
+    </div>
+    <div class="nav-drop">
+      <button class="nav-drop-btn" data-drop="analysis">Analysis</button>
+      <div class="drop-menu" id="drop-analysis"><div class="drop-menu-box">
+        <a href="analysis.html" class="drop-item">Current Analysis<span class="drop-sub">Charles Schwab 2026</span></a>
+        <a href="analysis-pga-2026.html" class="drop-item">PGA Championship 2026<span class="drop-sub">Aronimink · May 14–17</span></a>
+        <a href="analysis-truist-2026.html" class="drop-item">Truist Championship 2026<span class="drop-sub">Quail Hollow · May 7–10</span></a>
+        <a href="analysis-cadillac-2026.html" class="drop-item">Cadillac Championship 2026<span class="drop-sub">Doral · Apr 30–May 3</span></a>
+        <a href="analysis-heritage-2026.html" class="drop-item">RBC Heritage 2026<span class="drop-sub">Harbour Town · Apr 16–19</span></a>
+        <a href="analysis-masters-2026.html" class="drop-item">Masters 2026<span class="drop-sub">Augusta National · Apr 9–12</span></a>
+        <a href="analysis-valero-2026.html" class="drop-item">Valero Texas Open 2026<span class="drop-sub">TPC San Antonio · Apr 2–6</span></a>
+        <a href="analysis-cj-cup-byron-nelson-2025.html" class="drop-item">CJ Cup Byron Nelson 2025<span class="drop-sub">TPC Craig Ranch · May</span></a>
+      </div></div>
+    </div>
+    <a href="https://strokesedge.substack.com" class="nav-cta" target="_blank">Subscribe →</a>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html">Home</a>
+  <a href="methodology.html" class="active">Methodology</a>
+  <a href="picks.html">Pick Tracker</a>
+  <span class="mob-section">— Courses —</span>
+  <a href="courses.html" class="mob-indent">All Course Guides</a>
+  <a href="course-shinnecock-hills.html" class="mob-indent">Shinnecock Hills</a>
+  <a href="course-quail-hollow.html" class="mob-indent">Quail Hollow</a>
+  <a href="course-colonial.html" class="mob-indent">Colonial CC</a>
+  <a href="course-doral.html" class="mob-indent">Blue Monster / Doral</a>
+  <a href="course-aronimink.html" class="mob-indent">Aronimink</a>
+  <a href="course-augusta-national.html" class="mob-indent">Augusta National</a>
+  <a href="course-harbour-town.html" class="mob-indent">Harbour Town</a>
+  <a href="course-tpc-louisiana.html" class="mob-indent">TPC Louisiana</a>
+  <a href="course-tpc-craig-ranch.html" class="mob-indent">TPC Craig Ranch</a>
+  <span class="mob-section">— Analysis —</span>
+  <a href="analysis.html" class="mob-indent">Current Analysis</a>
+  <a href="analysis-pga-2026.html" class="mob-indent">PGA Championship 2026</a>
+  <a href="analysis-truist-2026.html" class="mob-indent">Truist Championship 2026</a>
+  <a href="analysis-cadillac-2026.html" class="mob-indent">Cadillac Championship 2026</a>
+  <a href="analysis-heritage-2026.html" class="mob-indent">RBC Heritage 2026</a>
+  <a href="analysis-masters-2026.html" class="mob-indent">Masters 2026</a>
+  <a href="analysis-valero-2026.html" class="mob-indent">Valero Texas Open 2026</a>
+  <a href="analysis-cj-cup-byron-nelson-2025.html" class="mob-indent">CJ Cup Byron Nelson 2025</a>
+  <a href="https://strokesedge.substack.com" class="mob-cta" target="_blank">Subscribe →</a>
+</div>
+
+<section class="hero">
+  <div>
+    <div class="hero-eyebrow">How it works</div>
+    <h1 class="hero-title">The<br><span>Model.</span></h1>
+    <p class="hero-sub">A systematic, data-driven framework for finding edge in PGA Tour betting markets — built on the same principles used in quantitative finance.</p>
+  </div>
+  <div class="hero-right">
+    <div class="hero-stat-grid">
+      <div class="hero-stat">
+        <div class="hero-stat-n">5+</div>
+        <div class="hero-stat-l">Years of course<br>history modeled</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-n">3</div>
+        <div class="hero-stat-l">Primary filters<br>per tournament</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-n">SG</div>
+        <div class="hero-stat-l">Strokes gained<br>core framework</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-n">0</div>
+        <div class="hero-stat-l">Gut feels.<br>Ever.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"><div class="divider-line"></div></div>
+
+<section class="section">
+  <div class="sec-number">01 — Philosophy</div>
+  <h2 class="sec-title">Built like a <span>quant model.</span></h2>
+  <p class="sec-intro">Golf betting markets are inefficient. The public prices players on name recognition, recent narrative, and TV airtime — not on data. That inefficiency creates opportunity. Our job is to find it systematically, every single week.</p>
+  <div class="callout">
+    <div class="callout-label">Core principle</div>
+    <p class="callout-text">"Every course has a fingerprint. Every player has a stat profile. When those two things match — and the market hasn't priced it in — that's the edge."</p>
+    <div class="callout-attr">— StrokesEdge framework</div>
+  </div>
+</section>
+
+<div class="section-divider"><div class="divider-line"></div></div>
+
+<section class="section">
+  <div class="sec-number">02 — Process</div>
+  <h2 class="sec-title">Three steps to <span>every pick.</span></h2>
+  <p class="sec-intro">The same process runs every single week before a PGA Tour event. No shortcuts. No exceptions.</p>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-body">
+        <div class="step-title">Course profiling — identify what actually matters here</div>
+        <p class="step-desc">Before looking at a single player, we analyze the course. Using 5+ years of historical data, we identify which Strokes Gained categories most strongly correlate with finishing position at this specific venue. Not what the commentators say matters — what the data says matters.</p>
+        <p class="step-desc">Every course is different. TPC Sawgrass rewards SG: Approach and penalizes approach misses. Augusta rewards SG: Putting and ball-striking. Bay Hill rewards driving accuracy. The model weights each stat category based on its actual predictive power at that course — not conventional wisdom.</p>
+        <div class="step-tags">
+          <span class="step-tag">SG: Off-the-Tee</span>
+          <span class="step-tag">SG: Approach</span>
+          <span class="step-tag">SG: Around-the-Green</span>
+          <span class="step-tag">SG: Putting</span>
+          <span class="step-tag">Scrambling %</span>
+          <span class="step-tag">Driving Distance</span>
+          <span class="step-tag">Driving Accuracy</span>
+        </div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-body">
+        <div class="step-title">Player screening — match stat profiles to course demands</div>
+        <p class="step-desc">With the course fingerprint established, we run the field through the model. Each player gets a course-fit score based on their rolling performance in the stats that matter most at this venue. We use multiple time windows — last 8 events, last 24 events, last 50 events — to separate in-form players from structural fits.</p>
+        <p class="step-desc">A player who's gained 0.8 strokes per round on approach over their last 24 events will score well at an approach-dominant course regardless of whether they won last week. The model cuts through recent noise to find structural advantages.</p>
+        <div class="step-tags">
+          <span class="step-tag">Last 8 events</span>
+          <span class="step-tag">Last 24 events</span>
+          <span class="step-tag">Last 50 events</span>
+          <span class="step-tag">Course history</span>
+          <span class="step-tag">Form weighting</span>
+        </div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-body">
+        <div class="step-title">Value screening — find where the market is wrong</div>
+        <p class="step-desc">Course-fit score alone isn't enough. A player can be a perfect course fit but still be a bad bet if the market has already priced it in. The final step compares each player's model-implied probability against their market odds to find pricing gaps.</p>
+        <p class="step-desc">When a player scores highly on course fit but is priced long by the market — that's the edge. This is where picks like Akshay Bhatia at +6600 at Arnold Palmer, or Jacob Bridgeman at +9000 at Genesis, come from. The model found the gap. The market hadn't caught up.</p>
+        <div class="step-tags">
+          <span class="step-tag">Implied probability</span>
+          <span class="step-tag">Market odds</span>
+          <span class="step-tag">Value gap</span>
+          <span class="step-tag">E/W value</span>
+          <span class="step-tag">Place market</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"><div class="divider-line"></div></div>
+
+<section class="section">
+  <div class="sec-number">03 — Glossary</div>
+  <h2 class="sec-title">What the <span>terms mean.</span></h2>
+  <p class="sec-intro">Golf betting uses a lot of jargon. Here's exactly what every term in our analysis means — no assumptions.</p>
+  <div class="glossary">
+    <div class="gloss-card">
+      <div class="gloss-term">Strokes Gained (SG)</div>
+      <div class="gloss-def">A stat that measures how many strokes a player gains or loses relative to the field average from a given situation. Breaks down into four categories: Off-the-Tee, Approach, Around-the-Green, and Putting.</div>
+      <div class="gloss-example">Example: SG: Approach of +0.8 means a player gains 0.8 strokes per round on approach shots compared to the average tour player.</div>
+    </div>
+    <div class="gloss-card">
+      <div class="gloss-term">Course Fit Score</div>
+      <div class="gloss-def">Our internal model score for how well a player's stat profile matches the demands of the course that week. Weighted by the stats that historically predict results at that specific venue.</div>
+      <div class="gloss-example">Example: A high course fit score at TPC San Antonio means the player excels in SG: Approach — the #1 stat at that venue.</div>
+    </div>
+    <div class="gloss-card">
+      <div class="gloss-term">Each Way (E/W)</div>
+      <div class="gloss-def">A two-part bet. The "win" part pays if the player wins. The "place" part pays (at reduced odds) if the player finishes in the top 5 or 6 depending on the sportsbook. Doubles your stake but gives you two ways to cash.</div>
+      <div class="gloss-example">Example: Bhatia E/W at +6600. He placed T4 at Arnold Palmer — the win bet lost, but the place bet paid out at 1/5 of +6600.</div>
+    </div>
+    <div class="gloss-card">
+      <div class="gloss-term">Market Implied Probability</div>
+      <div class="gloss-def">The probability the sportsbook's odds are implying a player has to win. Calculated by converting the American odds into a percentage. This is what we compare our model probability against to find value.</div>
+      <div class="gloss-example">Example: +5000 odds implies ~2% win probability. If our model says 4%, that player has significant value.</div>
+    </div>
+    <div class="gloss-card">
+      <div class="gloss-term">Fade</div>
+      <div class="gloss-def">A player we explicitly recommend betting against — or avoiding entirely. Typically a popular name whose game doesn't fit the course profile, or who is overpriced by the market relative to their course-fit score.</div>
+      <div class="gloss-example">Example: A big hitter faded at a course where driving distance has low predictive power and approach play is dominant.</div>
+    </div>
+    <div class="gloss-card">
+      <div class="gloss-term">Top-20 Lock</div>
+      <div class="gloss-def">Our highest-confidence finish market picks. Players whose course-fit profile suggests a strong probability of a top-20 finish, priced at a value relative to that implied probability.</div>
+      <div class="gloss-example">Example: Tommy Fleetwood as a Top-20 Lock at courses where SG: Approach dominates — he's elite in that category and consistently finishes in the top 20 at those venues.</div>
+    </div>
+    <div class="gloss-card">
+      <div class="gloss-term">Value Play</div>
+      <div class="gloss-def">The pick with the largest gap between our model-implied probability and the market odds. Usually a mid-range player (not the headline names) who scores exceptionally well on course fit but hasn't been priced accordingly.</div>
+      <div class="gloss-example">Example: Ryo Hisatsune at +5000 at Valero — elite approach numbers, but priced like a longshot because he's not a household name yet.</div>
+    </div>
+    <div class="gloss-card">
+      <div class="gloss-term">Longshot</div>
+      <div class="gloss-def">High-odds speculative plays where the model identifies a real statistical case for contention. Small unit size, big upside. Think of these as lottery tickets backed by data rather than hope.</div>
+      <div class="gloss-example">Example: Jacob Bridgeman at +9000 at Genesis — scrambling numbers fit the course perfectly. He won. $5 returned $455.</div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"><div class="divider-line"></div></div>
+
+<section class="section">
+  <div class="sec-number">04 — Pick Tiers</div>
+  <h2 class="sec-title">How picks are <span>structured.</span></h2>
+  <p class="sec-intro">Every weekly analysis uses the same tiered structure. Each tier has a different risk/reward profile and a suggested unit size.</p>
+  <div class="framework">
+    <div class="fw-card">
+      <div class="fw-icon">LOCK</div>
+      <div class="fw-title">Top-20 Locks</div>
+      <div class="fw-desc">Highest-confidence finish market plays. Strong course fit + fair or better market pricing. These are the foundation of every weekly analysis. Suggested: 2-3 units.</div>
+    </div>
+    <div class="fw-card">
+      <div class="fw-icon">VALUE</div>
+      <div class="fw-title">Value Play of the Week</div>
+      <div class="fw-desc">The single biggest pricing gap the model identifies each week. One player whose course-fit score is significantly higher than their market odds imply. Suggested: 1-2 units.</div>
+    </div>
+    <div class="fw-card">
+      <div class="fw-icon">LONG</div>
+      <div class="fw-title">Longshot</div>
+      <div class="fw-desc">High-odds speculative play backed by a real statistical case. Not a random flyer — a player the model genuinely likes at a price the market has undervalued. Suggested: 0.5 units.</div>
+    </div>
+    <div class="fw-card">
+      <div class="fw-icon">FADE</div>
+      <div class="fw-title">Fade Alert</div>
+      <div class="fw-desc">Players to actively avoid or bet against. Typically overpriced names whose game profile doesn't match the course demands. Useful for DFS and head-to-head markets.</div>
+    </div>
+    <div class="fw-card">
+      <div class="fw-icon">PARL</div>
+      <div class="fw-title">Parlays</div>
+      <div class="fw-desc">Multi-leg bets combining top-20 and make-cut picks from the same week. Lower probability, higher payout. Only built when the individual legs are already strong standalone bets.</div>
+    </div>
+    <div class="fw-card">
+      <div class="fw-icon">E/W</div>
+      <div class="fw-title">Each Way</div>
+      <div class="fw-desc">Two-part bets used on longshot and value plays where the place market offers significant value relative to the win odds. Allows exposure to big payouts with partial downside protection.</div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"><div class="divider-line"></div></div>
+
+<section class="section">
+  <div class="sec-number">05 — Principles</div>
+  <h2 class="sec-title">What we <span>never do.</span></h2>
+  <p class="sec-intro">As important as the process is what we deliberately exclude from it.</p>
+  <div class="principles">
+    <div class="principle">
+      <div class="principle-label">No narrative betting</div>
+      <div class="principle-text">"He's due for a win" is not a reason to back a player.</div>
+      <div class="principle-sub">Player narratives don't predict finishing positions. SG data does. We never back a player because of a storyline.</div>
+    </div>
+    <div class="principle">
+      <div class="principle-label">No recency bias</div>
+      <div class="principle-text">Last week's result is one data point, not a trend.</div>
+      <div class="principle-sub">A player who won last week isn't automatically worth backing this week. The model looks at rolling averages across multiple time windows, not just recent form.</div>
+    </div>
+    <div class="principle">
+      <div class="principle-label">No name recognition premium</div>
+      <div class="principle-text">Rory McIlroy isn't always worth backing just because he's Rory McIlroy.</div>
+      <div class="principle-sub">The market overprices famous names and underprices unfamiliar ones. That inefficiency is a core source of our edge.</div>
+    </div>
+    <div class="principle">
+      <div class="principle-label">No gut feel picks</div>
+      <div class="principle-text">If it's not in the data, it's not in the analysis.</div>
+      <div class="principle-sub">Every pick has a data-backed rationale. If we can't point to specific stats that support a play, we don't make the play.</div>
+    </div>
+    <div class="principle">
+      <div class="principle-label">No chasing losses</div>
+      <div class="principle-text">Bad weeks happen. The model doesn't panic.</div>
+      <div class="principle-sub">We don't increase unit sizes after losing weeks or abandon the process when picks miss. Long-term edge comes from process consistency, not reaction.</div>
+    </div>
+    <div class="principle">
+      <div class="principle-label">No selective transparency</div>
+      <div class="principle-text">Every bet — win or loss — is on the pick tracker.</div>
+      <div class="principle-sub">The pick tracker shows everything. Wins, losses, open bets, P&L. No cherry-picking. No hiding misses. Full accountability, every week.</div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-wrap">
+  <div class="cta-box">
+    <h2 class="cta-title">See the model <span>in action.</span></h2>
+    <p class="cta-sub">Every week's analysis — course profile, picks, value plays, and fades — delivered to your inbox before the first tee shot.</p>
+    <div class="cta-btns">
+      <a href="https://strokesedge.substack.com" class="btn-primary" target="_blank">Subscribe on Substack →</a>
+      <a href="picks.html" class="btn-ghost">View pick tracker</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="foot-logo">Strokes<span>Edge</span></div>
+  <div class="foot-note">Not financial advice. Gamble responsibly.</div>
+</footer>
+
+<script>// ── Nav dropdowns ──
+document.querySelectorAll('.nav-drop-btn').forEach(function(btn){
+  btn.addEventListener('click',function(e){
+    e.preventDefault();
+    e.stopPropagation();
+    var id='drop-'+btn.getAttribute('data-drop');
+    var menu=document.getElementById(id);
+    var isOpen=menu.classList.contains('open');
+    document.querySelectorAll('.drop-menu').forEach(function(m){m.classList.remove('open');});
+    document.querySelectorAll('.nav-drop-btn').forEach(function(b){b.classList.remove('open');});
+    if(!isOpen){menu.classList.add('open');btn.classList.add('open');}
+  });
+});
+document.addEventListener('click',function(e){
+  if(!e.target.closest('.nav-drop')){
+    document.querySelectorAll('.drop-menu').forEach(function(m){m.classList.remove('open');});
+    document.querySelectorAll('.nav-drop-btn').forEach(function(b){b.classList.remove('open');});
+  }
+});
+
+// ── Hamburger ──
+var hbg=document.getElementById('hamburger'),mob=document.getElementById('mobile-menu');
+if(hbg&&mob){
+  hbg.addEventListener('click',function(e){
+    e.stopPropagation();
+    hbg.classList.toggle('open');
+    mob.classList.toggle('open');
+  });
+  document.addEventListener('click',function(e){
+    if(!hbg.contains(e.target)&&!mob.contains(e.target)){
+      hbg.classList.remove('open');
+      mob.classList.remove('open');
+    }
+  });
+}
+
+if(window.matchMedia('(hover:hover)').matches){
+  var cur=document.getElementById('cur'),ring=document.getElementById('ring');
+  var mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+  (function loop(){rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(loop);})();
+  document.querySelectorAll('a,button').forEach(function(el){
+    el.addEventListener('mouseenter',function(){ring.style.width='48px';ring.style.height='48px';ring.style.borderColor='rgba(106,184,58,0.6)';});
+    el.addEventListener('mouseleave',function(){ring.style.width='32px';ring.style.height='32px';ring.style.borderColor='rgba(106,184,58,0.4)';});
+  });
+}
+
+</script>
+</body>
+</html>

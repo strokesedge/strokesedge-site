@@ -1,0 +1,9 @@
+# Redirect any old Netlify subdomain traffic to canonical domain
+# If you have a specific subdomain (e.g. strokesedge.netlify.app), set that as an environment redirect in Netlify settings.
+# These rules handle common stale URL patterns that may have been shared with the old subdomain.
+
+# Catch-all for any path — redirects to same path on canonical domain
+# NOTE: In Netlify, the subdomain-level redirect is handled in Site Settings > Domain Management > Primary domain.
+# The rules below handle path-level canonicalization.
+
+/index.html   /   301

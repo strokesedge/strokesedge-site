@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon32x32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon512x512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon180x180.png">
+<meta name="description" content="StrokesEdge Cadillac Championship 2026 analysis — Blue Monster at Doral course profile, strokes gained regression, outright picks, top-10/top-20 plays, head-to-head matchups, parlays, longshots and fades. The full quant model for Trump National Doral.">
+<title>Cadillac Championship 2026 Analysis — StrokesEdge</title>
+<link rel="canonical" href="https://strokesedge.com/analysis-cadillac-2026.html">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://strokesedge.com/analysis-cadillac-2026.html">
+<meta property="og:title" content="Cadillac Championship 2026 Analysis — StrokesEdge">
+<meta property="og:description" content="Blue Monster at Doral course profile, strokes gained regression, outright picks, finish markets, head-to-head matchups and fades. The full model for the inaugural Cadillac Championship.">
+<meta property="og:image" content="https://strokesedge.com/og-image.png">
+<meta property="og:site_name" content="StrokesEdge">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Cadillac Championship 2026 Analysis — StrokesEdge">
+<meta name="twitter:description" content="Blue Monster at Doral course profile, strokes gained regression, outright picks, top-10/20 plays, matchups and fades.">
+<meta name="twitter:image" content="https://strokesedge.com/og-image.png">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --g:#6ab83a;--g2:#3d7a18;--g3:#1a3a08;--r:#e05252;--y:#f0b429;--blue:#4a9eff;
+  --g-glow:rgba(106,184,58,0.12);
+  --bg:#080b07;--bg2:#0c0f0b;--sur:#141a12;
+  --bdr:rgba(106,184,58,0.18);--bdr2:rgba(255,255,255,0.07);
+  --txt:#e6ede0;--txt2:#8a9e80;--txt3:#3a4a34;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--txt);font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.6;overflow-x:hidden}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:1;opacity:.6}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(106,184,58,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(106,184,58,0.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;z-index:0}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1rem 1.5rem;border-bottom:1px solid var(--bdr2);background:rgba(8,11,7,.95);backdrop-filter:blur(16px)}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.08em;color:var(--txt);text-decoration:none}
+.nav-logo span{color:var(--g)}
+.nav-links{display:flex;align-items:center;gap:1.5rem}
+.nav-link{font-size:12px;color:var(--txt2);text-decoration:none;letter-spacing:.06em;text-transform:uppercase;transition:color .2s}
+.nav-link:hover{color:var(--txt)}
+.nav-link.active{color:var(--g)}
+.nav-cta{font-family:'DM Mono',monospace;font-size:12px;padding:8px 18px;border:1px solid var(--g);border-radius:2px;color:var(--g);text-decoration:none;letter-spacing:.06em;transition:all .2s;white-space:nowrap}
+.nav-cta:hover{background:var(--g-glow)}
+.hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:none;border:none;cursor:pointer;padding:6px;z-index:201}
+.hamburger span{display:block;width:22px;height:2px;background:var(--txt2);border-radius:2px;transition:all .25s}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);background:var(--g)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);background:var(--g)}
+.mobile-menu{display:none;position:fixed;top:57px;left:0;right:0;background:rgba(8,11,7,.98);backdrop-filter:blur(16px);border-bottom:1px solid var(--bdr2);z-index:99;flex-direction:column;padding:1rem 1.5rem 1.5rem;max-height:80vh;overflow-y:auto}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'DM Mono',monospace;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--txt2);text-decoration:none;padding:.7rem 0;border-bottom:1px solid var(--bdr2);transition:color .2s;display:block}
+.mobile-menu a:hover{color:var(--txt)}
+.mobile-menu a.active{color:var(--g)}
+.mob-section{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--txt3);padding:.6rem 0 .2rem;display:block}
+.mob-indent{padding-left:.75rem!important;font-size:11px!important}
+.mob-cta{border-bottom:none!important;margin-top:.5rem;padding:.85rem 1rem!important;border:1px solid var(--g)!important;border-radius:2px;color:var(--g)!important;text-align:center}
+@media(max-width:860px){.nav-link,.nav-drop,.nav-cta{display:none}.hamburger{display:flex}}
+
+/* ── CONTENT ── */
+.wrap{max-width:900px;margin:0 auto;padding:0 1.5rem;position:relative;z-index:2}
+.hero{padding:7rem 0 2rem}
+.eyebrow{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.14em;color:var(--g);text-transform:uppercase;margin-bottom:1.5rem;display:flex;align-items:center;gap:10px}
+.eyebrow::before{content:'';width:24px;height:1px;background:var(--g)}
+h1.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(56px,12vw,100px);line-height:.9;letter-spacing:.03em;margin-bottom:.75rem;opacity:0;animation:up .7s .1s forwards}
+h1.hero-title span{color:var(--g);display:block}
+.hero-meta{font-family:'DM Mono',monospace;font-size:11px;color:var(--txt3);letter-spacing:.06em;text-transform:uppercase;margin-bottom:1.5rem;opacity:0;animation:up .7s .25s forwards}
+.hero-sub{font-size:17px;color:var(--txt2);line-height:1.8;max-width:580px;opacity:0;animation:up .7s .4s forwards}
+@keyframes up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+section{margin:3rem 0}
+.sec-num{font-family:'DM Mono',monospace;font-size:10px;color:var(--g);letter-spacing:.14em;text-transform:uppercase;margin-bottom:1rem}
+h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,5vw,52px);line-height:1;letter-spacing:.02em;margin-bottom:1.5rem;color:var(--txt)}
+h2 span{color:var(--g)}
+.body-text{font-size:15px;color:var(--txt2);line-height:1.85;margin-bottom:1.25rem}
+.body-text strong{color:var(--txt);font-weight:400}
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--bdr),transparent);margin:3rem 0}
+
+/* ── STAT GRID ── */
+.stat-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--bdr2);border:1px solid var(--bdr2);border-radius:4px;overflow:hidden;margin-bottom:2rem}
+.stat-cell{background:var(--bg2);padding:1.25rem 1rem;text-align:center}
+.stat-n{font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--g);letter-spacing:.02em;line-height:1;margin-bottom:6px}
+.stat-l{font-family:'DM Mono',monospace;font-size:9px;color:var(--txt2);letter-spacing:.1em;text-transform:uppercase;line-height:1.4}
+
+/* ── PICK CARDS ── */
+.pick{background:var(--sur);border:1px solid var(--bdr2);border-radius:4px;padding:1.5rem;margin-bottom:.75rem;transition:all .2s;position:relative;overflow:hidden}
+.pick:hover{border-color:var(--bdr);transform:translateY(-1px)}
+.pick.featured{border-color:var(--g2);background:rgba(106,184,58,.04)}
+.pick.featured::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--g)}
+.pick-badge{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;display:inline-block;padding:3px 10px;border-radius:2px;margin-bottom:8px}
+.badge-green{color:var(--g);border:1px solid var(--bdr);background:rgba(106,184,58,.06)}
+.badge-red{color:var(--r);border:1px solid rgba(224,82,82,.3);background:rgba(224,82,82,.06)}
+.badge-yellow{color:var(--y);border:1px solid rgba(240,180,41,.3);background:rgba(240,180,41,.06)}
+.badge-blue{color:var(--blue);border:1px solid rgba(74,158,255,.3);background:rgba(74,158,255,.06)}
+.pick-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.5rem;gap:1rem}
+.pick-name{font-size:18px;font-weight:400;color:var(--txt);min-width:0;word-break:break-word}
+.pick-odds{font-family:'Bebas Neue',sans-serif;font-size:34px;color:var(--g);letter-spacing:.04em;line-height:1;flex-shrink:0}
+.pick-meta{font-family:'DM Mono',monospace;font-size:10px;color:var(--txt3);letter-spacing:.06em;margin-bottom:.5rem}
+.pick-body{font-size:13px;color:var(--txt2);line-height:1.75;margin-bottom:.75rem}
+.pick-tags{display:flex;gap:.35rem;flex-wrap:wrap}
+.tag{font-family:'DM Mono',monospace;font-size:9px;padding:2px 8px;border:1px solid var(--bdr);border-radius:2px;color:var(--g);letter-spacing:.06em;text-transform:uppercase}
+.tag-r{color:var(--r);border-color:rgba(224,82,82,.25)}
+.tag-y{color:var(--y);border-color:rgba(240,180,41,.25)}
+.tag-b{color:var(--blue);border-color:rgba(74,158,255,.25)}
+
+/* ── CALLOUT ── */
+.callout{background:var(--sur);border:1px solid var(--bdr);border-radius:4px;padding:1.75rem;margin-bottom:2rem;position:relative;overflow:hidden}
+.callout::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--g)}
+.callout-label{font-family:'DM Mono',monospace;font-size:10px;color:var(--g);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.5rem}
+.callout-text{font-size:14px;color:var(--txt);line-height:1.75}
+
+/* ── TABLE ── */
+table{width:100%;border-collapse:collapse;font-size:12px;margin-bottom:2rem}
+thead{border-bottom:1px solid var(--bdr)}
+th{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--txt3);padding:.6rem .5rem;text-align:left;font-weight:400}
+td{padding:.6rem .5rem;border-bottom:1px solid var(--bdr2);color:var(--txt2)}
+.cg{color:var(--g)!important;font-weight:500}
+.cr{color:var(--r)!important}
+.cy{color:var(--y)!important}
+.cb{color:var(--blue)!important}
+
+/* ── WEATHER ── */
+.wx-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--bdr2);border:1px solid var(--bdr2);border-radius:4px;overflow:hidden;margin-bottom:2rem}
+.wx-cell{background:var(--bg2);padding:1rem;text-align:center}
+.wx-day{font-family:'DM Mono',monospace;font-size:10px;color:var(--g);letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
+.wx-temp{font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--txt);line-height:1;margin-bottom:3px}
+.wx-detail{font-size:10px;color:var(--txt3);line-height:1.3}
+
+/* ── CTA ── */
+.cta-box{background:var(--bg2);border:1px solid var(--bdr);border-radius:4px;padding:3rem 2rem;text-align:center;margin:3rem 0;position:relative;overflow:hidden}
+.cta-box::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:50%;height:1px;background:linear-gradient(90deg,transparent,var(--g),transparent)}
+.cta-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,5vw,48px);letter-spacing:.04em;line-height:1;margin-bottom:.75rem;color:var(--txt)}
+.cta-title span{color:var(--g)}
+.cta-sub{font-size:15px;color:var(--txt2);max-width:400px;margin:0 auto 2rem;line-height:1.75}
+.btn-primary{display:inline-block;padding:13px 32px;background:var(--g);color:#fff;font-family:'DM Mono',monospace;font-size:13px;letter-spacing:.06em;text-decoration:none;border-radius:2px;transition:all .2s}
+.btn-primary:hover{background:#7acc44;transform:translateY(-2px)}
+
+/* ── FOOTER ── */
+footer{border-top:1px solid var(--bdr2);padding:2rem 1.5rem;display:flex;justify-content:space-between;align-items:center;max-width:900px;margin:0 auto;flex-wrap:wrap;gap:1rem}
+.foot-logo{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.08em;color:var(--txt2)}
+.foot-logo span{color:var(--g)}
+.foot-note{font-family:'DM Mono',monospace;font-size:11px;color:var(--txt3)}
+.foot-links{display:flex;gap:1.25rem;flex-wrap:wrap}
+.foot-links a{font-family:'DM Mono',monospace;font-size:10px;color:var(--txt3);text-decoration:none;letter-spacing:.08em;text-transform:uppercase;transition:color .2s}
+.foot-links a:hover{color:var(--g)}
+
+/* ── H2H GRID ── */
+.h2h-grid{display:grid;grid-template-columns:1fr;gap:.75rem;margin-bottom:1.5rem}
+.h2h{background:var(--sur);border:1px solid var(--bdr2);border-radius:4px;padding:1.25rem 1.5rem}
+.h2h-title{font-family:'DM Mono',monospace;font-size:10px;color:var(--g);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.75rem}
+.h2h-row{display:flex;justify-content:space-between;align-items:center;padding:.5rem 0;border-bottom:1px solid var(--bdr2)}
+.h2h-row:last-child{border-bottom:none}
+.h2h-player{font-size:14px;color:var(--txt)}
+.h2h-player.pick{color:var(--g);font-weight:500}
+.h2h-odds{font-family:'DM Mono',monospace;font-size:13px;color:var(--txt2)}
+.h2h-rationale{font-size:12px;color:var(--txt2);line-height:1.7;margin-top:.75rem;padding-top:.75rem;border-top:1px solid var(--bdr2)}
+
+/* ── MOBILE ── */
+@media(max-width:900px){
+  .stat-grid{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:640px){
+  h1.hero-title{font-size:clamp(48px,16vw,72px)}
+  .wx-grid{grid-template-columns:1fr 1fr}
+  .pick-head{flex-direction:column;gap:.25rem}
+  .pick-odds{margin-left:0}
+  table{font-size:11px}
+  th,td{padding:.4rem .3rem}
+  footer{flex-direction:column;gap:1rem;text-align:center}
+  .stat-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:380px){
+  .stat-grid{grid-template-columns:repeat(2,1fr)}
+}
+
+/* ── PICKS DIVIDER ── */
+.picks-divider{text-align:center;padding:2rem 0;font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.3em;color:var(--txt3)}
+
+.nav-drop{position:relative}
+.nav-drop-btn{font-size:12px;color:var(--txt2);background:none;border:none;cursor:pointer;letter-spacing:.06em;text-transform:uppercase;display:flex;align-items:center;gap:5px;padding:0;font-family:'DM Sans',sans-serif;transition:color .2s;white-space:nowrap;outline:none}
+.nav-drop-btn:hover,.nav-drop-btn.open{color:var(--txt)}
+.nav-drop-btn::after{content:'▾';font-size:9px;transition:transform .2s;display:inline-block}
+.nav-drop-btn.open::after{transform:rotate(180deg)}
+.drop-menu{display:none;position:absolute;top:100%;left:0;min-width:220px;z-index:200}
+.drop-menu.open{display:block}
+.drop-menu-box{background:rgba(8,11,7,.98);border:1px solid var(--bdr);border-radius:4px;overflow:hidden;backdrop-filter:blur(16px)}
+.drop-item{display:block;padding:.7rem 1.1rem;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--txt2);text-decoration:none;border-bottom:1px solid var(--bdr2);transition:all .15s;white-space:nowrap}
+.drop-item:last-child{border-bottom:none}
+.drop-item:hover{color:var(--g);background:rgba(106,184,58,.05)}
+.drop-item .drop-sub{display:block;font-size:9px;color:var(--txt3);margin-top:2px;letter-spacing:.04em;text-transform:none}</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D398EHRP6Y"></script>
+<script>// ── Nav dropdowns ──
+document.querySelectorAll('.nav-drop-btn').forEach(function(btn){
+  btn.addEventListener('click',function(e){
+    e.stopPropagation();
+    var id='drop-'+btn.getAttribute('data-drop');
+    var menu=document.getElementById(id);
+    var isOpen=menu.classList.contains('open');
+    document.querySelectorAll('.drop-menu').forEach(function(m){m.classList.remove('open');});
+    document.querySelectorAll('.nav-drop-btn').forEach(function(b){b.classList.remove('open');});
+    if(!isOpen){menu.classList.add('open');btn.classList.add('open');}
+  });
+});
+document.addEventListener('click',function(e){
+  if(!e.target.closest('.nav-drop')){
+    document.querySelectorAll('.drop-menu').forEach(function(m){m.classList.remove('open');});
+    document.querySelectorAll('.nav-drop-btn').forEach(function(b){b.classList.remove('open');});
+  }
+});
+
+// ── Hamburger ──
+var hbg=document.getElementById('hamburger'),mob=document.getElementById('mobile-menu');
+if(hbg&&mob){
+  hbg.addEventListener('click',function(e){
+    e.stopPropagation();
+    hbg.classList.toggle('open');
+    mob.classList.toggle('open');
+  });
+  document.addEventListener('click',function(e){
+    if(!hbg.contains(e.target)&&!mob.contains(e.target)){
+      hbg.classList.remove('open');
+      mob.classList.remove('open');
+    }
+  });
+}
+
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-D398EHRP6Y');</script>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Strokes<span>Edge</span></a>
+  <div class="nav-links">
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="methodology.html" class="nav-link">Methodology</a>
+    <a href="picks.html" class="nav-link">Pick Tracker</a>
+    <div class="nav-drop">
+      <button class="nav-drop-btn" data-drop="courses">Courses</button>
+      <div class="drop-menu" id="drop-courses"><div class="drop-menu-box">
+        <a href="courses.html" class="drop-item">All Course Guides<span class="drop-sub">Full library</span></a>
+        <a href="course-shinnecock-hills.html" class="drop-item">Shinnecock Hills<span class="drop-sub">U.S. Open · Jun</span></a>
+        <a href="course-quail-hollow.html" class="drop-item">Quail Hollow<span class="drop-sub">Truist · May</span></a>
+        <a href="course-colonial.html" class="drop-item">Colonial CC<span class="drop-sub">Schwab Challenge · May</span></a>
+        <a href="course-doral.html" class="drop-item">Blue Monster / Doral<span class="drop-sub">Cadillac · Apr–May</span></a>
+        <a href="course-aronimink.html" class="drop-item">Aronimink<span class="drop-sub">PGA Championship · May</span></a>
+        <a href="course-augusta-national.html" class="drop-item">Augusta National<span class="drop-sub">The Masters · Apr</span></a>
+        <a href="course-harbour-town.html" class="drop-item">Harbour Town<span class="drop-sub">RBC Heritage · Apr</span></a>
+        <a href="course-tpc-louisiana.html" class="drop-item">TPC Louisiana<span class="drop-sub">Zurich Classic · Apr</span></a>
+        <a href="course-tpc-craig-ranch.html" class="drop-item">TPC Craig Ranch<span class="drop-sub">CJ Cup Byron Nelson · May</span></a>
+      </div></div>
+    </div>
+    <div class="nav-drop">
+      <button class="nav-drop-btn active" data-drop="analysis">Analysis</button>
+      <div class="drop-menu" id="drop-analysis"><div class="drop-menu-box">
+        <a href="analysis.html" class="drop-item">Current Analysis<span class="drop-sub">Charles Schwab 2026</span></a>
+        <a href="analysis-pga-2026.html" class="drop-item">PGA Championship 2026<span class="drop-sub">Aronimink · May 14–17</span></a>
+        <a href="analysis-truist-2026.html" class="drop-item">Truist Championship 2026<span class="drop-sub">Quail Hollow · May 7–10</span></a>
+        <a href="analysis-cadillac-2026.html" class="drop-item active">Cadillac Championship 2026<span class="drop-sub">Doral · Apr 30–May 3</span></a>
+        <a href="analysis-heritage-2026.html" class="drop-item">RBC Heritage 2026<span class="drop-sub">Harbour Town · Apr 16–19</span></a>
+        <a href="analysis-masters-2026.html" class="drop-item">Masters 2026<span class="drop-sub">Augusta National · Apr 9–12</span></a>
+        <a href="analysis-valero-2026.html" class="drop-item">Valero Texas Open 2026<span class="drop-sub">TPC San Antonio · Apr 2–6</span></a>
+        <a href="analysis-cj-cup-byron-nelson-2025.html" class="drop-item">CJ Cup Byron Nelson 2025<span class="drop-sub">TPC Craig Ranch · May</span></a>
+      </div></div>
+    </div>
+    <a href="https://strokesedge.substack.com" class="nav-cta" target="_blank">Subscribe →</a>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html">Home</a>
+  <a href="methodology.html">Methodology</a>
+  <a href="picks.html">Pick Tracker</a>
+  <span class="mob-section">— Courses —</span>
+  <a href="courses.html" class="mob-indent">All Course Guides</a>
+  <a href="course-quail-hollow.html" class="mob-indent">Quail Hollow</a>
+  <a href="course-colonial.html" class="mob-indent">Colonial CC</a>
+  <a href="course-doral.html" class="mob-indent">Blue Monster / Doral</a>
+  <a href="course-aronimink.html" class="mob-indent">Aronimink</a>
+  <a href="course-augusta-national.html" class="mob-indent">Augusta National</a>
+  <a href="course-harbour-town.html" class="mob-indent">Harbour Town</a>
+  <a href="course-tpc-louisiana.html" class="mob-indent">TPC Louisiana</a>
+  <a href="course-tpc-craig-ranch.html" class="mob-indent">TPC Craig Ranch</a>
+  <span class="mob-section">— Analysis —</span>
+  <a href="analysis.html" class="mob-indent">Current Analysis</a>
+  <a href="analysis-pga-2026.html" class="mob-indent">PGA Championship 2026</a>
+  <a href="analysis-truist-2026.html" class="mob-indent">Truist Championship 2026</a>
+  <a href="analysis-cadillac-2026.html" class="mob-indent">Cadillac Championship 2026</a>
+  <a href="analysis-heritage-2026.html" class="mob-indent">RBC Heritage 2026</a>
+  <a href="analysis-masters-2026.html" class="mob-indent">Masters 2026</a>
+  <a href="analysis-valero-2026.html" class="mob-indent">Valero Texas Open 2026</a>
+  <a href="analysis-cj-cup-byron-nelson-2025.html" class="mob-indent">CJ Cup Byron Nelson 2025</a>
+  <a href="https://strokesedge.substack.com" class="mob-cta" target="_blank">Subscribe →</a>
+</div>
+
+<div class="wrap">
+
+<div style="background:var(--bg2);border:1px solid var(--bdr2);border-radius:4px;padding:1rem 1.5rem;margin:0 0 2rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap">
+  <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--txt3)">Current Analysis · Cadillac Championship 2026 · Blue Monster at Doral</div>
+  <a href="picks.html" style="font-family:'DM Mono',monospace;font-size:11px;color:var(--g);text-decoration:none;letter-spacing:.06em;border:1px solid var(--bdr);padding:8px 14px;border-radius:2px;white-space:nowrap;transition:background .2s">Live Pick Tracker →</a>
+</div>
+
+<section class="hero">
+  <div class="eyebrow">Week 14 · Signature Event · No Cut · Inaugural</div>
+  <h1 class="hero-title">Cadillac<span>Championship.</span></h1>
+  <div class="hero-meta">Trump National Doral · Blue Monster · Par 72 · 7,739 yards · April 30 – May 3, 2026</div>
+  <p class="hero-sub">The PGA Tour returns to the Blue Monster for the first time since 2016. The longest course on the regular schedule outside of Torrey Pines South. The most distance-dependent venue in golf. The model framework here is unambiguous: power off the tee is mandatory, par 5 leverage is the scoring engine, and the market is mispricing precision specialists who simply do not have the tools to compete at 7,739 yards.</p>
+</section>
+
+<!-- ═══ COURSE PROFILE ═══ -->
+<section>
+  <div class="sec-num">01 — Course Profile</div>
+  <h2>Blue Monster <span>fingerprint.</span></h2>
+  <p class="body-text">Originally designed by Dick Wilson and opened in 1962, the Blue Monster has hosted PGA Tour events for more than half a century. Gil Hanse renovated the course in 2014, lengthening tee boxes, repositioning bunkers, and bringing additional water into play across multiple holes. The course played host to the WGC-Cadillac Championship from 2011 to 2016, then sat dormant from a Tour perspective until LIV Golf began running events here in 2022. The 2026 Cadillac Championship is the inaugural Signature Event at the venue and the first PGA Tour stop here since Adam Scott's win in 2016.</p>
+  <p class="body-text">At 7,739 yards par 72 with four par 5s, the course is structurally a power-and-precision test. Fairways measure 25-40 yards and accuracy is rewarded — but length is non-negotiable. The greens are large at roughly 7,200 square feet on average with run-off areas to thick Bermuda surrounds. Eleven holes have water in play. The 18th hole, the original "Blue Monster," is a 473-yard par 4 with water hugging the entire left side and a treacherous bunker complex. It plays as one of the hardest finishing holes in golf.</p>
+  <p class="body-text">The model classifies the Blue Monster as a <strong style="color:var(--g)">distance-first power course with a wind tolerance and par 5 leverage filter.</strong> The winner profile: top-30 driving distance minimum, positive SG: Off the Tee, elite par 5 scoring efficiency, and the ability to manage ball flight in South Florida wind. Players who lack length surrender too many strokes per round to overcome with precision.</p>
+
+  <div class="stat-grid">
+    <div class="stat-cell"><div class="stat-n">7,739</div><div class="stat-l">Total<br>Yardage</div></div>
+    <div class="stat-cell"><div class="stat-n">72</div><div class="stat-l">Players<br>No cut</div></div>
+    <div class="stat-cell"><div class="stat-n">4</div><div class="stat-l">Par 5s<br>Scoring engine</div></div>
+    <div class="stat-cell"><div class="stat-n">$20M</div><div class="stat-l">Purse<br>Signature</div></div>
+    <div class="stat-cell"><div class="stat-n">99</div><div class="stat-l">Bunkers<br>11 water holes</div></div>
+  </div>
+
+  <p class="body-text" style="font-size:13px;color:var(--txt3);margin-top:.5rem">For full course breakdown, see the <a href="course-doral.html" style="color:var(--g)">Blue Monster Course Guide</a>.</p>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ KEY STATS ═══ -->
+<section>
+  <div class="sec-num">02 — What Actually Predicts Success Here</div>
+  <h2>The stats that <span>matter.</span></h2>
+  <p class="body-text">The model uses a weighted regression of pre-2017 WGC-Cadillac winner data, the 2024 and 2025 LIV Miami events at the same course, and recent comp courses (Bay Hill, Quail Hollow, Torrey Pines). The scoring weights below reflect the predictive strength of each stat at this venue specifically, not generic Tour averages.</p>
+
+  <div class="callout">
+    <div class="callout-label">#1 — SG: Off the Tee (30% model weight)</div>
+    <div class="callout-text">The most predictive stat at the Blue Monster, and it isn't close. At 7,739 yards with four par 5s, players who gain off the tee carry a structural advantage on every long approach and every par 5 second shot. Recent winners — Scott (2016), Johnson (2015), Reed (2014), Woods (2013) — all gained meaningful strokes off the tee for the week. Six of the top eight finishers in 2014 gained off the tee. The market routinely underprices this signal in favor of approach narratives.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">#2 — Driving Distance / Par 5 Leverage (20% model weight)</div>
+    <div class="callout-text">Distance is a prerequisite, not just a metric. The four par 5s separate bombers reaching in two from shorter players laying up. In 2016, the top three par 5 scorers for the week finished 1-2-3 on the leaderboard (Scott, Watson, McIlroy). The model treats top-30 in driving distance as the hard gate. Top-20 is the preferred zone. Below top-50 is a structural fade no matter how strong the rest of the profile reads.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">#3 — SG: Approach (20% model weight)</div>
+    <div class="callout-text">Once distance qualifies a player, approach play separates contenders from the cluster. The greens are large but undulating, run-off areas demand precise distance control, and many approaches into par 4s and par 5s come from 200+ yards. Long-iron proximity is a meaningful sub-metric. Approach matters here, but it's a tiebreaker on top of the distance gate, not a substitute for it.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">#4 — Wind Tolerance & Composite T2G (23% combined)</div>
+    <div class="callout-text">South Florida wind is the course's primary defense. Calm conditions produce -12 to -19 winning scores. Sustained wind raises scoring averages dramatically and elevates ball-flight control as a differentiator. The model checks comp-course wind history (TPC Sawgrass, Bay Hill, Pebble Beach) when the forecast shows breeze. SG: Total / T2G composite gets a 15% weight as the "are you playing well enough to contend" filter.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">What DOESN'T Matter Much</div>
+    <div class="callout-text">SG: Around the Green and SG: Putting. Combined model weight: 15%. Driving accuracy is also de-emphasized — fairways are wide enough at 25-40 yards that bombers gain more from extra distance than they lose from missing the short stuff. The model fades players priced primarily on accuracy or hot-putter narratives at this venue.</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ FIELD NOTES & ABSENCES ═══ -->
+<section>
+  <div class="sec-num">03 — Field Notes</div>
+  <h2>The notable <span>absences.</span></h2>
+  <p class="body-text">Five of the OWGR top 15 are not in this 72-player Signature Event field: <strong>Rory McIlroy, Matt Fitzpatrick, Xander Schauffele, Ludvig Åberg, and Robert MacIntyre.</strong> All five are pointing at next week's Truist Championship at Quail Hollow and the PGA Championship at Aronimink the following week. McIlroy has now skipped two consecutive Signature Events post-Masters. Fitzpatrick is skipping after winning RBC Heritage in a playoff over Scheffler.</p>
+  <p class="body-text">This is structurally meaningful for the betting card. Removing five top-15 players compresses the value tier and pushes more probability mass onto Scheffler at +310 and Cameron Young at +1300. It also opens up legitimate value on names like Chris Gotterup, Min Woo Lee, and Adam Scott who would normally sit behind those five at the top of the board.</p>
+  <p class="body-text">The two past Doral winners in the field are <strong>Adam Scott (2016)</strong> and <strong>Justin Rose (2012)</strong>. Both data points are pre-renovation in Scott's case and well pre-renovation in Rose's. Useful for course familiarity, not predictive of current form. In the current dataset only Scott clears the model's hard gates.</p>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ WEATHER ═══ -->
+<section>
+  <div class="sec-num">04 — Weather</div>
+  <h2>Sunday wind <span>is the variable.</span></h2>
+  <p class="body-text">Hot and humid throughout. Highs climbing from 89°F Thursday to 92°F Saturday. Wind 10-15 mph through the first three days with gusts to 20 mph on Thursday and Saturday. Sunday is the wild card — 20-25 mph southwesterly winds and a 50% rain probability. If the forecast holds, the field will see two faces of the Blue Monster: scoreable on Thursday and Friday, then progressively tougher into the weekend with a final round that could turn the course into a brute.</p>
+  <p class="body-text">The model's adjustment: weight wind-tolerant ball strikers slightly heavier than a calm-conditions read would suggest. Players with strong recent finishes at TPC Sawgrass, Bay Hill, and Pebble Beach (wind-exposed coastal venues) get a small bump. Pure bombers without ball-flight control get a small fade.</p>
+
+  <div class="wx-grid">
+    <div class="wx-cell"><div class="wx-day">Thu R1</div><div class="wx-temp">89°F</div><div class="wx-detail">Mostly sunny<br>10-15 / G20</div></div>
+    <div class="wx-cell"><div class="wx-day">Fri R2</div><div class="wx-temp">90°F</div><div class="wx-detail">Sunny<br>10-15 mph</div></div>
+    <div class="wx-cell"><div class="wx-day">Sat R3</div><div class="wx-temp">92°F</div><div class="wx-detail">Sunny<br>10-15 / G20</div></div>
+    <div class="wx-cell"><div class="wx-day">Sun R4</div><div class="wx-temp">90°F</div><div class="wx-detail">50% rain<br>SW 20-25</div></div>
+  </div>
+  <p class="body-text" style="font-size:13px;color:var(--txt3);margin-top:-1rem">Source: BetMGM weather projections, April 28 update.</p>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ MODEL OUTPUT TABLE ═══ -->
+<section>
+  <div class="sec-num">05 — Regression Output</div>
+  <h2>The model's <span>top 15.</span></h2>
+  <p class="body-text">Composite scores from the StrokesEdge Doral regression. Weights: SG: OTT (30%), Driving Distance (20%), SG: APP (20%), SG: Total / T2G proxy (15%), SG: ARG (8%), SG: Putt (7%). All inputs from 2026 PGA Tour YTD data through the RBC Heritage. Score is normalized 0.000–1.000 across the full 169-player dataset; 1.000 would be the theoretical perfect player.</p>
+
+  <table>
+    <thead><tr><th>Rk</th><th>Player</th><th>Score</th><th>Dist</th><th>OTT</th><th>APP</th><th>Total</th><th>Gate Status</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>Chris Gotterup</td><td class="cg">0.881</td><td class="cg">4</td><td class="cg">8</td><td>31</td><td class="cg">14</td><td class="cg">PASS</td></tr>
+      <tr><td>2</td><td>Scottie Scheffler</td><td class="cg">0.870</td><td class="cy">36</td><td class="cg">5</td><td>65</td><td class="cg">1</td><td class="cy">DIST near-miss</td></tr>
+      <tr><td>3</td><td>Cameron Young</td><td class="cg">0.868</td><td class="cy">32</td><td class="cg">10</td><td>18</td><td class="cg">9</td><td class="cy">DIST near-miss</td></tr>
+      <tr><td>4</td><td>Min Woo Lee</td><td class="cg">0.867</td><td class="cg">12</td><td class="cg">11</td><td>50</td><td class="cg">12</td><td class="cg">PASS</td></tr>
+      <tr><td>5</td><td>Nicolai Højgaard</td><td class="cg">0.838</td><td class="cg">10</td><td>44</td><td>16</td><td class="cg">13</td><td class="cg">PASS</td></tr>
+      <tr><td>6</td><td>Jake Knapp</td><td class="cg">0.824</td><td class="cg">6</td><td>54</td><td>27</td><td class="cg">8</td><td class="cg">PASS</td></tr>
+      <tr><td>7</td><td>S. Yellamaraju</td><td class="cg">0.813</td><td class="cg">21</td><td>33</td><td>26</td><td class="cg">17</td><td class="cg">PASS</td></tr>
+      <tr><td>8</td><td>Adam Scott</td><td class="cg">0.804</td><td class="cg">18</td><td>41</td><td class="cg">3</td><td class="cg">18</td><td class="cg">PASS</td></tr>
+      <tr><td>9</td><td>Gary Woodland</td><td class="cg">0.798</td><td class="cg">2</td><td class="cg">13</td><td>59</td><td class="cg">30</td><td class="cg">PASS</td></tr>
+      <tr><td>10</td><td>Collin Morikawa</td><td>0.788</td><td class="cr">89</td><td class="cg">16</td><td class="cg">1</td><td class="cg">6</td><td class="cr">DIST FAIL</td></tr>
+      <tr><td>11</td><td>Keith Mitchell</td><td>0.780</td><td class="cg">28</td><td class="cg">6</td><td>35</td><td>38</td><td class="cy">Near-miss</td></tr>
+      <tr><td>12</td><td>Jacob Bridgeman</td><td>0.771</td><td>50</td><td>51</td><td>20</td><td class="cg">4</td><td class="cy">Borderline</td></tr>
+      <tr><td>13</td><td>Jordan Smith</td><td>0.766</td><td class="cg">23</td><td class="cg">18</td><td>29</td><td>43</td><td class="cy">Near-miss</td></tr>
+      <tr><td>14</td><td>Ryo Hisatsune</td><td>0.757</td><td class="cr">83</td><td>23</td><td>22</td><td class="cg">21</td><td class="cr">DIST FAIL</td></tr>
+      <tr><td>15</td><td>Rasmus Højgaard</td><td>0.744</td><td class="cg">9</td><td>61</td><td>40</td><td class="cg">27</td><td class="cg">PASS</td></tr>
+    </tbody>
+  </table>
+  <p class="body-text" style="font-size:13px;color:var(--txt3);margin-top:-1rem">Eight players cleared all three hard gates (Dist Rank ≤30, SG: Total Rank ≤30, positive SG: OTT). Scheffler and Young miss the distance gate by two-six spots and are treated as model edge cases below.</p>
+</section>
+
+<div class="divider"></div>
+<div class="picks-divider">— — — T H E &nbsp; C A R D — — —</div>
+
+<!-- ═══ E/W WINNER PICKS ═══ -->
+<section>
+  <div class="sec-num">06 — Outright / E/W Winner Plays</div>
+  <h2>Where the <span>edge</span> is.</h2>
+
+  <div class="pick featured">
+    <div class="pick-badge badge-green">★ PICK OF THE WEEK — E/W WINNER · 2 UNITS</div>
+    <div class="pick-head"><div class="pick-name">Chris Gotterup</div><div class="pick-odds">+2700</div></div>
+    <div class="pick-meta">Model Rk 1 · Dist Rk 4 (320.1 yds) · OTT Rk 8 (+0.613) · 2 wins in 2026 · Passes all gates</div>
+    <div class="pick-body">The cleanest model fit in the field. Gotterup ranks 4th on Tour in driving distance, 8th in SG: Off the Tee, and 14th in SG: Total. He has already won twice in 2026 — the Sony Open and the WM Phoenix Open — and his 2025 Scottish Open win came in serious wind, which is the differentiator the Sunday forecast needs. Bermuda greens are his best surface (9th-best putter on Bermuda over the past two years per Golf Digest). He gained strokes on approach in nine straight starts before Heritage. The market is pricing him at +2700-3000 because his Heritage run was an underperformance until a Sunday 64. That's narrative, not signal. At this profile, this price is the week's best outright.</div>
+    <div class="pick-tags"><span class="tag">Model #1</span><span class="tag">2026 wins x2</span><span class="tag">Dist Rk 4</span><span class="tag">Bermuda 9th</span><span class="tag">Wind player</span></div>
+  </div>
+
+  <div class="pick">
+    <div class="pick-badge badge-green">E/W WINNER · 1.5 UNITS</div>
+    <div class="pick-head"><div class="pick-name">Min Woo Lee</div><div class="pick-odds">+2200</div></div>
+    <div class="pick-meta">Model Rk 4 · Dist Rk 12 (316.1 yds) · OTT Rk 11 (+0.610) · Total Rk 12 · Passes all gates</div>
+    <div class="pick-body">The second outright play and the only Top 15 in the model with positive scores in every SG category. Min Woo gains across the board: APP +0.225, ARG +0.311, OTT +0.610, PUTT +0.227. He's a 2026 Houston Open winner and has finished inside the top 10 in three of his last seven starts. Bermuda Florida courses suit him historically. The +2200 outright price comes with E/W leverage at 1/4 odds for top 5 places that the all-around profile makes realistic. He passes every gate cleanly.</div>
+    <div class="pick-tags"><span class="tag">Model #4</span><span class="tag">All-positive SG</span><span class="tag">Houston winner</span><span class="tag">All gates pass</span></div>
+  </div>
+
+  <div class="pick">
+    <div class="pick-badge badge-green">E/W WINNER · 1 UNIT · PRICE-DEPENDENT</div>
+    <div class="pick-head"><div class="pick-name">Adam Scott</div><div class="pick-odds">+3300</div></div>
+    <div class="pick-meta">Model Rk 8 · 2016 Doral champion · SG: APP Rk 3 on Tour (+0.912) · Dist Rk 18</div>
+    <div class="pick-body">The course-history pick with actual model support. Scott is the last man to win on the PGA Tour at this course and his 2026 numbers don't ask the bettor to forgive anything material. Third on Tour in SG: Approach. Eighteenth in driving distance. He passes every gate. The putter is the soft spot (PUTT Rk 86) but on these large greens, lag putting matters more than make rate. At +3300 the math on an each-way ticket is reasonable. The reason this is a smaller play than Gotterup or Min Woo is the age volatility, not the data.</div>
+    <div class="pick-tags"><span class="tag">2016 champ</span><span class="tag">3rd SG:APP</span><span class="tag">All gates pass</span><span class="tag tag-y">Age variance</span></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ TOP 5 / TOP 10 PLAYS ═══ -->
+<section>
+  <div class="sec-num">07 — Top 5 / Top 10 Plays</div>
+  <h2>Finish-market <span>core.</span></h2>
+  <p class="body-text">No-cut Signature Event with a 72-player field means top 5 and top 10 markets pay differently than at a standard 156-player event — the implied probabilities are higher, but the field is also stronger. The model still allocates more weight to finish markets here because the distance gate creates a tight cluster of qualifying contenders.</p>
+
+  <div class="pick">
+    <div class="pick-badge badge-blue">TOP 5 · 3 UNITS · MATH PLAY</div>
+    <div class="pick-head"><div class="pick-name">Scottie Scheffler</div><div class="pick-odds">+135</div></div>
+    <div class="pick-meta">Model Rk 2 · Total Rk 1 (+2.049) · OTT Rk 5 · ARG Rk 2 · Two consecutive runner-ups</div>
+    <div class="pick-body">The outright at +310 is the fade. The Top 5 is the math bet. Scheffler is the model's #2 fit despite a Dist Rank of 36 — his SG profile is so dominant elsewhere (Total Rk 1, OTT Rk 5, ARG Rk 2, GIR Rk 7) that he overcomes the distance question. He's coming off back-to-back runner-ups at the Masters and Heritage. He won at the Cadillac scheduling slot in 2024 (Heritage post-Masters). In a compressed Signature field with the top 5 tier already thinned by absences, the implied 35%+ probability of a top 5 finish is fair-to-undervalued at +135.<br><br><strong>Fade the outright. Play the Top 5.</strong></div>
+    <div class="pick-tags"><span class="tag tag-b">Top 5 only</span><span class="tag tag-r">NOT outright</span><span class="tag">Total Rk 1</span><span class="tag">2x runner-up</span></div>
+  </div>
+
+  <div class="pick">
+    <div class="pick-badge badge-blue">TOP 10 · 2.5 UNITS</div>
+    <div class="pick-head"><div class="pick-name">Cameron Young</div><div class="pick-odds">+200</div></div>
+    <div class="pick-meta">Model Rk 3 · OTT Rk 10 · APP Rk 18 · Total Rk 9 · T3 Masters, Players champion</div>
+    <div class="pick-body">Young misses the distance gate by two spots (Rk 32) and that's why this is a Top 10 play instead of an outright at +1300. Everything else profiles. OTT Rk 10, APP Rk 18, Total Rk 9. He has three top-three finishes in his last four starts including the Players Championship win. The Sunday wind forecast suits a player who can flight the ball on demand. The outright math at +1300 is fair-to-rich because of the distance gate; the top-10 number at +200 is where the model edge lives.</div>
+    <div class="pick-tags"><span class="tag tag-b">Top 10 core</span><span class="tag">Players champ</span><span class="tag">3 of 4 top-3s</span></div>
+  </div>
+
+  <div class="pick">
+    <div class="pick-badge badge-blue">TOP 10 · 2 UNITS</div>
+    <div class="pick-head"><div class="pick-name">Min Woo Lee</div><div class="pick-odds">+260</div></div>
+    <div class="pick-meta">Model Rk 4 · Already on outright card · 1/4 stake at finish-market price for variance management</div>
+    <div class="pick-body">A correlated finish-market layer to the outright above. If Min Woo contends, the Top 10 cashes; if he runs out of gas Sunday but holds a top-10 line, the finish ticket pays while the outright doesn't. At +260 with the model fit, the implied probability is below his model-implied finish rate.</div>
+    <div class="pick-tags"><span class="tag">Correlated to outright</span><span class="tag tag-b">Top 10</span></div>
+  </div>
+
+  <div class="pick">
+    <div class="pick-badge badge-blue">TOP 10 · 2 UNITS</div>
+    <div class="pick-head"><div class="pick-name">Nicolai Højgaard</div><div class="pick-odds">+450</div></div>
+    <div class="pick-meta">Model Rk 5 · Dist Rk 10 (317.1 yds) · APP Rk 16 (+0.594) · Total Rk 13 · Passes all gates</div>
+    <div class="pick-body">Quietly fifth in the model. Distance Rk 10 at 317.1 yards. Approach Rk 16 — third-best of any qualifier behind Morikawa and Adam Scott. He passes all three hard gates. The OTT Rk 44 is the only soft data point and it's a contradiction with the raw distance number, which the model treats as a more reliable structural signal than the SG: OTT efficiency rank. At +450 this is the sneaky Top 10 ticket nobody talks about.</div>
+    <div class="pick-tags"><span class="tag">Model #5</span><span class="tag">Dist Rk 10</span><span class="tag">APP Rk 16</span><span class="tag">All gates pass</span></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ TOP 20 PLAYS ═══ -->
+<section>
+  <div class="sec-num">08 — Top 20 Plays</div>
+  <h2>High-floor <span>base.</span></h2>
+  <p class="body-text">In a 72-player no-cut event, Top 20 is roughly the top 28% of the field. The model treats this market as the safest exposure for players who pass the distance gate but have a single soft data point preventing outright consideration.</p>
+
+  <div class="pick">
+    <div class="pick-badge badge-blue">TOP 20 · 3 UNITS</div>
+    <div class="pick-head"><div class="pick-name">Jake Knapp</div><div class="pick-odds">+150</div></div>
+    <div class="pick-meta">Model Rk 6 · Dist Rk 6 (319.8 yds) · Total Rk 8 · PUTT Rk 7 · Passes all gates</div>
+    <div class="pick-body">Pure bomber profile with a hot putter. Jake Knapp ranks 6th on Tour in driving distance, 7th in SG: Putting, and 8th in SG: Total. He passes every hard gate. Three top-10 finishes in 2026 already with a runner-up at the American Express. The OTT efficiency rank is 54 (a soft data point), and that's the reason this is a Top 20 play and not a higher-conviction outright. At +150 for a Top 20 with this profile in a thinned field, the implied probability is conservative.</div>
+    <div class="pick-tags"><span class="tag">Dist Rk 6</span><span class="tag">PUTT Rk 7</span><span class="tag tag-b">Top 20 core</span></div>
+  </div>
+
+  <div class="pick">
+    <div class="pick-badge badge-blue">TOP 20 · 3 UNITS · POTD QUALIFIER</div>
+    <div class="pick-head"><div class="pick-name">Chris Gotterup</div><div class="pick-odds">+115</div></div>
+    <div class="pick-meta">Top 20 stack on the outright pick — model #1 fit with a finish-market floor</div>
+    <div class="pick-body">Stacked behind the outright as the variance floor. If Gotterup contends, both tickets cash. If he posts a strong-but-not-winning week, the Top 20 still pays. At +115 the price is in the range where the POTD rules apply (-200 to +200) and the model-implied probability comfortably exceeds the implied break-even. Highest-conviction Top 20 on the card.</div>
+    <div class="pick-tags"><span class="tag">Stack on outright</span><span class="tag tag-b">POTD</span></div>
+  </div>
+
+  <div class="pick">
+    <div class="pick-badge badge-blue">TOP 20 · 2 UNITS</div>
+    <div class="pick-head"><div class="pick-name">Gary Woodland</div><div class="pick-odds">+185</div></div>
+    <div class="pick-meta">Model Rk 9 · Dist Rk 2 (323.5 yds) · OTT Rk 13 · 3 prior Doral starts · Passes all gates</div>
+    <div class="pick-body">Second-longest hitter in the field at 323.5 yards. OTT Rk 13. Three prior starts at Doral with finishes of T16, T23, T29 and ranked 3rd in SG: Ball Striking the last time he was here in 2015. With the 2024 health issues now behind him, his game has rounded back into form (recent T7 at Memorial Park). The ARG Rk 154 is bad but Doral isn't an ARG course. At +185 Top 20, the distance profile is the entire ticket.</div>
+    <div class="pick-tags"><span class="tag">Dist Rk 2</span><span class="tag">3x Doral starts</span><span class="tag tag-b">Top 20</span></div>
+  </div>
+
+  <div class="pick">
+    <div class="pick-badge badge-blue">TOP 20 · 2 UNITS</div>
+    <div class="pick-head"><div class="pick-name">Sudarshan Yellamaraju</div><div class="pick-odds">+220</div></div>
+    <div class="pick-meta">Model Rk 7 · Dist Rk 21 · OTT Rk 33 · APP Rk 26 · Total Rk 17 · Passes all gates</div>
+    <div class="pick-body">The unfamiliar name on a passing-the-gates list. Yellamaraju ranks 7th in the model and the broader market hasn't priced him into Top 20 markets aggressively because the public-betting volume isn't there yet. Dist Rk 21, Total Rk 17, all SG categories positive except APP and ARG which are slightly above field average. Make-cut markets don't exist this week (no cut), so Top 20 is the floor play.</div>
+    <div class="pick-tags"><span class="tag">Model #7</span><span class="tag">All gates pass</span><span class="tag">Market lag</span></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ HEAD-TO-HEAD MATCHUPS ═══ -->
+<section>
+  <div class="sec-num">09 — Head-to-Head Matchups</div>
+  <h2>72-hole <span>matchup card.</span></h2>
+  <p class="body-text">Matchup markets at Doral are particularly exploitable because the distance gate creates clean structural edges between players the market is treating as similar. The four matchups below all pair a player who passes the gate against one who fails it.</p>
+
+  <div class="h2h-grid">
+
+    <div class="h2h">
+      <div class="h2h-title">Matchup 01 · 2 units</div>
+      <div class="h2h-row">
+        <div class="h2h-player pick">Sam Burns</div>
+        <div class="h2h-odds">+110</div>
+      </div>
+      <div class="h2h-row">
+        <div class="h2h-player">Russell Henley</div>
+        <div class="h2h-odds">-130</div>
+      </div>
+      <div class="h2h-rationale"><strong style="color:var(--g)">Pick: Burns +110.</strong> Henley's market price (+2500 outright) is built on his T3 at Augusta and accuracy-first profile. At Harbour Town that profile worked. At Doral it does not. Henley is Dist Rk 149 — third-shortest player to clear the model's broader top-50 in Total. Burns is Dist Rk 24, ranks 11th in SG: Putting, and has finished T21 or better in four straight events. The model gives Burns the edge: 0.661 score vs. Henley's 0.606. Plus odds against a structurally worse course-fit.</div>
+    </div>
+
+    <div class="h2h">
+      <div class="h2h-title">Matchup 02 · 2 units</div>
+      <div class="h2h-row">
+        <div class="h2h-player pick">Hideki Matsuyama</div>
+        <div class="h2h-odds">-112</div>
+      </div>
+      <div class="h2h-row">
+        <div class="h2h-player">Viktor Hovland</div>
+        <div class="h2h-odds">+100</div>
+      </div>
+      <div class="h2h-rationale"><strong style="color:var(--g)">Pick: Matsuyama -112.</strong> Both fail the distance gate (Hideki Rk 104, Hovland Rk 109), so the matchup comes down to who profiles better as a precision specialist who can survive on a power course. Hideki has clear edges: APP Rk 14 vs. Hovland's 41, ARG Rk 13 vs. 26, Total Rk 16 vs. 47. He has prior Doral history with positive OTT and APP gain when the Tour was here last. Model scores: Hideki 0.636, Hovland 0.528. The line is essentially pick'em; the model says it shouldn't be.</div>
+    </div>
+
+    <div class="h2h">
+      <div class="h2h-title">Matchup 03 · 1.5 units</div>
+      <div class="h2h-row">
+        <div class="h2h-player pick">Adam Scott</div>
+        <div class="h2h-odds">-120</div>
+      </div>
+      <div class="h2h-row">
+        <div class="h2h-player">Justin Rose</div>
+        <div class="h2h-odds">+100</div>
+      </div>
+      <div class="h2h-rationale"><strong style="color:var(--g)">Pick: Scott -120.</strong> The two past Doral champions in the field, and the market is treating this as a course-history coin flip. The model isn't close. Scott Dist Rk 18 vs. Rose Rk 74. Scott OTT Rk 41 vs. Rose Rk 132 (Rose has a deeply negative OTT number this season). Scott Total Rk 18 vs. Rose Rk 39. Approach is similar. Putting is similar. Distance and OTT decide it. Model edge: 0.804 vs 0.565 — the largest edge on the matchup card.</div>
+    </div>
+
+    <div class="h2h">
+      <div class="h2h-title">Matchup 04 · 1.5 units</div>
+      <div class="h2h-row">
+        <div class="h2h-player pick">Jake Knapp</div>
+        <div class="h2h-odds">-105</div>
+      </div>
+      <div class="h2h-row">
+        <div class="h2h-player">Patrick Cantlay</div>
+        <div class="h2h-odds">-115</div>
+      </div>
+      <div class="h2h-rationale"><strong style="color:var(--g)">Pick: Knapp -105.</strong> Cantlay is the public name and the market is pricing him short on recent form (T8 Heritage, T12 Masters, T7 Valspar). The model says Dist Rk 114 fails too hard at Doral. Knapp passes every gate (Dist Rk 6, Total Rk 8, OTT positive). At a near-pick'em line against a Cantlay who structurally fails the venue, the value is on the player who fits the course.</div>
+    </div>
+
+  </div>
+
+  <p class="body-text" style="font-size:13px;color:var(--txt3)">Matchup lines are screenshots from book selection — confirm the exact line is still available before placing the bet. Lines from FanDuel and BetMGM as of April 28 morning.</p>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ LONGSHOT ═══ -->
+<section>
+  <div class="sec-num">10 — Longshots</div>
+  <h2>Price-forward <span>variance.</span></h2>
+
+  <div class="pick">
+    <div class="pick-badge badge-yellow">LONGSHOT · 0.5u OUTRIGHT + 1.5u TOP 30</div>
+    <div class="pick-head"><div class="pick-name">Aldrich Potgieter</div><div class="pick-odds">+10000</div></div>
+    <div class="pick-meta">Dist Rk 1 (325.0 yds) · OTT Rk 3 (+0.698) · APP Rk 129 · ARG Rk 161 · Pure variance</div>
+    <div class="pick-body">The longest hitter on Tour. Period. 325.0 yards average and the only player in the field with both Distance Rk 1 and OTT Rk 3. He led the entire PGA Tour in driving distance in 2025 and a switch to PXG hasn't slowed that down. The reason for the +10000 price is the rest of the bag — APP Rk 129, ARG Rk 161, and a 12-over 84 to open the Masters two weeks ago. But he turned around at Heritage with three consecutive 67s after that 84. On a course where the par 5s decide the winner and the longest hitters separate from the field, his ceiling at this price is mathematically real even with the variance. PGA Tour expert picks have him at +210 for Top 30.</div>
+    <div class="pick-tags"><span class="tag">Dist Rk 1</span><span class="tag">OTT Rk 3</span><span class="tag tag-y">Pure variance</span><span class="tag tag-y">Recovery story</span></div>
+  </div>
+
+  <div class="pick">
+    <div class="pick-badge badge-yellow">LONGSHOT · 0.5u OUTRIGHT + 1u TOP 20</div>
+    <div class="pick-head"><div class="pick-name">Rasmus Højgaard</div><div class="pick-odds">+8000</div></div>
+    <div class="pick-meta">Model Rk 15 · Dist Rk 9 (319.0 yds) · OTT Rk 61 · APP Rk 40 · Passes all gates</div>
+    <div class="pick-body">The smaller-print Højgaard. Rasmus ranks 15th in the model, passes every hard gate, and at 319.0 yards average has the distance profile to leverage all four par 5s. Total Rk 27. The OTT efficiency rank is the soft data point, but raw distance compensates structurally. At +8000 the math works on a small outright and a Top 20 stack at a more reasonable price.</div>
+    <div class="pick-tags"><span class="tag">Dist Rk 9</span><span class="tag">All gates pass</span><span class="tag tag-y">Longshot</span></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ PARLAY ═══ -->
+<section>
+  <div class="sec-num">11 — Recommended Parlay</div>
+  <h2>Correlation <span>play.</span></h2>
+  <p class="body-text">Two parlays this week. Both built on positive correlation — players whose game profiles are similar enough that contention from one increases the probability of contention from the other.</p>
+
+  <div class="pick">
+    <div class="pick-badge badge-green">PARLAY 01 · 2.5 UNITS · POWER STACK</div>
+    <div class="pick-body"><strong>Gotterup Top 10 (+260) + Min Woo Lee Top 10 (+260)</strong><br><br>The two highest-conviction outright plays parlayed at the Top 10 level. Combined price ~+1200. Both pass every model gate, both have 2026 wins, both profile as power-and-precision players in the wind-tolerant tier. If Sunday's wind hits, this stack is exactly the profile that benefits relative to the field. One leg failing kills the ticket; both legs passing pays the week.</div>
+  </div>
+
+  <div class="pick">
+    <div class="pick-badge badge-green">PARLAY 02 · 1 UNIT · MATCHUP STACK</div>
+    <div class="pick-body"><strong>Burns over Henley (+110) + Scott over Rose (-120) + Hideki over Hovland (-112)</strong><br><br>Three head-to-head matchups parlayed for a combined price near +300. Each leg is a player who passes the distance gate against a player who fails it. The correlation isn't perfect, but the structural argument behind every leg is the same: distance is the gate at Doral and the market is pricing the matchups as if it isn't. If the model thesis on the venue is right, all three legs cash together more often than they fail independently.</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ FADES ═══ -->
+<section>
+  <div class="sec-num">12 — Fade Alerts</div>
+  <h2>What we're fading <span>and what we're not.</span></h2>
+  <p class="body-text">The market is overpaying for two profiles this week: precision specialists with no distance, and recent-form names whose recent form came at courses with the opposite winner profile. Every fade below specifies the exact bet being avoided and what remains valid.</p>
+
+  <div class="pick">
+    <div class="pick-badge badge-red">FULL FADE — NO PLAY ANY MARKET</div>
+    <div class="pick-head"><div class="pick-name">Russell Henley</div><div class="pick-odds">+2500</div></div>
+    <div class="pick-meta">Model Rk 47 · Dist Rk 149 (293.1 yds) · OTT Rk 59 · 4th-shortest priced inside top-10 of the market</div>
+    <div class="pick-body"><strong>What we're fading:</strong> Everything. Henley is the model's most extreme structural mispricing on the board. Market price +2500 (4th-shortest). Model rank 47. He averages 293.1 yards off the tee, giving up roughly 30 yards per swing to the field's bombers across four par 5s. His 2026 form (T3 Masters, prior Heritage finishes) is built on accuracy and approach — both of which are de-prioritized at this venue. The CBS / SportsLine model loves him. Their model uses different weights. The StrokesEdge Doral framework rates him a structural fade across all markets at any price below +5000.</div>
+    <div class="pick-tags"><span class="tag tag-r">Fade all markets</span><span class="tag tag-r">Dist Rk 149</span><span class="tag tag-r">Model #47</span></div>
+  </div>
+
+  <div class="pick">
+    <div class="pick-badge badge-red">FADE: OUTRIGHT AND TOP 10 · TOP 30 ONLY</div>
+    <div class="pick-head"><div class="pick-name">Patrick Cantlay</div><div class="pick-odds">+3000</div></div>
+    <div class="pick-meta">Dist Rk 114 · Total Rk 25 · APP Rk 54 · Recent T8 Heritage / T12 Masters / T7 Valspar</div>
+    <div class="pick-body"><strong>What we're fading:</strong> The outright at +3000 and any Top 10 line. Cantlay's 2026 form is real (three top-12s in his last four starts). The course-fit isn't. Dist Rk 114 is a structural failure at Doral regardless of approach numbers. He hasn't won since 2022 and his short-comings on Sunday are documented. The market is pricing the form, not the venue.<br><br><strong>What we're NOT fading:</strong> Top 30 at the right price. The Total rank of 25 means he can absolutely finish in the top half of a no-cut field. Anything tighter than that is paying for a profile that doesn't fit the course.</div>
+    <div class="pick-tags"><span class="tag tag-r">Fade outright</span><span class="tag tag-r">Fade Top 10</span><span class="tag tag-b">Top 30 OK</span></div>
+  </div>
+
+  <div class="pick">
+    <div class="pick-badge badge-red">FADE: OUTRIGHT · TOP 10 STILL VALID</div>
+    <div class="pick-head"><div class="pick-name">Collin Morikawa</div><div class="pick-odds">+2200</div></div>
+    <div class="pick-meta">Model Rk 10 · APP Rk 1 on Tour (+1.136) · Dist Rk 89 (302.3 yds) · Back issue still in play</div>
+    <div class="pick-body"><strong>What we're fading:</strong> The outright at +2200. Morikawa is the #1 SG: Approach player on Tour and his model rank of 10 is held back almost entirely by the distance gate failure (Rk 89). Six top 10s in his last seven starts including the Masters and Heritage played through what reporting describes as a back issue. The outright price doesn't account for either the venue mismatch or the health uncertainty.<br><br><strong>What we're NOT fading:</strong> Top 10 markets. His approach numbers are good enough to finish anywhere on the leaderboard if he plays four clean rounds. At +260-ish for a Top 10, the iron play could carry the ticket even with the distance question. Just not the outright.</div>
+    <div class="pick-tags"><span class="tag tag-r">Fade outright</span><span class="tag tag-b">Top 10 OK</span><span class="tag">APP Rk 1</span></div>
+  </div>
+
+  <div class="pick">
+    <div class="pick-badge badge-red">FADE: OUTRIGHT AND TOP 10 · TOP 20 OK AT RIGHT PRICE</div>
+    <div class="pick-head"><div class="pick-name">Sahith Theegala</div><div class="pick-odds">+5500</div></div>
+    <div class="pick-meta">Total Rk 23 · OTT Rk 116 (-0.167) · Dist Rk 71 · ARG Rk 15 (only positive structural data point)</div>
+    <div class="pick-body"><strong>What we're fading:</strong> Outright at +5500 and Top 10. Theegala's Total Rk 23 is propped up by his short-game numbers. SG: OTT is negative (-0.167). Driving distance ranks 71. He'll bleed strokes on the par 5s relative to the field every round. The Sunday wind would punish his ball-flight profile further.<br><br><strong>What we're NOT fading:</strong> Top 20 if priced above +250. The short-game numbers are good enough to keep him in the top third of a small field even with the structural distance penalty.</div>
+    <div class="pick-tags"><span class="tag tag-r">Fade outright</span><span class="tag tag-r">Fade Top 10</span><span class="tag tag-b">Top 20 OK</span></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ FINAL CARD ═══ -->
+<section>
+  <div class="sec-num">13 — The Full Card</div>
+  <h2>Every <span>pick</span> at a glance.</h2>
+
+  <table>
+    <thead><tr><th>Tier</th><th>Player</th><th>Odds</th><th>Bet Type</th><th>Units</th></tr></thead>
+    <tbody>
+      <tr><td class="cg">★ Best Pick</td><td>Gotterup</td><td class="cg">+2700</td><td>E/W Winner</td><td>2u</td></tr>
+      <tr><td class="cg">E/W Winner</td><td>Min Woo Lee</td><td class="cg">+2200</td><td>E/W Winner</td><td>1.5u</td></tr>
+      <tr><td class="cg">E/W Winner</td><td>Adam Scott</td><td class="cg">+3300</td><td>E/W Winner</td><td>1u</td></tr>
+      <tr><td class="cb">Top 5</td><td>Scheffler</td><td class="cb">+135</td><td>Top 5</td><td>3u</td></tr>
+      <tr><td class="cb">Top 10</td><td>Cameron Young</td><td class="cb">+200</td><td>Top 10</td><td>2.5u</td></tr>
+      <tr><td class="cb">Top 10</td><td>Min Woo Lee</td><td class="cb">+260</td><td>Top 10</td><td>2u</td></tr>
+      <tr><td class="cb">Top 10</td><td>N. Højgaard</td><td class="cb">+450</td><td>Top 10</td><td>2u</td></tr>
+      <tr><td class="cb">Top 20</td><td>Knapp</td><td class="cb">+150</td><td>Top 20</td><td>3u</td></tr>
+      <tr><td class="cb">Top 20 (POTD)</td><td>Gotterup</td><td class="cb">+115</td><td>Top 20</td><td>3u</td></tr>
+      <tr><td class="cb">Top 20</td><td>Woodland</td><td class="cb">+185</td><td>Top 20</td><td>2u</td></tr>
+      <tr><td class="cb">Top 20</td><td>Yellamaraju</td><td class="cb">+220</td><td>Top 20</td><td>2u</td></tr>
+      <tr><td>H2H</td><td>Burns / Henley</td><td>+110</td><td>72-hole H2H</td><td>2u</td></tr>
+      <tr><td>H2H</td><td>Hideki / Hovland</td><td>-112</td><td>72-hole H2H</td><td>2u</td></tr>
+      <tr><td>H2H</td><td>Scott / Rose</td><td>-120</td><td>72-hole H2H</td><td>1.5u</td></tr>
+      <tr><td>H2H</td><td>Knapp / Cantlay</td><td>-105</td><td>72-hole H2H</td><td>1.5u</td></tr>
+      <tr><td class="cy">Longshot</td><td>Potgieter</td><td class="cy">+10000</td><td>E/W Winner</td><td>0.5u</td></tr>
+      <tr><td class="cy">Longshot</td><td>Potgieter</td><td class="cy">+210</td><td>Top 30</td><td>1.5u</td></tr>
+      <tr><td class="cy">Longshot</td><td>R. Højgaard</td><td class="cy">+8000</td><td>E/W Winner</td><td>0.5u</td></tr>
+      <tr><td class="cy">Longshot</td><td>R. Højgaard</td><td class="cy">+450</td><td>Top 20</td><td>1u</td></tr>
+      <tr><td class="cg">Parlay 1</td><td>Gott + MWL</td><td class="cg">~+1200</td><td>Top 10 / Top 10</td><td>2.5u</td></tr>
+      <tr><td class="cg">Parlay 2</td><td>3-leg H2H</td><td class="cg">~+300</td><td>Burns + Scott + Hideki</td><td>1u</td></tr>
+      <tr><td class="cr">Fade (all)</td><td>Henley</td><td class="cr">+2500</td><td>Full fade</td><td>—</td></tr>
+      <tr><td class="cr">Fade (out+T10)</td><td>Cantlay</td><td class="cr">+3000</td><td>Top 30 only</td><td>—</td></tr>
+      <tr><td class="cr">Fade (out)</td><td>Morikawa</td><td class="cr">+2200</td><td>Top 10 OK</td><td>—</td></tr>
+      <tr><td class="cr">Fade (out+T10)</td><td>Theegala</td><td class="cr">+5500</td><td>Top 20 OK</td><td>—</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <div class="callout-label">Total Card Exposure: ~37 units</div>
+    <div class="callout-text">E/W Winner plays: 4.5u · Top 5/10/20: 19.5u · H2H matchups: 7u · Longshots: 3.5u · Parlays: 3.5u<br><br>Weighted ~22% on outrights, ~52% on finish markets, ~19% on H2H matchups, ~7% on longshots and parlays. The matchup allocation is unusually heavy this week because the distance gate creates clean structural edges across multiple matchup pairings the market is treating as coin flips.</div>
+  </div>
+
+  <div class="callout" style="border-color:rgba(240,180,41,.3)">
+    <div class="callout-label" style="color:var(--y)">⚠ Reminder. Check the pick tracker</div>
+    <div class="callout-text">The card above is the pre-tournament model output. Final bet sizing and specific picks that hit the live card may shift based on line movement between now and the first tee ball. Always cross-reference the <a href="picks.html" style="color:var(--g);text-decoration:underline">pick tracker</a> for the confirmed bets before following any pick. The tracker is the authoritative record. Win, lose, or open.</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ CTA ═══ -->
+<section>
+  <div class="cta-box">
+    <div class="cta-title">Get next week's <span>card.</span></div>
+    <div class="cta-sub">The model runs every week. Tournament breakdowns, pick rationale, and weekly P&L delivered straight to your inbox.</div>
+    <a href="https://strokesedge.substack.com" class="btn-primary" target="_blank">Subscribe on Substack →</a>
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="foot-logo">Strokes<span>Edge</span></div>
+  <div class="foot-links">
+    <a href="methodology.html">Methodology</a>
+    <a href="picks.html">Pick Tracker</a>
+    <a href="course-doral.html">Doral Guide</a>
+    <a href="https://strokesedge.substack.com" target="_blank">Substack</a>
+  </div>
+  <div class="foot-note">Not financial advice. Gamble responsibly.</div>
+</footer>
+
+<script>
+// Nav dropdowns
+// Nav dropdowns
+// ── Nav dropdowns ──
+document.querySelectorAll('.nav-drop-btn').forEach(function(btn){
+  btn.addEventListener('click',function(e){
+    e.stopPropagation();
+    var id='drop-'+btn.getAttribute('data-drop');
+    var menu=document.getElementById(id);
+    var isOpen=menu.classList.contains('open');
+    document.querySelectorAll('.drop-menu').forEach(function(m){m.classList.remove('open');});
+    document.querySelectorAll('.nav-drop-btn').forEach(function(b){b.classList.remove('open');});
+    if(!isOpen){menu.classList.add('open');btn.classList.add('open');}
+  });
+});
+document.addEventListener('click',function(e){
+  if(!e.target.closest('.nav-drop')){
+    document.querySelectorAll('.drop-menu').forEach(function(m){m.classList.remove('open');});
+    document.querySelectorAll('.nav-drop-btn').forEach(function(b){b.classList.remove('open');});
+  }
+});
+
+// ── Hamburger ──
+var hbg=document.getElementById('hamburger'),mob=document.getElementById('mobile-menu');
+if(hbg&&mob){
+  hbg.addEventListener('click',function(e){
+    e.stopPropagation();
+    hbg.classList.toggle('open');
+    mob.classList.toggle('open');
+  });
+  document.addEventListener('click',function(e){
+    if(!hbg.contains(e.target)&&!mob.contains(e.target)){
+      hbg.classList.remove('open');
+      mob.classList.remove('open');
+    }
+  });
+}

@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="StrokesEdge RBC Heritage 2026 analysis — Harbour Town course profile, strokes gained breakdown, outright picks, top-10/top-20 plays, longshots, and fades. Matt Fitzpatrick won as the model's Pick of the Week at +1950.">
+<title>RBC Heritage 2026 Analysis — StrokesEdge</title>
+<link rel="canonical" href="https://strokesedge.com/analysis-heritage-2026.html">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://strokesedge.com/analysis-heritage-2026.html">
+<meta property="og:title" content="RBC Heritage 2026 Analysis — StrokesEdge">
+<meta property="og:description" content="Harbour Town course profile, strokes gained breakdown, outright picks, top-10/top-20 plays, longshots, and fades. The full model for Hilton Head.">
+<meta property="og:image" content="https://strokesedge.com/og-image.png">
+<meta property="og:site_name" content="StrokesEdge">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="RBC Heritage 2026 Analysis — StrokesEdge">
+<meta name="twitter:description" content="Harbour Town course profile, strokes gained breakdown, outright picks, top-10/top-20 plays, longshots, and fades. The full model for Hilton Head.">
+<meta name="twitter:image" content="https://strokesedge.com/og-image.png">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --g:#6ab83a;--g2:#3d7a18;--g3:#1a3a08;--r:#e05252;--y:#f0b429;--blue:#4a9eff;
+  --g-glow:rgba(106,184,58,0.12);
+  --bg:#080b07;--bg2:#0c0f0b;--sur:#141a12;
+  --bdr:rgba(106,184,58,0.18);--bdr2:rgba(255,255,255,0.07);
+  --txt:#e6ede0;--txt2:#8a9e80;--txt3:#3a4a34;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--txt);font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.6;overflow-x:hidden}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:1;opacity:.6}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(106,184,58,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(106,184,58,0.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;z-index:0}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1rem 1.5rem;border-bottom:1px solid var(--bdr2);background:rgba(8,11,7,.95);backdrop-filter:blur(16px)}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.08em;color:var(--txt);text-decoration:none}
+.nav-logo span{color:var(--g)}
+.nav-links{display:flex;align-items:center;gap:1.5rem}
+.nav-link{font-size:12px;color:var(--txt2);text-decoration:none;letter-spacing:.06em;text-transform:uppercase;transition:color .2s}
+.nav-link:hover{color:var(--txt)}
+.nav-link.active{color:var(--g)}
+.nav-cta{font-family:'DM Mono',monospace;font-size:12px;padding:8px 18px;border:1px solid var(--g);border-radius:2px;color:var(--g);text-decoration:none;letter-spacing:.06em;transition:all .2s;white-space:nowrap}
+.nav-cta:hover{background:var(--g-glow)}
+.nav-drop{position:relative}
+.nav-drop-btn{font-size:12px;color:var(--txt2);background:none;border:none;cursor:pointer;letter-spacing:.06em;text-transform:uppercase;display:flex;align-items:center;gap:5px;padding:0;font-family:'DM Sans',sans-serif;transition:color .2s;white-space:nowrap;outline:none}
+.nav-drop-btn:hover,.nav-drop-btn.open{color:var(--txt)}
+.nav-drop-btn::after{content:'▾';font-size:9px;transition:transform .2s;display:inline-block}
+.nav-drop-btn.open::after{transform:rotate(180deg)}
+.drop-menu{display:none;position:absolute;top:100%;left:0;min-width:220px;z-index:200}
+.drop-menu.open{display:block}
+.drop-menu-box{background:rgba(8,11,7,.98);border:1px solid var(--bdr);border-radius:4px;overflow:hidden;backdrop-filter:blur(16px)}
+.drop-item{display:block;padding:.7rem 1.1rem;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--txt2);text-decoration:none;border-bottom:1px solid var(--bdr2);transition:all .15s;white-space:nowrap}
+.drop-item:last-child{border-bottom:none}
+.drop-item:hover{color:var(--g);background:rgba(106,184,58,.05)}
+.drop-item .drop-sub{display:block;font-size:9px;color:var(--txt3);margin-top:2px;letter-spacing:.04em;text-transform:none}
+
+/* ── HAMBURGER ── */
+.hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:none;border:none;cursor:pointer;padding:6px;z-index:201}
+.hamburger span{display:block;width:22px;height:2px;background:var(--txt2);border-radius:2px;transition:all .25s}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);background:var(--g)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);background:var(--g)}
+.mobile-menu{display:none;position:fixed;top:57px;left:0;right:0;background:rgba(8,11,7,.98);backdrop-filter:blur(16px);border-bottom:1px solid var(--bdr2);z-index:99;flex-direction:column;padding:1rem 1.5rem 1.5rem;max-height:80vh;overflow-y:auto}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'DM Mono',monospace;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--txt2);text-decoration:none;padding:.7rem 0;border-bottom:1px solid var(--bdr2);transition:color .2s;display:block}
+.mobile-menu a:hover{color:var(--txt)}
+.mobile-menu a.active{color:var(--g)}
+.mob-section{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--txt3);padding:.6rem 0 .2rem;display:block}
+.mob-indent{padding-left:.75rem!important;font-size:11px!important}
+.mob-cta{border-bottom:none!important;margin-top:.5rem;padding:.85rem 1rem!important;border:1px solid var(--g)!important;border-radius:2px;color:var(--g)!important;text-align:center}
+@media(max-width:860px){.nav-link,.nav-drop,.nav-cta{display:none}.hamburger{display:flex}}
+
+/* ── CONTENT ── */
+.wrap{max-width:900px;margin:0 auto;padding:0 1.5rem;position:relative;z-index:2}
+.hero{padding:7rem 0 2rem}
+.eyebrow{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.14em;color:var(--g);text-transform:uppercase;margin-bottom:1.5rem;display:flex;align-items:center;gap:10px}
+.eyebrow::before{content:'';width:24px;height:1px;background:var(--g)}
+h1.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(56px,12vw,100px);line-height:.9;letter-spacing:.03em;margin-bottom:.75rem;opacity:0;animation:up .7s .1s forwards}
+h1.hero-title span{color:var(--g);display:block}
+.hero-meta{font-family:'DM Mono',monospace;font-size:11px;color:var(--txt3);letter-spacing:.06em;text-transform:uppercase;margin-bottom:1.5rem;opacity:0;animation:up .7s .25s forwards}
+.hero-sub{font-size:17px;color:var(--txt2);line-height:1.8;max-width:580px;opacity:0;animation:up .7s .4s forwards}
+@keyframes up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── ARCHIVE BAR ── */
+.archive-bar{border:1px solid var(--bdr2);border-radius:4px;overflow:hidden;margin:2rem 0 3rem;background:var(--bg2)}
+.archive-header{display:flex;justify-content:space-between;align-items:center;padding:.75rem 1.25rem;border-bottom:1px solid var(--bdr2)}
+.archive-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--g)}
+.archive-toggle{font-family:'DM Mono',monospace;font-size:10px;color:var(--txt3);letter-spacing:.06em;cursor:pointer;background:none;border:none;transition:color .2s}
+.archive-toggle:hover{color:var(--g)}
+.archive-list{display:none;padding:.5rem 0}
+.archive-list.open{display:block}
+.archive-item{display:flex;justify-content:space-between;align-items:center;padding:.6rem 1.25rem;border-bottom:1px solid var(--bdr2);transition:background .15s;cursor:pointer;text-decoration:none}
+.archive-item:last-child{border-bottom:none}
+.archive-item:hover{background:rgba(106,184,58,.03)}
+.archive-item.current{background:rgba(106,184,58,.06);border-left:2px solid var(--g)}
+.ai-event{font-size:13px;color:var(--txt)}
+.ai-date{font-family:'DM Mono',monospace;font-size:10px;color:var(--txt3);letter-spacing:.06em}
+
+/* ── SECTION STYLES ── */
+.divider{height:1px;background:var(--bdr2);margin:3rem 0}
+.sec-num{font-family:'DM Mono',monospace;font-size:11px;color:var(--g);letter-spacing:.12em;margin-bottom:1rem;display:flex;align-items:center;gap:12px}
+.sec-num::after{content:'';height:1px;width:40px;background:var(--bdr)}
+h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(32px,6vw,52px);line-height:1;letter-spacing:.04em;margin-bottom:1rem}
+h2 span{color:var(--g)}
+.body-text{font-size:15px;color:var(--txt2);line-height:1.85;margin-bottom:2rem}
+
+/* ── STAT GRID ── */
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:1px;background:var(--bdr2);border:1px solid var(--bdr2);border-radius:4px;overflow:hidden;margin-bottom:2rem}
+.stat-cell{background:var(--bg2);padding:1.25rem 1rem;text-align:center}
+.stat-n{font-family:'Bebas Neue',sans-serif;font-size:34px;color:var(--g);line-height:1;margin-bottom:4px}
+.stat-l{font-family:'DM Mono',monospace;font-size:9px;color:var(--txt2);letter-spacing:.1em;text-transform:uppercase;line-height:1.4}
+
+/* ── PICK CARDS ── */
+.pick{background:var(--sur);border:1px solid var(--bdr2);border-radius:4px;padding:1.5rem;margin-bottom:.75rem;transition:all .2s;position:relative;overflow:hidden}
+.pick:hover{border-color:var(--bdr);transform:translateY(-1px)}
+.pick.featured{border-color:var(--g2);background:rgba(106,184,58,.04)}
+.pick.featured::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--g)}
+.pick-badge{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;display:inline-block;padding:3px 10px;border-radius:2px;margin-bottom:8px}
+.badge-green{color:var(--g);border:1px solid var(--bdr);background:rgba(106,184,58,.06)}
+.badge-red{color:var(--r);border:1px solid rgba(224,82,82,.3);background:rgba(224,82,82,.06)}
+.badge-yellow{color:var(--y);border:1px solid rgba(240,180,41,.3);background:rgba(240,180,41,.06)}
+.badge-blue{color:var(--blue);border:1px solid rgba(74,158,255,.3);background:rgba(74,158,255,.06)}
+.pick-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.5rem;gap:1rem}
+.pick-name{font-size:18px;font-weight:400;color:var(--txt);min-width:0;word-break:break-word}
+.pick-odds{font-family:'Bebas Neue',sans-serif;font-size:34px;color:var(--g);letter-spacing:.04em;line-height:1;flex-shrink:0}
+.pick-meta{font-family:'DM Mono',monospace;font-size:10px;color:var(--txt3);letter-spacing:.06em;margin-bottom:.5rem}
+.pick-body{font-size:13px;color:var(--txt2);line-height:1.75;margin-bottom:.75rem}
+.pick-tags{display:flex;gap:.35rem;flex-wrap:wrap}
+.tag{font-family:'DM Mono',monospace;font-size:9px;padding:2px 8px;border:1px solid var(--bdr);border-radius:2px;color:var(--g);letter-spacing:.06em;text-transform:uppercase}
+.tag-r{color:var(--r);border-color:rgba(224,82,82,.25)}
+.tag-y{color:var(--y);border-color:rgba(240,180,41,.25)}
+.tag-b{color:var(--blue);border-color:rgba(74,158,255,.25)}
+
+/* ── CALLOUT ── */
+.callout{background:var(--sur);border:1px solid var(--bdr);border-radius:4px;padding:1.75rem;margin-bottom:2rem;position:relative;overflow:hidden}
+.callout::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--g)}
+.callout-label{font-family:'DM Mono',monospace;font-size:10px;color:var(--g);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.5rem}
+.callout-text{font-size:14px;color:var(--txt);line-height:1.75}
+
+/* ── TABLE ── */
+table{width:100%;border-collapse:collapse;font-size:12px;margin-bottom:2rem}
+thead{border-bottom:1px solid var(--bdr)}
+th{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--txt3);padding:.6rem .5rem;text-align:left;font-weight:400}
+td{padding:.6rem .5rem;border-bottom:1px solid var(--bdr2);color:var(--txt2)}
+.cg{color:var(--g)!important;font-weight:500}
+.cr{color:var(--r)!important}
+.cy{color:var(--y)!important}
+.cb{color:var(--blue)!important}
+
+/* ── WEATHER ── */
+.wx-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--bdr2);border:1px solid var(--bdr2);border-radius:4px;overflow:hidden;margin-bottom:2rem}
+.wx-cell{background:var(--bg2);padding:1rem;text-align:center}
+.wx-day{font-family:'DM Mono',monospace;font-size:10px;color:var(--g);letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
+.wx-temp{font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--txt);line-height:1;margin-bottom:3px}
+.wx-detail{font-size:10px;color:var(--txt3);line-height:1.3}
+
+/* ── CTA ── */
+.cta-box{background:var(--bg2);border:1px solid var(--bdr);border-radius:4px;padding:3rem 2rem;text-align:center;margin:3rem 0;position:relative;overflow:hidden}
+.cta-box::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:50%;height:1px;background:linear-gradient(90deg,transparent,var(--g),transparent)}
+.cta-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,5vw,48px);letter-spacing:.04em;line-height:1;margin-bottom:.75rem;color:var(--txt)}
+.cta-title span{color:var(--g)}
+.cta-sub{font-size:15px;color:var(--txt2);max-width:400px;margin:0 auto 2rem;line-height:1.75}
+.btn-primary{display:inline-block;padding:13px 32px;background:var(--g);color:#fff;font-family:'DM Mono',monospace;font-size:13px;letter-spacing:.06em;text-decoration:none;border-radius:2px;transition:all .2s}
+.btn-primary:hover{background:#7acc44;transform:translateY(-2px)}
+
+/* ── FOOTER ── */
+footer{border-top:1px solid var(--bdr2);padding:2rem 1.5rem;display:flex;justify-content:space-between;align-items:center;max-width:900px;margin:0 auto}
+.foot-logo{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.08em;color:var(--txt2)}
+.foot-logo span{color:var(--g)}
+.foot-note{font-family:'DM Mono',monospace;font-size:11px;color:var(--txt3)}
+
+/* ── ARCHIVED WEEK SECTION ── */
+.archived-week{opacity:.78;transition:opacity .3s}
+.archived-week:hover{opacity:1}
+.archive-banner{background:var(--bg2);border:1px solid var(--bdr2);border-left:3px solid var(--txt3);border-radius:4px;padding:1.25rem 1.5rem;margin:2rem 0 2rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
+.archive-banner-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--txt3)}
+.archive-banner-title{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.04em;color:var(--txt2);margin-top:2px}
+.archive-banner-back{font-family:'DM Mono',monospace;font-size:11px;color:var(--g);text-decoration:none;letter-spacing:.06em;border:1px solid var(--bdr);padding:8px 14px;border-radius:2px;transition:all .2s;white-space:nowrap}
+.archive-banner-back:hover{background:var(--g-glow)}
+
+/* ── MOBILE ── */
+@media(max-width:900px){
+  .archive-banner{padding:1rem 1.25rem}
+}
+@media(max-width:640px){
+  h1.hero-title{font-size:clamp(48px,16vw,72px)}
+  .wx-grid{grid-template-columns:1fr 1fr}
+  .pick-head{flex-direction:column;gap:.25rem}
+  .pick-odds{margin-left:0}
+  table{font-size:11px}
+  th,td{padding:.4rem .3rem}
+  footer{flex-direction:column;gap:1rem;text-align:center}
+  .stat-grid{grid-template-columns:repeat(3,1fr)}
+  .archive-banner{flex-direction:column;align-items:flex-start}
+}
+@media(max-width:380px){
+  .stat-grid{grid-template-columns:repeat(2,1fr)}
+}
+
+/* ── PICKS DIVIDER ── */
+.picks-divider{text-align:center;padding:2rem 0;font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.3em;color:var(--txt3)}
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D398EHRP6Y"></script>
+<script>// ── Nav dropdowns ──
+document.querySelectorAll('.nav-drop-btn').forEach(function(btn){
+  btn.addEventListener('click',function(e){
+    e.stopPropagation();
+    var id='drop-'+btn.getAttribute('data-drop');
+    var menu=document.getElementById(id);
+    var isOpen=menu.classList.contains('open');
+    document.querySelectorAll('.drop-menu').forEach(function(m){m.classList.remove('open');});
+    document.querySelectorAll('.nav-drop-btn').forEach(function(b){b.classList.remove('open');});
+    if(!isOpen){menu.classList.add('open');btn.classList.add('open');}
+  });
+});
+document.addEventListener('click',function(e){
+  if(!e.target.closest('.nav-drop')){
+    document.querySelectorAll('.drop-menu').forEach(function(m){m.classList.remove('open');});
+    document.querySelectorAll('.nav-drop-btn').forEach(function(b){b.classList.remove('open');});
+  }
+});
+
+// ── Hamburger ──
+var hbg=document.getElementById('hamburger'),mob=document.getElementById('mobile-menu');
+if(hbg&&mob){
+  hbg.addEventListener('click',function(e){
+    e.stopPropagation();
+    hbg.classList.toggle('open');
+    mob.classList.toggle('open');
+  });
+  document.addEventListener('click',function(e){
+    if(!hbg.contains(e.target)&&!mob.contains(e.target)){
+      hbg.classList.remove('open');
+      mob.classList.remove('open');
+    }
+  });
+}
+
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-D398EHRP6Y');</script>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Strokes<span>Edge</span></a>
+  <div class="nav-links">
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="methodology.html" class="nav-link">Methodology</a>
+    <a href="picks.html" class="nav-link">Pick Tracker</a>
+    <div class="nav-drop">
+      <button class="nav-drop-btn" data-drop="courses">Courses</button>
+      <div class="drop-menu" id="drop-courses"><div class="drop-menu-box">
+        <a href="courses.html" class="drop-item">All Course Guides<span class="drop-sub">Full library</span></a>
+        <a href="course-shinnecock-hills.html" class="drop-item">Shinnecock Hills<span class="drop-sub">U.S. Open · Jun</span></a>
+        <a href="course-quail-hollow.html" class="drop-item">Quail Hollow<span class="drop-sub">Truist · May</span></a>
+        <a href="course-colonial.html" class="drop-item">Colonial CC<span class="drop-sub">Schwab Challenge · May</span></a>
+        <a href="course-doral.html" class="drop-item">Blue Monster / Doral<span class="drop-sub">Cadillac · Apr–May</span></a>
+        <a href="course-aronimink.html" class="drop-item">Aronimink<span class="drop-sub">PGA Championship · May</span></a>
+        <a href="course-augusta-national.html" class="drop-item">Augusta National<span class="drop-sub">The Masters · Apr</span></a>
+        <a href="course-harbour-town.html" class="drop-item">Harbour Town<span class="drop-sub">RBC Heritage · Apr</span></a>
+        <a href="course-tpc-louisiana.html" class="drop-item">TPC Louisiana<span class="drop-sub">Zurich Classic · Apr</span></a>
+        <a href="course-tpc-craig-ranch.html" class="drop-item">TPC Craig Ranch<span class="drop-sub">CJ Cup Byron Nelson · May</span></a>
+      </div></div>
+    </div>
+    <div class="nav-drop">
+      <button class="nav-drop-btn active" data-drop="analysis">Analysis</button>
+      <div class="drop-menu" id="drop-analysis"><div class="drop-menu-box">
+        <a href="analysis.html" class="drop-item">Current Analysis<span class="drop-sub">Charles Schwab 2026</span></a>
+        <a href="analysis-pga-2026.html" class="drop-item">PGA Championship 2026<span class="drop-sub">Aronimink · May 14–17</span></a>
+        <a href="analysis-truist-2026.html" class="drop-item">Truist Championship 2026<span class="drop-sub">Quail Hollow · May 7–10</span></a>
+        <a href="analysis-cadillac-2026.html" class="drop-item">Cadillac Championship 2026<span class="drop-sub">Doral · Apr 30–May 3</span></a>
+        <a href="analysis-heritage-2026.html" class="drop-item active">RBC Heritage 2026<span class="drop-sub">Harbour Town · Apr 16–19</span></a>
+        <a href="analysis-masters-2026.html" class="drop-item">Masters 2026<span class="drop-sub">Augusta National · Apr 9–12</span></a>
+        <a href="analysis-valero-2026.html" class="drop-item">Valero Texas Open 2026<span class="drop-sub">TPC San Antonio · Apr 2–6</span></a>
+        <a href="analysis-cj-cup-byron-nelson-2025.html" class="drop-item">CJ Cup Byron Nelson 2025<span class="drop-sub">TPC Craig Ranch · May</span></a>
+      </div></div>
+    </div>
+    <a href="https://strokesedge.substack.com" class="nav-cta" target="_blank">Subscribe →</a>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html">Home</a>
+  <a href="methodology.html">Methodology</a>
+  <a href="picks.html">Pick Tracker</a>
+  <span class="mob-section">— Courses —</span>
+  <a href="courses.html" class="mob-indent">All Course Guides</a>
+  <a href="course-quail-hollow.html" class="mob-indent">Quail Hollow</a>
+  <a href="course-colonial.html" class="mob-indent">Colonial CC</a>
+  <a href="course-doral.html" class="mob-indent">Blue Monster / Doral</a>
+  <a href="course-aronimink.html" class="mob-indent">Aronimink</a>
+  <a href="course-augusta-national.html" class="mob-indent">Augusta National</a>
+  <a href="course-harbour-town.html" class="mob-indent">Harbour Town</a>
+  <a href="course-tpc-louisiana.html" class="mob-indent">TPC Louisiana</a>
+  <a href="course-tpc-craig-ranch.html" class="mob-indent">TPC Craig Ranch</a>
+  <span class="mob-section">— Analysis —</span>
+  <a href="analysis.html" class="mob-indent">Current Analysis</a>
+  <a href="analysis-pga-2026.html" class="mob-indent">PGA Championship 2026</a>
+  <a href="analysis-truist-2026.html" class="mob-indent">Truist Championship 2026</a>
+  <a href="analysis-cadillac-2026.html" class="mob-indent">Cadillac Championship 2026</a>
+  <a href="analysis-heritage-2026.html" class="mob-indent">RBC Heritage 2026</a>
+  <a href="analysis-masters-2026.html" class="mob-indent">Masters 2026</a>
+  <a href="analysis-valero-2026.html" class="mob-indent">Valero Texas Open 2026</a>
+  <a href="analysis-cj-cup-byron-nelson-2025.html" class="mob-indent">CJ Cup Byron Nelson 2025</a>
+  <a href="https://strokesedge.substack.com" class="mob-cta" target="_blank">Subscribe →</a>
+</div>
+
+<div class="wrap">
+
+<div style="background:var(--bg2);border:1px solid var(--bdr2);border-radius:4px;padding:1rem 1.5rem;margin:0 0 2rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap">
+  <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--txt3)">Archived Analysis &middot; RBC Heritage 2026 · Harbour Town Golf Links</div>
+  <a href="analysis.html" style="font-family:'DM Mono',monospace;font-size:11px;color:var(--g);text-decoration:none;letter-spacing:.06em;border:1px solid var(--bdr);padding:8px 14px;border-radius:2px;white-space:nowrap;transition:background .2s">← Back to current analysis</a>
+</div>
+
+<section class="hero">
+  <div class="eyebrow">Week 12 · Signature Event · No Cut</div>
+  <h1 class="hero-title">RBC<span>Heritage.</span></h1>
+  <div class="hero-meta">Harbour Town Golf Links · Par 71 · 7,213 yards · April 16–19, 2026</div>
+  <p class="hero-sub">Harbour Town is the anti-Augusta. No wide fairways, no power premium, no room for error off the tee. The smallest greens on Tour (3,700 sq ft) and the lowest GIR rate of any Signature Event venue. The model loves a very specific profile here. And the market overpays for the wrong one every year. Here's what the data says.</p>
+</section>
+
+<!-- ═══ ARCHIVE ═══ -->
+<div class="archive-bar">
+  <div class="archive-header">
+    <div class="archive-label">2026 Season Analysis Archive</div>
+    <button class="archive-toggle" id="archive-toggle">Show past weeks ▾</button>
+  </div>
+  <div class="archive-list" id="archive-list">
+    <a class="archive-item current" href="#top">
+      <span class="ai-event">⛳ RBC Heritage — Harbour Town (current)</span>
+      <span class="ai-date">Apr 16–19</span>
+    </a>
+    <a class="archive-item" href="#masters-2026">
+      <span class="ai-event">The Masters — Augusta National</span>
+      <span class="ai-date">Apr 9–12</span>
+    </a>
+    <a class="archive-item" href="#">
+      <span class="ai-event">Valero Texas Open — TPC San Antonio</span>
+      <span class="ai-date">Apr 2–6</span>
+    </a>
+  </div>
+</div>
+
+<!-- ═══ COURSE PROFILE ═══ -->
+<section>
+  <div class="sec-num">01 — Course Profile</div>
+  <h2>Harbour Town's <span>fingerprint.</span></h2>
+  <p class="body-text">Harbour Town Golf Links was designed by Pete Dye with assistance from Jack Nicklaus, and it has hosted the RBC Heritage every year since 1969. It is one of the shortest courses on the PGA Tour at 7,213 yards and one of the most strategically demanding. Tree-lined corridors, overhanging branches, dog-leg fairways. Position off the tee matters more than distance. Several recent winners have lost strokes off the tee for the entire week.</p>
+  <p class="body-text">The single most important physical characteristic here is the green size. Harbour Town's Bermuda greens average around 3,700 square feet. The smallest set on the PGA Tour. They run roughly 12.5 on the Stimpmeter and are contoured to punish any approach that misses the correct quadrant. Tour-average GIR at Harbour Town is 58%, among the lowest of any PGA Tour venue. Missing a green here is not the exception, it is expected. What separates the field is what happens next.</p>
+  <p class="body-text">The model classifies Harbour Town as a <strong style="color:var(--g)">short-game and approach course with a position-off-the-tee filter</strong>. The winner profile is elite iron play from 150–200 yards, world-class scrambling, and the discipline to play for position rather than length.</p>
+
+  <div class="stat-grid">
+    <div class="stat-cell"><div class="stat-n">7,213</div><div class="stat-l">Total<br>Yardage</div></div>
+    <div class="stat-cell"><div class="stat-n">82</div><div class="stat-l">Players<br>No cut</div></div>
+    <div class="stat-cell"><div class="stat-n">1</div><div class="stat-l">Par 5s<br>(hole 15)</div></div>
+    <div class="stat-cell"><div class="stat-n">58%</div><div class="stat-l">Avg GIR<br>(Tour low)</div></div>
+    <div class="stat-cell"><div class="stat-n">3.7k</div><div class="stat-l">Sq ft green<br>Tour smallest</div></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ KEY STATS ═══ -->
+<section>
+  <div class="sec-num">02 — What Actually Predicts Success Here</div>
+  <h2>The stats that <span>matter.</span></h2>
+  <p class="body-text">We ran the model against the last decade of RBC Heritage winner data and cross-referenced with published correlation studies from 2017 through 2025. These are the stats that separate Heritage contenders from the rest of the field. Ranked by predictive strength.</p>
+
+  <div class="callout">
+    <div class="callout-label">#1 — SG: Approach the Green</div>
+    <div class="callout-text">The most predictive stat at Harbour Town by a wide margin. Approach play accounts for approximately 50% of total SG among recent winners. Matt Fitzpatrick posted +5.01 SG: Approach for his winning week in 2023. Scheffler ranked 1st in both SG: Tee-to-Green and scrambling during his 2024 win. With greens at 3,700 square feet, the margin for error on irons is minimal. Mid-to-short iron control is the single most important skill at this venue.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">#2 — SG: Around the Green</div>
+    <div class="callout-text">With GIR% running at 58%, scrambling is structurally more important here than at almost any other PGA Tour venue. Greenside bunkers are well-positioned and the Bermuda surrounds demand creative short-game. Jordan Spieth won in 2022 ranking 60th in SG: Putting but 1st in SG: Tee-to-Green and 6th in scrambling. Fifteen of the last seventeen years, whoever topped the Scrambling stat for the week has finished inside the top 11.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">#3 — SG: Tee-to-Green (composite)</div>
+    <div class="callout-text">Every recent champion has ranked near the top of the field in SG: T2G for the week. The last nine winners ranked 11th, 1st, 6th, 7th, 11th, 7th, 1st, 3rd, and 1st. It is the consistent through-line across the winner list. This is the "are you playing well enough to contend?" filter at Harbour Town.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">What DOESN'T Matter</div>
+    <div class="callout-text">Driving distance. At 7,213 yards with one par 5, there is no power premium. Several winners have lost strokes off the tee for the week. Putting is also volatile. Spieth ranked 60th in SG: Putting when he won in 2022 and Scheffler ranked 34th in SG: Putting in 2024. The market consistently overweights both stats. The model fades players priced primarily on distance or hot-putter narratives here.</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ WEATHER ═══ -->
+<section>
+  <div class="sec-num">03 — Weather</div>
+  <h2>Conditions <span>favor scoring.</span></h2>
+  <p class="body-text">Mostly sunny all four days. Highs climbing from 78°F on Thursday to 82°F on Sunday. Light south and southeast winds 5–10 mph throughout. Meaningfully lighter than a typical Heritage. The exposed finishing stretch on 17 and 18 will not be the normal penalty, which tightens the top of the leaderboard. Expect a -17 to -20 winning score and elevated playoff probability.</p>
+
+  <div class="wx-grid">
+    <div class="wx-cell"><div class="wx-day">Thu R1</div><div class="wx-temp">78°F</div><div class="wx-detail">Mostly sunny<br>S 5–8 mph</div></div>
+    <div class="wx-cell"><div class="wx-day">Fri R2</div><div class="wx-temp">80°F</div><div class="wx-detail">Sunny<br>SE 6–10 mph</div></div>
+    <div class="wx-cell"><div class="wx-day">Sat R3</div><div class="wx-temp">81°F</div><div class="wx-detail">Mostly sunny<br>S 5–8 mph</div></div>
+    <div class="wx-cell"><div class="wx-day">Sun R4</div><div class="wx-temp">82°F</div><div class="wx-detail">Sunny<br>Light SE breeze</div></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ FIELD SG RANKS ═══ -->
+<section>
+  <div class="sec-num">04 — 2026 YTD Field Rankings</div>
+  <h2>The numbers the model <span>used.</span></h2>
+  <p class="body-text">PGA Tour 2026 YTD strokes gained rankings through the Masters, filtered to confirmed RBC Heritage field members. These are the actual inputs the model ran against the Harbour Town winner DNA filters (SG: APP ≥ +0.40, SG: ARG ≥ +0.25, top-of-field SG: T2G).</p>
+
+  <table>
+    <thead><tr><th>Player</th><th>SG: T2G</th><th>SG: APP</th><th>SG: ARG</th><th>SG: Total</th><th>Filter</th></tr></thead>
+    <tbody>
+      <tr><td>Matt Fitzpatrick</td><td class="cg">2nd (1.667)</td><td class="cg">7th (.810)</td><td class="cg">22nd (.309)</td><td class="cg">7th (1.584)</td><td class="cg">PASS</td></tr>
+      <tr><td>Collin Morikawa</td><td class="cg">3rd (1.646)</td><td class="cg">1st (1.066)</td><td>low</td><td class="cg">11th (1.530)</td><td class="cy">APP elite</td></tr>
+      <tr><td>Tommy Fleetwood</td><td class="cg">5th (1.606)</td><td class="cg">28th (.469)</td><td class="cg">2nd (.712)</td><td class="cg">14th (1.343)</td><td class="cg">PASS</td></tr>
+      <tr><td>Scottie Scheffler</td><td class="cg">6th (1.321)</td><td>low</td><td class="cg">3rd (.618)</td><td class="cg">3rd (1.868)</td><td class="cy">ARG elite</td></tr>
+      <tr><td>Si Woo Kim</td><td class="cg">4th (1.626)</td><td class="cg">3rd (.912)</td><td>low</td><td>18th (1.236)</td><td class="cy">T2G elite</td></tr>
+      <tr><td>Xander Schauffele</td><td class="cg">14th (1.094)</td><td class="cg">14th (.662)</td><td>low</td><td class="cg">12th (1.443)</td><td class="cg">PASS</td></tr>
+      <tr><td>Akshay Bhatia</td><td class="cg">17th (.916)</td><td class="cg">8th (.792)</td><td>49th (.168)</td><td class="cg">6th (1.646)</td><td class="cy">APP pass</td></tr>
+      <tr><td>Sepp Straka</td><td class="cg">20th (.866)</td><td class="cg">20th (.568)</td><td>low</td><td>26th (.929)</td><td class="cy">APP pass</td></tr>
+      <tr><td>Patrick Cantlay</td><td>22nd (.831)</td><td>outside 25</td><td>32nd (.247)</td><td>31st (.772)</td><td class="cr">FAIL</td></tr>
+      <tr><td>Russell Henley</td><td>35th (.648)</td><td class="cr">35th (.313)</td><td class="cr">42nd (.199)</td><td>20th (1.186)</td><td class="cr">FAIL</td></tr>
+      <tr><td>Viktor Hovland</td><td class="cr">43rd (.626)</td><td>19th (.676)</td><td>33rd (.240)</td><td class="cr">46th (.636)</td><td class="cr">FAIL</td></tr>
+      <tr><td>Cameron Young</td><td>10th (1.261)</td><td>23rd (.499)</td><td class="cr">very low</td><td class="cg">8th (1.574)</td><td class="cr">ARG fail</td></tr>
+      <tr><td>Ludvig Aberg</td><td class="cg">7th (1.313)</td><td>36th (.397)</td><td>13th (.420)</td><td class="cg">10th (1.540)</td><td class="cy">APP edge fail</td></tr>
+    </tbody>
+  </table>
+  <p class="body-text" style="font-size:13px;color:var(--txt3);margin-top:-1rem">Data source: PGATour.com YTD through the Masters Tournament, Apr 12. "Low" indicates outside top-40 in that stat.</p>
+</section>
+
+<div class="divider"></div>
+<div class="picks-divider">— — — T H E &nbsp; C A R D — — —</div>
+
+<!-- ═══ E/W WINNER PICKS ═══ -->
+<section>
+  <div class="sec-num">05 — Outright / E/W Winner Plays</div>
+  <h2>Where the <span>edge</span> is.</h2>
+
+  <div class="pick featured">
+    <div class="pick-badge badge-green">★ PICK OF THE WEEK — E/W WINNER · 2 UNITS</div>
+    <div class="pick-head"><div class="pick-name">Matt Fitzpatrick</div><div class="pick-odds">+1950</div></div>
+    <div class="pick-meta">2023 Heritage champion · 2nd SG: T2G on Tour · 7th SG: APP (+0.810) · Passes all DNA filters</div>
+    <div class="pick-body">The archetype Harbour Town winner, at the archetype Harbour Town price. Fitzpatrick won here in 2023 with +5.01 SG: Approach for the week and distance below field average. Exactly the profile the course demands. His 2026 YTD numbers mirror that: 2nd in SG: Tee-to-Green on Tour and 7th in SG: Approach. He passes every Harbour Town DNA filter cleanly. At +1950 he is priced behind seven players with demonstrably worse course-fit profiles. This is the highest-conviction outright on the board.</div>
+    <div class="pick-tags"><span class="tag">2023 champ</span><span class="tag">2nd SG:T2G</span><span class="tag">7th SG:APP</span><span class="tag">Archetype winner</span></div>
+  </div>
+
+  <div class="pick">
+    <div class="pick-badge badge-green">E/W WINNER · 2 UNITS</div>
+    <div class="pick-head"><div class="pick-name">Tommy Fleetwood</div><div class="pick-odds">+1700</div></div>
+    <div class="pick-meta">5th SG: T2G on Tour · 2nd SG: Around the Green (+0.712) · 14th SG: Total · Passes all DNA filters</div>
+    <div class="pick-body">The second Tier 1 play and a major model upgrade the data forced. Fleetwood ranks 2nd on the PGA Tour in SG: Around the Green this season. Exactly the short-game profile Harbour Town demands at 58% GIR. He is also 5th in SG: Tee-to-Green and passes the +0.40 SG: Approach filter. He is still chasing his first PGA Tour win, and the market is pricing the "winless" narrative rather than the underlying numbers. Harbour Town fits his game better than almost any course on the schedule.</div>
+    <div class="pick-tags"><span class="tag">2nd SG:ARG</span><span class="tag">5th SG:T2G</span><span class="tag">Course-fit A+</span><span class="tag tag-y">Winless on PGA</span></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ TOP 5 / TOP 10 PLAYS ═══ -->
+<section>
+  <div class="sec-num">06 — Top 5 / Top 10 Plays</div>
+  <h2>Finish-market <span>core.</span></h2>
+  <p class="body-text">These are the weighted base of the card. No-cut Signature Event with elevated playoff risk (3 of last 4 Heritages to a playoff) means the model allocates more to finish markets than a standard week.</p>
+
+  <div class="pick">
+    <div class="pick-badge badge-blue">TOP 5 · 3 UNITS · MATH PLAY</div>
+    <div class="pick-head"><div class="pick-name">Scottie Scheffler</div><div class="pick-odds">+135</div></div>
+    <div class="pick-meta">3rd SG: ARG · 6th SG: T2G · 3rd SG: Total · Solo 2nd at Masters with bogey-free weekend</div>
+    <div class="pick-body">The outright at +240 is the fade. The Top 5 at +135 is the math bet. Scheffler ranks 3rd on Tour in SG: Around the Green this year, 6th in SG: Tee-to-Green, and 3rd in SG: Total. He comes in off a solo second at Augusta where he played the final 36 holes without a bogey. He already won the Masters-to-Heritage double in 2024, so the "post-Masters hangover" narrative does not apply. At +135 for a Top 5 with this SG profile, this is a model-implied probability mismatch.<br><br><strong>Fade the outright. Play the Top 5.</strong></div>
+    <div class="pick-tags"><span class="tag tag-b">Top 5 only</span><span class="tag tag-r">NOT outright</span><span class="tag">3rd SG:ARG</span><span class="tag">M2H double in '24</span></div>
+  </div>
+
+  <div class="pick">
+    <div class="pick-badge badge-blue">TOP 10 · 2 UNITS</div>
+    <div class="pick-head"><div class="pick-name">Collin Morikawa</div><div class="pick-odds">+260</div></div>
+    <div class="pick-meta">#1 SG: Approach on PGA Tour (+1.066/rd) · 3rd SG: T2G · 11th SG: Total</div>
+    <div class="pick-body">Morikawa leads the entire PGA Tour in SG: Approach this year at +1.066 per round. Approach is the #1 predictive stat at Harbour Town. That's the play in one sentence. His around-the-green profile is the reason this is a Top 10 rather than an outright, but with elite irons into the smallest greens on Tour, his Top 10 probability is among the highest in the field.</div>
+    <div class="pick-tags"><span class="tag">#1 SG:APP on Tour</span><span class="tag">3rd SG:T2G</span><span class="tag tag-b">Top 10 lock</span></div>
+  </div>
+
+  <div class="pick">
+    <div class="pick-badge badge-blue">TOP 10 · 3 UNITS</div>
+    <div class="pick-head"><div class="pick-name">Xander Schauffele</div><div class="pick-odds">+260</div></div>
+    <div class="pick-meta">14th SG: APP · 14th SG: T2G · 12th SG: Total · 4th at Heritage in 2023</div>
+    <div class="pick-body">Passes every DNA filter. 4th at Harbour Town in 2023, T18 in 2024. The low-wind target course profile is exactly his setup. His outright at +1450 isn't bad, but the Top 10 at +260 with this course history and approach profile is the cleaner bet. Post-Masters form is rounding into shape. He gained +1.25/rd on T2G at Augusta.</div>
+    <div class="pick-tags"><span class="tag">4th here '23</span><span class="tag">14th SG:APP</span><span class="tag tag-b">Top 10 value</span></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ TOP 20 PLAYS ═══ -->
+<section>
+  <div class="sec-num">07 — Top 20 Plays</div>
+  <h2>Conservative <span>base.</span></h2>
+  <p class="body-text">These are the high-floor plays. The model allocates heavier weight to Top 20 at Harbour Town than it does at most courses, because the 82-player no-cut field and tight scoring cluster mean a T20 is a realistic floor for the right profile.</p>
+
+  <div class="pick">
+    <div class="pick-badge badge-blue">TOP 20 · 3 UNITS</div>
+    <div class="pick-head"><div class="pick-name">Akshay Bhatia</div><div class="pick-odds">+180</div></div>
+    <div class="pick-meta">8th SG: APP on Tour (+0.792) · 17th SG: T2G · 6th SG: Total</div>
+    <div class="pick-body">The iron profile is tier-one: 8th on Tour in SG: Approach. SG: Total rank of 6th means he's been playing at an elite level across the board. Short-game numbers aren't elite, which keeps the outright off the card, but Top 20 at +180 with a top-10 approach profile is a value mismatch at a course where approach is the #1 predictor.</div>
+    <div class="pick-tags"><span class="tag">8th SG:APP</span><span class="tag">6th SG:Total</span><span class="tag tag-b">Top 20 core</span></div>
+  </div>
+
+  <div class="pick">
+    <div class="pick-badge badge-blue">TOP 20 · 2 UNITS</div>
+    <div class="pick-head"><div class="pick-name">Sepp Straka</div><div class="pick-odds">+180</div></div>
+    <div class="pick-meta">20th SG: APP · 20th SG: T2G · Harbour Town: T3 in 2022, T5 in 2024</div>
+    <div class="pick-body">Dye-course specialist archetype. T3 here in 2022, T5 in 2024. A tournament he shows up at every year with a realistic chance. His 2026 YTD numbers aren't spectacular but they clear the DNA filter, and the course overlay is what makes this a real play at +180.</div>
+    <div class="pick-tags"><span class="tag">T3 here '22</span><span class="tag">T5 here '24</span><span class="tag tag-b">Top 20</span></div>
+  </div>
+
+  <div class="pick">
+    <div class="pick-badge badge-blue">TOP 20 · 4 UNITS · POTD QUALIFIER</div>
+    <div class="pick-head"><div class="pick-name">J.T. Poston</div><div class="pick-odds">+150</div></div>
+    <div class="pick-meta">Heritage record: T6 · T8 · T3 · T5 in 4 starts · 2nd in total SG here over last 20 rounds</div>
+    <div class="pick-body">Course history overriding YTD metrics. Poston's Heritage record since 2019: T6, T8, T3, T5. Over his last 20 rounds at Harbour Town he ranks 2nd in total strokes gained. Behind only Patrick Cantlay. He's an accurate driver of the golf ball (26th on Tour in driving accuracy), which is the exact profile the course rewards. At +150 for a Top 20 with this course specialist overlay, this is the POTD qualifier for the week (-200 to +200 range).</div>
+    <div class="pick-tags"><span class="tag">4 Heritage top-8s</span><span class="tag">2nd SG here L20</span><span class="tag">POTD</span></div>
+  </div>
+
+  <div class="pick">
+    <div class="pick-badge badge-blue">TOP 20 · 2 UNITS · DOWNGRADED FROM OUTRIGHT</div>
+    <div class="pick-head"><div class="pick-name">Patrick Cantlay</div><div class="pick-odds">+170</div></div>
+    <div class="pick-meta">Heritage: 3-7-3-MC-2-3-3 · 2026 YTD: 22nd SG:T2G, 31st SG:Total · DNA filter FAIL</div>
+    <div class="pick-body">The most course-proven player in the field. Four third-place finishes and a playoff loss here. Does not pass the 2026 DNA filter. His YTD numbers are modest (22nd in T2G, 31st in Total). At +2150 outright, the model won't pay for a player who doesn't clear the +0.40 SG: Approach threshold. At +170 Top 20, the course history is worth the price. The Top 20 is the bet, not the outright.</div>
+    <div class="pick-tags"><span class="tag">Elite course record</span><span class="tag tag-r">DNA fail</span><span class="tag tag-b">Top 20 only</span></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ LONGSHOT ═══ -->
+<section>
+  <div class="sec-num">08 — Longshot</div>
+  <h2>Price-forward <span>value.</span></h2>
+
+  <div class="pick">
+    <div class="pick-badge badge-yellow">LONGSHOT · 1u OUTRIGHT + 2u TOP 20</div>
+    <div class="pick-head"><div class="pick-name">Si Woo Kim</div><div class="pick-odds">+3700</div></div>
+    <div class="pick-meta">4th SG: T2G on Tour · 3rd SG: APP (+0.912) · TPC Sawgrass champion (Dye design)</div>
+    <div class="pick-body">The model's longshot is a Dye-course specialist with top-5 ball-striking numbers. Si Woo ranks 4th on the PGA Tour in SG: Tee-to-Green and 3rd in SG: Approach this season. He has won a Players Championship at TPC Sawgrass. The same Dye-design language as Harbour Town. At +3700 outright the price doesn't reflect the T2G numbers. Small outright sprinkle, Top 20 at +220 is the real vehicle.</div>
+    <div class="pick-tags"><span class="tag">4th SG:T2G</span><span class="tag">3rd SG:APP</span><span class="tag">Dye DNA</span><span class="tag tag-y">Longshot</span></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ PARLAY ═══ -->
+<section>
+  <div class="sec-num">09 — Recommended Parlay</div>
+  <h2>Correlation <span>play.</span></h2>
+  <p class="body-text">One parlay only this week. Tight-scoring Heritage rewards correlated profile plays but punishes leg stacking.</p>
+
+  <div class="pick">
+    <div class="pick-badge badge-green">PARLAY · 4 UNITS · MAX WAGER</div>
+    <div class="pick-body"><strong>Fitzpatrick Top 10 (+225) + Fleetwood Top 10 (+180)</strong><br><br>Two Tier 1 outright picks, parlayed at the finish-market level to manage variance. Both players pass every Harbour Town DNA filter and represent the two best course-fit profiles in the entire field. Combined price lands at roughly +810. If both players contend. Which the iron and short-game data suggests at least one should. This leg pays the week on its own.</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ FADES ═══ -->
+<section>
+  <div class="sec-num">10 — Fade Alerts</div>
+  <h2>What we're fading <span>and what we're not.</span></h2>
+  <p class="body-text">A fade at Harbour Town almost never means "avoid this player entirely." It means the specific bet at the specific price is wrong. Every fade below tells you exactly what to avoid and exactly what's still in play.</p>
+
+  <div class="pick">
+    <div class="pick-badge badge-red">FADE: OUTRIGHT WINNER · TOP 5 AND TOP 10 ARE PLAYS</div>
+    <div class="pick-head"><div class="pick-name">Scottie Scheffler</div><div class="pick-odds">+240</div></div>
+    <div class="pick-meta">Tournament favorite · Won Masters–Heritage double in 2024 · New father · First top-5 since Pebble</div>
+    <div class="pick-body"><strong>What we're fading:</strong> The outright at +240. The market is implying a 29% win probability. The Heritage has gone to a playoff in 3 of the last 4 years and will produce a tight cluster at the top given the low-wind forecast. In a volatile 82-player finish, a 29% implied win rate is too rich for any player, even the world #1 fresh off a Masters runner-up.<br><br><strong>What we're NOT fading:</strong> Top 5 at +135 or Top 10 at shorter prices. Scheffler's 2026 SG profile is elite: 3rd ARG, 6th T2G, 3rd Total. The finish-market plays are already on the card above at full unit weight.</div>
+    <div class="pick-tags"><span class="tag tag-r">Fade outright</span><span class="tag tag-b">Top 5 is a play</span><span class="tag">3rd SG:ARG</span></div>
+  </div>
+
+  <div class="pick">
+    <div class="pick-badge badge-red">FADE: OUTRIGHT WINNER · TOP 20 STILL A PLAY</div>
+    <div class="pick-head"><div class="pick-name">Ludvig Aberg</div><div class="pick-odds">+2050</div></div>
+    <div class="pick-meta">Distance-first profile · No Harbour Town history · 36th SG: APP · Fails +0.40 APP filter</div>
+    <div class="pick-body"><strong>What we're fading:</strong> The outright at +2050. Aberg is a distance-first player at a course that penalizes exactly that profile. He's 36th in SG: Approach this year (+0.397), just below the DNA filter threshold. No positive Harbour Town history. Market pricing him on overall talent rather than course-fit.<br><br><strong>What we're NOT fading:</strong> Top 20. 7th in SG: T2G and 10th in SG: Total means he can absolutely finish in the top third of the board. If you want Aberg exposure, Top 20 is the right vehicle. Not the outright.</div>
+    <div class="pick-tags"><span class="tag tag-r">Fade outright</span><span class="tag tag-b">Top 20 is a play</span><span class="tag tag-r">Distance-first</span></div>
+  </div>
+
+  <div class="pick">
+    <div class="pick-badge badge-red">FADE: OUTRIGHT AND TOP 10 · TOP 20 ONLY</div>
+    <div class="pick-head"><div class="pick-name">Cameron Young</div><div class="pick-odds">+1700</div></div>
+    <div class="pick-meta">Players champion · Bomber profile · Zero positive Harbour Town history · Weak SG: ARG</div>
+    <div class="pick-body"><strong>What we're fading:</strong> The outright at +1700 and any Top 10 market. Young's Players win doesn't translate to Harbour Town. Entirely different course profile. He's a distance-first player at a course with no power premium, and his SG: Around the Green sits near the bottom of the field-relevant list. At +1700 outright, the market is pricing the Players momentum and his T3 at Masters rather than course-fit.<br><br><strong>What we're NOT fading:</strong> A Top 20 at a decent price, if you need Young exposure. His T2G numbers (10th) are high enough to finish in the top quartile of a no-cut field. That's the only market worth touching.</div>
+    <div class="pick-tags"><span class="tag tag-r">Fade outright</span><span class="tag tag-r">Fade Top 10</span><span class="tag tag-b">Top 20 only</span></div>
+  </div>
+
+  <div class="pick">
+    <div class="pick-badge badge-red">FADE: OUTRIGHT AND TOP 10 · TOP 30 ONLY</div>
+    <div class="pick-head"><div class="pick-name">Viktor Hovland</div><div class="pick-odds">+3900</div></div>
+    <div class="pick-meta">No Heritage top-10 ever · 43rd SG: T2G · 33rd SG: ARG · Structural short-game weakness</div>
+    <div class="pick-body"><strong>What we're fading:</strong> Outright and Top 10. Hovland's short-game deficiency is structural, not a slump. His 2026 SG: Around the Green ranks 33rd. At the DNA filter edge, not above it. SG: T2G is 43rd and SG: Total is 46th. Harbour Town's 58% GIR rate demands the exact skill set he lacks.<br><br><strong>What we're NOT fading:</strong> Top 30 if you want any exposure at all. His ball-striking can still finish in the middle of a no-cut field. But at +3900 outright, this is capital better allocated elsewhere.</div>
+    <div class="pick-tags"><span class="tag tag-r">Fade outright</span><span class="tag tag-r">Fade Top 10</span><span class="tag tag-r">Short-game structural</span></div>
+  </div>
+
+  <div class="pick">
+    <div class="pick-badge badge-red">FULL FADE — NO PLAY ANY MARKET</div>
+    <div class="pick-head"><div class="pick-name">Russell Henley</div><div class="pick-odds">+2100</div></div>
+    <div class="pick-meta">35th SG: APP · 42nd SG: ARG · T3 at Masters was putting-driven</div>
+    <div class="pick-body"><strong>What we're fading:</strong> Everything. Henley's Masters T3 was generated by a hot putter, not by the iron play and short game Harbour Town demands. His YTD ranks. 35th SG: Approach, 42nd SG: Around the Green. Fail both DNA filter thresholds. Market is pricing him on the Masters finish, which was an uncorrelated event. Full fade across all markets.</div>
+    <div class="pick-tags"><span class="tag tag-r">Fade all markets</span><span class="tag tag-r">35th SG:APP</span><span class="tag tag-r">42nd SG:ARG</span></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ FINAL CARD ═══ -->
+<section>
+  <div class="sec-num">11 — The Full Card</div>
+  <h2>Every <span>pick</span> at a glance.</h2>
+
+  <table>
+    <thead><tr><th>Tier</th><th>Player</th><th>Odds</th><th>Bet Type</th><th>Units</th></tr></thead>
+    <tbody>
+      <tr><td class="cg">★ Best Pick</td><td>Fitzpatrick</td><td class="cg">+1950</td><td>E/W Winner</td><td>2u</td></tr>
+      <tr><td class="cg">E/W Winner</td><td>Fleetwood</td><td class="cg">+1700</td><td>E/W Winner</td><td>2u</td></tr>
+      <tr><td class="cb">Top 5</td><td>Scheffler</td><td class="cb">+135</td><td>Top 5</td><td>3u</td></tr>
+      <tr><td class="cb">Top 10</td><td>Morikawa</td><td class="cb">+260</td><td>Top 10</td><td>2u</td></tr>
+      <tr><td class="cb">Top 10</td><td>Schauffele</td><td class="cb">+260</td><td>Top 10</td><td>3u</td></tr>
+      <tr><td class="cb">Top 20</td><td>Bhatia</td><td class="cb">+180</td><td>Top 20</td><td>3u</td></tr>
+      <tr><td class="cb">Top 20</td><td>Straka</td><td class="cb">+180</td><td>Top 20</td><td>2u</td></tr>
+      <tr><td class="cb">Top 20 (POTD)</td><td>Poston</td><td class="cb">+150</td><td>Top 20</td><td>4u</td></tr>
+      <tr><td class="cb">Top 20</td><td>Cantlay</td><td class="cb">+170</td><td>Top 20</td><td>2u</td></tr>
+      <tr><td class="cy">Longshot</td><td>Si Woo Kim</td><td class="cy">+3700</td><td>E/W Winner</td><td>1u</td></tr>
+      <tr><td class="cy">Longshot</td><td>Si Woo Kim</td><td class="cy">+220</td><td>Top 20</td><td>2u</td></tr>
+      <tr><td class="cg">Parlay</td><td>Fitz + Fleetwood</td><td class="cg">~+810</td><td>Top 10 / Top 10</td><td>4u</td></tr>
+      <tr><td class="cr">Fade (out)</td><td>Scheffler</td><td class="cr">+240</td><td>Top 5/Top 10 OK</td><td>—</td></tr>
+      <tr><td class="cr">Fade (out)</td><td>Aberg</td><td class="cr">+2050</td><td>Top 20 OK</td><td>—</td></tr>
+      <tr><td class="cr">Fade (out+T10)</td><td>Young</td><td class="cr">+1700</td><td>Top 20 only</td><td>—</td></tr>
+      <tr><td class="cr">Fade (out+T10)</td><td>Hovland</td><td class="cr">+3900</td><td>Top 30 only</td><td>—</td></tr>
+      <tr><td class="cr">Fade (all)</td><td>Henley</td><td class="cr">+2100</td><td>Full fade</td><td>—</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <div class="callout-label">Total Card Exposure: ~30 units</div>
+    <div class="callout-text">E/W Winner plays: 4u · Top 5/10/20: 19u · Longshots: 3u · Parlay: 4u<br><br>Weighted roughly 27% on outrights and parlay, 73% on finish markets. That allocation matches the Harbour Town adjustment for a no-cut Signature Event with elevated playoff risk (3 of last 4 to playoffs). If Fitzpatrick or Fleetwood contends, the outright side pays the week. If not, the Top 10 and Top 20 base carries.</div>
+  </div>
+
+  <div class="callout" style="border-color:rgba(240,180,41,.3)">
+    <div class="callout-label" style="color:var(--y)">⚠ Reminder. Check the pick tracker</div>
+    <div class="callout-text">The card above is the pre-tournament model output. Final bet sizing and specific picks that hit the live card may shift based on line movement between now and the first tee ball. Always cross-reference the <a href="picks.html" style="color:var(--g);text-decoration:underline">pick tracker</a> for the confirmed bets before following any pick. The tracker is the authoritative record. Win, lose, or open.</div>
+  </div>
+</section>
+
+</div>
+
+<script>
+// Nav dropdowns
+// Nav dropdowns
+// ── Nav dropdowns ──
+document.querySelectorAll('.nav-drop-btn').forEach(function(btn){
+  btn.addEventListener('click',function(e){
+    e.stopPropagation();
+    var id='drop-'+btn.getAttribute('data-drop');
+    var menu=document.getElementById(id);
+    var isOpen=menu.classList.contains('open');
+    document.querySelectorAll('.drop-menu').forEach(function(m){m.classList.remove('open');});
+    document.querySelectorAll('.nav-drop-btn').forEach(function(b){b.classList.remove('open');});
+    if(!isOpen){menu.classList.add('open');btn.classList.add('open');}
+  });
+});
+document.addEventListener('click',function(e){
+  if(!e.target.closest('.nav-drop')){
+    document.querySelectorAll('.drop-menu').forEach(function(m){m.classList.remove('open');});
+    document.querySelectorAll('.nav-drop-btn').forEach(function(b){b.classList.remove('open');});
+  }
+});
+
+// ── Hamburger ──
+var hbg=document.getElementById('hamburger'),mob=document.getElementById('mobile-menu');
+if(hbg&&mob){
+  hbg.addEventListener('click',function(e){
+    e.stopPropagation();
+    hbg.classList.toggle('open');
+    mob.classList.toggle('open');
+  });
+  document.addEventListener('click',function(e){
+    if(!hbg.contains(e.target)&&!mob.contains(e.target)){
+      hbg.classList.remove('open');
+      mob.classList.remove('open');
+    }
+  });
+}

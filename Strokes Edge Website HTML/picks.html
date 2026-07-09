@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Full pick tracker for StrokesEdge — every bet, every result, P&L, and ROI. Real money. Real picks. Full transparency. 2026 PGA Tour season.">
+<title>Pick Tracker — StrokesEdge</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@300;400;500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --g:#6ab83a;--r:#e05252;--y:#f0b429;
+  --g-glow:rgba(106,184,58,0.12);
+  --bg:#080b07;--bg2:#0c0f0b;--sur:#141a12;
+  --bdr:rgba(106,184,58,0.18);--bdr2:rgba(255,255,255,0.07);
+  --txt:#e6ede0;--txt2:#8a9e80;--txt3:#3a4a34;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--txt);font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.6;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(106,184,58,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(106,184,58,0.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;z-index:0}
+
+/* ── CUSTOM CURSOR — desktop only ── */
+@media(hover:hover){
+  body,*{cursor:none}
+  .cursor{position:fixed;width:8px;height:8px;background:var(--g);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%)}
+  .cursor-ring{position:fixed;width:32px;height:32px;border:1px solid rgba(106,184,58,0.4);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all 0.15s ease}
+}
+@media(hover:none){.cursor,.cursor-ring{display:none}}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1rem 1.5rem;border-bottom:1px solid var(--bdr2);background:rgba(8,11,7,0.95);backdrop-filter:blur(16px)}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:0.08em;color:var(--txt);text-decoration:none;flex-shrink:0}
+.nav-logo span{color:var(--g)}
+.nav-links{display:flex;align-items:center;gap:1.5rem}
+.nav-link{font-size:12px;color:var(--txt2);text-decoration:none;letter-spacing:0.06em;text-transform:uppercase;transition:color 0.2s}
+.nav-link:hover{color:var(--txt)}
+.nav-link.active{color:var(--g)}
+.nav-cta{font-family:'DM Mono',monospace;font-size:12px;padding:8px 18px;border:1px solid var(--g);border-radius:2px;color:var(--g);text-decoration:none;letter-spacing:0.06em;transition:all 0.2s;white-space:nowrap}
+.nav-cta:hover{background:var(--g-glow)}
+.nav-drop{position:relative}
+.nav-drop-btn{font-size:12px;color:var(--txt2);background:none;border:none;cursor:pointer;letter-spacing:.06em;text-transform:uppercase;display:flex;align-items:center;gap:5px;padding:0;font-family:'DM Sans',sans-serif;transition:color .2s;white-space:nowrap;outline:none}
+.nav-drop-btn:hover,.nav-drop-btn.open{color:var(--txt)}
+.nav-drop-btn::after{content:'▾';font-size:9px;transition:transform .2s;display:inline-block}
+.nav-drop-btn.open::after{transform:rotate(180deg)}
+.drop-menu{display:none;position:absolute;top:100%;left:0;min-width:220px;z-index:200}
+.drop-menu.open{display:block}
+.drop-menu-box{background:rgba(8,11,7,.98);border:1px solid var(--bdr);border-radius:4px;overflow:hidden;backdrop-filter:blur(16px)}
+.drop-item{display:block;padding:.7rem 1.1rem;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--txt2);text-decoration:none;border-bottom:1px solid var(--bdr2);transition:all .15s;white-space:nowrap}
+.drop-item:last-child{border-bottom:none}
+.drop-item:hover{color:var(--g);background:rgba(106,184,58,.05)}
+.drop-item .drop-sub{display:block;font-size:9px;color:var(--txt3);margin-top:2px;letter-spacing:.04em;text-transform:none}
+
+/* ── HAMBURGER ── */
+.hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:none;border:none;cursor:pointer;padding:6px;z-index:201}
+.hamburger span{display:block;width:22px;height:2px;background:var(--txt2);border-radius:2px;transition:all .25s}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);background:var(--g)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);background:var(--g)}
+.mobile-menu{display:none;position:fixed;top:57px;left:0;right:0;background:rgba(8,11,7,.98);backdrop-filter:blur(16px);border-bottom:1px solid var(--bdr2);z-index:99;flex-direction:column;padding:1rem 1.5rem 1.5rem;max-height:80vh;overflow-y:auto}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'DM Mono',monospace;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--txt2);text-decoration:none;padding:.7rem 0;border-bottom:1px solid var(--bdr2);transition:color .2s;display:block}
+.mobile-menu a:hover{color:var(--txt)}
+.mobile-menu a.active{color:var(--g)}
+.mob-section{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--txt3);padding:.6rem 0 .2rem;display:block}
+.mob-indent{padding-left:.75rem!important;font-size:11px!important}
+.mob-cta{border-bottom:none!important;margin-top:.5rem;padding:.85rem 1rem!important;border:1px solid var(--g)!important;border-radius:2px;color:var(--g)!important;text-align:center}
+@media(max-width:860px){.nav-link,.nav-drop,.nav-cta{display:none}.hamburger{display:flex}}
+
+/* ── HERO ── */
+.hero{position:relative;z-index:2;padding:7rem 1.5rem 2rem;max-width:1200px;margin:0 auto}
+.hero-tag{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.14em;color:var(--g);text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:10px}
+.hero-tag::before{content:'';width:24px;height:1px;background:var(--g)}
+.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,7vw,88px);line-height:0.92;letter-spacing:0.03em;margin-bottom:0.5rem}
+.hero-title span{color:var(--g)}
+.hero-context{font-family:'DM Mono',monospace;font-size:11px;color:var(--txt3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:2rem}
+
+/* ── SUMMARY STATS ── */
+.summary-wrap{position:relative;z-index:2;max-width:1200px;margin:0 auto 2.5rem;padding:0 1.5rem}
+.summary{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--bdr2);border:1px solid var(--bdr2);border-radius:4px;overflow:hidden}
+.sum-cell{background:var(--bg2);padding:1.75rem 1rem;text-align:center}
+.sum-n{font-family:'Bebas Neue',sans-serif;font-size:44px;line-height:1;margin-bottom:6px;letter-spacing:0.03em}
+.sum-n.green{color:var(--g)}
+.sum-n.red{color:var(--r)}
+.sum-n.yellow{color:var(--y)}
+.sum-l{font-family:'DM Mono',monospace;font-size:10px;color:var(--txt2);letter-spacing:0.1em;text-transform:uppercase;line-height:1.5}
+
+/* ── FILTERS ── */
+.filters{position:relative;z-index:2;max-width:1200px;margin:0 auto 1.5rem;padding:0 1.5rem;display:flex;gap:0.5rem;flex-wrap:wrap}
+.filter-btn{font-family:'DM Mono',monospace;font-size:11px;padding:7px 14px;border:1px solid var(--bdr2);border-radius:2px;color:var(--txt2);background:transparent;cursor:pointer;letter-spacing:0.05em;text-transform:uppercase;transition:all 0.2s;text-align:left;display:flex;flex-direction:column;gap:2px}
+.filter-btn:hover{border-color:var(--bdr);color:var(--txt)}
+.filter-btn.active{border-color:var(--g);color:var(--g);background:rgba(106,184,58,0.08)}
+.filter-btn .btn-date{font-size:9px;color:var(--txt3);letter-spacing:0.06em;text-transform:uppercase}
+.filter-btn.active .btn-date{color:rgba(106,184,58,0.6)}
+
+/* ── TABLE — desktop ── */
+.table-wrap{position:relative;z-index:2;max-width:1200px;margin:0 auto 4rem;padding:0 1.5rem}
+table{width:100%;border-collapse:collapse;font-size:13px}
+thead tr{border-bottom:1px solid var(--bdr)}
+th{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--txt3);padding:0.75rem 1rem;text-align:left;font-weight:400}
+tbody tr{border-bottom:1px solid var(--bdr2);transition:background 0.15s}
+tbody tr:hover{background:rgba(106,184,58,0.03)}
+td{padding:0.9rem 1rem;color:var(--txt2);vertical-align:middle}
+td.player{color:var(--txt);font-weight:400;font-size:14px}
+td.date-col{font-family:'DM Mono',monospace;font-size:11px;color:var(--txt3);white-space:nowrap}
+td.odds{font-family:'DM Mono',monospace;color:var(--g);font-size:13px}
+td.wager{font-family:'DM Mono',monospace;font-size:12px}
+.p-pos{font-family:'DM Mono',monospace;font-size:13px;font-weight:500;color:var(--g)}
+.p-neg{font-family:'DM Mono',monospace;font-size:13px;font-weight:500;color:var(--r)}
+.p-open{font-family:'DM Mono',monospace;font-size:13px;color:var(--txt3)}
+.badge{display:inline-block;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;padding:3px 10px;border-radius:2px}
+.badge.won{background:rgba(106,184,58,0.12);color:var(--g);border:1px solid rgba(106,184,58,0.3)}
+.badge.lost{background:rgba(224,82,82,0.1);color:var(--r);border:1px solid rgba(224,82,82,0.2)}
+.badge.open{background:rgba(240,180,41,0.1);color:var(--y);border:1px solid rgba(240,180,41,0.2)}
+.badge.placed{background:rgba(106,184,58,0.07);color:#5a9e2f;border:1px solid rgba(106,184,58,0.2)}
+.bet-type{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.08em;text-transform:uppercase;color:var(--txt3)}
+.tourn-name{font-size:12px;color:var(--txt2)}
+.state-msg{text-align:center;padding:4rem 1rem;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:0.08em;color:var(--txt3)}
+.state-msg.error{color:var(--r)}
+.spinner{display:inline-block;width:18px;height:18px;border:2px solid var(--txt3);border-top-color:var(--g);border-radius:50%;animation:spin 0.7s linear infinite;vertical-align:middle;margin-right:10px}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ── MOBILE CARDS — replaces table on small screens ── */
+.card-list{display:none;flex-direction:column;gap:0.6rem}
+.pick-card{background:var(--sur);border:1px solid var(--bdr2);border-radius:4px;padding:1rem 1.1rem;transition:border-color 0.2s}
+.pick-card.result-won{border-left:2px solid var(--g)}
+.pick-card.result-lost{border-left:2px solid var(--r)}
+.pick-card.result-placed{border-left:2px solid #5a9e2f}
+.pick-card.result-open{border-left:2px solid var(--y)}
+.pc-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:0.4rem;gap:0.75rem}
+.pc-player{font-size:15px;font-weight:400;color:var(--txt)}
+.pc-badge{flex-shrink:0}
+.pc-tourn{font-size:12px;color:var(--txt2);margin-bottom:0.5rem}
+.pc-row{display:flex;gap:1.25rem;flex-wrap:wrap;align-items:center}
+.pc-item{display:flex;flex-direction:column;gap:1px}
+.pc-label{font-family:'DM Mono',monospace;font-size:9px;color:var(--txt3);letter-spacing:0.08em;text-transform:uppercase}
+.pc-value{font-family:'DM Mono',monospace;font-size:12px;color:var(--txt2)}
+.pc-value.green{color:var(--g)}
+.pc-value.red{color:var(--r)}
+.pc-pl{font-family:'DM Mono',monospace;font-size:13px;font-weight:500;margin-left:auto}
+
+/* ── EMAIL GATE ── */
+.gate-overlay{position:fixed;inset:0;z-index:500;display:flex;align-items:center;justify-content:center;padding:1.5rem;background:rgba(8,11,7,0.92);backdrop-filter:blur(8px)}
+.gate-overlay.hidden{display:none}
+.gate-box{background:var(--sur);border:1px solid var(--bdr);border-radius:6px;padding:2.5rem 2rem;max-width:440px;width:100%;text-align:center;position:relative;z-index:501}
+.gate-eyebrow{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--g);margin-bottom:1rem;display:flex;align-items:center;justify-content:center;gap:8px}
+.gate-eyebrow::before,.gate-eyebrow::after{content:'';width:20px;height:1px;background:var(--g)}
+.gate-title{font-family:'Bebas Neue',sans-serif;font-size:36px;letter-spacing:.04em;line-height:1;margin-bottom:.75rem}
+.gate-title span{color:var(--g)}
+.gate-sub{font-size:14px;color:var(--txt2);line-height:1.6;margin-bottom:1.75rem;font-weight:300}
+.gate-btn{display:block;width:100%;padding:14px 20px;background:var(--g);color:#080b07;font-family:'DM Mono',monospace;font-size:13px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;border-radius:3px;border:none;cursor:pointer;margin-bottom:.75rem;transition:opacity .2s}
+.gate-btn:hover{opacity:.88}
+.gate-unlock{font-family:'DM Mono',monospace;font-size:10px;color:var(--txt3);letter-spacing:.06em;text-decoration:underline;cursor:pointer;background:none;border:none;padding:0;display:block;margin:0 auto}
+.gate-unlock:hover{color:var(--txt2)}
+.gate-note{font-family:'DM Mono',monospace;font-size:10px;color:var(--txt3);letter-spacing:.05em;margin-top:1.25rem}
+
+/* blur tracker when gate is showing */
+.gate-active .tracker-content{filter:blur(6px);pointer-events:none;user-select:none}
+
+/* ── FOOTER ── */
+footer{position:relative;z-index:2;border-top:1px solid var(--bdr2);padding:2rem 1.5rem;display:flex;justify-content:space-between;align-items:center;max-width:1200px;margin:0 auto}
+.foot-logo{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:0.08em;color:var(--txt2)}
+.foot-logo span{color:var(--g)}
+.foot-note{font-family:'DM Mono',monospace;font-size:11px;color:var(--txt3)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .summary{grid-template-columns:repeat(3,1fr)}
+  .sum-cell{padding:1.25rem 0.75rem}
+  .sum-n{font-size:36px}
+}
+@media(max-width:600px){
+  /* Switch from table to cards */
+  .table-wrap table,
+  .table-wrap thead,
+  .table-wrap tbody,
+  .table-wrap tr,
+  .table-wrap th,
+  .table-wrap td{display:none}
+  .card-list{display:flex}
+
+  .summary{grid-template-columns:repeat(3,1fr)}
+  .sum-cell{padding:1rem 0.5rem}
+  .sum-n{font-size:30px}
+  .sum-l{font-size:9px}
+
+  footer{flex-direction:column;gap:1rem;text-align:center}
+}
+@media(max-width:380px){
+  .summary{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D398EHRP6Y"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-D398EHRP6Y');</script>
+</head>
+<body>
+<div class="cursor" id="cur"></div>
+<div class="cursor-ring" id="ring"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">Strokes<span>Edge</span></a>
+  <div class="nav-links">
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="methodology.html" class="nav-link">Methodology</a>
+    <a href="picks.html" class="nav-link active">Pick Tracker</a>
+    <div class="nav-drop">
+      <button class="nav-drop-btn" data-drop="courses">Courses</button>
+      <div class="drop-menu" id="drop-courses"><div class="drop-menu-box">
+        <a href="courses.html" class="drop-item">All Course Guides<span class="drop-sub">Full library</span></a>
+        <a href="course-shinnecock-hills.html" class="drop-item">Shinnecock Hills<span class="drop-sub">U.S. Open · Jun</span></a>
+        <a href="course-quail-hollow.html" class="drop-item">Quail Hollow<span class="drop-sub">Truist · May</span></a>
+        <a href="course-colonial.html" class="drop-item">Colonial CC<span class="drop-sub">Schwab Challenge · May</span></a>
+        <a href="course-doral.html" class="drop-item">Blue Monster / Doral<span class="drop-sub">Cadillac · Apr–May</span></a>
+        <a href="course-aronimink.html" class="drop-item">Aronimink<span class="drop-sub">PGA Championship · May</span></a>
+        <a href="course-augusta-national.html" class="drop-item">Augusta National<span class="drop-sub">The Masters · Apr</span></a>
+        <a href="course-harbour-town.html" class="drop-item">Harbour Town<span class="drop-sub">RBC Heritage · Apr</span></a>
+        <a href="course-tpc-louisiana.html" class="drop-item">TPC Louisiana<span class="drop-sub">Zurich Classic · Apr</span></a>
+        <a href="course-tpc-craig-ranch.html" class="drop-item">TPC Craig Ranch<span class="drop-sub">CJ Cup Byron Nelson · May</span></a>
+      </div></div>
+    </div>
+    <div class="nav-drop">
+      <button class="nav-drop-btn" data-drop="analysis">Analysis</button>
+      <div class="drop-menu" id="drop-analysis"><div class="drop-menu-box">
+        <a href="analysis.html" class="drop-item">Current Analysis<span class="drop-sub">Charles Schwab 2026</span></a>
+        <a href="analysis-pga-2026.html" class="drop-item">PGA Championship 2026<span class="drop-sub">Aronimink · May 14–17</span></a>
+        <a href="analysis-truist-2026.html" class="drop-item">Truist Championship 2026<span class="drop-sub">Quail Hollow · May 7–10</span></a>
+        <a href="analysis-cadillac-2026.html" class="drop-item">Cadillac Championship 2026<span class="drop-sub">Doral · Apr 30–May 3</span></a>
+        <a href="analysis-heritage-2026.html" class="drop-item">RBC Heritage 2026<span class="drop-sub">Harbour Town · Apr 16–19</span></a>
+        <a href="analysis-masters-2026.html" class="drop-item">Masters 2026<span class="drop-sub">Augusta National · Apr 9–12</span></a>
+        <a href="analysis-valero-2026.html" class="drop-item">Valero Texas Open 2026<span class="drop-sub">TPC San Antonio · Apr 2–6</span></a>
+        <a href="analysis-cj-cup-byron-nelson-2025.html" class="drop-item">CJ Cup Byron Nelson 2025<span class="drop-sub">TPC Craig Ranch · May</span></a>
+      </div></div>
+    </div>
+    <a href="https://strokesedge.substack.com" class="nav-cta" target="_blank">Subscribe →</a>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html">Home</a>
+  <a href="methodology.html">Methodology</a>
+  <a href="picks.html" class="active">Pick Tracker</a>
+  <span class="mob-section">— Courses —</span>
+  <a href="courses.html" class="mob-indent">All Course Guides</a>
+  <a href="course-shinnecock-hills.html" class="mob-indent">Shinnecock Hills</a>
+  <a href="course-quail-hollow.html" class="mob-indent">Quail Hollow</a>
+  <a href="course-colonial.html" class="mob-indent">Colonial CC</a>
+  <a href="course-doral.html" class="mob-indent">Blue Monster / Doral</a>
+  <a href="course-aronimink.html" class="mob-indent">Aronimink</a>
+  <a href="course-augusta-national.html" class="mob-indent">Augusta National</a>
+  <a href="course-harbour-town.html" class="mob-indent">Harbour Town</a>
+  <a href="course-tpc-louisiana.html" class="mob-indent">TPC Louisiana</a>
+  <a href="course-tpc-craig-ranch.html" class="mob-indent">TPC Craig Ranch</a>
+  <span class="mob-section">— Analysis —</span>
+  <a href="analysis.html" class="mob-indent">Current Analysis</a>
+  <a href="analysis-pga-2026.html" class="mob-indent">PGA Championship 2026</a>
+  <a href="analysis-truist-2026.html" class="mob-indent">Truist Championship 2026</a>
+  <a href="analysis-cadillac-2026.html" class="mob-indent">Cadillac Championship 2026</a>
+  <a href="analysis-heritage-2026.html" class="mob-indent">RBC Heritage 2026</a>
+  <a href="analysis-masters-2026.html" class="mob-indent">Masters 2026</a>
+  <a href="analysis-valero-2026.html" class="mob-indent">Valero Texas Open 2026</a>
+  <a href="analysis-cj-cup-byron-nelson-2025.html" class="mob-indent">CJ Cup Byron Nelson 2025</a>
+  <a href="https://strokesedge.substack.com" class="mob-cta" target="_blank">Subscribe →</a>
+</div>
+
+<!-- ═══ EMAIL GATE ═══ -->
+<div class="gate-overlay" id="gate-overlay">
+  <div class="gate-box">
+    <div class="gate-eyebrow">Free access</div>
+    <h2 class="gate-title">Unlock the<br><span>Pick Tracker</span></h2>
+    <p class="gate-sub">Every bet. Every result. Full P&amp;L — updated weekly.<br>Subscribe free on Substack to unlock the full record.</p>
+    <a href="https://strokesedge.substack.com?utm_source=picks-gate" target="_blank" class="gate-btn" id="gate-subscribe-btn">Subscribe on Substack →</a>
+    <button class="gate-unlock" id="gate-unlock-btn">Already subscribed? Click to unlock</button>
+    <p class="gate-note">Free forever · No credit card · Unsubscribe anytime</p>
+  </div>
+</div>
+
+<div class="tracker-content" id="tracker-content">
+<section class="hero">
+  <div class="hero-tag">Real money. Real picks. Full transparency.</div>
+  <h1 class="hero-title">Pick<br><span>Tracker.</span></h1>
+  <div class="hero-context" id="hero-context">Loading picks...</div>
+</section>
+
+<div class="summary-wrap">
+  <div class="summary">
+    <div class="sum-cell"><div class="sum-n green" id="s-profit">—</div><div class="sum-l">Net<br>Profit</div></div>
+    <div class="sum-cell"><div class="sum-n green" id="s-won">—</div><div class="sum-l">Winning<br>Bets</div></div>
+    <div class="sum-cell"><div class="sum-n red" id="s-lost">—</div><div class="sum-l">Losing<br>Bets</div></div>
+    <div class="sum-cell"><div class="sum-n yellow" id="s-open">—</div><div class="sum-l">Open<br>Bets</div></div>
+    <div class="sum-cell"><div class="sum-n green" id="s-roi">—</div><div class="sum-l">ROI<br>(Settled)</div></div>
+  </div>
+</div>
+
+<div class="filters" id="filters"></div>
+
+<!-- Desktop table -->
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th>Player</th>
+        <th>Tournament</th>
+        <th>Date</th>
+        <th>Type</th>
+        <th>Odds</th>
+        <th>Wager</th>
+        <th>P&amp;L</th>
+        <th>Result</th>
+      </tr>
+    </thead>
+    <tbody id="picks-body">
+      <tr><td colspan="8" class="state-msg"><span class="spinner"></span>Loading picks...</td></tr>
+    </tbody>
+  </table>
+  <!-- Mobile cards (same container, shown via CSS) -->
+  <div class="card-list" id="card-list">
+    <div class="state-msg"><span class="spinner"></span>Loading picks...</div>
+  </div>
+</div>
+
+</div><!-- end .tracker-content -->
+
+<footer>
+  <div class="foot-logo">Strokes<span>Edge</span></div>
+  <div class="foot-note">Not financial advice. Gamble responsibly. All bets placed on BetRivers.</div>
+</footer>
+
+<script>// ── Nav dropdowns ──
+document.querySelectorAll('.nav-drop-btn').forEach(function(btn){
+  btn.addEventListener('click',function(e){
+    e.preventDefault();
+    e.stopPropagation();
+    var id='drop-'+btn.getAttribute('data-drop');
+    var menu=document.getElementById(id);
+    var isOpen=menu.classList.contains('open');
+    document.querySelectorAll('.drop-menu').forEach(function(m){m.classList.remove('open');});
+    document.querySelectorAll('.nav-drop-btn').forEach(function(b){b.classList.remove('open');});
+    if(!isOpen){menu.classList.add('open');btn.classList.add('open');}
+  });
+});
+document.addEventListener('click',function(e){
+  if(!e.target.closest('.nav-drop')){
+    document.querySelectorAll('.drop-menu').forEach(function(m){m.classList.remove('open');});
+    document.querySelectorAll('.nav-drop-btn').forEach(function(b){b.classList.remove('open');});
+  }
+});
+
+// ── Hamburger ──
+var hbg=document.getElementById('hamburger'),mob=document.getElementById('mobile-menu');
+if(hbg&&mob){
+  hbg.addEventListener('click',function(e){
+    e.stopPropagation();
+    hbg.classList.toggle('open');
+    mob.classList.toggle('open');
+  });
+  document.addEventListener('click',function(e){
+    if(!hbg.contains(e.target)&&!mob.contains(e.target)){
+      hbg.classList.remove('open');
+      mob.classList.remove('open');
+    }
+  });
+}
+
+var SHEET_ID='2PACX-1vRn7eBjHWBs4nag5K5QHxnKiyeC-UEobNINAfjmEKsnBgX6aqm3lEZCY1i4lg5t5Lwy3I2p8ZLrR4Gc';
+var DIRECT_URL='https://docs.google.com/spreadsheets/d/e/'+SHEET_ID+'/pub?gid=0&single=true&output=csv';
+var PROXY_URL='https://corsproxy.io/?'+encodeURIComponent(DIRECT_URL);
+
+var allPicks=[];
+var currentFilter='all';
+
+function parseCSV(text){
+  var lines=text.trim().split('\n');
+  if(lines.length<2)return[];
+  var headers=splitLine(lines[0]);
+  var rows=[];
+  for(var i=1;i<lines.length;i++){
+    if(!lines[i].trim())continue;
+    var vals=splitLine(lines[i]);
+    var obj={};
+    headers.forEach(function(h,idx){obj[h.trim().toLowerCase()]=vals[idx]?vals[idx].trim():'';});
+    rows.push(obj);
+  }
+  return rows;
+}
+
+function splitLine(line){
+  var result=[],cur='',inQ=false;
+  for(var i=0;i<line.length;i++){
+    var c=line[i];
+    if(c==='"'){inQ=!inQ;}
+    else if(c===','&&!inQ){result.push(cur);cur='';}
+    else{cur+=c;}
+  }
+  result.push(cur);
+  return result;
+}
+
+function processCSV(csv){
+  allPicks=parseCSV(csv).map(function(row){
+    return{
+      player:row.player||'',
+      tournament:row.tournament||'',
+      date:row.date||'',
+      type:row.type||'',
+      odds:row.odds||'',
+      wager:parseFloat(row.wager)||0,
+      payout:parseFloat(row.payout)||0,
+      result:(row.result||'open').toLowerCase().trim()
+    };
+  }).filter(function(p){return p.player;});
+  buildFilters();
+  refresh();
+}
+
+function loadSheet(){
+  fetch(DIRECT_URL)
+    .then(function(r){if(!r.ok)throw new Error();return r.text();})
+    .then(processCSV)
+    .catch(function(){
+      fetch(PROXY_URL)
+        .then(function(r){if(!r.ok)throw new Error();return r.text();})
+        .then(processCSV)
+        .catch(function(){
+          document.getElementById('picks-body').innerHTML=
+            '<tr><td colspan="8" class="state-msg error">Could not load picks. Make sure your Google Sheet is published (File &rarr; Share &rarr; Publish to web &rarr; CSV) and try refreshing.</td></tr>';
+          document.getElementById('card-list').innerHTML=
+            '<div class="state-msg error">Could not load picks. Check your Google Sheet is published as CSV.</div>';
+        });
+    });
+}
+
+function buildFilters(){
+  var seen={},tourneys=[];
+  allPicks.forEach(function(p){if(!seen[p.tournament]){seen[p.tournament]=true;tourneys.push(p.tournament);}});
+  var base=[
+    {key:'all',label:'All',date:'2026 Season'},
+    {key:'open',label:'Open',date:'Live bets'},
+    {key:'won',label:'Won',date:'Cashed'},
+    {key:'lost',label:'Lost',date:'Missed'},
+  ];
+  var tFilters=tourneys.map(function(t){
+    var row=allPicks.find(function(p){return p.tournament===t;});
+    return{key:t,label:t,date:row?row.date:''};
+  });
+  var wrap=document.getElementById('filters');
+  wrap.innerHTML=base.concat(tFilters).map(function(f){
+    return'<button class="filter-btn'+(f.key==='all'?' active':'')+'" data-key="'+esc(f.key)+'">'
+      +'<span>'+esc(f.label)+'</span><span class="btn-date">'+esc(f.date)+'</span></button>';
+  }).join('');
+  wrap.addEventListener('click',function(e){
+    var btn=e.target.closest('.filter-btn');
+    if(!btn)return;
+    document.querySelectorAll('.filter-btn').forEach(function(b){b.classList.remove('active');});
+    btn.classList.add('active');
+    currentFilter=btn.getAttribute('data-key');
+    refresh();
+  });
+}
+
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+
+function getFiltered(){
+  var rk=['open','won','lost','placed'];
+  if(currentFilter==='all')return allPicks;
+  if(rk.indexOf(currentFilter)>-1)return allPicks.filter(function(p){return p.result===currentFilter;});
+  return allPicks.filter(function(p){return p.tournament===currentFilter;});
+}
+
+function calcStats(data){
+  var settled=data.filter(function(p){return p.result!=='open';});
+  var wagered=settled.reduce(function(s,p){return s+p.wager;},0);
+  var returned=settled.reduce(function(s,p){return s+p.payout;},0);
+  var net=returned-wagered;
+  return{
+    won:data.filter(function(p){return p.result==='won'||p.result==='placed';}).length,
+    lost:data.filter(function(p){return p.result==='lost';}).length,
+    open:data.filter(function(p){return p.result==='open';}).length,
+    net:net,
+    roi:wagered>0?(net/wagered)*100:0
+  };
+}
+
+function setEl(id,text,cls){var el=document.getElementById(id);el.textContent=text;if(cls)el.className='sum-n '+cls;}
+
+function plHtml(p){
+  if(p.result==='open')return'<span class="p-open">—</span>';
+  var diff=p.payout-p.wager;
+  return diff>=0
+    ?'<span class="p-pos">+$'+diff.toFixed(2)+'</span>'
+    :'<span class="p-neg">-$'+Math.abs(diff).toFixed(2)+'</span>';
+}
+
+function refresh(){
+  var data=getFiltered();
+  var s=calcStats(data);
+
+  document.getElementById('hero-context').textContent=
+    currentFilter==='all'?'All Tournaments · 2026 Season':currentFilter;
+  setEl('s-won',s.won,'green');
+  setEl('s-lost',s.lost,'red');
+  setEl('s-open',s.open,'yellow');
+  setEl('s-profit',(s.net>=0?'+':'-')+'$'+Math.abs(s.net).toFixed(0),s.net>=0?'green':'red');
+  setEl('s-roi',(s.roi>=0?'+':'-')+Math.abs(s.roi).toFixed(0)+'%',s.roi>=0?'green':'red');
+
+  var empty='<tr><td colspan="8" class="state-msg">No bets match this filter.</td></tr>';
+  var emptyCard='<div class="state-msg">No bets match this filter.</div>';
+
+  if(!data.length){
+    document.getElementById('picks-body').innerHTML=empty;
+    document.getElementById('card-list').innerHTML=emptyCard;
+    return;
+  }
+
+  // ── Desktop table rows ──
+  document.getElementById('picks-body').innerHTML=data.map(function(p){
+    return'<tr>'
+      +'<td class="player">'+esc(p.player)+'</td>'
+      +'<td><div class="tourn-name">'+esc(p.tournament)+'</div></td>'
+      +'<td class="date-col">'+esc(p.date)+'</td>'
+      +'<td><span class="bet-type">'+esc(p.type)+'</span></td>'
+      +'<td class="odds">'+esc(p.odds)+'</td>'
+      +'<td class="wager">$'+p.wager.toFixed(2)+'</td>'
+      +'<td>'+plHtml(p)+'</td>'
+      +'<td><span class="badge '+esc(p.result)+'">'+esc(p.result)+'</span></td>'
+      +'</tr>';
+  }).join('');
+
+  // ── Mobile cards ──
+  document.getElementById('card-list').innerHTML=data.map(function(p){
+    var diff=p.result==='open'?null:p.payout-p.wager;
+    var plStr=p.result==='open'
+      ?'<span class="pc-value" style="color:var(--txt3)">Open</span>'
+      :(diff>=0
+        ?'<span class="pc-value green">+$'+diff.toFixed(2)+'</span>'
+        :'<span class="pc-value red">-$'+Math.abs(diff).toFixed(2)+'</span>');
+    return'<div class="pick-card result-'+esc(p.result)+'">'
+      +'<div class="pc-top">'
+        +'<div class="pc-player">'+esc(p.player)+'</div>'
+        +'<span class="badge '+esc(p.result)+' pc-badge">'+esc(p.result)+'</span>'
+      +'</div>'
+      +'<div class="pc-tourn">'+esc(p.tournament)+'</div>'
+      +'<div class="pc-row">'
+        +'<div class="pc-item"><span class="pc-label">Type</span><span class="pc-value">'+esc(p.type)+'</span></div>'
+        +'<div class="pc-item"><span class="pc-label">Odds</span><span class="pc-value green">'+esc(p.odds)+'</span></div>'
+        +'<div class="pc-item"><span class="pc-label">Wager</span><span class="pc-value">$'+p.wager.toFixed(2)+'</span></div>'
+        +'<div class="pc-item pc-pl"><span class="pc-label">P&amp;L</span>'+plStr+'</div>'
+      +'</div>'
+    +'</div>';
+  }).join('');
+}
+
+// ── Custom cursor (desktop only) ──
+if(window.matchMedia('(hover:hover)').matches){
+  var cur=document.getElementById('cur'),ring=document.getElementById('ring');
+  var mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+  (function loop(){rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(loop);})();
+  document.querySelectorAll('a,button').forEach(function(el){
+    el.addEventListener('mouseenter',function(){ring.style.width='48px';ring.style.height='48px';ring.style.borderColor='rgba(106,184,58,0.6)';});
+    el.addEventListener('mouseleave',function(){ring.style.width='32px';ring.style.height='32px';ring.style.borderColor='rgba(106,184,58,0.4)';});
+  });
+}
+
+// ── Email gate ──
+(function(){
+  var overlay=document.getElementById('gate-overlay');
+  var body=document.body;
+  var GATE_KEY='se_tracker_unlocked';
+
+  function isUnlocked(){
+    try{return localStorage.getItem(GATE_KEY)==='1';}catch(e){return false;}
+  }
+  function unlock(){
+    try{localStorage.setItem(GATE_KEY,'1');}catch(e){}
+    overlay.classList.add('hidden');
+    body.classList.remove('gate-active');
+  }
+
+  if(!isUnlocked()){
+    body.classList.add('gate-active');
+    // Subscribe button — open Substack in new tab, then auto-unlock after short delay
+    document.getElementById('gate-subscribe-btn').addEventListener('click',function(){
+      setTimeout(function(){unlock();},1200);
+    });
+    // "Already subscribed" link
+    document.getElementById('gate-unlock-btn').addEventListener('click',function(){unlock();});
+  } else {
+    overlay.classList.add('hidden');
+  }
+})();
+
+loadSheet();
+</script>
+</body>
+</html>
