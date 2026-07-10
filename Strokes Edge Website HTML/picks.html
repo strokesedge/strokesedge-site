@@ -266,10 +266,13 @@ footer{position:relative;z-index:2;border-top:1px solid var(--bdr2);padding:2rem
   <div class="gate-box">
     <div class="gate-eyebrow">Free access</div>
     <h2 class="gate-title">Unlock the<br><span>Pick Tracker</span></h2>
-    <p class="gate-sub">Every bet. Every result. Full P&amp;L — updated weekly.<br>Subscribe free on Substack to unlock the full record.</p>
+    <p class="gate-sub">The StrokesEdge pick tracker is free. Subscribe to the newsletter to access it.</p>
     <a href="https://strokesedge.substack.com?utm_source=picks-gate" target="_blank" class="gate-btn" id="gate-subscribe-btn">Subscribe on Substack →</a>
-    <button class="gate-unlock" id="gate-unlock-btn">Already subscribed? Click to unlock</button>
-    <p class="gate-note">Free forever · No credit card · Unsubscribe anytime</p>
+    <p class="gate-note">Already subscribed? Enter your email to verify.</p>
+    <form id="gate-form" style="margin-top:1.5rem;">
+      <input type="email" id="gate-email" placeholder="your@email.com" style="width:100%;padding:12px 16px;background:rgba(255,255,255,0.05);border:1px solid var(--bdr);border-radius:3px;color:var(--txt);font-family:'DM Sans',sans-serif;font-size:14px;margin-bottom:10px;" required>
+      <button type="submit" class="gate-btn" style="margin-bottom:0;">Unlock →</button>
+    </form>
   </div>
 </div>
 
@@ -567,22 +570,22 @@ if(window.matchMedia('(hover:hover)').matches){
   var GATE_KEY='se_tracker_unlocked';
 
   function isUnlocked(){
-    try{return localStorage.getItem(GATE_KEY)==='1';}catch(e){return false;}
+    try{return sessionStorage.getItem(GATE_KEY)==='1';}catch(e){return false;}
   }
   function unlock(){
-    try{localStorage.setItem(GATE_KEY,'1');}catch(e){}
+    try{sessionStorage.setItem(GATE_KEY,'1');}catch(e){}
     overlay.classList.add('hidden');
     body.classList.remove('gate-active');
   }
 
   if(!isUnlocked()){
     body.classList.add('gate-active');
-    // Subscribe button — open Substack in new tab, then auto-unlock after short delay
-    document.getElementById('gate-subscribe-btn').addEventListener('click',function(){
-      setTimeout(function(){unlock();},1200);
+    // Email form submission
+    document.getElementById('gate-form').addEventListener('submit',function(e){
+      e.preventDefault();
+      var email=document.getElementById('gate-email').value.trim();
+      if(email){unlock();}
     });
-    // "Already subscribed" link
-    document.getElementById('gate-unlock-btn').addEventListener('click',function(){unlock();});
   } else {
     overlay.classList.add('hidden');
   }

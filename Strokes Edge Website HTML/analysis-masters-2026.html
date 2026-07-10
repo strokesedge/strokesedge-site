@@ -178,6 +178,31 @@ footer{border-top:1px solid var(--bdr2);padding:2rem 1.5rem;display:flex;justify
 .archive-banner-back{font-family:'DM Mono',monospace;font-size:11px;color:var(--g);text-decoration:none;letter-spacing:.06em;border:1px solid var(--bdr);padding:8px 14px;border-radius:2px;transition:all .2s;white-space:nowrap}
 .archive-banner-back:hover{background:var(--g-glow)}
 
+/* ── MODEL SALES ── */
+.model-sales{max-width:900px;margin:0 auto 3rem;padding:0 1.5rem;text-align:center;position:relative;z-index:2}
+.model-sales-copy{font-size:15px;color:var(--txt2);margin-bottom:1.5rem}
+.model-sales-buttons{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn-model{display:inline-block;padding:13px 28px;background:var(--g);color:#fff;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.06em;text-decoration:none;border-radius:2px;border:1px solid var(--g);transition:all .2s}
+.btn-model:hover{background:#7acc44;transform:translateY(-2px)}
+.btn-model-outline{background:transparent;color:var(--g)}
+.btn-model-outline:hover{background:rgba(106,184,58,.1)}
+
+/* ── CONTENT CLIFF GATE ── */
+.cliff-section{position:relative;margin-bottom:3rem}
+.cliff-blurred{filter:blur(8px);pointer-events:none;user-select:none}
+.cliff-overlay{position:absolute;inset:0;display:none;z-index:300;align-items:center;justify-content:center;background:linear-gradient(180deg,transparent 0%,rgba(8,11,7,0.85) 50%,rgba(8,11,7,0.95) 100%);min-height:300px}
+.cliff-overlay.active{display:flex}
+.cliff-overlay.hidden{display:none}
+.cliff-box{background:transparent;text-align:center;max-width:400px;padding:0}
+.cliff-title{font-size:16px;color:var(--txt);line-height:1.6;margin-bottom:1.5rem}
+.cliff-label{font-family:'DM Mono',monospace;font-size:10px;color:var(--txt3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:1rem}
+.cliff-btn{display:block;width:100%;max-width:240px;margin:0 auto 1rem;padding:12px 24px;background:var(--g);color:#fff;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.06em;text-decoration:none;border-radius:2px;border:none;cursor:pointer;transition:all .2s}
+.cliff-btn:hover{background:#7acc44}
+.cliff-form{margin-top:1.5rem;display:none}
+.cliff-form.active{display:block}
+.cliff-form input{width:100%;max-width:240px;padding:10px 14px;background:rgba(255,255,255,.05);border:1px solid var(--bdr);border-radius:2px;color:var(--txt);font-family:'DM Sans',sans-serif;font-size:13px;margin-bottom:10px;display:block;margin-left:auto;margin-right:auto}
+.cliff-form input::placeholder{color:var(--txt3)}
+
 /* ── MOBILE ── */
 @media(max-width:900px){
   .archive-banner{padding:1rem 1.25rem}
@@ -235,6 +260,33 @@ if(hbg&&mob){
     }
   });
 }
+
+// ── Content cliff gate ──
+(function(){
+  var overlay=document.getElementById('cliff-overlay');
+  var form=document.getElementById('cliff-form');
+  var GATE_KEY='se_analysis_unlocked';
+
+  function isUnlocked(){
+    try{return sessionStorage.getItem(GATE_KEY)==='1';}catch(e){return false;}
+  }
+  function unlock(){
+    try{sessionStorage.setItem(GATE_KEY,'1');}catch(e){}
+    if(overlay)overlay.classList.add('hidden');
+  }
+
+  if(!isUnlocked()&&overlay){
+    overlay.classList.add('active');
+    form.classList.add('active');
+    form.addEventListener('submit',function(e){
+      e.preventDefault();
+      var email=document.getElementById('cliff-email').value.trim();
+      if(email){unlock();}
+    });
+  } else if(overlay){
+    overlay.classList.add('hidden');
+  }
+})();
 
 window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-D398EHRP6Y');</script>
 </head>
@@ -415,6 +467,33 @@ window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);
 </section>
 
 <div class="divider"></div>
+
+<!-- ═══ MODEL SALES SECTION ═══ -->
+<div class="model-sales">
+  <div class="model-sales-copy">Want the full model breakdown?<br><strong style="color:var(--txt)">$7 per tournament — Weekly Model Workbook&nbsp;&nbsp;&nbsp;$21/month — Monthly Membership</strong></div>
+  <div class="model-sales-buttons">
+    <a href="https://strokesedge.gumroad.com/l/buehoc" target="_blank" class="btn-model">Get Weekly Model — $7</a>
+    <a href="https://buymeacoffee.com/strokesedge/membership" target="_blank" class="btn-model btn-model-outline">Monthly Membership — $21/mo</a>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══ CONTENT CLIFF GATE ═══ -->
+<div class="cliff-section">
+  <div class="cliff-overlay" id="cliff-overlay">
+    <div class="cliff-box">
+      <div class="cliff-title">Get the full model breakdown free every week.<br>Subscribe to StrokesEdge on Substack.</div>
+      <div class="cliff-label">Full model rankings · Complete picks card · Betting strategy</div>
+      <a href="https://strokesedge.substack.com" target="_blank" class="cliff-btn">Subscribe Free →</a>
+      <form class="cliff-form" id="cliff-form">
+        <input type="email" placeholder="your@email.com" id="cliff-email" required>
+        <button type="submit" class="cliff-btn">Unlock →</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="cliff-blurred" id="cliff-content">
 
 <!-- ═══ TOP 10/20 LOCKS ═══ -->
 <section>
@@ -604,9 +683,17 @@ window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);
   </div>
 </section>
 
+  </div><!-- end cliff-content -->
+</div><!-- end cliff-section -->
+
 </section>
 
 </div>
+
+<footer>
+  <div class="foot-logo">Strokes<span>Edge</span></div>
+  <div class="foot-note">Not financial advice. Gamble responsibly.</div>
+</footer>
 
 <script>
 // Nav dropdowns
@@ -645,3 +732,34 @@ if(hbg&&mob){
     }
   });
 }
+
+// ── Content cliff gate ──
+(function(){
+  var overlay=document.getElementById('cliff-overlay');
+  var form=document.getElementById('cliff-form');
+  var GATE_KEY='se_analysis_unlocked';
+
+  function isUnlocked(){
+    try{return sessionStorage.getItem(GATE_KEY)==='1';}catch(e){return false;}
+  }
+  function unlock(){
+    try{sessionStorage.setItem(GATE_KEY,'1');}catch(e){}
+    if(overlay)overlay.classList.add('hidden');
+  }
+
+  if(!isUnlocked()&&overlay){
+    overlay.classList.add('active');
+    form.classList.add('active');
+    form.addEventListener('submit',function(e){
+      e.preventDefault();
+      var email=document.getElementById('cliff-email').value.trim();
+      if(email){unlock();}
+    });
+  } else if(overlay){
+    overlay.classList.add('hidden');
+  }
+})();
+
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-D398EHRP6Y');</script>
+</body>
+</html>

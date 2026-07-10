@@ -92,6 +92,16 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .btn-primary:hover{background:#7acc44;transform:translateY(-2px)}
 .btn-ghost{display:inline-block;padding:14px 36px;border:1px solid var(--bdr2);color:var(--txt2);font-family:'DM Mono',monospace;font-size:13px;letter-spacing:0.06em;text-decoration:none;border-radius:2px;transition:all 0.2s}
 .btn-ghost:hover{border-color:var(--bdr);color:var(--txt)}
+
+/* ── MODEL SALES SECTION ── */
+.model-sales{position:relative;z-index:2;max-width:1200px;margin:0 auto 4rem;padding:0 1.5rem;text-align:center}
+.model-sales-copy{font-size:15px;color:var(--txt2);margin-bottom:2rem}
+.model-sales-buttons{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn-model{display:inline-block;padding:14px 32px;background:var(--g);color:#fff;font-family:'DM Mono',monospace;font-size:13px;letter-spacing:0.06em;text-decoration:none;border-radius:2px;border:1px solid var(--g);transition:all 0.2s;cursor:pointer}
+.btn-model:hover{background:#7acc44;transform:translateY(-2px)}
+.btn-model-outline{background:transparent;color:var(--g);border:1px solid var(--g)}
+.btn-model-outline:hover{background:rgba(106,184,58,0.1)}
+
 .hero-right{opacity:0;animation:up 0.8s 0.6s forwards}
 .live-card{background:var(--sur);border:1px solid var(--bdr);border-radius:4px;overflow:hidden}
 .live-card-header{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.25rem;border-bottom:1px solid var(--bdr2);background:rgba(106,184,58,0.04)}
@@ -311,6 +321,14 @@ footer{position:relative;z-index:2;border-top:1px solid var(--bdr2);padding:2rem
     </div>
   </div>
 </section>
+
+<div class="model-sales">
+  <div class="model-sales-copy">Want the full model breakdown?<br><strong style="color:var(--txt)">$7 per tournament — Weekly Model Workbook&nbsp;&nbsp;&nbsp;$21/month — Monthly Membership</strong></div>
+  <div class="model-sales-buttons">
+    <a href="https://strokesedge.gumroad.com/l/buehoc" target="_blank" class="btn-model">Get Weekly Model — $7</a>
+    <a href="https://buymeacoffee.com/strokesedge/membership" target="_blank" class="btn-model btn-model-outline">Monthly Membership — $21/mo</a>
+  </div>
+</div>
 
   <div class="lead-strip" id="lead-strip">
   <div class="lead-inner">
