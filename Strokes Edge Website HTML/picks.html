@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Full pick tracker for StrokesEdge — every bet, every result, P&L, and ROI. Real money. Real picks. Full transparency. 2026 PGA Tour season.">
-<title>Pick Tracker — StrokesEdge</title>
+<meta name="description" content="Full pick tracker for StrokesEdge â€” every bet, every result, P&L, and ROI. Real money. Real picks. Full transparency. 2026 PGA Tour season.">
+<title>Pick Tracker â€” StrokesEdge</title>
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://strokesedge.com/picks.html">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@300;400;500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
@@ -21,7 +21,7 @@ html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--txt);font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.6;overflow-x:hidden}
 body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(106,184,58,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(106,184,58,0.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;z-index:0}
 
-/* ── CUSTOM CURSOR — desktop only ── */
+/* â”€â”€ CUSTOM CURSOR â€” desktop only â”€â”€ */
 @media(hover:hover){
   body,*{cursor:none}
   .cursor{position:fixed;width:8px;height:8px;background:var(--g);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%)}
@@ -29,7 +29,7 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 }
 @media(hover:none){.cursor,.cursor-ring{display:none}}
 
-/* ── NAV ── */
+/* â”€â”€ NAV â”€â”€ */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1rem 1.5rem;border-bottom:1px solid var(--bdr2);background:rgba(8,11,7,0.95);backdrop-filter:blur(16px)}
 .nav-logo{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:0.08em;color:var(--txt);text-decoration:none;flex-shrink:0}
 .nav-logo span{color:var(--g)}
@@ -42,7 +42,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .nav-drop{position:relative}
 .nav-drop-btn{font-size:12px;color:var(--txt2);background:none;border:none;cursor:pointer;letter-spacing:.06em;text-transform:uppercase;display:flex;align-items:center;gap:5px;padding:0;font-family:'DM Sans',sans-serif;transition:color .2s;white-space:nowrap;outline:none}
 .nav-drop-btn:hover,.nav-drop-btn.open{color:var(--txt)}
-.nav-drop-btn::after{content:'▾';font-size:9px;transition:transform .2s;display:inline-block}
+.nav-drop-btn::after{content:'â–¾';font-size:9px;transition:transform .2s;display:inline-block}
 .nav-drop-btn.open::after{transform:rotate(180deg)}
 .drop-menu{display:none;position:absolute;top:100%;left:0;min-width:220px;z-index:200}
 .drop-menu.open{display:block}
@@ -52,7 +52,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .drop-item:hover{color:var(--g);background:rgba(106,184,58,.05)}
 .drop-item .drop-sub{display:block;font-size:9px;color:var(--txt3);margin-top:2px;letter-spacing:.04em;text-transform:none}
 
-/* ── HAMBURGER ── */
+/* â”€â”€ HAMBURGER â”€â”€ */
 .hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:none;border:none;cursor:pointer;padding:6px;z-index:201}
 .hamburger span{display:block;width:22px;height:2px;background:var(--txt2);border-radius:2px;transition:all .25s}
 .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);background:var(--g)}
@@ -68,7 +68,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .mob-cta{border-bottom:none!important;margin-top:.5rem;padding:.85rem 1rem!important;border:1px solid var(--g)!important;border-radius:2px;color:var(--g)!important;text-align:center}
 @media(max-width:860px){.nav-link,.nav-drop,.nav-cta{display:none}.hamburger{display:flex}}
 
-/* ── HERO ── */
+/* â”€â”€ HERO â”€â”€ */
 .hero{position:relative;z-index:2;padding:7rem 1.5rem 2rem;max-width:1200px;margin:0 auto}
 .hero-tag{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.14em;color:var(--g);text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:10px}
 .hero-tag::before{content:'';width:24px;height:1px;background:var(--g)}
@@ -76,7 +76,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .hero-title span{color:var(--g)}
 .hero-context{font-family:'DM Mono',monospace;font-size:11px;color:var(--txt3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:2rem}
 
-/* ── SUMMARY STATS ── */
+/* â”€â”€ SUMMARY STATS â”€â”€ */
 .summary-wrap{position:relative;z-index:2;max-width:1200px;margin:0 auto 2.5rem;padding:0 1.5rem}
 .summary{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--bdr2);border:1px solid var(--bdr2);border-radius:4px;overflow:hidden}
 .sum-cell{background:var(--bg2);padding:1.75rem 1rem;text-align:center}
@@ -86,7 +86,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .sum-n.yellow{color:var(--y)}
 .sum-l{font-family:'DM Mono',monospace;font-size:10px;color:var(--txt2);letter-spacing:0.1em;text-transform:uppercase;line-height:1.5}
 
-/* ── FILTERS ── */
+/* â”€â”€ FILTERS â”€â”€ */
 .filters{position:relative;z-index:2;max-width:1200px;margin:0 auto 1.5rem;padding:0 1.5rem;display:flex;gap:0.5rem;flex-wrap:wrap}
 .filter-btn{font-family:'DM Mono',monospace;font-size:11px;padding:7px 14px;border:1px solid var(--bdr2);border-radius:2px;color:var(--txt2);background:transparent;cursor:pointer;letter-spacing:0.05em;text-transform:uppercase;transition:all 0.2s;text-align:left;display:flex;flex-direction:column;gap:2px}
 .filter-btn:hover{border-color:var(--bdr);color:var(--txt)}
@@ -94,7 +94,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .filter-btn .btn-date{font-size:9px;color:var(--txt3);letter-spacing:0.06em;text-transform:uppercase}
 .filter-btn.active .btn-date{color:rgba(106,184,58,0.6)}
 
-/* ── TABLE — desktop ── */
+/* â”€â”€ TABLE â€” desktop â”€â”€ */
 .table-wrap{position:relative;z-index:2;max-width:1200px;margin:0 auto 4rem;padding:0 1.5rem}
 table{width:100%;border-collapse:collapse;font-size:13px}
 thead tr{border-bottom:1px solid var(--bdr)}
@@ -121,7 +121,7 @@ td.wager{font-family:'DM Mono',monospace;font-size:12px}
 .spinner{display:inline-block;width:18px;height:18px;border:2px solid var(--txt3);border-top-color:var(--g);border-radius:50%;animation:spin 0.7s linear infinite;vertical-align:middle;margin-right:10px}
 @keyframes spin{to{transform:rotate(360deg)}}
 
-/* ── MOBILE CARDS — replaces table on small screens ── */
+/* â”€â”€ MOBILE CARDS â€” replaces table on small screens â”€â”€ */
 .card-list{display:none;flex-direction:column;gap:0.6rem}
 .pick-card{background:var(--sur);border:1px solid var(--bdr2);border-radius:4px;padding:1rem 1.1rem;transition:border-color 0.2s}
 .pick-card.result-won{border-left:2px solid var(--g)}
@@ -140,7 +140,7 @@ td.wager{font-family:'DM Mono',monospace;font-size:12px}
 .pc-value.red{color:var(--r)}
 .pc-pl{font-family:'DM Mono',monospace;font-size:13px;font-weight:500;margin-left:auto}
 
-/* ── EMAIL GATE ── */
+/* â”€â”€ EMAIL GATE â”€â”€ */
 .gate-overlay{position:fixed;inset:0;z-index:500;display:flex;align-items:center;justify-content:center;padding:1.5rem;background:rgba(8,11,7,0.92);backdrop-filter:blur(8px)}
 .gate-overlay.hidden{display:none}
 .gate-box{background:var(--sur);border:1px solid var(--bdr);border-radius:6px;padding:2.5rem 2rem;max-width:440px;width:100%;text-align:center;position:relative;z-index:501}
@@ -158,13 +158,13 @@ td.wager{font-family:'DM Mono',monospace;font-size:12px}
 /* blur tracker when gate is showing */
 .gate-active .tracker-content{filter:blur(6px);pointer-events:none;user-select:none}
 
-/* ── FOOTER ── */
+/* â”€â”€ FOOTER â”€â”€ */
 footer{position:relative;z-index:2;border-top:1px solid var(--bdr2);padding:2rem 1.5rem;display:flex;justify-content:space-between;align-items:center;max-width:1200px;margin:0 auto}
 .foot-logo{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:0.08em;color:var(--txt2)}
 .foot-logo span{color:var(--g)}
 .foot-note{font-family:'DM Mono',monospace;font-size:11px;color:var(--txt3)}
 
-/* ── RESPONSIVE ── */
+/* â”€â”€ RESPONSIVE â”€â”€ */
 @media(max-width:900px){
   .summary{grid-template-columns:repeat(3,1fr)}
   .sum-cell{padding:1.25rem 0.75rem}
@@ -208,33 +208,34 @@ footer{position:relative;z-index:2;border-top:1px solid var(--bdr2);padding:2rem
       <button class="nav-drop-btn" data-drop="courses">Courses</button>
       <div class="drop-menu" id="drop-courses"><div class="drop-menu-box">
         <a href="courses.html" class="drop-item">All Course Guides<span class="drop-sub">Full library</span></a>
-        <a href="course-renaissance-club.html" class="drop-item">Renaissance Club<span class="drop-sub">Scottish Open · Jul</span></a>
-        <a href="course-shinnecock-hills.html" class="drop-item">Shinnecock Hills<span class="drop-sub">U.S. Open · Jun</span></a>
-        <a href="course-quail-hollow.html" class="drop-item">Quail Hollow<span class="drop-sub">Truist · May</span></a>
-        <a href="course-colonial.html" class="drop-item">Colonial CC<span class="drop-sub">Schwab Challenge · May</span></a>
-        <a href="course-doral.html" class="drop-item">Blue Monster / Doral<span class="drop-sub">Cadillac · Apr–May</span></a>
-        <a href="course-aronimink.html" class="drop-item">Aronimink<span class="drop-sub">PGA Championship · May</span></a>
-        <a href="course-augusta-national.html" class="drop-item">Augusta National<span class="drop-sub">The Masters · Apr</span></a>
-        <a href="course-harbour-town.html" class="drop-item">Harbour Town<span class="drop-sub">RBC Heritage · Apr</span></a>
-        <a href="course-tpc-louisiana.html" class="drop-item">TPC Louisiana<span class="drop-sub">Zurich Classic · Apr</span></a>
-        <a href="course-tpc-craig-ranch.html" class="drop-item">TPC Craig Ranch<span class="drop-sub">CJ Cup Byron Nelson · May</span></a>
+        <a href="course-renaissance-club.html" class="drop-item">Renaissance Club<span class="drop-sub">Scottish Open Â· Jul</span></a>
+        <a href="course-shinnecock-hills.html" class="drop-item">Shinnecock Hills<span class="drop-sub">U.S. Open Â· Jun</span></a>
+        <a href="course-quail-hollow.html" class="drop-item">Quail Hollow<span class="drop-sub">Truist Â· May</span></a>
+        <a href="course-colonial.html" class="drop-item">Colonial CC<span class="drop-sub">Schwab Challenge Â· May</span></a>
+        <a href="course-doral.html" class="drop-item">Blue Monster / Doral<span class="drop-sub">Cadillac Â· Aprâ€“May</span></a>
+        <a href="course-aronimink.html" class="drop-item">Aronimink<span class="drop-sub">PGA Championship Â· May</span></a>
+        <a href="course-augusta-national.html" class="drop-item">Augusta National<span class="drop-sub">The Masters Â· Apr</span></a>
+        <a href="course-harbour-town.html" class="drop-item">Harbour Town<span class="drop-sub">RBC Heritage Â· Apr</span></a>
+        <a href="course-tpc-louisiana.html" class="drop-item">TPC Louisiana<span class="drop-sub">Zurich Classic Â· Apr</span></a>
+        <a href="course-tpc-craig-ranch.html" class="drop-item">TPC Craig Ranch<span class="drop-sub">CJ Cup Byron Nelson Â· May</span></a>
       </div></div>
     </div>
     <div class="nav-drop">
       <button class="nav-drop-btn" data-drop="analysis">Analysis</button>
       <div class="drop-menu" id="drop-analysis"><div class="drop-menu-box">
         <a href="analysis.html" class="drop-item">Current Analysis<span class="drop-sub">Scottish Open 2026</span></a>
-        <a href="analysis-scottish-open-2026.html" class="drop-item">Scottish Open 2026<span class="drop-sub">Renaissance Club · Jul 10–13</span></a>
-        <a href="analysis-pga-2026.html" class="drop-item">PGA Championship 2026<span class="drop-sub">Aronimink · May 14–17</span></a>
-        <a href="analysis-truist-2026.html" class="drop-item">Truist Championship 2026<span class="drop-sub">Quail Hollow · May 7–10</span></a>
-        <a href="analysis-cadillac-2026.html" class="drop-item">Cadillac Championship 2026<span class="drop-sub">Doral · Apr 30–May 3</span></a>
-        <a href="analysis-heritage-2026.html" class="drop-item">RBC Heritage 2026<span class="drop-sub">Harbour Town · Apr 16–19</span></a>
-        <a href="analysis-masters-2026.html" class="drop-item">Masters 2026<span class="drop-sub">Augusta National · Apr 9–12</span></a>
-        <a href="analysis-valero-2026.html" class="drop-item">Valero Texas Open 2026<span class="drop-sub">TPC San Antonio · Apr 2–6</span></a>
-        <a href="analysis-cj-cup-byron-nelson-2025.html" class="drop-item">CJ Cup Byron Nelson 2025<span class="drop-sub">TPC Craig Ranch · May</span></a>
+        <a href="analysis-scottish-open-2026.html" class="drop-item">Scottish Open 2026<span class="drop-sub">Renaissance Club Â· Jul 10â€“13</span></a>
+        <a href="analysis-isco-championship-2026.html" class="drop-item">ISCO Championship 2026<span class="drop-sub">TPC Louisiana · Sep</span></a>
+        <a href="analysis-pga-2026.html" class="drop-item">PGA Championship 2026<span class="drop-sub">Aronimink Â· May 14â€“17</span></a>
+        <a href="analysis-truist-2026.html" class="drop-item">Truist Championship 2026<span class="drop-sub">Quail Hollow Â· May 7â€“10</span></a>
+        <a href="analysis-cadillac-2026.html" class="drop-item">Cadillac Championship 2026<span class="drop-sub">Doral Â· Apr 30â€“May 3</span></a>
+        <a href="analysis-heritage-2026.html" class="drop-item">RBC Heritage 2026<span class="drop-sub">Harbour Town Â· Apr 16â€“19</span></a>
+        <a href="analysis-masters-2026.html" class="drop-item">Masters 2026<span class="drop-sub">Augusta National Â· Apr 9â€“12</span></a>
+        <a href="analysis-valero-2026.html" class="drop-item">Valero Texas Open 2026<span class="drop-sub">TPC San Antonio Â· Apr 2â€“6</span></a>
+        <a href="analysis-cj-cup-byron-nelson-2025.html" class="drop-item">CJ Cup Byron Nelson 2025<span class="drop-sub">TPC Craig Ranch Â· May</span></a>
       </div></div>
     </div>
-    <a href="https://strokesedge.substack.com" class="nav-cta" target="_blank">Subscribe →</a>
+    <a href="https://strokesedge.substack.com" class="nav-cta" target="_blank">Subscribe â†’</a>
   </div>
   <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
@@ -242,7 +243,7 @@ footer{position:relative;z-index:2;border-top:1px solid var(--bdr2);padding:2rem
   <a href="index.html">Home</a>
   <a href="methodology.html">Methodology</a>
   <a href="picks.html" class="active">Pick Tracker</a>
-  <span class="mob-section">— Courses —</span>
+  <span class="mob-section">â€” Courses â€”</span>
   <a href="courses.html" class="mob-indent">All Course Guides</a>
   <a href="course-renaissance-club.html" class="mob-indent">Renaissance Club</a>
   <a href="course-shinnecock-hills.html" class="mob-indent">Shinnecock Hills</a>
@@ -254,7 +255,7 @@ footer{position:relative;z-index:2;border-top:1px solid var(--bdr2);padding:2rem
   <a href="course-harbour-town.html" class="mob-indent">Harbour Town</a>
   <a href="course-tpc-louisiana.html" class="mob-indent">TPC Louisiana</a>
   <a href="course-tpc-craig-ranch.html" class="mob-indent">TPC Craig Ranch</a>
-  <span class="mob-section">— Analysis —</span>
+  <span class="mob-section">â€” Analysis â€”</span>
   <a href="analysis.html" class="mob-indent">Current Analysis</a>
   <a href="analysis-scottish-open-2026.html" class="mob-indent">Scottish Open 2026</a>
   <a href="analysis-pga-2026.html" class="mob-indent">PGA Championship 2026</a>
@@ -264,10 +265,10 @@ footer{position:relative;z-index:2;border-top:1px solid var(--bdr2);padding:2rem
   <a href="analysis-masters-2026.html" class="mob-indent">Masters 2026</a>
   <a href="analysis-valero-2026.html" class="mob-indent">Valero Texas Open 2026</a>
   <a href="analysis-cj-cup-byron-nelson-2025.html" class="mob-indent">CJ Cup Byron Nelson 2025</a>
-  <a href="https://strokesedge.substack.com" class="mob-cta" target="_blank">Subscribe →</a>
+  <a href="https://strokesedge.substack.com" class="mob-cta" target="_blank">Subscribe â†’</a>
 </div>
 
-<!-- ═══ SUBSTACK GATE ═══ -->
+<!-- â•â•â• SUBSTACK GATE â•â•â• -->
 <div class="gate-overlay" id="gate-overlay">
   <div class="gate-box">
     <h2 class="gate-title" style="margin-bottom:1rem">Get free weekly<br><span>picks.</span></h2>
@@ -285,11 +286,11 @@ footer{position:relative;z-index:2;border-top:1px solid var(--bdr2);padding:2rem
 
 <div class="summary-wrap">
   <div class="summary">
-    <div class="sum-cell"><div class="sum-n green" id="s-profit">—</div><div class="sum-l">Net<br>Profit</div></div>
-    <div class="sum-cell"><div class="sum-n green" id="s-won">—</div><div class="sum-l">Winning<br>Bets</div></div>
-    <div class="sum-cell"><div class="sum-n red" id="s-lost">—</div><div class="sum-l">Losing<br>Bets</div></div>
-    <div class="sum-cell"><div class="sum-n yellow" id="s-open">—</div><div class="sum-l">Open<br>Bets</div></div>
-    <div class="sum-cell"><div class="sum-n green" id="s-roi">—</div><div class="sum-l">ROI<br>(Settled)</div></div>
+    <div class="sum-cell"><div class="sum-n green" id="s-profit">â€”</div><div class="sum-l">Net<br>Profit</div></div>
+    <div class="sum-cell"><div class="sum-n green" id="s-won">â€”</div><div class="sum-l">Winning<br>Bets</div></div>
+    <div class="sum-cell"><div class="sum-n red" id="s-lost">â€”</div><div class="sum-l">Losing<br>Bets</div></div>
+    <div class="sum-cell"><div class="sum-n yellow" id="s-open">â€”</div><div class="sum-l">Open<br>Bets</div></div>
+    <div class="sum-cell"><div class="sum-n green" id="s-roi">â€”</div><div class="sum-l">ROI<br>(Settled)</div></div>
   </div>
 </div>
 
@@ -327,7 +328,7 @@ footer{position:relative;z-index:2;border-top:1px solid var(--bdr2);padding:2rem
   <div class="foot-note">Not financial advice. Gamble responsibly. All bets placed on BetRivers.</div>
 </footer>
 
-<script>// ── Nav dropdowns ──
+<script>// â”€â”€ Nav dropdowns â”€â”€
 document.querySelectorAll('.nav-drop-btn').forEach(function(btn){
   btn.addEventListener('click',function(e){
     e.preventDefault();
@@ -347,7 +348,7 @@ document.addEventListener('click',function(e){
   }
 });
 
-// ── Hamburger ──
+// â”€â”€ Hamburger â”€â”€
 var hbg=document.getElementById('hamburger'),mob=document.getElementById('mobile-menu');
 if(hbg&&mob){
   hbg.addEventListener('click',function(e){
@@ -485,7 +486,7 @@ function calcStats(data){
 function setEl(id,text,cls){var el=document.getElementById(id);el.textContent=text;if(cls)el.className='sum-n '+cls;}
 
 function plHtml(p){
-  if(p.result==='open')return'<span class="p-open">—</span>';
+  if(p.result==='open')return'<span class="p-open">â€”</span>';
   var diff=p.payout-p.wager;
   return diff>=0
     ?'<span class="p-pos">+$'+diff.toFixed(2)+'</span>'
@@ -497,7 +498,7 @@ function refresh(){
   var s=calcStats(data);
 
   document.getElementById('hero-context').textContent=
-    currentFilter==='all'?'All Tournaments · 2026 Season':currentFilter;
+    currentFilter==='all'?'All Tournaments Â· 2026 Season':currentFilter;
   setEl('s-won',s.won,'green');
   setEl('s-lost',s.lost,'red');
   setEl('s-open',s.open,'yellow');
@@ -513,7 +514,7 @@ function refresh(){
     return;
   }
 
-  // ── Desktop table rows ──
+  // â”€â”€ Desktop table rows â”€â”€
   document.getElementById('picks-body').innerHTML=data.map(function(p){
     return'<tr>'
       +'<td class="player">'+esc(p.player)+'</td>'
@@ -527,7 +528,7 @@ function refresh(){
       +'</tr>';
   }).join('');
 
-  // ── Mobile cards ──
+  // â”€â”€ Mobile cards â”€â”€
   document.getElementById('card-list').innerHTML=data.map(function(p){
     var diff=p.result==='open'?null:p.payout-p.wager;
     var plStr=p.result==='open'
@@ -551,7 +552,7 @@ function refresh(){
   }).join('');
 }
 
-// ── Custom cursor (desktop only) ──
+// â”€â”€ Custom cursor (desktop only) â”€â”€
 if(window.matchMedia('(hover:hover)').matches){
   var cur=document.getElementById('cur'),ring=document.getElementById('ring');
   var mx=0,my=0,rx=0,ry=0;
@@ -563,7 +564,7 @@ if(window.matchMedia('(hover:hover)').matches){
   });
 }
 
-// ── Substack gate (hard gate - no bypass) ──
+// â”€â”€ Substack gate (hard gate - no bypass) â”€â”€
 (function(){
   var body=document.body;
   body.classList.add('gate-active');
@@ -573,3 +574,4 @@ loadSheet();
 </script>
 </body>
 </html>
+

@@ -48,22 +48,43 @@ Strokes Edge Website HTML/
 
 ## Substack Gate Implementation
 
-### picks.html — Full Block
-The pick tracker must be fully blocked. Do not show any bet data without going through the gate.
+### picks.html — Weekly Access Code Gate
+
+The pick tracker is locked behind a weekly access code. Codes are distributed in the StrokesEdge Substack newsletter each week. Only subscribers who read the newsletter can access the tracker.
+
+**Current valid code:** SCOTTISH26
 
 Implementation:
-- Page loads showing a full-screen gate overlay
-- Gate cannot be dismissed or skipped — there is no "continue anyway" link
-- Gate content:
-  ```
-  The StrokesEdge pick tracker is free.
-  Subscribe to the newsletter to access it.
+- Full page overlay on load, cannot be dismissed or bypassed
+- Headline: "WEEKLY ACCESS CODE"
+- Subtext: "Find the code in this week's StrokesEdge Substack newsletter."
+- Code input field + "Unlock" green button (#6ab83a)
+- Below input, smaller text: "Not subscribed yet? Get free weekly picks at strokesedge.substack.com" (linked)
+- On correct code: store unlock in sessionStorage, show tracker
+- On wrong code: show error "Invalid code. Check this week's newsletter."
+- Code check is case-insensitive
+- Style: dark bg #080b07, green button #6ab83a, Bebas Neue headline, DM Sans body
 
-  [Subscribe on Substack →]  (links to https://strokesedge.substack.com)
-  ```
-- Below the CTA, smaller text: "Already subscribed? Enter your email to verify."
-- Email input field → on submit, show the tracker (honor system — no backend required, just UI unlock)
-- Style: dark bg `#080b07`, green button `#6ab83a`, Bebas Neue headline, DM Sans body
+**Code array in picks.html JS — never remove old codes, only add new ones:**
+```javascript
+const validCodes = ['SCOTTISH26'];
+// Add new code each week — never delete old ones
+```
+
+**Code naming format:** [TOURNAMENTSLUG][2-digit year]
+Examples: SCOTTISH26, USOPEN26, MASTERS26, PGATOUR26
+
+**Weekly code update workflow:**
+1. Brian provides the new tournament name
+2. Generate new code in format above
+3. Add new code to validCodes array in picks.html
+4. Push picks.html to GitHub
+5. Include the code in that week's Substack newsletter
+
+**Never:**
+- Remove old codes from the array
+- Add a bypass, dismiss, or honor-system email option
+- Change gate to anything other than the code system
 
 ### Analysis Pages — Partial Block (Content Cliff)
 The top half of every analysis page is free. Below the content cliff, content is blurred with a gate overlay.
@@ -319,3 +340,53 @@ One commit covers all of this:
 - Pick tracker CSV: https://docs.google.com/spreadsheets/d/e/2PACX-1vRn7eBjHWBs4nag5K5QHxnKiyeC-UEobNINAfjmEKsnBgX6aqm3lEZCY1i4lg5t5Lwy3I2p8ZLrR4Gc/pub?gid=0&single=true&output=csv
 - GA4: G-D398EHRP6Y
 - Contact: strokesedge@gmail.com
+
+---
+
+## Pre-Deploy Audit — Run Before Every Commit
+
+Before pushing any changes, audit ALL HTML files and fix every issue found in the same commit:
+
+**Nav & Dropdowns**
+- Every dropdown trigger has both `e.preventDefault()` AND `e.stopPropagation()`
+- Analysis dropdown present and working on every page
+- Courses dropdown present and working on every page
+- Mobile hamburger menu works and contains all same links as desktop
+- Newest analysis page is first in Analysis dropdown on every page
+- Newest course page is first in Courses dropdown on every page
+- No reference to potd.html anywhere
+
+**Head Tags**
+- Every page has `<meta name="description">` specific to that page
+- Every page has correct `<title>` tag matching formula
+- Every page has `<link rel="canonical">` with correct full URL
+- Every page has OG and Twitter card meta tags
+- Every page has GA4 tag `G-D398EHRP6Y` in `<head>`
+- Every page has all 4 favicon link tags
+
+**Gates**
+- picks.html shows full Substack block gate — no email field, no bypass, Substack button only
+- All analysis pages have content cliff blur gate at correct position
+- Model sales section ($7/$21 buttons) present on index.html and all analysis pages
+
+**Responsive**
+- `@media(max-width:860px)` hamburger breakpoint on every page
+- `@media(max-width:640px)` mobile layout on every page
+
+**Links**
+- No broken internal links
+- No links pointing to pages that don't exist
+- sitemap.xml includes all pages with correct priorities
+
+**Footer**
+- Every page has "Not financial advice. Gamble responsibly." in footer
+
+Fix all issues found before pushing.
+
+---
+
+## Substack Reference
+
+RSS feed: https://strokesedge.substack.com/feed
+
+Before writing any analysis page or referencing recent articles, fetch this RSS feed to see the latest published posts. Use post titles and publish dates to link correctly to the right Substack article from each analysis page.
