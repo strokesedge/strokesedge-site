@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -7,20 +7,20 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon32x32.png">
 <link rel="icon" type="image/png" sizes="512x512" href="/favicon512x512.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/favicon180x180.png">
-<title>CJ Cup Byron Nelson 2025 Analysis — StrokesEdge</title>
+<title>CJ Cup Byron Nelson 2025 Analysis â€” StrokesEdge</title>
 <meta name="description" content="StrokesEdge model archive for the 2025 CJ Cup Byron Nelson at TPC Craig Ranch. Original model output, picks card, and course regression for McKinney TX.">
 <link rel="canonical" href="https://strokesedge.com/analysis-cj-cup-byron-nelson-2025.html">
-<meta property="og:title" content="CJ Cup Byron Nelson 2025 Analysis Archive — StrokesEdge">
+<meta property="og:title" content="CJ Cup Byron Nelson 2025 Analysis Archive â€” StrokesEdge">
 <meta property="og:description" content="Archived quantitative model output for the 2025 CJ Cup Byron Nelson at TPC Craig Ranch, McKinney TX. Course regression and original picks preserved for record accuracy.">
 <meta property="og:url" content="https://strokesedge.com/analysis-cj-cup-byron-nelson-2025.html">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="StrokesEdge">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="CJ Cup Byron Nelson 2025 Archive — StrokesEdge">
+<meta name="twitter:title" content="CJ Cup Byron Nelson 2025 Archive â€” StrokesEdge">
 <meta name="twitter:description" content="Historical model archive for the 2025 CJ Cup Byron Nelson at TPC Craig Ranch.">
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-D398EHRP6Y"></script>
-<script>// ── Nav dropdowns ──
+<script>// â”€â”€ Nav dropdowns â”€â”€
 document.querySelectorAll('.nav-drop-btn').forEach(function(btn){
   btn.addEventListener('click',function(e){
     e.stopPropagation();
@@ -39,7 +39,7 @@ document.addEventListener('click',function(e){
   }
 });
 
-// ── Hamburger ──
+// â”€â”€ Hamburger â”€â”€
 var hbg=document.getElementById('hamburger'),mob=document.getElementById('mobile-menu');
 if(hbg&&mob){
   hbg.addEventListener('click',function(e){
@@ -186,7 +186,7 @@ footer a{color:var(--g);text-decoration:none}
 .nav-drop{position:relative}
 .nav-drop-btn{font-size:12px;color:var(--txt2);background:none;border:none;cursor:pointer;letter-spacing:.06em;text-transform:uppercase;display:flex;align-items:center;gap:5px;padding:0;font-family:'DM Sans',sans-serif;transition:color .2s;white-space:nowrap;outline:none}
 .nav-drop-btn:hover,.nav-drop-btn.open{color:var(--txt)}
-.nav-drop-btn::after{content:'▾';font-size:9px;transition:transform .2s;display:inline-block}
+.nav-drop-btn::after{content:'â–¾';font-size:9px;transition:transform .2s;display:inline-block}
 .nav-drop-btn.open::after{transform:rotate(180deg)}
 .drop-menu{display:none;position:absolute;top:100%;left:0;min-width:220px;z-index:200}
 .drop-menu.open{display:block}
@@ -194,7 +194,32 @@ footer a{color:var(--g);text-decoration:none}
 .drop-item{display:block;padding:.7rem 1.1rem;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--txt2);text-decoration:none;border-bottom:1px solid var(--bdr2);transition:all .15s;white-space:nowrap}
 .drop-item:last-child{border-bottom:none}
 .drop-item:hover{color:var(--g);background:rgba(106,184,58,.05)}
-.drop-item .drop-sub{display:block;font-size:9px;color:var(--txt3);margin-top:2px;letter-spacing:.04em;text-transform:none}</style>
+.drop-item .drop-sub{display:block;font-size:9px;color:var(--txt3);margin-top:2px;letter-spacing:.04em;text-transform:none}
+
+/* ── MODEL SALES ── */
+.model-sales{max-width:900px;margin:0 auto 3rem;padding:0 1.5rem;text-align:center;position:relative;z-index:2}
+.model-sales-copy{font-size:15px;color:var(--txt2);margin-bottom:1.5rem}
+.model-sales-buttons{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn-model{display:inline-block;padding:13px 28px;background:var(--g);color:#fff;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.06em;text-decoration:none;border-radius:2px;border:1px solid var(--g);transition:all .2s}
+.btn-model:hover{background:#7acc44;transform:translateY(-2px)}
+.btn-model-outline{background:transparent;color:var(--g)}
+.btn-model-outline:hover{background:rgba(106,184,58,.1)}
+
+/* ── CONTENT CLIFF GATE ── */
+.cliff-section{position:relative;margin-bottom:3rem}
+.cliff-blurred{filter:blur(8px);pointer-events:none;user-select:none}
+.cliff-overlay{position:absolute;inset:0;display:none;z-index:300;align-items:center;justify-content:center;background:linear-gradient(180deg,transparent 0%,rgba(8,11,7,0.85) 50%,rgba(8,11,7,0.95) 100%);min-height:300px}
+.cliff-overlay.active{display:flex}
+.cliff-overlay.hidden{display:none}
+.cliff-box{background:transparent;text-align:center;max-width:400px;padding:0}
+.cliff-title{font-size:16px;color:var(--txt);line-height:1.6;margin-bottom:1.5rem}
+.cliff-label{font-family:'DM Mono',monospace;font-size:10px;color:var(--txt3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:1rem}
+.cliff-btn{display:block;width:100%;max-width:240px;margin:0 auto 1rem;padding:12px 24px;background:var(--g);color:#fff;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.06em;text-decoration:none;border-radius:2px;border:none;cursor:pointer;transition:all .2s}
+.cliff-btn:hover{background:#7acc44}
+.cliff-form{margin-top:1.5rem;display:none}
+.cliff-form.active{display:block}
+.cliff-form input{width:100%;max-width:240px;padding:10px 14px;background:rgba(255,255,255,.05);border:1px solid var(--bdr);border-radius:2px;color:var(--txt);font-family:'DM Sans',sans-serif;font-size:13px;margin-bottom:10px;display:block;margin-left:auto;margin-right:auto}
+.cliff-form input::placeholder{color:var(--txt3)}</style>
 </head>
 <body>
 
@@ -208,31 +233,31 @@ footer a{color:var(--g);text-decoration:none}
       <button class="nav-drop-btn" data-drop="courses">Courses</button>
       <div class="drop-menu" id="drop-courses"><div class="drop-menu-box">
         <a href="courses.html" class="drop-item">All Course Guides<span class="drop-sub">Full library</span></a>
-        <a href="course-shinnecock-hills.html" class="drop-item">Shinnecock Hills<span class="drop-sub">U.S. Open · Jun</span></a>
-        <a href="course-quail-hollow.html" class="drop-item">Quail Hollow<span class="drop-sub">Truist · May</span></a>
-        <a href="course-colonial.html" class="drop-item">Colonial CC<span class="drop-sub">Schwab Challenge · May</span></a>
-        <a href="course-doral.html" class="drop-item">Blue Monster / Doral<span class="drop-sub">Cadillac · Apr–May</span></a>
-        <a href="course-aronimink.html" class="drop-item">Aronimink<span class="drop-sub">PGA Championship · May</span></a>
-        <a href="course-augusta-national.html" class="drop-item">Augusta National<span class="drop-sub">The Masters · Apr</span></a>
-        <a href="course-harbour-town.html" class="drop-item">Harbour Town<span class="drop-sub">RBC Heritage · Apr</span></a>
-        <a href="course-tpc-louisiana.html" class="drop-item">TPC Louisiana<span class="drop-sub">Zurich Classic · Apr</span></a>
-        <a href="course-tpc-craig-ranch.html" class="drop-item">TPC Craig Ranch<span class="drop-sub">CJ Cup Byron Nelson · May</span></a>
+        <a href="course-shinnecock-hills.html" class="drop-item">Shinnecock Hills<span class="drop-sub">U.S. Open Â· Jun</span></a>
+        <a href="course-quail-hollow.html" class="drop-item">Quail Hollow<span class="drop-sub">Truist Â· May</span></a>
+        <a href="course-colonial.html" class="drop-item">Colonial CC<span class="drop-sub">Schwab Challenge Â· May</span></a>
+        <a href="course-doral.html" class="drop-item">Blue Monster / Doral<span class="drop-sub">Cadillac Â· Aprâ€“May</span></a>
+        <a href="course-aronimink.html" class="drop-item">Aronimink<span class="drop-sub">PGA Championship Â· May</span></a>
+        <a href="course-augusta-national.html" class="drop-item">Augusta National<span class="drop-sub">The Masters Â· Apr</span></a>
+        <a href="course-harbour-town.html" class="drop-item">Harbour Town<span class="drop-sub">RBC Heritage Â· Apr</span></a>
+        <a href="course-tpc-louisiana.html" class="drop-item">TPC Louisiana<span class="drop-sub">Zurich Classic Â· Apr</span></a>
+        <a href="course-tpc-craig-ranch.html" class="drop-item">TPC Craig Ranch<span class="drop-sub">CJ Cup Byron Nelson Â· May</span></a>
       </div></div>
     </div>
     <div class="nav-drop">
       <button class="nav-drop-btn active" data-drop="analysis">Analysis</button>
       <div class="drop-menu" id="drop-analysis"><div class="drop-menu-box">
         <a href="analysis.html" class="drop-item">Current Analysis<span class="drop-sub">Charles Schwab 2026</span></a>
-        <a href="analysis-pga-2026.html" class="drop-item">PGA Championship 2026<span class="drop-sub">Aronimink · May 14–17</span></a>
-        <a href="analysis-truist-2026.html" class="drop-item">Truist Championship 2026<span class="drop-sub">Quail Hollow · May 7–10</span></a>
-        <a href="analysis-cadillac-2026.html" class="drop-item">Cadillac Championship 2026<span class="drop-sub">Doral · Apr 30–May 3</span></a>
-        <a href="analysis-heritage-2026.html" class="drop-item">RBC Heritage 2026<span class="drop-sub">Harbour Town · Apr 16–19</span></a>
-        <a href="analysis-masters-2026.html" class="drop-item">Masters 2026<span class="drop-sub">Augusta National · Apr 9–12</span></a>
-        <a href="analysis-valero-2026.html" class="drop-item">Valero Texas Open 2026<span class="drop-sub">TPC San Antonio · Apr 2–6</span></a>
-        <a href="analysis-cj-cup-byron-nelson-2025.html" class="drop-item active">CJ Cup Byron Nelson 2025<span class="drop-sub">TPC Craig Ranch · May</span></a>
+        <a href="analysis-pga-2026.html" class="drop-item">PGA Championship 2026<span class="drop-sub">Aronimink Â· May 14â€“17</span></a>
+        <a href="analysis-truist-2026.html" class="drop-item">Truist Championship 2026<span class="drop-sub">Quail Hollow Â· May 7â€“10</span></a>
+        <a href="analysis-cadillac-2026.html" class="drop-item">Cadillac Championship 2026<span class="drop-sub">Doral Â· Apr 30â€“May 3</span></a>
+        <a href="analysis-heritage-2026.html" class="drop-item">RBC Heritage 2026<span class="drop-sub">Harbour Town Â· Apr 16â€“19</span></a>
+        <a href="analysis-masters-2026.html" class="drop-item">Masters 2026<span class="drop-sub">Augusta National Â· Apr 9â€“12</span></a>
+        <a href="analysis-valero-2026.html" class="drop-item">Valero Texas Open 2026<span class="drop-sub">TPC San Antonio Â· Apr 2â€“6</span></a>
+        <a href="analysis-cj-cup-byron-nelson-2025.html" class="drop-item active">CJ Cup Byron Nelson 2025<span class="drop-sub">TPC Craig Ranch Â· May</span></a>
       </div></div>
     </div>
-    <a href="https://strokesedge.substack.com" class="nav-cta" target="_blank">Subscribe →</a>
+    <a href="https://strokesedge.substack.com" class="nav-cta" target="_blank">Subscribe â†’</a>
   </div>
   <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
@@ -241,7 +266,7 @@ footer a{color:var(--g);text-decoration:none}
   <a href="index.html">Home</a>
   <a href="methodology.html">Methodology</a>
   <a href="picks.html">Pick Tracker</a>
-  <span class="mob-section">— Courses —</span>
+  <span class="mob-section">â€” Courses â€”</span>
   <a href="courses.html" class="mob-indent">All Course Guides</a>
   <a href="course-quail-hollow.html" class="mob-indent">Quail Hollow</a>
   <a href="course-colonial.html" class="mob-indent">Colonial CC</a>
@@ -251,7 +276,7 @@ footer a{color:var(--g);text-decoration:none}
   <a href="course-harbour-town.html" class="mob-indent">Harbour Town</a>
   <a href="course-tpc-louisiana.html" class="mob-indent">TPC Louisiana</a>
   <a href="course-tpc-craig-ranch.html" class="mob-indent">TPC Craig Ranch</a>
-  <span class="mob-section">— Analysis —</span>
+  <span class="mob-section">â€” Analysis â€”</span>
   <a href="analysis.html" class="mob-indent">Current Analysis</a>
   <a href="analysis-pga-2026.html" class="mob-indent">PGA Championship 2026</a>
   <a href="analysis-truist-2026.html" class="mob-indent">Truist Championship 2026</a>
@@ -260,26 +285,26 @@ footer a{color:var(--g);text-decoration:none}
   <a href="analysis-masters-2026.html" class="mob-indent">Masters 2026</a>
   <a href="analysis-valero-2026.html" class="mob-indent">Valero Texas Open 2026</a>
   <a href="analysis-cj-cup-byron-nelson-2025.html" class="mob-indent">CJ Cup Byron Nelson 2025</a>
-  <a href="https://strokesedge.substack.com" class="mob-cta" target="_blank">Subscribe →</a>
+  <a href="https://strokesedge.substack.com" class="mob-cta" target="_blank">Subscribe â†’</a>
 </div>
 
 <div class="archive-banner">
   <div class="archive-banner-inner">
     <span class="archive-badge">Archive</span>
-    <span>Historical model output — preserved for record accuracy. Current analysis at <a href="/analysis.html" style="color:var(--g);text-decoration:none">analysis.html</a></span>
+    <span>Historical model output â€” preserved for record accuracy. Current analysis at <a href="/analysis.html" style="color:var(--g);text-decoration:none">analysis.html</a></span>
   </div>
 </div>
 
 <div class="page-header">
   <div class="page-header-inner">
     <div class="breadcrumb">
-      <a href="/">StrokesEdge</a><span>›</span><a href="/analysis.html">Analysis</a><span>›</span>CJ Cup Byron Nelson 2025
+      <a href="/">StrokesEdge</a><span>â€º</span><a href="/analysis.html">Analysis</a><span>â€º</span>CJ Cup Byron Nelson 2025
     </div>
     <h1>CJ Cup<br><span>Byron Nelson 2025</span></h1>
     <div class="event-meta">
-      <span class="event-meta-item"><strong>TPC Craig Ranch</strong> · McKinney, TX</span>
+      <span class="event-meta-item"><strong>TPC Craig Ranch</strong> Â· McKinney, TX</span>
       <span class="event-meta-item"><strong>May 2025</strong></span>
-      <span class="event-meta-item"><strong>Par 72</strong> · 7,468 yds</span>
+      <span class="event-meta-item"><strong>Par 72</strong> Â· 7,468 yds</span>
       <span class="event-meta-item">Bermudagrass greens</span>
       <span class="event-meta-item"><strong>$9.9M</strong> purse</span>
     </div>
@@ -288,10 +313,10 @@ footer a{color:var(--g);text-decoration:none}
 
 <div class="tabs-bar">
   <div class="tabs-inner">
-    <button class="tab-btn active" data-tab="overview">01 — Course Profile</button>
-    <button class="tab-btn" data-tab="weights">02 — Model Weights</button>
-    <button class="tab-btn" data-tab="rankings">03 — Model Output</button>
-    <button class="tab-btn" data-tab="picks">04 — Picks Card</button>
+    <button class="tab-btn active" data-tab="overview">01 â€” Course Profile</button>
+    <button class="tab-btn" data-tab="weights">02 â€” Model Weights</button>
+    <button class="tab-btn" data-tab="rankings">03 â€” Model Output</button>
+    <button class="tab-btn" data-tab="picks">04 â€” Picks Card</button>
   </div>
 </div>
 
@@ -299,14 +324,14 @@ footer a{color:var(--g);text-decoration:none}
 
   <!-- TAB 1: COURSE PROFILE -->
   <div class="tab-content active" id="tab-overview">
-    <div class="section-label">01 — Course Profile</div>
+    <div class="section-label">01 â€” Course Profile</div>
     <h2>TPC Craig Ranch</h2>
 
     <div class="stat-strip">
       <div class="stat-card">
         <div class="stat-card-label">Par / Yardage</div>
         <div class="stat-card-value">72</div>
-        <div class="stat-card-sub">7,468 yds · 4 par 5s</div>
+        <div class="stat-card-sub">7,468 yds Â· 4 par 5s</div>
       </div>
       <div class="stat-card">
         <div class="stat-card-label">Green Surface</div>
@@ -326,7 +351,7 @@ footer a{color:var(--g);text-decoration:none}
     </div>
 
     <div class="prose">
-      <p>TPC Craig Ranch is a different puzzle than Colonial. Par 72 with four par 5s means distance genuinely matters here, and the regression weights reflect it — SG: Off the Tee runs closer to the middle of the weighting structure at Craig Ranch, not near zero like at Colonial.</p>
+      <p>TPC Craig Ranch is a different puzzle than Colonial. Par 72 with four par 5s means distance genuinely matters here, and the regression weights reflect it â€” SG: Off the Tee runs closer to the middle of the weighting structure at Craig Ranch, not near zero like at Colonial.</p>
 
       <p>Bermudagrass greens rather than bentgrass changes the putting profile entirely. Putting on Bermuda rewards a different stroke pattern than bentgrass, and players who excel specifically on Bermuda surfaces see a different model treatment than their overall SG: Putting numbers suggest. The model uses surface-specific putting stats wherever available.</p>
 
@@ -336,15 +361,15 @@ footer a{color:var(--g);text-decoration:none}
     </div>
 
     <div class="cta-inline">
-      <p><strong>Full TPC Craig Ranch course guide</strong> — historical winner profiles, detailed regression history, and annual betting angles.</p>
-      <a href="/course-cj-cup-byron-nelson.html" class="cta-btn">View Course Guide →</a>
+      <p><strong>Full TPC Craig Ranch course guide</strong> â€” historical winner profiles, detailed regression history, and annual betting angles.</p>
+      <a href="/course-cj-cup-byron-nelson.html" class="cta-btn">View Course Guide â†’</a>
     </div>
   </div>
 
   <!-- TAB 2: MODEL WEIGHTS -->
   <div class="tab-content" id="tab-weights">
-    <div class="section-label">02 — Model Weights</div>
-    <p style="font-size:14px;color:var(--muted);margin:8px 0 0">L1 Course Regression · TPC Craig Ranch · Calibrated for 2025 field conditions</p>
+    <div class="section-label">02 â€” Model Weights</div>
+    <p style="font-size:14px;color:var(--muted);margin:8px 0 0">L1 Course Regression Â· TPC Craig Ranch Â· Calibrated for 2025 field conditions</p>
 
     <table class="weights-table">
       <thead>
@@ -361,28 +386,28 @@ footer a{color:var(--g);text-decoration:none}
           <td class="stat-name">SG: Approach (APP)</td>
           <td>28%</td>
           <td class="weight-bar-cell"><div class="weight-bar-wrap"><div class="weight-bar" style="width:100%"></div></div></td>
-          <td><span class="gate-badge">≥ +0.20/rnd</span></td>
+          <td><span class="gate-badge">â‰¥ +0.20/rnd</span></td>
           <td style="color:var(--g)">#1</td>
         </tr>
         <tr>
           <td class="stat-name">SG: Off the Tee (OTT)</td>
           <td>20%</td>
           <td class="weight-bar-cell"><div class="weight-bar-wrap"><div class="weight-bar" style="width:71%"></div></div></td>
-          <td><span class="gate-badge">≥ 0.00/rnd</span></td>
+          <td><span class="gate-badge">â‰¥ 0.00/rnd</span></td>
           <td style="color:var(--g)">#2</td>
         </tr>
         <tr>
           <td class="stat-name">SG: Putting (Bermuda)</td>
           <td>18%</td>
           <td class="weight-bar-cell"><div class="weight-bar-wrap"><div class="weight-bar" style="width:64%"></div></div></td>
-          <td><span class="gate-badge">≥ 0.00/rnd</span></td>
+          <td><span class="gate-badge">â‰¥ 0.00/rnd</span></td>
           <td>#3</td>
         </tr>
         <tr>
           <td class="stat-name">SG: Around Green (ARG)</td>
           <td>14%</td>
           <td class="weight-bar-cell"><div class="weight-bar-wrap"><div class="weight-bar" style="width:50%"></div></div></td>
-          <td><span class="gate-badge">≥ 0.00/rnd</span></td>
+          <td><span class="gate-badge">â‰¥ 0.00/rnd</span></td>
           <td>#4</td>
         </tr>
         <tr>
@@ -393,7 +418,7 @@ footer a{color:var(--g);text-decoration:none}
           <td>#5</td>
         </tr>
         <tr>
-          <td class="stat-name">Prox 150–175 yds</td>
+          <td class="stat-name">Prox 150â€“175 yds</td>
           <td>8%</td>
           <td class="weight-bar-cell"><div class="weight-bar-wrap"><div class="weight-bar" style="width:29%"></div></div></td>
           <td><span class="gate-badge">Top 60 field</span></td>
@@ -410,7 +435,7 @@ footer a{color:var(--g);text-decoration:none}
 
   <!-- TAB 3: MODEL RANKINGS -->
   <div class="tab-content" id="tab-rankings">
-    <div class="section-label">03 — Model Output</div>
+    <div class="section-label">03 â€” Model Output</div>
     <p style="font-size:14px;color:var(--muted);margin:8px 0 24px">Top 12 model outputs from the 2025 run. Original scores and edge estimates preserved as published. Results confirmed from tracker.</p>
 
     <div class="rankings-table-wrap">
@@ -446,7 +471,7 @@ footer a{color:var(--g);text-decoration:none}
     </div>
 
     <div class="prose" style="margin-top:24px">
-      <p>Scheffler was the dominant model score but priced impossibly — the negative edge on a +250 outright favorite is essentially a statement that the market is pricing him at a probability the model can't justify, not that he's a bad player. That's a structural fade, not a performance fade. The outright is avoided; Top 10 at -200 range was not on the picks card either.</p>
+      <p>Scheffler was the dominant model score but priced impossibly â€” the negative edge on a +250 outright favorite is essentially a statement that the market is pricing him at a probability the model can't justify, not that he's a bad player. That's a structural fade, not a performance fade. The outright is avoided; Top 10 at -200 range was not on the picks card either.</p>
 
       <p>Morikawa at +1800 with a model #2 score was the clearest positive edge on the card. Approach quality on a wide-fairway Par 72 is his core profile. The value screen flagged it immediately.</p>
     </div>
@@ -454,7 +479,7 @@ footer a{color:var(--g);text-decoration:none}
 
   <!-- TAB 4: PICKS CARD -->
   <div class="tab-content" id="tab-picks">
-    <div class="section-label">04 — Picks Card</div>
+    <div class="section-label">04 â€” Picks Card</div>
     <p style="font-size:14px;color:var(--muted);margin:8px 0 16px">Original picks as published. Results sourced from pick tracker. Archive preserved for full transparency.</p>
 
     <table class="picks-table">
@@ -475,7 +500,7 @@ footer a{color:var(--g);text-decoration:none}
           <td>Top 10</td>
           <td>+1800</td>
           <td class="edge-pos">+2.10%</td>
-          <td style="font-family:'DM Mono',monospace;font-size:12px;color:var(--muted)">— see tracker</td>
+          <td style="font-family:'DM Mono',monospace;font-size:12px;color:var(--muted)">â€” see tracker</td>
         </tr>
         <tr>
           <td><span class="tier-badge tier-t10">Top 10</span></td>
@@ -483,7 +508,7 @@ footer a{color:var(--g);text-decoration:none}
           <td>Top 10</td>
           <td>+3500</td>
           <td class="edge-pos">+1.55%</td>
-          <td style="font-family:'DM Mono',monospace;font-size:12px;color:var(--muted)">— see tracker</td>
+          <td style="font-family:'DM Mono',monospace;font-size:12px;color:var(--muted)">â€” see tracker</td>
         </tr>
         <tr>
           <td><span class="tier-badge tier-t20">Top 20</span></td>
@@ -491,7 +516,7 @@ footer a{color:var(--g);text-decoration:none}
           <td>Top 20</td>
           <td>+3800</td>
           <td class="edge-pos">+1.30%</td>
-          <td style="font-family:'DM Mono',monospace;font-size:12px;color:var(--muted)">— see tracker</td>
+          <td style="font-family:'DM Mono',monospace;font-size:12px;color:var(--muted)">â€” see tracker</td>
         </tr>
         <tr>
           <td><span class="tier-badge tier-t20">Top 20</span></td>
@@ -499,7 +524,7 @@ footer a{color:var(--g);text-decoration:none}
           <td>Top 20</td>
           <td>+6000</td>
           <td class="edge-pos">+1.40%</td>
-          <td style="font-family:'DM Mono',monospace;font-size:12px;color:var(--muted)">— see tracker</td>
+          <td style="font-family:'DM Mono',monospace;font-size:12px;color:var(--muted)">â€” see tracker</td>
         </tr>
         <tr>
           <td><span class="tier-badge tier-ls">Longshot</span></td>
@@ -507,7 +532,7 @@ footer a{color:var(--g);text-decoration:none}
           <td>Outright</td>
           <td>+4500</td>
           <td class="edge-pos">+1.20%</td>
-          <td style="font-family:'DM Mono',monospace;font-size:12px;color:var(--muted)">— see tracker</td>
+          <td style="font-family:'DM Mono',monospace;font-size:12px;color:var(--muted)">â€” see tracker</td>
         </tr>
         <tr>
           <td><span class="tier-badge tier-mc">Make Cut</span></td>
@@ -515,7 +540,7 @@ footer a{color:var(--g);text-decoration:none}
           <td>Make Cut</td>
           <td>-130</td>
           <td class="edge-pos">+1.10%</td>
-          <td style="font-family:'DM Mono',monospace;font-size:12px;color:var(--muted)">— see tracker</td>
+          <td style="font-family:'DM Mono',monospace;font-size:12px;color:var(--muted)">â€” see tracker</td>
         </tr>
         <tr>
           <td><span class="tier-badge tier-fade">Fade</span></td>
@@ -541,24 +566,24 @@ footer a{color:var(--g);text-decoration:none}
     </div>
 
     <div class="prose" style="margin-top:32px">
-      <p>The Scheffler fade note is worth logging for posterity. Model #1 overall by score, but priced at roughly 28-30% implied probability on some books for a player whose model estimate was closer to 16-18%. That's not a slam on the pick — it's a documented case of the value screen doing exactly what it should. The outright is avoided when market probability materially exceeds model probability, regardless of where the player ranks in the model output.</p>
+      <p>The Scheffler fade note is worth logging for posterity. Model #1 overall by score, but priced at roughly 28-30% implied probability on some books for a player whose model estimate was closer to 16-18%. That's not a slam on the pick â€” it's a documented case of the value screen doing exactly what it should. The outright is avoided when market probability materially exceeds model probability, regardless of where the player ranks in the model output.</p>
     </div>
 
     <div class="cta-inline">
       <p><strong>Weekly picks and full model output</strong> for every PGA Tour event, published Thursday morning. Free to subscribe.</p>
-      <a href="https://strokesedge.substack.com" target="_blank" rel="noopener" class="cta-btn">Substack Newsletter →</a>
+      <a href="https://strokesedge.substack.com" target="_blank" rel="noopener" class="cta-btn">Substack Newsletter â†’</a>
     </div>
   </div>
 
 </div>
 
 <footer>
-  <p>Not financial advice. Gamble responsibly. | <a href="https://strokesedge.substack.com">Newsletter</a> · <a href="/picks.html">Pick Tracker</a> · <a href="/analysis.html">Current Analysis</a></p>
+  <p>Not financial advice. Gamble responsibly. | <a href="https://strokesedge.substack.com">Newsletter</a> Â· <a href="/picks.html">Pick Tracker</a> Â· <a href="/analysis.html">Current Analysis</a></p>
 </footer>
 
 <script>
 });
-// ── Hamburger ──
+// â”€â”€ Hamburger â”€â”€
 var hbg=document.getElementById('hamburger'),mob=document.getElementById('mobile-menu');
 if(hbg&&mob){
   hbg.addEventListener('click',function(e){

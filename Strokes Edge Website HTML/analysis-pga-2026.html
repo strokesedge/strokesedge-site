@@ -212,7 +212,32 @@ footer a:hover{color:var(--g)}
 .drop-item{display:block;padding:.7rem 1.1rem;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--txt2);text-decoration:none;border-bottom:1px solid var(--bdr2);transition:all .15s;white-space:nowrap}
 .drop-item:last-child{border-bottom:none}
 .drop-item:hover{color:var(--g);background:rgba(106,184,58,.05)}
-.drop-item .drop-sub{display:block;font-size:9px;color:var(--txt3);margin-top:2px;letter-spacing:.04em;text-transform:none}</style>
+.drop-item .drop-sub{display:block;font-size:9px;color:var(--txt3);margin-top:2px;letter-spacing:.04em;text-transform:none}
+
+/* ── MODEL SALES ── */
+.model-sales{max-width:900px;margin:0 auto 3rem;padding:0 1.5rem;text-align:center;position:relative;z-index:2}
+.model-sales-copy{font-size:15px;color:var(--txt2);margin-bottom:1.5rem}
+.model-sales-buttons{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn-model{display:inline-block;padding:13px 28px;background:var(--g);color:#fff;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.06em;text-decoration:none;border-radius:2px;border:1px solid var(--g);transition:all .2s}
+.btn-model:hover{background:#7acc44;transform:translateY(-2px)}
+.btn-model-outline{background:transparent;color:var(--g)}
+.btn-model-outline:hover{background:rgba(106,184,58,.1)}
+
+/* ── CONTENT CLIFF GATE ── */
+.cliff-section{position:relative;margin-bottom:3rem}
+.cliff-blurred{filter:blur(8px);pointer-events:none;user-select:none}
+.cliff-overlay{position:absolute;inset:0;display:none;z-index:300;align-items:center;justify-content:center;background:linear-gradient(180deg,transparent 0%,rgba(8,11,7,0.85) 50%,rgba(8,11,7,0.95) 100%);min-height:300px}
+.cliff-overlay.active{display:flex}
+.cliff-overlay.hidden{display:none}
+.cliff-box{background:transparent;text-align:center;max-width:400px;padding:0}
+.cliff-title{font-size:16px;color:var(--txt);line-height:1.6;margin-bottom:1.5rem}
+.cliff-label{font-family:'DM Mono',monospace;font-size:10px;color:var(--txt3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:1rem}
+.cliff-btn{display:block;width:100%;max-width:240px;margin:0 auto 1rem;padding:12px 24px;background:var(--g);color:#fff;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.06em;text-decoration:none;border-radius:2px;border:none;cursor:pointer;transition:all .2s}
+.cliff-btn:hover{background:#7acc44}
+.cliff-form{margin-top:1.5rem;display:none}
+.cliff-form.active{display:block}
+.cliff-form input{width:100%;max-width:240px;padding:10px 14px;background:rgba(255,255,255,.05);border:1px solid var(--bdr);border-radius:2px;color:var(--txt);font-family:'DM Sans',sans-serif;font-size:13px;margin-bottom:10px;display:block;margin-left:auto;margin-right:auto}
+.cliff-form input::placeholder{color:var(--txt3)}</style>
 </head>
 <body>
 
@@ -472,29 +497,39 @@ footer a:hover{color:var(--g)}
 
 <div class="divider"></div>
 
-<!-- ═══ GATE CTA ═══ -->
-<div class="gate">
-  <div class="gate-label">Substack — Free Subscription</div>
-  <div class="gate-title">The full card is <span>in the newsletter.</span></div>
-  <div class="gate-sub">The site shows the model weights, course data, and top 3 outputs. The complete analysis — full 30-player rankings, every L2/L3 screen result, the picks card with tiers and odds, fades with specific market notation, and bankroll structure — goes to Substack subscribers. Free.</div>
-  <div class="gate-list">
-    <div class="gate-item">Full 30-player model rankings with scores and stat breakdowns</div>
-    <div class="gate-item">L3 value screen: model probability vs. DraftKings implied probability for every priced player</div>
-    <div class="gate-item">Complete picks card: outrights, E/W, Top 10, Top 20, longshots</div>
-    <div class="gate-item">Specific fades with market notation (outright vs. finish market)</div>
-    <div class="gate-item">Bankroll allocation across all positions</div>
-  </div>
-  <div class="gate-btns">
-    <a href="https://strokesedge.substack.com" class="btn-primary" target="_blank">Get the full card — free →</a>
-    <a href="picks.html" class="btn-ghost">See the pick tracker</a>
+<!-- ═══ MODEL SALES SECTION ═══ -->
+<div class="model-sales">
+  <div class="model-sales-copy">Want the full model breakdown?<br><strong style="color:var(--txt)">$7 per tournament — Weekly Model Workbook&nbsp;&nbsp;&nbsp;$21/month — Monthly Membership</strong></div>
+  <div class="model-sales-buttons">
+    <a href="https://strokesedge.gumroad.com/l/buehoc" target="_blank" class="btn-model">Get Weekly Model — $7</a>
+    <a href="https://buymeacoffee.com/strokesedge/membership" target="_blank" class="btn-model btn-model-outline">Monthly Membership — $21/mo</a>
   </div>
 </div>
 
-<div class="cta-strip">
-  <h3>Full card. Every pick. Zero cost.</h3>
-  <p>The complete PGA Championship picks card — model rankings, value screen, tiers, fades, bankroll — is in the Substack newsletter. Free subscribers get everything before Thursday's first tee shot.</p>
-  <a href="https://strokesedge.substack.com" target="_blank">Subscribe on Substack →</a>
-</div>
+<div class="divider"></div>
+
+<!-- ═══ CONTENT CLIFF GATE ═══ -->
+<div class="cliff-section">
+  <div class="cliff-overlay" id="cliff-overlay">
+    <div class="cliff-box">
+      <div class="cliff-title">Get the full model breakdown free every week.<br>Subscribe to StrokesEdge on Substack.</div>
+      <div class="cliff-label">Full model rankings · Complete picks card · Betting strategy</div>
+      <a href="https://strokesedge.substack.com" target="_blank" class="cliff-btn">Subscribe Free →</a>
+      <form class="cliff-form" id="cliff-form">
+        <input type="email" placeholder="your@email.com" id="cliff-email" required>
+        <button type="submit" class="cliff-btn">Unlock →</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="cliff-blurred" id="cliff-content">
+    <div class="cta-strip">
+      <h3>Full card. Every pick. Zero cost.</h3>
+      <p>The complete PGA Championship picks card — model rankings, value screen, tiers, fades, bankroll — is in the Substack newsletter. Free subscribers get everything before Thursday's first tee shot.</p>
+      <a href="https://strokesedge.substack.com" target="_blank">Subscribe on Substack →</a>
+    </div>
+  </div><!-- end cliff-content -->
+</div><!-- end cliff-section -->
 
 <div class="disclaimer">
   <p>Not financial advice. Gamble responsibly.</p>
@@ -548,6 +583,34 @@ if(hbg&&mob){
     }
   });
 }
+
+// ── Content cliff gate ──
+(function(){
+  var overlay=document.getElementById('cliff-overlay');
+  var form=document.getElementById('cliff-form');
+  var GATE_KEY='se_analysis_unlocked';
+
+  function isUnlocked(){
+    try{return sessionStorage.getItem(GATE_KEY)==='1';}catch(e){return false;}
+  }
+  function unlock(){
+    try{sessionStorage.setItem(GATE_KEY,'1');}catch(e){}
+    if(overlay)overlay.classList.add('hidden');
+  }
+
+  if(!isUnlocked()&&overlay){
+    overlay.classList.add('active');
+    form.classList.add('active');
+    form.addEventListener('submit',function(e){
+      e.preventDefault();
+      var email=document.getElementById('cliff-email').value.trim();
+      if(email){unlock();}
+    });
+  } else if(overlay){
+    overlay.classList.add('hidden');
+  }
+})();
+</script>
 
 </body>
 </html>

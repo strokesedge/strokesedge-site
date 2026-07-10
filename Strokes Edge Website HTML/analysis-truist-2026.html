@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -7,23 +7,23 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon32x32.png">
 <link rel="icon" type="image/png" sizes="512x512" href="/favicon512x512.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/favicon180x180.png">
-<meta name="description" content="StrokesEdge Truist Championship 2026 analysis — Quail Hollow course profile, strokes gained regression, outright picks, top-10/top-20 plays, longshots, fades and parlays. The full quant model with course history and GIR 175-200 integration.">
-<title>Truist Championship 2026 Analysis — StrokesEdge</title>
+<meta name="description" content="StrokesEdge Truist Championship 2026 analysis â€” Quail Hollow course profile, strokes gained regression, outright picks, top-10/top-20 plays, longshots, fades and parlays. The full quant model with course history and GIR 175-200 integration.">
+<title>Truist Championship 2026 Analysis â€” StrokesEdge</title>
 <link rel="canonical" href="https://strokesedge.com/analysis-truist-2026.html">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://strokesedge.com/analysis-truist-2026.html">
-<meta property="og:title" content="Truist Championship 2026 Analysis — StrokesEdge">
+<meta property="og:title" content="Truist Championship 2026 Analysis â€” StrokesEdge">
 <meta property="og:description" content="Quail Hollow course profile, strokes gained regression, outright picks, top-10/20 plays, longshots and fades. The full quant model for the 2026 Truist Championship.">
 <meta property="og:image" content="https://strokesedge.com/og-image.png">
 <meta property="og:site_name" content="StrokesEdge">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Truist Championship 2026 Analysis — StrokesEdge">
+<meta name="twitter:title" content="Truist Championship 2026 Analysis â€” StrokesEdge">
 <meta name="twitter:description" content="Quail Hollow course profile, strokes gained regression, outright picks, top-10/20 plays, longshots and fades.">
 <meta name="twitter:image" content="https://strokesedge.com/og-image.png">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-D398EHRP6Y"></script>
-<script>// ── Nav dropdowns ──
+<script>// â”€â”€ Nav dropdowns â”€â”€
 document.querySelectorAll('.nav-drop-btn').forEach(function(btn){
   btn.addEventListener('click',function(e){
     e.stopPropagation();
@@ -42,7 +42,7 @@ document.addEventListener('click',function(e){
   }
 });
 
-// ── Hamburger ──
+// â”€â”€ Hamburger â”€â”€
 var hbg=document.getElementById('hamburger'),mob=document.getElementById('mobile-menu');
 if(hbg&&mob){
   hbg.addEventListener('click',function(e){
@@ -182,7 +182,7 @@ footer a:hover{color:var(--g)}
 .nav-drop{position:relative}
 .nav-drop-btn{font-size:12px;color:var(--txt2);background:none;border:none;cursor:pointer;letter-spacing:.06em;text-transform:uppercase;display:flex;align-items:center;gap:5px;padding:0;font-family:'DM Sans',sans-serif;transition:color .2s;white-space:nowrap;outline:none}
 .nav-drop-btn:hover,.nav-drop-btn.open{color:var(--txt)}
-.nav-drop-btn::after{content:'▾';font-size:9px;transition:transform .2s;display:inline-block}
+.nav-drop-btn::after{content:'â–¾';font-size:9px;transition:transform .2s;display:inline-block}
 .nav-drop-btn.open::after{transform:rotate(180deg)}
 .drop-menu{display:none;position:absolute;top:100%;left:0;min-width:220px;z-index:200}
 .drop-menu.open{display:block}
@@ -190,7 +190,32 @@ footer a:hover{color:var(--g)}
 .drop-item{display:block;padding:.7rem 1.1rem;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--txt2);text-decoration:none;border-bottom:1px solid var(--bdr2);transition:all .15s;white-space:nowrap}
 .drop-item:last-child{border-bottom:none}
 .drop-item:hover{color:var(--g);background:rgba(106,184,58,.05)}
-.drop-item .drop-sub{display:block;font-size:9px;color:var(--txt3);margin-top:2px;letter-spacing:.04em;text-transform:none}</style>
+.drop-item .drop-sub{display:block;font-size:9px;color:var(--txt3);margin-top:2px;letter-spacing:.04em;text-transform:none}
+
+/* ── MODEL SALES ── */
+.model-sales{max-width:900px;margin:0 auto 3rem;padding:0 1.5rem;text-align:center;position:relative;z-index:2}
+.model-sales-copy{font-size:15px;color:var(--txt2);margin-bottom:1.5rem}
+.model-sales-buttons{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn-model{display:inline-block;padding:13px 28px;background:var(--g);color:#fff;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.06em;text-decoration:none;border-radius:2px;border:1px solid var(--g);transition:all .2s}
+.btn-model:hover{background:#7acc44;transform:translateY(-2px)}
+.btn-model-outline{background:transparent;color:var(--g)}
+.btn-model-outline:hover{background:rgba(106,184,58,.1)}
+
+/* ── CONTENT CLIFF GATE ── */
+.cliff-section{position:relative;margin-bottom:3rem}
+.cliff-blurred{filter:blur(8px);pointer-events:none;user-select:none}
+.cliff-overlay{position:absolute;inset:0;display:none;z-index:300;align-items:center;justify-content:center;background:linear-gradient(180deg,transparent 0%,rgba(8,11,7,0.85) 50%,rgba(8,11,7,0.95) 100%);min-height:300px}
+.cliff-overlay.active{display:flex}
+.cliff-overlay.hidden{display:none}
+.cliff-box{background:transparent;text-align:center;max-width:400px;padding:0}
+.cliff-title{font-size:16px;color:var(--txt);line-height:1.6;margin-bottom:1.5rem}
+.cliff-label{font-family:'DM Mono',monospace;font-size:10px;color:var(--txt3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:1rem}
+.cliff-btn{display:block;width:100%;max-width:240px;margin:0 auto 1rem;padding:12px 24px;background:var(--g);color:#fff;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.06em;text-decoration:none;border-radius:2px;border:none;cursor:pointer;transition:all .2s}
+.cliff-btn:hover{background:#7acc44}
+.cliff-form{margin-top:1.5rem;display:none}
+.cliff-form.active{display:block}
+.cliff-form input{width:100%;max-width:240px;padding:10px 14px;background:rgba(255,255,255,.05);border:1px solid var(--bdr);border-radius:2px;color:var(--txt);font-family:'DM Sans',sans-serif;font-size:13px;margin-bottom:10px;display:block;margin-left:auto;margin-right:auto}
+.cliff-form input::placeholder{color:var(--txt3)}</style>
 </head>
 <body>
 
@@ -204,31 +229,31 @@ footer a:hover{color:var(--g)}
       <button class="nav-drop-btn" data-drop="courses">Courses</button>
       <div class="drop-menu" id="drop-courses"><div class="drop-menu-box">
         <a href="courses.html" class="drop-item">All Course Guides<span class="drop-sub">Full library</span></a>
-        <a href="course-shinnecock-hills.html" class="drop-item">Shinnecock Hills<span class="drop-sub">U.S. Open · Jun</span></a>
-        <a href="course-quail-hollow.html" class="drop-item">Quail Hollow<span class="drop-sub">Truist · May</span></a>
-        <a href="course-colonial.html" class="drop-item">Colonial CC<span class="drop-sub">Schwab Challenge · May</span></a>
-        <a href="course-doral.html" class="drop-item">Blue Monster / Doral<span class="drop-sub">Cadillac · Apr–May</span></a>
-        <a href="course-aronimink.html" class="drop-item">Aronimink<span class="drop-sub">PGA Championship · May</span></a>
-        <a href="course-augusta-national.html" class="drop-item">Augusta National<span class="drop-sub">The Masters · Apr</span></a>
-        <a href="course-harbour-town.html" class="drop-item">Harbour Town<span class="drop-sub">RBC Heritage · Apr</span></a>
-        <a href="course-tpc-louisiana.html" class="drop-item">TPC Louisiana<span class="drop-sub">Zurich Classic · Apr</span></a>
-        <a href="course-tpc-craig-ranch.html" class="drop-item">TPC Craig Ranch<span class="drop-sub">CJ Cup Byron Nelson · May</span></a>
+        <a href="course-shinnecock-hills.html" class="drop-item">Shinnecock Hills<span class="drop-sub">U.S. Open Â· Jun</span></a>
+        <a href="course-quail-hollow.html" class="drop-item">Quail Hollow<span class="drop-sub">Truist Â· May</span></a>
+        <a href="course-colonial.html" class="drop-item">Colonial CC<span class="drop-sub">Schwab Challenge Â· May</span></a>
+        <a href="course-doral.html" class="drop-item">Blue Monster / Doral<span class="drop-sub">Cadillac Â· Aprâ€“May</span></a>
+        <a href="course-aronimink.html" class="drop-item">Aronimink<span class="drop-sub">PGA Championship Â· May</span></a>
+        <a href="course-augusta-national.html" class="drop-item">Augusta National<span class="drop-sub">The Masters Â· Apr</span></a>
+        <a href="course-harbour-town.html" class="drop-item">Harbour Town<span class="drop-sub">RBC Heritage Â· Apr</span></a>
+        <a href="course-tpc-louisiana.html" class="drop-item">TPC Louisiana<span class="drop-sub">Zurich Classic Â· Apr</span></a>
+        <a href="course-tpc-craig-ranch.html" class="drop-item">TPC Craig Ranch<span class="drop-sub">CJ Cup Byron Nelson Â· May</span></a>
       </div></div>
     </div>
     <div class="nav-drop">
       <button class="nav-drop-btn active" data-drop="analysis">Analysis</button>
       <div class="drop-menu" id="drop-analysis"><div class="drop-menu-box">
         <a href="analysis.html" class="drop-item">Current Analysis<span class="drop-sub">Charles Schwab 2026</span></a>
-        <a href="analysis-pga-2026.html" class="drop-item">PGA Championship 2026<span class="drop-sub">Aronimink · May 14–17</span></a>
-        <a href="analysis-truist-2026.html" class="drop-item active">Truist Championship 2026<span class="drop-sub">Quail Hollow · May 7–10</span></a>
-        <a href="analysis-cadillac-2026.html" class="drop-item">Cadillac Championship 2026<span class="drop-sub">Doral · Apr 30–May 3</span></a>
-        <a href="analysis-heritage-2026.html" class="drop-item">RBC Heritage 2026<span class="drop-sub">Harbour Town · Apr 16–19</span></a>
-        <a href="analysis-masters-2026.html" class="drop-item">Masters 2026<span class="drop-sub">Augusta National · Apr 9–12</span></a>
-        <a href="analysis-valero-2026.html" class="drop-item">Valero Texas Open 2026<span class="drop-sub">TPC San Antonio · Apr 2–6</span></a>
-        <a href="analysis-cj-cup-byron-nelson-2025.html" class="drop-item">CJ Cup Byron Nelson 2025<span class="drop-sub">TPC Craig Ranch · May</span></a>
+        <a href="analysis-pga-2026.html" class="drop-item">PGA Championship 2026<span class="drop-sub">Aronimink Â· May 14â€“17</span></a>
+        <a href="analysis-truist-2026.html" class="drop-item active">Truist Championship 2026<span class="drop-sub">Quail Hollow Â· May 7â€“10</span></a>
+        <a href="analysis-cadillac-2026.html" class="drop-item">Cadillac Championship 2026<span class="drop-sub">Doral Â· Apr 30â€“May 3</span></a>
+        <a href="analysis-heritage-2026.html" class="drop-item">RBC Heritage 2026<span class="drop-sub">Harbour Town Â· Apr 16â€“19</span></a>
+        <a href="analysis-masters-2026.html" class="drop-item">Masters 2026<span class="drop-sub">Augusta National Â· Apr 9â€“12</span></a>
+        <a href="analysis-valero-2026.html" class="drop-item">Valero Texas Open 2026<span class="drop-sub">TPC San Antonio Â· Apr 2â€“6</span></a>
+        <a href="analysis-cj-cup-byron-nelson-2025.html" class="drop-item">CJ Cup Byron Nelson 2025<span class="drop-sub">TPC Craig Ranch Â· May</span></a>
       </div></div>
     </div>
-    <a href="https://strokesedge.substack.com" class="nav-cta" target="_blank">Subscribe →</a>
+    <a href="https://strokesedge.substack.com" class="nav-cta" target="_blank">Subscribe â†’</a>
   </div>
   <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
@@ -236,7 +261,7 @@ footer a:hover{color:var(--g)}
   <a href="index.html">Home</a>
   <a href="methodology.html">Methodology</a>
   <a href="picks.html">Pick Tracker</a>
-  <span class="mob-section">— Courses —</span>
+  <span class="mob-section">â€” Courses â€”</span>
   <a href="courses.html" class="mob-indent">All Course Guides</a>
   <a href="course-quail-hollow.html" class="mob-indent">Quail Hollow</a>
   <a href="course-colonial.html" class="mob-indent">Colonial CC</a>
@@ -246,7 +271,7 @@ footer a:hover{color:var(--g)}
   <a href="course-harbour-town.html" class="mob-indent">Harbour Town</a>
   <a href="course-tpc-louisiana.html" class="mob-indent">TPC Louisiana</a>
   <a href="course-tpc-craig-ranch.html" class="mob-indent">TPC Craig Ranch</a>
-  <span class="mob-section">— Analysis —</span>
+  <span class="mob-section">â€” Analysis â€”</span>
   <a href="analysis.html" class="mob-indent">Current Analysis</a>
   <a href="analysis-pga-2026.html" class="mob-indent">PGA Championship 2026</a>
   <a href="analysis-truist-2026.html" class="mob-indent">Truist Championship 2026</a>
@@ -255,29 +280,29 @@ footer a:hover{color:var(--g)}
   <a href="analysis-masters-2026.html" class="mob-indent">Masters 2026</a>
   <a href="analysis-valero-2026.html" class="mob-indent">Valero Texas Open 2026</a>
   <a href="analysis-cj-cup-byron-nelson-2025.html" class="mob-indent">CJ Cup Byron Nelson 2025</a>
-  <a href="https://strokesedge.substack.com" class="mob-cta" target="_blank">Subscribe →</a>
+  <a href="https://strokesedge.substack.com" class="mob-cta" target="_blank">Subscribe â†’</a>
 </div>
 
 <div class="wrap">
 
 <div style="background:var(--bg2);border:1px solid var(--bdr2);border-radius:4px;padding:1rem 1.5rem;margin:0 0 2rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap">
-  <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--txt3)">Current Analysis · Truist Championship 2026 · Quail Hollow Club</div>
-  <a href="picks.html" style="font-family:'DM Mono',monospace;font-size:11px;color:var(--g);text-decoration:none;letter-spacing:.06em;border:1px solid var(--bdr);padding:8px 14px;border-radius:2px;white-space:nowrap;transition:background .2s">Live Pick Tracker →</a>
+  <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--txt3)">Current Analysis Â· Truist Championship 2026 Â· Quail Hollow Club</div>
+  <a href="picks.html" style="font-family:'DM Mono',monospace;font-size:11px;color:var(--g);text-decoration:none;letter-spacing:.06em;border:1px solid var(--bdr);padding:8px 14px;border-radius:2px;white-space:nowrap;transition:background .2s">Live Pick Tracker â†’</a>
 </div>
 
 <section class="hero">
-  <div class="eyebrow">Week 15 · Signature Event · No Cut · 72 Players</div>
+  <div class="eyebrow">Week 15 Â· Signature Event Â· No Cut Â· 72 Players</div>
   <h1 class="hero-title">Truist<span>Championship.</span></h1>
-  <div class="hero-meta">Quail Hollow Club · Charlotte, NC · Par 71 · 7,583 yards · May 7–10, 2026</div>
+  <div class="hero-meta">Quail Hollow Club Â· Charlotte, NC Â· Par 71 Â· 7,583 yards Â· May 7â€“10, 2026</div>
   <p class="hero-sub">Quail Hollow is the closest thing to a major championship venue this side of Augusta. The 2025 PGA Championship played here. The course returns for the Truist Championship after a one-year detour to Philadelphia Cricket Club. Scheffler is sitting it out. Morikawa withdrew Monday with a recurring back issue. McIlroy is favored on history. The model says the favorites' price is wrong.</p>
 </section>
 
-<!-- ═══ COURSE PROFILE ═══ -->
+<!-- â•â•â• COURSE PROFILE â•â•â• -->
 <section>
-  <div class="sec-num">01 — Course Profile</div>
+  <div class="sec-num">01 â€” Course Profile</div>
   <h2>Quail Hollow <span>fingerprint.</span></h2>
   <p class="body-text">Quail Hollow Club opened in 1961, designed by George Cobb. The Tom Fazio renovations of 2013, 2016, and 2023 transformed the course from a scoreable par 72 into a brutal par 71, with the front nine substantially "beefed up" ahead of the 2017 PGA Championship. The greens were converted to G12 Champion Bermudagrass, overseeded with Poa Trivialis for the Truist. The course has hosted the Wells Fargo / Truist Championship since 2003 and the PGA Championship in 2017 and 2025.</p>
-  <p class="body-text">At 7,583 yards par 71, Quail Hollow is one of the longest courses on the PGA Tour schedule. Eleven par 4s, six of them ranging from 450 to 500 yards. Fairway widths average 28 yards, narrower than Doral. Seven holes have water in play. Sixty-one bunkers. The famous closing stretch — the Green Mile — stretches across holes 16, 17, and 18, with water hazards on each. A winning score has surpassed 12-under just three times over the last eight years.</p>
+  <p class="body-text">At 7,583 yards par 71, Quail Hollow is one of the longest courses on the PGA Tour schedule. Eleven par 4s, six of them ranging from 450 to 500 yards. Fairway widths average 28 yards, narrower than Doral. Seven holes have water in play. Sixty-one bunkers. The famous closing stretch â€” the Green Mile â€” stretches across holes 16, 17, and 18, with water hazards on each. A winning score has surpassed 12-under just three times over the last eight years.</p>
   <p class="body-text">The model classifies Quail Hollow as a <strong>tee-to-green test with a long-iron approach premium and a Bermuda putting tiebreaker.</strong> The winning profile, distilled from every winner since the 2018 redesign: top-12 SG: OTT, top-12 SG: APP, distance off the tee in the top 50 of Tour. ARG and putting are secondary unless the conditions firm up the greens late. For full venue history and shot-by-shot breakdown, see the <a href="course-quail-hollow.html">Quail Hollow Course Guide</a>.</p>
 
   <div class="stat-grid">
@@ -291,48 +316,48 @@ footer a:hover{color:var(--g)}
 
 <div class="divider"></div>
 
-<!-- ═══ KEY STATS ═══ -->
+<!-- â•â•â• KEY STATS â•â•â• -->
 <section>
-  <div class="sec-num">02 — What Actually Predicts Success Here</div>
+  <div class="sec-num">02 â€” What Actually Predicts Success Here</div>
   <h2>The stats that <span>matter.</span></h2>
-  <p class="body-text">The model uses a weighted regression of every Wells Fargo / Truist winner since the 2018 Fazio redesign, the 2017 and 2025 PGA Championships at Quail Hollow, and the 2026 PGA Tour year-to-date data through the Cadillac Championship. The weights below reflect the predictive strength of each stat at this venue specifically — not generic Tour averages.</p>
+  <p class="body-text">The model uses a weighted regression of every Wells Fargo / Truist winner since the 2018 Fazio redesign, the 2017 and 2025 PGA Championships at Quail Hollow, and the 2026 PGA Tour year-to-date data through the Cadillac Championship. The weights below reflect the predictive strength of each stat at this venue specifically â€” not generic Tour averages.</p>
 
   <div class="callout">
-    <div class="callout-label">#1 — SG: Tee to Green (32% model weight)</div>
+    <div class="callout-label">#1 â€” SG: Tee to Green (32% model weight)</div>
     <div class="callout-text">Quail Hollow is a tee-to-green decided golf course. McIlroy ranked 1st in T2G when he won in 2024. Wyndham Clark 1st in 2023. Rory 9th in 2021. Max Homa 12th in 2019. The aggregate signal is unmistakable: if you can't gain strokes from tee through green, you cannot contend here. The composite ranks ball striking (OTT and APP weighted 0.40 each, ARG at 0.20) as a single integrated signal.</div>
   </div>
 
   <div class="callout">
-    <div class="callout-label">#2 — SG: Approach (22% model weight)</div>
-    <div class="callout-text">Of the last five winners, four ranked top-12 in SG: APP for the week. Quail Hollow's narrow fairways funnel approaches from longer distances, and the greens — large but firm — are unforgiving on misses. Long irons separate. The model gates anyone with seasonal SG: APP below +0.40 from outright consideration and gives a multiplier to players ranked top-15 in SG: APP this season.</div>
+    <div class="callout-label">#2 â€” SG: Approach (22% model weight)</div>
+    <div class="callout-text">Of the last five winners, four ranked top-12 in SG: APP for the week. Quail Hollow's narrow fairways funnel approaches from longer distances, and the greens â€” large but firm â€” are unforgiving on misses. Long irons separate. The model gates anyone with seasonal SG: APP below +0.40 from outright consideration and gives a multiplier to players ranked top-15 in SG: APP this season.</div>
   </div>
 
   <div class="callout">
-    <div class="callout-label">#3 — SG: Off the Tee + Distance (18% combined)</div>
+    <div class="callout-label">#3 â€” SG: Off the Tee + Distance (18% combined)</div>
     <div class="callout-text">Each of the past two winners has finished top-10 in SG: OTT for the week. McIlroy in 2024 led the field in both SG: OTT and driving distance. The course's six 450-500 yard par 4s reward bombers who can shorten approach distances. Distance-rank top 50 is a hard gate. Below that line, the model's regression doesn't generate enough probability to clear value.</div>
   </div>
 
   <div class="callout">
-    <div class="callout-label">#4 — GIR 175-200 yards (8% specialty weight)</div>
+    <div class="callout-label">#4 â€” GIR 175-200 yards (8% specialty weight)</div>
     <div class="callout-text">A new layer added this week. Quail Hollow's average approach distance into the par 4s sits between 175 and 200 yards. The standard SG: APP figure aggregates across all distances, but at this venue the long-iron precision band is the differentiator. The model now applies an explicit weight to this distance-band GIR percentage. Cameron Young (65.1%), Si Woo Kim (63.1%), and Collin Morikawa (63.4%, before withdrawal) topped this stat in the field. Tommy Fleetwood (45.7%) is unusually weak here despite strong general form.</div>
   </div>
 
   <div class="callout">
-    <div class="callout-label">#5 — Course History (variable weight by sample size)</div>
-    <div class="callout-text">Course history at Quail Hollow is one of the most predictive on Tour, per Data Golf's published research. Players with 12+ rounds of history get a 25% blend; 8-11 rounds get 15%; 4-7 get a small bump; under 4 rounds is treated as no signal. The "vs expectation" metric — strokes gained at this venue relative to the player's baseline elsewhere — is more meaningful than raw finishing positions.</div>
+    <div class="callout-label">#5 â€” Course History (variable weight by sample size)</div>
+    <div class="callout-text">Course history at Quail Hollow is one of the most predictive on Tour, per Data Golf's published research. Players with 12+ rounds of history get a 25% blend; 8-11 rounds get 15%; 4-7 get a small bump; under 4 rounds is treated as no signal. The "vs expectation" metric â€” strokes gained at this venue relative to the player's baseline elsewhere â€” is more meaningful than raw finishing positions.</div>
   </div>
 
   <div class="callout">
     <div class="callout-label">What DOESN'T Matter Much Here</div>
-    <div class="callout-text">SG: Putting carries 10% weight, lower than at most courses. Bermuda greens reward solid lag putting more than streaky birdie conversion, which the model captures via a TifEagle-Bermuda comp filter (Bay Hill, Riviera, Innisbrook). SG: ARG is 10% — Quail Hollow has tight collection areas but scrambling rarely separates the winner from the also-rans. The Green Mile is more about tee-shot avoidance than recovery.</div>
+    <div class="callout-text">SG: Putting carries 10% weight, lower than at most courses. Bermuda greens reward solid lag putting more than streaky birdie conversion, which the model captures via a TifEagle-Bermuda comp filter (Bay Hill, Riviera, Innisbrook). SG: ARG is 10% â€” Quail Hollow has tight collection areas but scrambling rarely separates the winner from the also-rans. The Green Mile is more about tee-shot avoidance than recovery.</div>
   </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- ═══ FIELD NOTES ═══ -->
+<!-- â•â•â• FIELD NOTES â•â•â• -->
 <section>
-  <div class="sec-num">03 — Field Notes & Withdrawals</div>
+  <div class="sec-num">03 â€” Field Notes & Withdrawals</div>
   <h2>Two <span>holes</span> in the field.</h2>
   <p class="body-text"><strong>Scottie Scheffler is sitting out</strong> the Truist to prepare for the PGA Championship at Aronimink the following week. He won the 2025 PGA at Quail Hollow by five strokes. His absence reshuffles the top of the betting board and pushes more probability mass onto McIlroy, who returns to the course where he has won four times.</p>
   <p class="body-text"><strong>Collin Morikawa withdrew on Monday</strong> with the same back issue that forced him out of The Players in March. Andrew Putnam takes his place. This matters for the model: Morikawa was ranked second in our pre-withdrawal output with the highest SG: APP figure on Tour and a strong GIR 175-200 number. His removal opens up a structural slot at the top of the value tier. The recommended card no longer includes him.</p>
@@ -341,9 +366,9 @@ footer a:hover{color:var(--g)}
 
 <div class="divider"></div>
 
-<!-- ═══ WEATHER ═══ -->
+<!-- â•â•â• WEATHER â•â•â• -->
 <section>
-  <div class="sec-num">04 — Weather</div>
+  <div class="sec-num">04 â€” Weather</div>
   <h2>Mild, with a <span>Saturday wind.</span></h2>
   <p class="body-text">Charlotte forecast through the weekend: highs in the upper 70s, mostly sunny Thursday and Friday with light winds. Saturday brings 12-18 mph winds and some afternoon showers possible. Sunday clears with calmer conditions. Compared to last week's Doral wind, this is a more standard tournament week. The model does not apply a heavy wind adjustment.</p>
   <p class="body-text">The one operational note: the Bermuda overseeded with Poa Trivialis greens get faster as the week progresses. The Stimpmeter typically reaches 12-13 by Sunday. Ball-striking picks should hold up across all four rounds; the putter becomes the differentiator on the back nine Sunday.</p>
@@ -351,188 +376,188 @@ footer a:hover{color:var(--g)}
 
 <div class="divider"></div>
 
-<!-- ═══ MODEL OUTPUT ═══ -->
+<!-- â•â•â• MODEL OUTPUT â•â•â• -->
 <section>
-  <div class="sec-num">05 — Regression Output</div>
+  <div class="sec-num">05 â€” Regression Output</div>
   <h2>The model's <span>top 15.</span></h2>
   <p class="body-text">Composite scores from the StrokesEdge Quail Hollow regression. Weights: SG: T2G composite (32%), SG: APP (22%), SG: OTT (18%), SG: ARG (10%), SG: Putt (10%), GIR 175-200 (8%). Course history is blended in at 25% / 15% / 10% / 5% / 0% by rounds played. All current-season SG inputs from 2026 PGA Tour year-to-date data. Morikawa removed post-withdrawal.</p>
 
   <table>
     <thead><tr><th>Rk</th><th>Player</th><th>Score</th><th>APP</th><th>OTT</th><th>GIR175</th><th>Course Hist</th><th>DNA</th></tr></thead>
     <tbody>
-      <tr><td>1</td><td>Ludvig Åberg</td><td class="cg">+1.042</td><td class="cg">+0.485</td><td class="cg">+0.400</td><td class="cy">59.5%</td><td>thin (2 rds)</td><td class="cg">PASS</td></tr>
-      <tr><td>2</td><td>Si Woo Kim</td><td class="cg">+1.017</td><td class="cg">+0.874</td><td class="cg">+0.546</td><td class="cg">63.1%</td><td>−0.04 (15 rds)</td><td class="cg">PASS</td></tr>
-      <tr><td>3</td><td>Matt Fitzpatrick</td><td class="cg">+0.990</td><td class="cg">+0.791</td><td class="cg">+0.578</td><td class="cy">56.7%</td><td>−0.15 (14 rds)</td><td class="cg">PASS</td></tr>
-      <tr><td>4</td><td>Cameron Young</td><td class="cg">+0.844</td><td class="cg">+0.486</td><td class="cg">+0.654</td><td class="cg">65.1%</td><td>−0.52 (12 rds)</td><td class="cg">PASS</td></tr>
+      <tr><td>1</td><td>Ludvig Ã…berg</td><td class="cg">+1.042</td><td class="cg">+0.485</td><td class="cg">+0.400</td><td class="cy">59.5%</td><td>thin (2 rds)</td><td class="cg">PASS</td></tr>
+      <tr><td>2</td><td>Si Woo Kim</td><td class="cg">+1.017</td><td class="cg">+0.874</td><td class="cg">+0.546</td><td class="cg">63.1%</td><td>âˆ’0.04 (15 rds)</td><td class="cg">PASS</td></tr>
+      <tr><td>3</td><td>Matt Fitzpatrick</td><td class="cg">+0.990</td><td class="cg">+0.791</td><td class="cg">+0.578</td><td class="cy">56.7%</td><td>âˆ’0.15 (14 rds)</td><td class="cg">PASS</td></tr>
+      <tr><td>4</td><td>Cameron Young</td><td class="cg">+0.844</td><td class="cg">+0.486</td><td class="cg">+0.654</td><td class="cg">65.1%</td><td>âˆ’0.52 (12 rds)</td><td class="cg">PASS</td></tr>
       <tr><td>5</td><td>J.J. Spaun</td><td class="cg">+0.831</td><td class="cg">+0.635</td><td class="cy">+0.270</td><td class="cy">59.0%</td><td class="cg">+1.35 (12 rds)</td><td class="cg">PASS</td></tr>
       <tr><td>6</td><td>Min Woo Lee</td><td class="cg">+0.830</td><td class="cy">+0.135</td><td class="cg">+0.533</td><td class="cy">58.2%</td><td>new</td><td class="cy">APP soft</td></tr>
-      <tr><td>7</td><td>Nicolai Højgaard</td><td class="cg">+0.801</td><td class="cg">+0.501</td><td class="cy">+0.365</td><td class="cy">54.7%</td><td>+0.93 (4 rds)</td><td class="cg">PASS</td></tr>
+      <tr><td>7</td><td>Nicolai HÃ¸jgaard</td><td class="cg">+0.801</td><td class="cg">+0.501</td><td class="cy">+0.365</td><td class="cy">54.7%</td><td>+0.93 (4 rds)</td><td class="cg">PASS</td></tr>
       <tr><td>8</td><td>Xander Schauffele</td><td class="cg">+0.783</td><td class="cg">+0.623</td><td class="cg">+0.493</td><td class="cy">59.4%</td><td class="cg">+0.26 (22 rds)</td><td class="cg">PASS</td></tr>
       <tr><td>9</td><td>Alex Smalley</td><td>+0.735</td><td class="cg">+0.501</td><td class="cy">+0.111</td><td class="cy">54.7%</td><td class="cg">+1.63 (8 rds)</td><td class="cy">OTT soft</td></tr>
       <tr><td>10</td><td>Chris Gotterup</td><td>+0.706</td><td class="cy">+0.210</td><td class="cg">+0.592</td><td class="cy">51.0%</td><td>new</td><td class="cy">APP soft</td></tr>
       <tr><td>11</td><td>Adam Scott</td><td>+0.700</td><td class="cg">+1.009</td><td class="cy">+0.230</td><td class="cy">55.6%</td><td>+0.08 (45 rds)</td><td class="cg">PASS</td></tr>
       <tr><td>12</td><td>Ryo Hisatsune</td><td>+0.691</td><td class="cy">+0.400</td><td class="cy">+0.350</td><td class="cy">54.8%</td><td class="cg">+1.11 (4 rds)</td><td class="cg">PASS</td></tr>
-      <tr><td>13</td><td>Jake Knapp</td><td>+0.651</td><td class="cg">+0.448</td><td class="cy">+0.207</td><td class="cg">64.4%</td><td>−0.74 (6 rds)</td><td class="cy">OTT soft</td></tr>
-      <tr><td>14</td><td>Jacob Bridgeman</td><td>+0.637</td><td class="cy">+0.374</td><td class="cy">+0.051</td><td class="cg">62.6%</td><td>−2.11 (2 rds)</td><td class="cy">OTT fail</td></tr>
+      <tr><td>13</td><td>Jake Knapp</td><td>+0.651</td><td class="cg">+0.448</td><td class="cy">+0.207</td><td class="cg">64.4%</td><td>âˆ’0.74 (6 rds)</td><td class="cy">OTT soft</td></tr>
+      <tr><td>14</td><td>Jacob Bridgeman</td><td>+0.637</td><td class="cy">+0.374</td><td class="cy">+0.051</td><td class="cg">62.6%</td><td>âˆ’2.11 (2 rds)</td><td class="cy">OTT fail</td></tr>
       <tr><td>15</td><td>Ryan Gerard</td><td>+0.636</td><td class="cg">+0.630</td><td class="cy">+0.287</td><td class="cy">57.8%</td><td>+0.57 (6 rds)</td><td class="cg">PASS</td></tr>
     </tbody>
   </table>
-  <p class="body-text" style="font-size:13px;color:var(--txt3);margin-top:-1rem">Eight of the top 15 cleared all DNA gates (APP ≥ +0.40 + OTT top 50). Spaun and Hisatsune are the model's two clearest course-history overlays. Schauffele's two solo-second finishes at the venue add to a ranking that already passes every gate. Adam Scott's APP rank of 1st on Tour pushes him into the top 15 despite below-average putting.</p>
+  <p class="body-text" style="font-size:13px;color:var(--txt3);margin-top:-1rem">Eight of the top 15 cleared all DNA gates (APP â‰¥ +0.40 + OTT top 50). Spaun and Hisatsune are the model's two clearest course-history overlays. Schauffele's two solo-second finishes at the venue add to a ranking that already passes every gate. Adam Scott's APP rank of 1st on Tour pushes him into the top 15 despite below-average putting.</p>
 </section>
 
 <div class="divider"></div>
-<div class="picks-divider">— — — T H E &nbsp; C A R D — — —</div>
+<div class="picks-divider">â€” â€” â€” T H E &nbsp; C A R D â€” â€” â€”</div>
 
-<!-- ═══ OUTRIGHT PICKS ═══ -->
+<!-- â•â•â• OUTRIGHT PICKS â•â•â• -->
 <section>
-  <div class="sec-num">06 — Outrights & E/W</div>
+  <div class="sec-num">06 â€” Outrights & E/W</div>
   <h2>The outright <span>card.</span></h2>
   <p class="body-text">Outrights are weighted lighter than finish markets this week. The $200 bankroll allocation puts approximately 12.5% of the stake on outright tickets, with the heavy concentration on Top 10 and Top 20 plays. Reasoning: in a 72-player no-cut field with several legitimate contenders priced inside +2500, the variance on outrights is too high for the ROI target without a large bankroll. We take the longshot lottery tickets at small stakes and put the working capital on higher-floor plays.</p>
 
   <div class="pick">
-    <div class="pick-badge badge-yellow">LONGSHOT OUTRIGHT · $10</div>
+    <div class="pick-badge badge-yellow">LONGSHOT OUTRIGHT Â· $10</div>
     <div class="pick-head"><div class="pick-name">J.J. Spaun</div><div class="pick-odds">+5200</div></div>
-    <div class="pick-meta">Model Rk 5 · APP +0.635 · 12 prior rounds · CH +1.35 vs expectation · DNA PASS</div>
-    <div class="pick-body">The model's clearest course-history overlay among the value tier. Spaun has gained an extraordinary +1.35 strokes per round at Quail Hollow versus his baseline elsewhere, the third-best mark in the field across players with 12+ rounds. He cleared the DNA gates with SG: APP at +0.635 and a passing OTT rank. This isn't the model's #1 outright — the score puts him fifth — but the gap between his model probability (~9%) and his market-implied probability (1.9%) is the single largest edge on the board at this odds level.</div>
+    <div class="pick-meta">Model Rk 5 Â· APP +0.635 Â· 12 prior rounds Â· CH +1.35 vs expectation Â· DNA PASS</div>
+    <div class="pick-body">The model's clearest course-history overlay among the value tier. Spaun has gained an extraordinary +1.35 strokes per round at Quail Hollow versus his baseline elsewhere, the third-best mark in the field across players with 12+ rounds. He cleared the DNA gates with SG: APP at +0.635 and a passing OTT rank. This isn't the model's #1 outright â€” the score puts him fifth â€” but the gap between his model probability (~9%) and his market-implied probability (1.9%) is the single largest edge on the board at this odds level.</div>
     <div class="pick-tags"><span class="tag tag-g">Course history +1.35</span><span class="tag">Model #5</span><span class="tag">Edge +7.3%</span></div>
   </div>
 
   <div class="pick">
-    <div class="pick-badge badge-yellow">LONGSHOT OUTRIGHT · $10</div>
-    <div class="pick-head"><div class="pick-name">Nicolai Højgaard</div><div class="pick-odds">+6100</div></div>
-    <div class="pick-meta">Model Rk 7 · APP +0.501 · OTT +0.365 · DNA PASS · 4 prior Quail Hollow rounds (+0.93 vs exp)</div>
-    <div class="pick-body">Højgaard is the cleanest model-only longshot outside of Spaun. He passes every DNA gate, has a positive course-history signal even on a thin sample, and the market is pricing him at +6100 essentially on name recognition rather than current form. His brother Rasmus is also in the field but with weaker numbers. Nicolai posted a T13 in his last full Signature Event start, ranks top-25 in T2G this year, and arrives healthy. At $10 the ticket pays $620 if it cashes.</div>
+    <div class="pick-badge badge-yellow">LONGSHOT OUTRIGHT Â· $10</div>
+    <div class="pick-head"><div class="pick-name">Nicolai HÃ¸jgaard</div><div class="pick-odds">+6100</div></div>
+    <div class="pick-meta">Model Rk 7 Â· APP +0.501 Â· OTT +0.365 Â· DNA PASS Â· 4 prior Quail Hollow rounds (+0.93 vs exp)</div>
+    <div class="pick-body">HÃ¸jgaard is the cleanest model-only longshot outside of Spaun. He passes every DNA gate, has a positive course-history signal even on a thin sample, and the market is pricing him at +6100 essentially on name recognition rather than current form. His brother Rasmus is also in the field but with weaker numbers. Nicolai posted a T13 in his last full Signature Event start, ranks top-25 in T2G this year, and arrives healthy. At $10 the ticket pays $620 if it cashes.</div>
     <div class="pick-tags"><span class="tag tag-g">DNA pass</span><span class="tag">Edge +8.2%</span><span class="tag">Model #7</span></div>
   </div>
 
   <div class="pick">
-    <div class="pick-badge badge-yellow">E/W TICKET · $5 (1/4 paying 1-5)</div>
+    <div class="pick-badge badge-yellow">E/W TICKET Â· $5 (1/4 paying 1-5)</div>
     <div class="pick-head"><div class="pick-name">Ryo Hisatsune</div><div class="pick-odds">+13000</div></div>
-    <div class="pick-meta">Model Rk 12 · APP +0.400 (gate) · DNA PASS · CH +1.11 vs expectation (4 rounds)</div>
-    <div class="pick-body">Pure long-shot lottery ticket. Hisatsune's model rank is 12 but the value at +13000 is asymmetric. He has a very strong course-history signal in a small sample (+1.11 vs expectation in 4 rounds), passes the APP gate at the threshold, and is currently ranked 1st in the field in GIR 71.74% — a meaningful supporting signal for Quail Hollow's approach demands. Top-5 at +13000 with a 1/4 fraction returns $167 on a $5 stake. The outright is unrealistic but the place portion offers value.</div>
+    <div class="pick-meta">Model Rk 12 Â· APP +0.400 (gate) Â· DNA PASS Â· CH +1.11 vs expectation (4 rounds)</div>
+    <div class="pick-body">Pure long-shot lottery ticket. Hisatsune's model rank is 12 but the value at +13000 is asymmetric. He has a very strong course-history signal in a small sample (+1.11 vs expectation in 4 rounds), passes the APP gate at the threshold, and is currently ranked 1st in the field in GIR 71.74% â€” a meaningful supporting signal for Quail Hollow's approach demands. Top-5 at +13000 with a 1/4 fraction returns $167 on a $5 stake. The outright is unrealistic but the place portion offers value.</div>
     <div class="pick-tags"><span class="tag">Course history +1.11</span><span class="tag tag-r">Lottery only</span></div>
   </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- ═══ TOP 10 ═══ -->
+<!-- â•â•â• TOP 10 â•â•â• -->
 <section>
-  <div class="sec-num">07 — Top 10 Plays</div>
+  <div class="sec-num">07 â€” Top 10 Plays</div>
   <h2>Higher-floor <span>edge.</span></h2>
   <p class="body-text">Top 10 markets in a 72-player field translate to roughly the top 14% of finishers. For DNA-passing players ranked inside the model's top 8, this is where the model edge meets the most reasonable price. Three positions allocated.</p>
 
   <div class="pick">
-    <div class="pick-badge badge-blue">TOP 10 · $25</div>
-    <div class="pick-head"><div class="pick-name">Ludvig Åberg</div><div class="pick-odds">+170</div></div>
-    <div class="pick-meta">Model Rk 1 · APP +0.485 · OTT +0.400 · GIR175 59.5% · Four top-5s in last five starts</div>
-    <div class="pick-body">The model's #1 outright candidate by composite score. Four top-5 finishes in his last five starts including a T4 at the RBC Heritage. Ranked 24th in driving distance, 20th in SG: APP, 6th in proximity to hole on Tour. The only knock is the missed cut in his lone Quail Hollow appearance at the 2025 PGA Championship — but that came during a stretch where he was still building back from an injury, and the comp courses (Bay Hill, Riviera) all profile as good fits for his game. At +170 Top 10, the price is below his model-implied finish probability.</div>
+    <div class="pick-badge badge-blue">TOP 10 Â· $25</div>
+    <div class="pick-head"><div class="pick-name">Ludvig Ã…berg</div><div class="pick-odds">+170</div></div>
+    <div class="pick-meta">Model Rk 1 Â· APP +0.485 Â· OTT +0.400 Â· GIR175 59.5% Â· Four top-5s in last five starts</div>
+    <div class="pick-body">The model's #1 outright candidate by composite score. Four top-5 finishes in his last five starts including a T4 at the RBC Heritage. Ranked 24th in driving distance, 20th in SG: APP, 6th in proximity to hole on Tour. The only knock is the missed cut in his lone Quail Hollow appearance at the 2025 PGA Championship â€” but that came during a stretch where he was still building back from an injury, and the comp courses (Bay Hill, Riviera) all profile as good fits for his game. At +170 Top 10, the price is below his model-implied finish probability.</div>
     <div class="pick-tags"><span class="tag tag-g">Model #1</span><span class="tag tag-b">Top 10 core</span><span class="tag">DNA pass</span></div>
   </div>
 
   <div class="pick">
-    <div class="pick-badge badge-blue">TOP 10 · $20</div>
+    <div class="pick-badge badge-blue">TOP 10 Â· $20</div>
     <div class="pick-head"><div class="pick-name">Si Woo Kim</div><div class="pick-odds">+220</div></div>
-    <div class="pick-meta">Model Rk 2 · APP +0.874 (Tour rank 4) · GIR175 63.1% · T8 at 2025 PGA Championship here</div>
+    <div class="pick-meta">Model Rk 2 Â· APP +0.874 (Tour rank 4) Â· GIR175 63.1% Â· T8 at 2025 PGA Championship here</div>
     <div class="pick-body">Solo third at Augusta two weeks ago, T4 at the Cadillac Championship last week, and a T8 finish at the 2025 PGA Championship at this exact venue. His SG: APP is fourth on Tour. The model places him second overall. The only risk: putter inconsistency on Bermuda. The market priced him at +2350 outright; the implied Top 10 probability there is ~32%, which is roughly the model's read. At +220 in the standalone Top 10 market, the price is in the strike zone.</div>
     <div class="pick-tags"><span class="tag">Form: 3rd, T4</span><span class="tag">T8 here 2025</span><span class="tag tag-b">Top 10</span></div>
   </div>
 
   <div class="pick">
-    <div class="pick-badge badge-blue">TOP 10 · $20</div>
+    <div class="pick-badge badge-blue">TOP 10 Â· $20</div>
     <div class="pick-head"><div class="pick-name">Matt Fitzpatrick</div><div class="pick-odds">+175</div></div>
-    <div class="pick-meta">Model Rk 3 · APP +0.791 · OTT +0.578 · 2nd in field SG: T2G this year · T8 at 2025 PGA</div>
-    <div class="pick-body">Fitzpatrick won the RBC Heritage in a playoff over Scheffler three weeks ago. He ranks second in this field in true SG: T2G for the season. His APP is +0.791 and OTT is +0.578 — both in the top tier. He finished T8 at the 2025 PGA Championship at Quail Hollow, gaining strokes off the tee, on approach, and on the greens. The course-history sample is moderate (14 rounds, slightly below expectation) but the current-form numbers are too strong to fade at +175 for Top 10.</div>
+    <div class="pick-meta">Model Rk 3 Â· APP +0.791 Â· OTT +0.578 Â· 2nd in field SG: T2G this year Â· T8 at 2025 PGA</div>
+    <div class="pick-body">Fitzpatrick won the RBC Heritage in a playoff over Scheffler three weeks ago. He ranks second in this field in true SG: T2G for the season. His APP is +0.791 and OTT is +0.578 â€” both in the top tier. He finished T8 at the 2025 PGA Championship at Quail Hollow, gaining strokes off the tee, on approach, and on the greens. The course-history sample is moderate (14 rounds, slightly below expectation) but the current-form numbers are too strong to fade at +175 for Top 10.</div>
     <div class="pick-tags"><span class="tag">Heritage winner</span><span class="tag">2nd SG: T2G</span><span class="tag tag-b">Top 10 core</span></div>
   </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- ═══ TOP 20 ═══ -->
+<!-- â•â•â• TOP 20 â•â•â• -->
 <section>
-  <div class="sec-num">08 — Top 20 Plays</div>
+  <div class="sec-num">08 â€” Top 20 Plays</div>
   <h2>The base <span>floor.</span></h2>
   <p class="body-text">Top 20 in a 72-player no-cut event is the top 28% of finishers. This is where the bankroll lives. Four positions allocated, $80 of the $200 stake. These are the picks that need to land for the week to be profitable in any non-lottery scenario.</p>
 
   <div class="pick">
-    <div class="pick-badge badge-blue">TOP 20 · $25 · POTD QUALIFIER</div>
+    <div class="pick-badge badge-blue">TOP 20 Â· $25 Â· POTD QUALIFIER</div>
     <div class="pick-head"><div class="pick-name">J.J. Spaun</div><div class="pick-odds">+125</div></div>
-    <div class="pick-meta">Stacked behind outright · Course history +1.35 · DNA pass · Model #5</div>
-    <div class="pick-body">The Top 20 stack on the outright pick. If Spaun contends, both tickets cash. If he posts a strong-but-not-winning week — which the course-history signal makes the more likely outcome — the Top 20 still pays. At +125 the price is in the range where the POTD rules apply (-200 to +200) and the model-implied probability comfortably exceeds the implied break-even. Highest-conviction Top 20 on the card.</div>
+    <div class="pick-meta">Stacked behind outright Â· Course history +1.35 Â· DNA pass Â· Model #5</div>
+    <div class="pick-body">The Top 20 stack on the outright pick. If Spaun contends, both tickets cash. If he posts a strong-but-not-winning week â€” which the course-history signal makes the more likely outcome â€” the Top 20 still pays. At +125 the price is in the range where the POTD rules apply (-200 to +200) and the model-implied probability comfortably exceeds the implied break-even. Highest-conviction Top 20 on the card.</div>
     <div class="pick-tags"><span class="tag tag-g">POTD</span><span class="tag">Stack on outright</span><span class="tag">Course +1.35</span></div>
   </div>
 
   <div class="pick">
-    <div class="pick-badge badge-blue">TOP 20 · $20</div>
+    <div class="pick-badge badge-blue">TOP 20 Â· $20</div>
     <div class="pick-head"><div class="pick-name">Min Woo Lee</div><div class="pick-odds">+115</div></div>
-    <div class="pick-meta">Model Rk 6 · OTT +0.533 · GIR175 58.2% · No prior Quail Hollow rounds</div>
-    <div class="pick-body">Min Woo profiles as a strong fit for the venue — long off the tee, improving on approach, and trending after a T4 at RBC Heritage. The lack of course history is the soft data point that prevents an outright pick, but Top 20 markets historically reward this kind of profile. At +115 the implied probability is below his model-implied finish rate. The Adelaide native has gained strokes T2G in 8 of his last 10 starts.</div>
+    <div class="pick-meta">Model Rk 6 Â· OTT +0.533 Â· GIR175 58.2% Â· No prior Quail Hollow rounds</div>
+    <div class="pick-body">Min Woo profiles as a strong fit for the venue â€” long off the tee, improving on approach, and trending after a T4 at RBC Heritage. The lack of course history is the soft data point that prevents an outright pick, but Top 20 markets historically reward this kind of profile. At +115 the implied probability is below his model-implied finish rate. The Adelaide native has gained strokes T2G in 8 of his last 10 starts.</div>
     <div class="pick-tags"><span class="tag">DNA: APP soft</span><span class="tag tag-b">Top 20</span></div>
   </div>
 
   <div class="pick">
-    <div class="pick-badge badge-blue">TOP 20 · $15</div>
+    <div class="pick-badge badge-blue">TOP 20 Â· $15</div>
     <div class="pick-head"><div class="pick-name">Adam Scott</div><div class="pick-odds">+150</div></div>
-    <div class="pick-meta">Model Rk 11 · APP rank 1 on Tour (+1.009) · 45 rounds at Quail Hollow (+0.08 vs exp) · DNA PASS</div>
+    <div class="pick-meta">Model Rk 11 Â· APP rank 1 on Tour (+1.009) Â· 45 rounds at Quail Hollow (+0.08 vs exp) Â· DNA PASS</div>
     <div class="pick-body">Scott leads the PGA Tour in SG: Approach at +1.009 strokes per round. He has 45 rounds of course history at Quail Hollow with finishes including a T4, T5, T19, and T29 over the last five appearances. His putter has been the only thing holding him back this year (50th in field, struggled at Doral last week), but Quail Hollow is one of the few venues where he putts above his baseline (gained strokes on greens in each of his last four appearances). T4 at last week's Cadillac Championship. The full T2G profile is on the board for a Top 20 finish.</div>
     <div class="pick-tags"><span class="tag tag-g">APP Rk 1 Tour</span><span class="tag">45 rds course</span><span class="tag tag-b">Top 20</span></div>
   </div>
 
   <div class="pick">
-    <div class="pick-badge badge-blue">TOP 20 · $10</div>
+    <div class="pick-badge badge-blue">TOP 20 Â· $10</div>
     <div class="pick-head"><div class="pick-name">Alex Smalley</div><div class="pick-odds">+275</div></div>
-    <div class="pick-meta">Model Rk 9 · APP +0.501 · CH +1.63 vs expectation (8 rounds) · Six top-25s in last 8 starts</div>
-    <div class="pick-body">The cleanest course-history play in the field on a moderate sample. Smalley has gained +1.63 strokes per round at Quail Hollow versus his baseline elsewhere — that is a top-3 mark across the entire field. Six top-25 finishes in his last eight events including a T7 last week at Doral. The OTT number is the soft data point at +0.111, which is why this is a Top 20 ticket and not an outright. At +275 the price hasn't caught up to the form. Lineups.com flagged him independently as a sleeper.</div>
+    <div class="pick-meta">Model Rk 9 Â· APP +0.501 Â· CH +1.63 vs expectation (8 rounds) Â· Six top-25s in last 8 starts</div>
+    <div class="pick-body">The cleanest course-history play in the field on a moderate sample. Smalley has gained +1.63 strokes per round at Quail Hollow versus his baseline elsewhere â€” that is a top-3 mark across the entire field. Six top-25 finishes in his last eight events including a T7 last week at Doral. The OTT number is the soft data point at +0.111, which is why this is a Top 20 ticket and not an outright. At +275 the price hasn't caught up to the form. Lineups.com flagged him independently as a sleeper.</div>
     <div class="pick-tags"><span class="tag tag-g">Course +1.63</span><span class="tag">T7 Doral</span><span class="tag tag-b">Top 20</span></div>
   </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- ═══ PARLAY ═══ -->
+<!-- â•â•â• PARLAY â•â•â• -->
 <section>
-  <div class="sec-num">09 — Parlay</div>
+  <div class="sec-num">09 â€” Parlay</div>
   <h2>Single 3-leg <span>stack.</span></h2>
-  <p class="body-text">One small-stake correlated parlay. The three legs are all Top 20 finishes by DNA-passing players in the model's top 5. Highly correlated — if Quail Hollow plays the way the model expects, all three should land. If the course plays unusually (extreme weather, unexpected setup change), all three may miss. The correlation argues for a parlay over three independent tickets.</p>
+  <p class="body-text">One small-stake correlated parlay. The three legs are all Top 20 finishes by DNA-passing players in the model's top 5. Highly correlated â€” if Quail Hollow plays the way the model expects, all three should land. If the course plays unusually (extreme weather, unexpected setup change), all three may miss. The correlation argues for a parlay over three independent tickets.</p>
 
   <div class="pick">
-    <div class="pick-badge badge-blue">3-LEG PARLAY · $10</div>
+    <div class="pick-badge badge-blue">3-LEG PARLAY Â· $10</div>
     <div class="pick-head"><div class="pick-name">Top 20 stack</div><div class="pick-odds">~ +185</div></div>
-    <div class="pick-meta">Si Woo Kim T20 (-115) · Ludvig Åberg T20 (-130) · Matt Fitzpatrick T20 (-115)</div>
-    <div class="pick-body">All three players sit in the model's top 3 by composite score, all three pass DNA, and all three have legitimate course familiarity (Si Woo and Fitzpatrick from the 2025 PGA Championship, Åberg from his profile fit). The parlay returns approximately $28 on the $10 stake at the +185 combined price. If you believe the model's read on this venue, this is the structurally cheapest way to express that view across three correlated legs.</div>
+    <div class="pick-meta">Si Woo Kim T20 (-115) Â· Ludvig Ã…berg T20 (-130) Â· Matt Fitzpatrick T20 (-115)</div>
+    <div class="pick-body">All three players sit in the model's top 3 by composite score, all three pass DNA, and all three have legitimate course familiarity (Si Woo and Fitzpatrick from the 2025 PGA Championship, Ã…berg from his profile fit). The parlay returns approximately $28 on the $10 stake at the +185 combined price. If you believe the model's read on this venue, this is the structurally cheapest way to express that view across three correlated legs.</div>
     <div class="pick-tags"><span class="tag tag-b">3-leg T20</span><span class="tag">All DNA pass</span></div>
   </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- ═══ FADES ═══ -->
+<!-- â•â•â• FADES â•â•â• -->
 <section>
-  <div class="sec-num">10 — Fades</div>
+  <div class="sec-num">10 â€” Fades</div>
   <h2>What the model <span>won't pay for.</span></h2>
   <p class="body-text">Fades are conviction calls about market mispricing. None of these are bets to "lay against" the player at any price. The fade is at the outright winner market only. Top 10 / Top 20 / make-the-cut markets remain valid for these players where their general form and course history support a finish.</p>
 
   <div class="pick">
-    <div class="pick-badge badge-red">FADE · OUTRIGHT MARKET ONLY</div>
+    <div class="pick-badge badge-red">FADE Â· OUTRIGHT MARKET ONLY</div>
     <div class="pick-head"><div class="pick-name">Rory McIlroy</div><div class="pick-odds">+620 (DraftKings)</div></div>
-    <div class="pick-meta">Outright fade · Top 20 still valid · Course history +0.72 vs exp (54 rounds)</div>
-    <div class="pick-body">McIlroy's price at +620 implies a 13.9% win probability. The model puts him at roughly 2-3%. The gap is the largest mispricing on the board at the favorite's level. The reason: McIlroy's 2025-26 SG numbers in T2G and APP do not rank him top-5 in this field. He gets to +620 entirely on the four-time-winner course history narrative. The course history is real — Data Golf has him at +0.72 strokes per round versus expectation across 54 rounds at Quail Hollow — but the model already accounts for that signal and still doesn't generate enough probability to justify the price. Coming off the Masters win and a long break, the form risk is real. Top 20 markets remain a perfectly valid play; the outright is where the market is paying for narrative.</div>
+    <div class="pick-meta">Outright fade Â· Top 20 still valid Â· Course history +0.72 vs exp (54 rounds)</div>
+    <div class="pick-body">McIlroy's price at +620 implies a 13.9% win probability. The model puts him at roughly 2-3%. The gap is the largest mispricing on the board at the favorite's level. The reason: McIlroy's 2025-26 SG numbers in T2G and APP do not rank him top-5 in this field. He gets to +620 entirely on the four-time-winner course history narrative. The course history is real â€” Data Golf has him at +0.72 strokes per round versus expectation across 54 rounds at Quail Hollow â€” but the model already accounts for that signal and still doesn't generate enough probability to justify the price. Coming off the Masters win and a long break, the form risk is real. Top 20 markets remain a perfectly valid play; the outright is where the market is paying for narrative.</div>
     <div class="pick-tags"><span class="tag tag-r">Fade outright only</span><span class="tag">Top 20 still valid</span></div>
   </div>
 
   <div class="pick">
-    <div class="pick-badge badge-red">FADE · OUTRIGHT MARKET ONLY</div>
+    <div class="pick-badge badge-red">FADE Â· OUTRIGHT MARKET ONLY</div>
     <div class="pick-head"><div class="pick-name">Tommy Fleetwood</div><div class="pick-odds">+2450</div></div>
-    <div class="pick-meta">Outright fade · Top 20 marginal · GIR 175-200 only 45.7% (worst in field)</div>
-    <div class="pick-body">The newer specialty layer in the model — GIR 175-200 — flags Fleetwood hard. He is hitting only 45.7% of greens from this distance band, the second-worst figure of any priced player in the field. Quail Hollow's average approach distance for the par 4s sits squarely in this range. Tommy's general form and reputation push the market price down to +2450, but the single most predictive new layer this week says he's a poor fit for the specific demands of the venue. Top 10 / Top 20 markets are marginal but defensible at the right price; the outright is where the model has the conviction.</div>
+    <div class="pick-meta">Outright fade Â· Top 20 marginal Â· GIR 175-200 only 45.7% (worst in field)</div>
+    <div class="pick-body">The newer specialty layer in the model â€” GIR 175-200 â€” flags Fleetwood hard. He is hitting only 45.7% of greens from this distance band, the second-worst figure of any priced player in the field. Quail Hollow's average approach distance for the par 4s sits squarely in this range. Tommy's general form and reputation push the market price down to +2450, but the single most predictive new layer this week says he's a poor fit for the specific demands of the venue. Top 10 / Top 20 markets are marginal but defensible at the right price; the outright is where the model has the conviction.</div>
     <div class="pick-tags"><span class="tag tag-r">Fade outright</span><span class="tag">GIR175 weak</span></div>
   </div>
 
   <div class="pick">
-    <div class="pick-badge badge-red">FADE · OUTRIGHT MARKET ONLY</div>
+    <div class="pick-badge badge-red">FADE Â· OUTRIGHT MARKET ONLY</div>
     <div class="pick-head"><div class="pick-name">Sam Burns</div><div class="pick-odds">+3100</div></div>
-    <div class="pick-meta">Model Rk 30+ · Outside DNA gates · No edge across any model layer</div>
+    <div class="pick-meta">Model Rk 30+ Â· Outside DNA gates Â· No edge across any model layer</div>
     <div class="pick-body">Burns is priced as if he has a similar shot to Adam Scott (+4000), Min Woo Lee (+4500), or Spaun (+5200). The model puts him outside the top 25 by composite score, and he doesn't pass the DNA filter. The market is paying for name recognition and putting reputation. Quail Hollow doesn't reward streaky putting at the expense of ball striking. Outright fade only.</div>
     <div class="pick-tags"><span class="tag tag-r">Fade outright</span></div>
   </div>
@@ -540,29 +565,29 @@ footer a:hover{color:var(--g)}
 
 <div class="divider"></div>
 
-<!-- ═══ BANKROLL ═══ -->
+<!-- â•â•â• BANKROLL â•â•â• -->
 <section>
-  <div class="sec-num">11 — Bankroll Allocation</div>
+  <div class="sec-num">11 â€” Bankroll Allocation</div>
   <h2>$200 stake. Target <span>$300+.</span></h2>
-  <p class="body-text">The $200 bankroll is allocated across 11 positions. The structure prioritizes finish markets (Top 10 and Top 20) over outrights for higher hit rate. Two outright lottery tickets and one E/W give ceiling exposure. The breakeven hits are stacked: if Åberg posts a Top 10 and Spaun lands a Top 20, the card is profitable. If two of the three Top 10 plays cash, the week clears 50% ROI.</p>
+  <p class="body-text">The $200 bankroll is allocated across 11 positions. The structure prioritizes finish markets (Top 10 and Top 20) over outrights for higher hit rate. Two outright lottery tickets and one E/W give ceiling exposure. The breakeven hits are stacked: if Ã…berg posts a Top 10 and Spaun lands a Top 20, the card is profitable. If two of the three Top 10 plays cash, the week clears 50% ROI.</p>
 
   <div class="bankroll">
     <div class="bankroll-hdr">
       <div class="bankroll-title">$200 BANKROLL</div>
-      <div class="bankroll-sub">11 positions · target return $300+</div>
+      <div class="bankroll-sub">11 positions Â· target return $300+</div>
     </div>
 
     <div class="bankroll-row"><div class="b-type">Outright</div><div class="b-name">J.J. Spaun</div><div class="b-odds">+5200</div><div class="b-stake">$10</div></div>
-    <div class="bankroll-row"><div class="b-type">Outright</div><div class="b-name">Nicolai Højgaard</div><div class="b-odds">+6100</div><div class="b-stake">$10</div></div>
+    <div class="bankroll-row"><div class="b-type">Outright</div><div class="b-name">Nicolai HÃ¸jgaard</div><div class="b-odds">+6100</div><div class="b-stake">$10</div></div>
     <div class="bankroll-row"><div class="b-type">E/W 1/4</div><div class="b-name">Ryo Hisatsune (1-5)</div><div class="b-odds">+13000</div><div class="b-stake">$5</div></div>
-    <div class="bankroll-row"><div class="b-type">Top 10</div><div class="b-name">Ludvig Åberg</div><div class="b-odds">+170</div><div class="b-stake">$25</div></div>
+    <div class="bankroll-row"><div class="b-type">Top 10</div><div class="b-name">Ludvig Ã…berg</div><div class="b-odds">+170</div><div class="b-stake">$25</div></div>
     <div class="bankroll-row"><div class="b-type">Top 10</div><div class="b-name">Si Woo Kim</div><div class="b-odds">+220</div><div class="b-stake">$20</div></div>
     <div class="bankroll-row"><div class="b-type">Top 10</div><div class="b-name">Matt Fitzpatrick</div><div class="b-odds">+175</div><div class="b-stake">$20</div></div>
     <div class="bankroll-row"><div class="b-type">Top 20</div><div class="b-name">J.J. Spaun</div><div class="b-odds">+125</div><div class="b-stake">$25</div></div>
     <div class="bankroll-row"><div class="b-type">Top 20</div><div class="b-name">Min Woo Lee</div><div class="b-odds">+115</div><div class="b-stake">$20</div></div>
     <div class="bankroll-row"><div class="b-type">Top 20</div><div class="b-name">Adam Scott</div><div class="b-odds">+150</div><div class="b-stake">$15</div></div>
     <div class="bankroll-row"><div class="b-type">Top 20</div><div class="b-name">Alex Smalley</div><div class="b-odds">+275</div><div class="b-stake">$10</div></div>
-    <div class="bankroll-row"><div class="b-type">Parlay</div><div class="b-name">Kim/Åberg/Fitzpatrick T20</div><div class="b-odds">+185</div><div class="b-stake">$10</div></div>
+    <div class="bankroll-row"><div class="b-type">Parlay</div><div class="b-name">Kim/Ã…berg/Fitzpatrick T20</div><div class="b-odds">+185</div><div class="b-stake">$10</div></div>
 
     <div class="bankroll-total">
       <div>TOTAL ALLOCATED</div>
@@ -580,7 +605,7 @@ footer a:hover{color:var(--g)}
 <div class="cta-strip">
   <h3>SUBSCRIBE FOR THE WEEKLY EDGE</h3>
   <p>Every analysis, every pick, every result delivered to your inbox before tee time. Free.</p>
-  <a href="https://strokesedge.substack.com" target="_blank">Subscribe on Substack →</a>
+  <a href="https://strokesedge.substack.com" target="_blank">Subscribe on Substack â†’</a>
 </div>
 
 <div class="disclaimer">
@@ -591,13 +616,13 @@ footer a:hover{color:var(--g)}
 </div>
 
 <footer>
-  <a href="index.html">Home</a> · <a href="methodology.html">Methodology</a> · <a href="picks.html">Pick Tracker</a> · <a href="courses.html">Courses</a> · <a href="analysis.html">Analysis</a> · <a href="https://strokesedge.substack.com" target="_blank">Substack</a>
-  <p style="margin-top:1rem">© 2026 StrokesEdge · Independent quantitative golf betting analytics</p>
+  <a href="index.html">Home</a> Â· <a href="methodology.html">Methodology</a> Â· <a href="picks.html">Pick Tracker</a> Â· <a href="courses.html">Courses</a> Â· <a href="analysis.html">Analysis</a> Â· <a href="https://strokesedge.substack.com" target="_blank">Substack</a>
+  <p style="margin-top:1rem">Â© 2026 StrokesEdge Â· Independent quantitative golf betting analytics</p>
 </footer>
 
 <script>
 // Nav dropdowns
-// ── Nav dropdowns ──
+// â”€â”€ Nav dropdowns â”€â”€
 document.querySelectorAll('.nav-drop-btn').forEach(function(btn){
   btn.addEventListener('click',function(e){
     e.stopPropagation();
@@ -616,7 +641,7 @@ document.addEventListener('click',function(e){
   }
 });
 
-// ── Hamburger ──
+// â”€â”€ Hamburger â”€â”€
 var hbg=document.getElementById('hamburger'),mob=document.getElementById('mobile-menu');
 if(hbg&&mob){
   hbg.addEventListener('click',function(e){
@@ -634,3 +659,4 @@ if(hbg&&mob){
 
 </body>
 </html>
+
