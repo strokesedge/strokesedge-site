@@ -206,6 +206,7 @@ footer{position:relative;z-index:2;border-top:1px solid var(--bdr2);padding:2rem
       <button class="nav-drop-btn" data-drop="courses">Courses</button>
       <div class="drop-menu" id="drop-courses"><div class="drop-menu-box">
         <a href="courses.html" class="drop-item">All Course Guides<span class="drop-sub">Full library</span></a>
+        <a href="course-renaissance-club.html" class="drop-item">Renaissance Club<span class="drop-sub">Scottish Open · Jul</span></a>
         <a href="course-shinnecock-hills.html" class="drop-item">Shinnecock Hills<span class="drop-sub">U.S. Open · Jun</span></a>
         <a href="course-quail-hollow.html" class="drop-item">Quail Hollow<span class="drop-sub">Truist · May</span></a>
         <a href="course-colonial.html" class="drop-item">Colonial CC<span class="drop-sub">Schwab Challenge · May</span></a>
@@ -220,7 +221,8 @@ footer{position:relative;z-index:2;border-top:1px solid var(--bdr2);padding:2rem
     <div class="nav-drop">
       <button class="nav-drop-btn" data-drop="analysis">Analysis</button>
       <div class="drop-menu" id="drop-analysis"><div class="drop-menu-box">
-        <a href="analysis.html" class="drop-item">Current Analysis<span class="drop-sub">Charles Schwab 2026</span></a>
+        <a href="analysis.html" class="drop-item">Current Analysis<span class="drop-sub">Scottish Open 2026</span></a>
+        <a href="analysis-scottish-open-2026.html" class="drop-item">Scottish Open 2026<span class="drop-sub">Renaissance Club · Jul 10–13</span></a>
         <a href="analysis-pga-2026.html" class="drop-item">PGA Championship 2026<span class="drop-sub">Aronimink · May 14–17</span></a>
         <a href="analysis-truist-2026.html" class="drop-item">Truist Championship 2026<span class="drop-sub">Quail Hollow · May 7–10</span></a>
         <a href="analysis-cadillac-2026.html" class="drop-item">Cadillac Championship 2026<span class="drop-sub">Doral · Apr 30–May 3</span></a>
@@ -240,6 +242,7 @@ footer{position:relative;z-index:2;border-top:1px solid var(--bdr2);padding:2rem
   <a href="picks.html" class="active">Pick Tracker</a>
   <span class="mob-section">— Courses —</span>
   <a href="courses.html" class="mob-indent">All Course Guides</a>
+  <a href="course-renaissance-club.html" class="mob-indent">Renaissance Club</a>
   <a href="course-shinnecock-hills.html" class="mob-indent">Shinnecock Hills</a>
   <a href="course-quail-hollow.html" class="mob-indent">Quail Hollow</a>
   <a href="course-colonial.html" class="mob-indent">Colonial CC</a>
@@ -251,6 +254,7 @@ footer{position:relative;z-index:2;border-top:1px solid var(--bdr2);padding:2rem
   <a href="course-tpc-craig-ranch.html" class="mob-indent">TPC Craig Ranch</a>
   <span class="mob-section">— Analysis —</span>
   <a href="analysis.html" class="mob-indent">Current Analysis</a>
+  <a href="analysis-scottish-open-2026.html" class="mob-indent">Scottish Open 2026</a>
   <a href="analysis-pga-2026.html" class="mob-indent">PGA Championship 2026</a>
   <a href="analysis-truist-2026.html" class="mob-indent">Truist Championship 2026</a>
   <a href="analysis-cadillac-2026.html" class="mob-indent">Cadillac Championship 2026</a>
@@ -261,18 +265,12 @@ footer{position:relative;z-index:2;border-top:1px solid var(--bdr2);padding:2rem
   <a href="https://strokesedge.substack.com" class="mob-cta" target="_blank">Subscribe →</a>
 </div>
 
-<!-- ═══ EMAIL GATE ═══ -->
+<!-- ═══ SUBSTACK GATE ═══ -->
 <div class="gate-overlay" id="gate-overlay">
   <div class="gate-box">
-    <div class="gate-eyebrow">Free access</div>
-    <h2 class="gate-title">Unlock the<br><span>Pick Tracker</span></h2>
-    <p class="gate-sub">The StrokesEdge pick tracker is free. Subscribe to the newsletter to access it.</p>
-    <a href="https://strokesedge.substack.com?utm_source=picks-gate" target="_blank" class="gate-btn" id="gate-subscribe-btn">Subscribe on Substack →</a>
-    <p class="gate-note">Already subscribed? Enter your email to verify.</p>
-    <form id="gate-form" style="margin-top:1.5rem;">
-      <input type="email" id="gate-email" placeholder="your@email.com" style="width:100%;padding:12px 16px;background:rgba(255,255,255,0.05);border:1px solid var(--bdr);border-radius:3px;color:var(--txt);font-family:'DM Sans',sans-serif;font-size:14px;margin-bottom:10px;" required>
-      <button type="submit" class="gate-btn" style="margin-bottom:0;">Unlock →</button>
-    </form>
+    <h2 class="gate-title" style="margin-bottom:1rem">Get free weekly<br><span>picks.</span></h2>
+    <p class="gate-sub" style="margin-bottom:2rem">Subscribe to StrokesEdge on Substack.</p>
+    <a href="https://strokesedge.substack.com?utm_source=picks-gate" target="_blank" class="gate-btn" id="gate-subscribe-btn">Subscribe Free on Substack</a>
   </div>
 </div>
 
@@ -563,32 +561,10 @@ if(window.matchMedia('(hover:hover)').matches){
   });
 }
 
-// ── Email gate ──
+// ── Substack gate (hard gate - no bypass) ──
 (function(){
-  var overlay=document.getElementById('gate-overlay');
   var body=document.body;
-  var GATE_KEY='se_tracker_unlocked';
-
-  function isUnlocked(){
-    try{return sessionStorage.getItem(GATE_KEY)==='1';}catch(e){return false;}
-  }
-  function unlock(){
-    try{sessionStorage.setItem(GATE_KEY,'1');}catch(e){}
-    overlay.classList.add('hidden');
-    body.classList.remove('gate-active');
-  }
-
-  if(!isUnlocked()){
-    body.classList.add('gate-active');
-    // Email form submission
-    document.getElementById('gate-form').addEventListener('submit',function(e){
-      e.preventDefault();
-      var email=document.getElementById('gate-email').value.trim();
-      if(email){unlock();}
-    });
-  } else {
-    overlay.classList.add('hidden');
-  }
+  body.classList.add('gate-active');
 })();
 
 loadSheet();

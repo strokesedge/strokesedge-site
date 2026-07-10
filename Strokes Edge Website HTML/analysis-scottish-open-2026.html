@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Scottish Open 2026 analysis. StrokesEdge model output, course breakdown, player screening, and picks for Renaissance Club.">
+<title>Scottish Open 2026 Analysis — StrokesEdge</title>
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://strokesedge.com/analysis-scottish-open-2026.html">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@300;400;500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--g:#6ab83a;--r:#e05252;--y:#f0b429;--g-glow:rgba(106,184,58,0.12);--bg:#080b07;--bg2:#0c0f0b;--sur:#141a12;--bdr:rgba(106,184,58,0.18);--bdr2:rgba(255,255,255,0.07);--txt:#e6ede0;--txt2:#8a9e80;--txt3:#3a4a34;}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--txt);font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.6;overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1rem 1.5rem;border-bottom:1px solid var(--bdr2);background:rgba(8,11,7,.95);backdrop-filter:blur(16px)}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.08em;color:var(--txt);text-decoration:none;flex-shrink:0}
+.nav-logo span{color:var(--g)}
+.nav-links{display:flex;align-items:center;gap:1.5rem}
+.nav-link{font-size:12px;color:var(--txt2);text-decoration:none;letter-spacing:.06em;text-transform:uppercase;transition:color .2s}
+.nav-link:hover,.nav-link.active{color:var(--txt)}
+.nav-cta{font-family:'DM Mono',monospace;font-size:12px;padding:8px 18px;border:1px solid var(--g);border-radius:2px;color:var(--g);text-decoration:none;letter-spacing:.06em;transition:all .2s}
+.nav-cta:hover{background:var(--g-glow)}
+.hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:none;border:none;cursor:pointer;padding:6px;z-index:201}
+.hamburger span{display:block;width:22px;height:2px;background:var(--txt2);border-radius:2px;transition:all .25s}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);background:var(--g)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);background:var(--g)}
+.mobile-menu{display:none;position:fixed;top:57px;left:0;right:0;background:rgba(8,11,7,.98);backdrop-filter:blur(16px);border-bottom:1px solid var(--bdr2);z-index:99;flex-direction:column;padding:1rem 1.5rem 1.5rem;max-height:80vh;overflow-y:auto}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'DM Mono',monospace;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--txt2);text-decoration:none;padding:.7rem 0;border-bottom:1px solid var(--bdr2);transition:color .2s;display:block}
+.mobile-menu a:hover{color:var(--txt)}
+.mobile-menu a.active{color:var(--g)}
+.mob-section{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--txt3);padding:.6rem 0 .2rem}
+.mob-indent{padding-left:.75rem!important;font-size:11px!important}
+.mob-cta{border-bottom:none!important;margin-top:.5rem;padding:.85rem 1rem!important;border:1px solid var(--g)!important;border-radius:2px;color:var(--g)!important;text-align:center}
+@media(max-width:860px){.nav-link,.nav-drop,.nav-cta{display:none}.hamburger{display:flex}}
+.breadcrumb{position:relative;z-index:2;max-width:900px;margin:0 auto;padding:6.5rem 1.5rem 0;font-family:'DM Mono',monospace;font-size:11px;color:var(--txt3)}
+.breadcrumb a{color:var(--txt3);text-decoration:none}
+.breadcrumb a:hover{color:var(--g)}
+.breadcrumb span{margin:0 8px}
+.wrap{max-width:900px;margin:0 auto;padding:0 1.5rem;position:relative;z-index:2}
+.hero{padding:7rem 0 3rem}
+.hero-tag{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;color:var(--g);text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:8px}
+.hero-tag::before{content:'';width:20px;height:1px;background:var(--g)}
+h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,7vw,80px);line-height:.92;letter-spacing:.03em;margin-bottom:1rem}
+h1 span{color:var(--g)}
+.hero-context{font-family:'DM Mono',monospace;font-size:11px;color:var(--txt3);text-transform:uppercase;margin-bottom:2rem;letter-spacing:.06em}
+.section{margin-bottom:4rem}
+.sec-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(30px,5vw,48px);line-height:1;margin-bottom:1.5rem}
+.sec-title span{color:var(--g)}
+.body-text{font-size:15px;color:var(--txt2);line-height:1.85;margin-bottom:1.5rem}
+.body-text strong{color:var(--txt)}
+footer{border-top:1px solid var(--bdr2);padding:2rem 1.5rem;display:flex;justify-content:space-between;align-items:center;max-width:900px;margin:0 auto;position:relative;z-index:2}
+.foot-logo{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.08em;color:var(--txt2)}
+.foot-logo span{color:var(--g)}
+.foot-note{font-family:'DM Mono',monospace;font-size:11px;color:var(--txt3)}
+
+/* Model sales section */
+.model-sales{position:relative;z-index:2;max-width:900px;margin:0 auto 3rem;padding:0 1.5rem;text-align:center}
+.model-sales-copy{font-size:15px;color:var(--txt2);margin-bottom:1.5rem}
+.model-sales-buttons{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn-model{display:inline-block;padding:12px 28px;background:var(--g);color:#fff;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.06em;text-decoration:none;border-radius:2px;border:1px solid var(--g);transition:all .2s;cursor:pointer}
+.btn-model:hover{background:#7acc44;transform:translateY(-2px)}
+.btn-model-outline{background:transparent;color:var(--g);border:1px solid var(--g)}
+.btn-model-outline:hover{background:rgba(106,184,58,.1)}
+
+/* Content cliff gate */
+.cliff-section{position:relative;margin-bottom:3rem}
+.cliff-blurred{filter:blur(8px);pointer-events:none;user-select:none}
+.cliff-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 0%,rgba(8,11,7,0.9) 100%);display:flex;align-items:center;justify-content:center;z-index:50;border-radius:4px}
+.cliff-overlay.hidden{display:none}
+.cliff-form{display:none;position:relative;z-index:51;text-align:center;color:var(--txt)}
+.cliff-form.active{display:block}
+.cliff-form-text{font-size:16px;margin-bottom:1.5rem;line-height:1.6}
+.cliff-form-label{font-family:'DM Mono',monospace;font-size:11px;color:var(--txt3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:1rem;display:block}
+.cliff-form input{width:100%;max-width:320px;padding:10px 14px;background:rgba(255,255,255,.06);border:1px solid var(--bdr);border-radius:2px;color:var(--txt);font-family:'DM Sans',sans-serif;font-size:13px;margin-bottom:1rem;box-sizing:border-box}
+.cliff-btn{display:inline-block;padding:12px 32px;background:var(--g);color:#fff;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;border-radius:2px;border:none;cursor:pointer;transition:all .2s}
+.cliff-btn:hover{background:#7acc44;transform:translateY(-2px)}
+.gate-active .cliff-blurred{filter:blur(6px);pointer-events:none}
+
+.nav-drop{position:relative}
+.nav-drop-btn{font-size:12px;color:var(--txt2);background:none;border:none;cursor:pointer;letter-spacing:.06em;text-transform:uppercase;display:flex;align-items:center;gap:5px;padding:0;font-family:'DM Sans',sans-serif;transition:color .2s;outline:none}
+.nav-drop-btn:hover,.nav-drop-btn.open{color:var(--txt)}
+.nav-drop-btn::after{content:'▾';font-size:9px;transition:transform .2s}
+.nav-drop-btn.open::after{transform:rotate(180deg)}
+.drop-menu{display:none;position:absolute;top:100%;left:0;min-width:200px;z-index:200}
+.drop-menu.open{display:block}
+.drop-menu-box{background:rgba(8,11,7,.98);border:1px solid var(--bdr);border-radius:4px;overflow:hidden;backdrop-filter:blur(16px)}
+.drop-item{display:block;padding:.7rem 1rem;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--txt2);text-decoration:none;border-bottom:1px solid var(--bdr2);transition:all .15s}
+.drop-item:last-child{border-bottom:none}
+.drop-item:hover{color:var(--g);background:rgba(106,184,58,.05)}
+.drop-item .drop-sub{display:block;font-size:8px;color:var(--txt3);margin-top:1px}
+
+@media(max-width:640px){
+  h1{font-size:clamp(40px,12vw,60px)}
+  footer{flex-direction:column;gap:1rem;text-align:center}
+}
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D398EHRP6Y"></script>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">Strokes<span>Edge</span></a>
+  <div class="nav-links">
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="methodology.html" class="nav-link">Methodology</a>
+    <a href="picks.html" class="nav-link">Pick Tracker</a>
+    <div class="nav-drop">
+      <button class="nav-drop-btn" data-drop="courses">Courses</button>
+      <div class="drop-menu" id="drop-courses"><div class="drop-menu-box">
+        <a href="courses.html" class="drop-item">All Course Guides</a>
+        <a href="course-renaissance-club.html" class="drop-item">Renaissance Club<span class="drop-sub">Scottish Open</span></a>
+        <a href="course-shinnecock-hills.html" class="drop-item">Shinnecock Hills<span class="drop-sub">U.S. Open</span></a>
+        <a href="course-quail-hollow.html" class="drop-item">Quail Hollow<span class="drop-sub">Truist</span></a>
+      </div></div>
+    </div>
+    <div class="nav-drop">
+      <button class="nav-drop-btn" data-drop="analysis">Analysis</button>
+      <div class="drop-menu" id="drop-analysis"><div class="drop-menu-box">
+        <a href="analysis.html" class="drop-item">Current Analysis<span class="drop-sub">Scottish Open</span></a>
+        <a href="analysis-scottish-open-2026.html" class="drop-item active">Scottish Open 2026<span class="drop-sub">Renaissance Club</span></a>
+        <a href="analysis-pga-2026.html" class="drop-item">PGA Championship 2026<span class="drop-sub">Aronimink</span></a>
+      </div></div>
+    </div>
+    <a href="https://strokesedge.substack.com" class="nav-cta" target="_blank">Subscribe →</a>
+  </div>
+  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html">Home</a>
+  <a href="methodology.html">Methodology</a>
+  <a href="picks.html">Pick Tracker</a>
+  <span class="mob-section">— Courses —</span>
+  <a href="courses.html" class="mob-indent">All Course Guides</a>
+  <a href="course-renaissance-club.html" class="mob-indent">Renaissance Club</a>
+  <span class="mob-section">— Analysis —</span>
+  <a href="analysis.html" class="mob-indent">Current Analysis</a>
+  <a href="analysis-scottish-open-2026.html" class="mob-indent">Scottish Open 2026</a>
+  <a href="https://strokesedge.substack.com" class="mob-cta" target="_blank">Subscribe →</a>
+</div>
+
+<div class="breadcrumb">
+  <a href="index.html">StrokesEdge</a><span>›</span>
+  <a href="analysis.html">Analysis</a><span>›</span>
+  Scottish Open 2026
+</div>
+
+<div class="wrap">
+<div class="hero">
+  <div class="hero-tag">Tournament Preview</div>
+  <h1>Scottish<span>Open 2026.</span></h1>
+  <div class="hero-context">Renaissance Club · North Berwick, Scotland · July 10–13</div>
+</div>
+
+<section class="section">
+  <h2 class="sec-title">Course overview and <span>what matters.</span></h2>
+  <p class="body-text">Renaissance Club is a classic Scottish links course hosting the Scottish Open, one of the PGA Tour's marquee events. At 7,266 yards playing as a par 71, this course demands precision in wind-driven conditions with minimal rough and firm, fast-running greens.</p>
+  <p class="body-text"><strong>What stats matter this week:</strong> SG: Approach into firm greens, scrambling efficiency, and previous links or European Tour success. Driving distance ranks significantly below its importance at American parkland venues. Wind management and composure under variable conditions separate winners from the field.</p>
+  <p class="body-text"><strong>Top 3 course fits:</strong> Players with strong SG: Approach numbers, demonstrated links experience, and prior European Tour or Ryder Cup credentials. European players carry a structural advantage at this venue.</p>
+  <p class="body-text"><strong>Featured pick:</strong> Subscribe to StrokesEdge on Substack for the full model breakdown, complete picks card with tiers, and all betting angles for this week.</p>
+</section>
+
+<div class="model-sales">
+  <div class="model-sales-copy">Want the full model breakdown?<br><strong>$7 per tournament — Weekly Model Workbook&nbsp;&nbsp;&nbsp;$21/month — Monthly Membership</strong></div>
+  <div class="model-sales-buttons">
+    <a href="https://strokesedge.gumroad.com/l/buehoc" target="_blank" class="btn-model">Get Weekly Model — $7</a>
+    <a href="https://buymeacoffee.com/strokesedge/membership" target="_blank" class="btn-model btn-model-outline">Monthly Membership — $21/mo</a>
+  </div>
+</div>
+
+<div class="cliff-section">
+  <div class="cliff-blurred">
+    <section class="section">
+      <h2 class="sec-title">Full model <span>rankings.</span></h2>
+      <p class="body-text">Complete player screening results from the StrokesEdge model, ranked by value score. All players scored on course-fit profile, recent form, and market pricing.</p>
+    </section>
+
+    <section class="section">
+      <h2 class="sec-title">Complete picks <span>card.</span></h2>
+      <p class="body-text">Full picks card with all tiers: Outright Winner, Top 10 Finish, Top 20 Finish, Longshot, and Fade positions. Complete wager sizing and rationale for each pick tier.</p>
+    </section>
+
+    <section class="section">
+      <h2 class="sec-title">Fade notes.</h2>
+      <p class="body-text">Market overvaluations and player-specific reasons to fade. What the market is missing at this venue and which popular plays do not fit the Renaissance Club profile.</p>
+    </section>
+
+    <section class="section">
+      <h2 class="sec-title">Bankroll notes.</h2>
+      <p class="body-text">Bankroll allocation strategy, odds management, and sizing rationale. Risk/reward on tournament favorites versus value plays given the field composition and forecast conditions.</p>
+    </section>
+
+    <section class="section">
+      <h2 class="sec-title">Full breakdown on Substack →</h2>
+      <p class="body-text"><a href="https://strokesedge.substack.com" style="color:var(--g);text-decoration:none">Read the complete Scottish Open analysis</a> with full reasoning, historical context, and detailed player-by-player breakdowns.</p>
+    </section>
+  </div>
+
+  <div class="cliff-overlay">
+    <div class="cliff-form">
+      <div class="cliff-form-text">Get the full model breakdown free every week.<br>Subscribe to StrokesEdge on Substack.</div>
+      <form id="cliff-gate-form" style="display:block;">
+        <input type="email" id="cliff-email" placeholder="your@email.com" required style="display:none;">
+        <a href="https://strokesedge.substack.com?utm_source=analysis-gate" target="_blank" class="cliff-btn">Subscribe Free →</a>
+      </form>
+    </div>
+  </div>
+</div>
+
+<section class="section">
+  <p style="text-align:center;font-family:'DM Mono',monospace;font-size:12px;color:var(--txt3);margin-top:4rem">
+    Full model rankings · Complete picks card · Betting strategy
+  </p>
+</section>
+</div>
+
+<footer>
+  <div class="foot-logo">Strokes<span>Edge</span></div>
+  <div class="foot-note">Not financial advice. Gamble responsibly.</div>
+</footer>
+
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-D398EHRP6Y');
+
+// Nav dropdowns
+document.querySelectorAll('.nav-drop-btn').forEach(function(btn){
+  btn.addEventListener('click',function(e){
+    e.preventDefault();
+    e.stopPropagation();
+    var id='drop-'+btn.getAttribute('data-drop');
+    var menu=document.getElementById(id);
+    var isOpen=menu.classList.contains('open');
+    document.querySelectorAll('.drop-menu').forEach(function(m){m.classList.remove('open');});
+    document.querySelectorAll('.nav-drop-btn').forEach(function(b){b.classList.remove('open');});
+    if(!isOpen){menu.classList.add('open');btn.classList.add('open');}
+  });
+});
+document.addEventListener('click',function(e){
+  if(!e.target.closest('.nav-drop')){
+    document.querySelectorAll('.drop-menu').forEach(function(m){m.classList.remove('open');});
+    document.querySelectorAll('.nav-drop-btn').forEach(function(b){b.classList.remove('open');});
+  }
+});
+
+// Hamburger
+var hbg=document.getElementById('hamburger'),mob=document.getElementById('mobile-menu');
+if(hbg&&mob){
+  hbg.addEventListener('click',function(e){
+    e.stopPropagation();
+    hbg.classList.toggle('open');
+    mob.classList.toggle('open');
+  });
+  document.addEventListener('click',function(e){
+    if(!hbg.contains(e.target)&&!mob.contains(e.target)){
+      hbg.classList.remove('open');
+      mob.classList.remove('open');
+    }
+  });
+}
+
+// Content cliff gate
+(function(){
+  var overlay=document.querySelector('.cliff-overlay');
+  var body=document.body;
+  var GATE_KEY='se_analysis_scottish_unlocked';
+
+  function isUnlocked(){
+    try{return sessionStorage.getItem(GATE_KEY)==='1';}catch(e){return false;}
+  }
+  function unlock(){
+    try{sessionStorage.setItem(GATE_KEY,'1');}catch(e){}
+    overlay.classList.add('hidden');
+    body.classList.remove('gate-active');
+  }
+
+  if(!isUnlocked()){
+    body.classList.add('gate-active');
+  } else {
+    overlay.classList.add('hidden');
+  }
+})();
+</script>
+</body>
+</html>
