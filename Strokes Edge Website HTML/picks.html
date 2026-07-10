@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Full pick tracker for StrokesEdge â€” every bet, every result, P&L, and ROI. Real money. Real picks. Full transparency. 2026 PGA Tour season.">
-<title>Pick Tracker â€” StrokesEdge</title>
+<meta name="description" content="Full pick tracker for StrokesEdge — every bet, every result, P&L, and ROI. Real money. Real picks. Full transparency. 2026 PGA Tour season.">
+<title>Pick Tracker — StrokesEdge</title>
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://strokesedge.com/picks.html">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@300;400;500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
@@ -21,7 +21,7 @@ html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--txt);font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.6;overflow-x:hidden}
 body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(106,184,58,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(106,184,58,0.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;z-index:0}
 
-/* â”€â”€ CUSTOM CURSOR â€” desktop only â”€â”€ */
+/* â”€â”€ CUSTOM CURSOR — desktop only â”€â”€ */
 @media(hover:hover){
   body,*{cursor:none}
   .cursor{position:fixed;width:8px;height:8px;background:var(--g);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%)}
@@ -80,7 +80,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .filter-btn .btn-date{font-size:9px;color:var(--txt3);letter-spacing:0.06em;text-transform:uppercase}
 .filter-btn.active .btn-date{color:rgba(106,184,58,0.6)}
 
-/* â”€â”€ TABLE â€” desktop â”€â”€ */
+/* â”€â”€ TABLE — desktop â”€â”€ */
 .table-wrap{position:relative;z-index:2;max-width:1200px;margin:0 auto 4rem;padding:0 1.5rem}
 table{width:100%;border-collapse:collapse;font-size:13px}
 thead tr{border-bottom:1px solid var(--bdr)}
@@ -107,7 +107,7 @@ td.wager{font-family:'DM Mono',monospace;font-size:12px}
 .spinner{display:inline-block;width:18px;height:18px;border:2px solid var(--txt3);border-top-color:var(--g);border-radius:50%;animation:spin 0.7s linear infinite;vertical-align:middle;margin-right:10px}
 @keyframes spin{to{transform:rotate(360deg)}}
 
-/* â”€â”€ MOBILE CARDS â€” replaces table on small screens â”€â”€ */
+/* â”€â”€ MOBILE CARDS — replaces table on small screens â”€â”€ */
 .card-list{display:none;flex-direction:column;gap:0.6rem}
 .pick-card{background:var(--sur);border:1px solid var(--bdr2);border-radius:4px;padding:1rem 1.1rem;transition:border-color 0.2s}
 .pick-card.result-won{border-left:2px solid var(--g)}
@@ -228,11 +228,11 @@ footer{position:relative;z-index:2;border-top:1px solid var(--bdr2);padding:2rem
 
 <div class="summary-wrap">
   <div class="summary">
-    <div class="sum-cell"><div class="sum-n green" id="s-profit">â€”</div><div class="sum-l">Net<br>Profit</div></div>
-    <div class="sum-cell"><div class="sum-n green" id="s-won">â€”</div><div class="sum-l">Winning<br>Bets</div></div>
-    <div class="sum-cell"><div class="sum-n red" id="s-lost">â€”</div><div class="sum-l">Losing<br>Bets</div></div>
-    <div class="sum-cell"><div class="sum-n yellow" id="s-open">â€”</div><div class="sum-l">Open<br>Bets</div></div>
-    <div class="sum-cell"><div class="sum-n green" id="s-roi">â€”</div><div class="sum-l">ROI<br>(Settled)</div></div>
+    <div class="sum-cell"><div class="sum-n green" id="s-profit">—</div><div class="sum-l">Net<br>Profit</div></div>
+    <div class="sum-cell"><div class="sum-n green" id="s-won">—</div><div class="sum-l">Winning<br>Bets</div></div>
+    <div class="sum-cell"><div class="sum-n red" id="s-lost">—</div><div class="sum-l">Losing<br>Bets</div></div>
+    <div class="sum-cell"><div class="sum-n yellow" id="s-open">—</div><div class="sum-l">Open<br>Bets</div></div>
+    <div class="sum-cell"><div class="sum-n green" id="s-roi">—</div><div class="sum-l">ROI<br>(Settled)</div></div>
   </div>
 </div>
 
@@ -408,7 +408,7 @@ function calcStats(data){
 function setEl(id,text,cls){var el=document.getElementById(id);el.textContent=text;if(cls)el.className='sum-n '+cls;}
 
 function plHtml(p){
-  if(p.result==='open')return'<span class="p-open">â€”</span>';
+  if(p.result==='open')return'<span class="p-open">—</span>';
   var diff=p.payout-p.wager;
   return diff>=0
     ?'<span class="p-pos">+$'+diff.toFixed(2)+'</span>'
@@ -420,7 +420,7 @@ function refresh(){
   var s=calcStats(data);
 
   document.getElementById('hero-context').textContent=
-    currentFilter==='all'?'All Tournaments Â· 2026 Season':currentFilter;
+    currentFilter==='all'?'All Tournaments · 2026 Season':currentFilter;
   setEl('s-won',s.won,'green');
   setEl('s-lost',s.lost,'red');
   setEl('s-open',s.open,'yellow');
