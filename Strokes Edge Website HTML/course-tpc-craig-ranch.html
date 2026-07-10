@@ -536,21 +536,10 @@ footer{border-top:1px solid var(--bdr2);padding:2rem 1.5rem;display:flex;justify
 </footer>
 
 <script>
-(function(){
-  const ham=document.getElementById('ham');
-  const mob=document.getElementById('mob');
-  const drops=document.querySelectorAll('[data-drop]');
-  ham.addEventListener('click',function(e){e.stopPropagation();ham.classList.toggle('open');mob.classList.toggle('open');});
-  drops.forEach(function(btn){
-    btn.addEventListener('click',function(e){
-      e.preventDefault();e.stopPropagation();
-      const id='drop-'+btn.getAttribute('data-drop');
-      const menu=document.getElementById(id);
-      const isOpen=menu.classList.contains('open');
-      document.querySelectorAll('.drop-menu').forEach(function(m){m.classList.remove('open');});
-      // â”€â”€ Nav dropdowns â”€â”€
+// â”€â”€ Nav dropdowns â”€â”€
 document.querySelectorAll('.nav-drop-btn').forEach(function(btn){
   btn.addEventListener('click',function(e){
+    e.preventDefault();
     e.stopPropagation();
     var id='drop-'+btn.getAttribute('data-drop');
     var menu=document.getElementById(id);
@@ -567,4 +556,21 @@ document.addEventListener('click',function(e){
   }
 });
 
-
+// â”€â”€ Hamburger â”€â”€
+var hbg=document.getElementById('hamburger'),mob=document.getElementById('mobile-menu');
+if(hbg&&mob){
+  hbg.addEventListener('click',function(e){
+    e.stopPropagation();
+    hbg.classList.toggle('open');
+    mob.classList.toggle('open');
+  });
+  document.addEventListener('click',function(e){
+    if(!hbg.contains(e.target)&&!mob.contains(e.target)){
+      hbg.classList.remove('open');
+      mob.classList.remove('open');
+    }
+  });
+}
+</script>
+</body>
+</html>

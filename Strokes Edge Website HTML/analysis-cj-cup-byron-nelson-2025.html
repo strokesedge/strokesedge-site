@@ -583,22 +583,6 @@ footer a{color:var(--g);text-decoration:none}
 <footer>
   <p>Not financial advice. Gamble responsibly. | <a href="https://strokesedge.substack.com">Newsletter</a> Â· <a href="/picks.html">Pick Tracker</a> Â· <a href="/analysis.html">Current Analysis</a></p>
 </footer>
-
-<script>
-});
-// â”€â”€ Hamburger â”€â”€
-var hbg=document.getElementById('hamburger'),mob=document.getElementById('mobile-menu');
-if(hbg&&mob){
-  hbg.addEventListener('click',function(e){
-    e.stopPropagation();
-    hbg.classList.toggle('open');
-    mob.classList.toggle('open');
-  });
-  document.addEventListener('click',function(e){
-    if(!hbg.contains(e.target)&&!mob.contains(e.target)){
-      hbg.classList.remove('open');
-      mob.classList.remove('open');
-    }
-  });
-}
+</body>
+</html>
 
