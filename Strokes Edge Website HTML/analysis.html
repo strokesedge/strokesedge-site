@@ -33,7 +33,7 @@ html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.6;min-height:100vh}
 
 /* NAV */
-nav{position:sticky;top:0;z-index:100;background:rgba(8,11,7,.97);border-bottom:1px solid var(--border);backdrop-filter:blur(8px)}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(8,11,7,.97);border-bottom:1px solid var(--border);backdrop-filter:blur(8px)}
 .nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between}
 .nav-logo{font-family:'Bebas Neue',cursive;font-size:22px;color:var(--g);text-decoration:none;letter-spacing:.04em}
 .nav-links{display:flex;align-items:center;gap:4px}
@@ -205,8 +205,8 @@ footer a{color:var(--g);text-decoration:none}
 .drop-item:hover{color:var(--g);background:rgba(106,184,58,.05)}
 .drop-item.active{color:var(--g)}
 .drop-item .drop-sub{display:block;font-size:9px;color:var(--txt3);margin-top:2px;letter-spacing:.04em;text-transform:none}
-.nav-cta-link{font-family:'DM Mono',monospace;font-size:12px;padding:6px 14px;border:1px solid var(--g);border-radius:4px;color:var(--g);text-decoration:none;letter-spacing:.04em;transition:all .2s;white-space:nowrap;margin-left:4px}
-.nav-cta-link:hover{background:rgba(106,184,58,.12)}
+.nav-cta{font-family:'DM Mono',monospace;font-size:12px;padding:6px 14px;border:1px solid var(--g);border-radius:4px;color:var(--g);text-decoration:none;letter-spacing:.04em;transition:all .2s;white-space:nowrap;margin-left:4px}
+.nav-cta:hover{background:rgba(106,184,58,.12)}
 
 @media(max-width:860px){
   .nav-links{display:none}
@@ -230,11 +230,11 @@ footer a{color:var(--g);text-decoration:none}
 
 <nav>
   <div class="nav-inner">
-    <a href="index.html" class="nav-logo">Strokes<span style="color:#fff">Edge</span></a>
+    <a href="index.html" class="nav-logo">Strokes<span>Edge</span></a>
     <div class="nav-links" id="nav-links">
-      <a href="index.html" class="nav-link" style="color:var(--muted);text-decoration:none;font-size:13px;font-family:'DM Mono',monospace;padding:6px 10px;border-radius:4px;transition:color .2s,background .2s">Home</a>
-      <a href="methodology.html" style="color:var(--muted);text-decoration:none;font-size:13px;font-family:'DM Mono',monospace;padding:6px 10px;border-radius:4px">Methodology</a>
-      <a href="picks.html" style="color:var(--muted);text-decoration:none;font-size:13px;font-family:'DM Mono',monospace;padding:6px 10px;border-radius:4px">Pick Tracker</a>
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="methodology.html" class="nav-link">Methodology</a>
+      <a href="picks.html" class="nav-link">Pick Tracker</a>
       <div class="nav-drop">
         <button class="nav-drop-btn" data-drop="courses">Courses</button>
         <div class="drop-menu" id="drop-courses"><div class="drop-menu-box">
@@ -252,7 +252,9 @@ footer a{color:var(--g);text-decoration:none}
       <div class="nav-drop">
         <button class="nav-drop-btn active" data-drop="analysis">Analysis</button>
         <div class="drop-menu" id="drop-analysis"><div class="drop-menu-box">
-          <a href="analysis.html" class="drop-item active">Current Analysis<span class="drop-sub">U.S. Open 2026</span></a>
+          <a href="analysis-scottish-open-2026.html" class="drop-item">Scottish Open 2026<span class="drop-sub">Renaissance Club Â· Jul 10â€“13</span></a>
+          <a href="analysis-us-open-2026.html" class="drop-item">U.S. Open 2026<span class="drop-sub">Shinnecock Hills Â· Jun</span></a>
+          <a href="analysis-scottish-open-2026.html" class="drop-item active">Current Analysis<span class="drop-sub">Scottish Open 2026</span></a>
           <a href="analysis-schwab-2026.html" class="drop-item">Schwab Challenge 2026<span class="drop-sub">Colonial CC Â· Jun 2026</span></a>
           <a href="analysis-pga-2026.html" class="drop-item">PGA Championship 2026<span class="drop-sub">Aronimink Â· May 14â€“17</span></a>
           <a href="analysis-truist-2026.html" class="drop-item">Truist Championship 2026<span class="drop-sub">Quail Hollow Â· May 7â€“10</span></a>
@@ -262,9 +264,9 @@ footer a{color:var(--g);text-decoration:none}
           <a href="analysis-valero-2026.html" class="drop-item">Valero Texas Open 2026<span class="drop-sub">TPC San Antonio Â· Apr 2â€“6</span></a>
         </div></div>
       </div>
-      <a href="https://strokesedge.substack.com" class="nav-cta-link" target="_blank">Subscribe â†’</a>
+      <a href="https://strokesedge.substack.com" class="nav-cta" target="_blank">Subscribe â†’</a>
     </div>
-    <button class="hamburger" id="hamburger" aria-label="Menu" style="display:none"><span></span><span></span><span></span></button>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
 </nav>
 
@@ -650,12 +652,6 @@ document.querySelectorAll('.tab-btn').forEach(function(btn){
   });
 });
 
-// Show hamburger on mobile
-(function(){
-  var hbtn=document.getElementById('hamburger');
-  function check(){if(window.innerWidth<=860){hbtn.style.display='flex';}else{hbtn.style.display='none';}}
-  check();window.addEventListener('resize',check);
-})();
 </script>
 </body>
 </html>
