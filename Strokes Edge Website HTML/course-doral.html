@@ -175,22 +175,6 @@ document.addEventListener('click',function(e){
   }
 });
 
-// ── Hamburger ──
-var hbg=document.getElementById('hamburger'),mob=document.getElementById('mobile-menu');
-if(hbg&&mob){
-  hbg.addEventListener('click',function(e){
-    e.stopPropagation();
-    hbg.classList.toggle('open');
-    mob.classList.toggle('open');
-  });
-  document.addEventListener('click',function(e){
-    if(!hbg.contains(e.target)&&!mob.contains(e.target)){
-      hbg.classList.remove('open');
-      mob.classList.remove('open');
-    }
-  });
-}
-
 window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-D398EHRP6Y');</script>
 </head>
 <body>
