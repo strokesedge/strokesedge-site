@@ -271,9 +271,14 @@ footer{position:relative;z-index:2;border-top:1px solid var(--bdr2);padding:2rem
 <!-- â•â•â• SUBSTACK GATE â•â•â• -->
 <div class="gate-overlay" id="gate-overlay">
   <div class="gate-box">
-    <h2 class="gate-title" style="margin-bottom:1rem">Get free weekly<br><span>picks.</span></h2>
-    <p class="gate-sub" style="margin-bottom:2rem">Subscribe to StrokesEdge on Substack.</p>
-    <a href="https://strokesedge.substack.com?utm_source=picks-gate" target="_blank" class="gate-btn" id="gate-subscribe-btn">Subscribe Free on Substack</a>
+    <h2 class="gate-title" style="margin-bottom:0.5rem">WEEKLY<br><span>ACCESS CODE</span></h2>
+    <p class="gate-sub" style="margin-bottom:1.5rem">Find the code in this week's<br>StrokesEdge Substack newsletter.</p>
+    <form id="gate-form" style="display:block">
+      <input type="text" id="gate-code" placeholder="Enter code" maxlength="20" style="width:100%;padding:12px 14px;background:rgba(255,255,255,.06);border:1px solid var(--bdr);border-radius:2px;color:var(--txt);font-family:'DM Sans',sans-serif;font-size:13px;margin-bottom:1rem;box-sizing:border-box;text-align:center;text-transform:uppercase;" autocomplete="off">
+      <button type="submit" class="gate-btn" id="gate-unlock-btn">Unlock</button>
+      <div id="gate-error" style="color:var(--r);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.06em;margin-top:1rem;display:none;text-align:center;text-transform:uppercase;">Invalid code. Check this week's newsletter.</div>
+    </form>
+    <p class="gate-note" style="margin-top:1.5rem">Not subscribed yet? <a href="https://strokesedge.substack.com" target="_blank" style="color:var(--g);text-decoration:none">Get free weekly picks.</a></p>
   </div>
 </div>
 
@@ -564,10 +569,55 @@ if(window.matchMedia('(hover:hover)').matches){
   });
 }
 
-// â”€â”€ Substack gate (hard gate - no bypass) â”€â”€
+// ── Weekly access code gate ──
 (function(){
+  var validCodes=['SCOTTISH26'];
+  var GATE_KEY='se_picks_unlocked';
+  var overlay=document.getElementById('gate-overlay');
   var body=document.body;
-  body.classList.add('gate-active');
+  var form=document.getElementById('gate-form');
+  var codeInput=document.getElementById('gate-code');
+  var errorMsg=document.getElementById('gate-error');
+
+  function isUnlocked(){
+    try{return sessionStorage.getItem(GATE_KEY)==='1';}catch(e){return false;}
+  }
+
+  function unlock(){
+    try{sessionStorage.setItem(GATE_KEY,'1');}catch(e){}
+    overlay.style.display='none';
+    body.classList.remove('gate-active');
+  }
+
+  function checkCode(code){
+    var normalized=code.toUpperCase().trim();
+    for(var i=0;i<validCodes.length;i++){
+      if(validCodes[i]===normalized){
+        unlock();
+        return true;
+      }
+    }
+    return false;
+  }
+
+  if(isUnlocked()){
+    overlay.style.display='none';
+    body.classList.remove('gate-active');
+  } else {
+    body.classList.add('gate-active');
+    form.addEventListener('submit',function(e){
+      e.preventDefault();
+      var code=codeInput.value;
+      if(checkCode(code)){
+        errorMsg.style.display='none';
+        codeInput.value='';
+      } else {
+        errorMsg.style.display='block';
+        codeInput.value='';
+        codeInput.focus();
+      }
+    });
+  }
 })();
 
 loadSheet();
