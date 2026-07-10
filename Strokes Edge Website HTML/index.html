@@ -50,18 +50,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .nav-link.active{color:var(--g)}
 .nav-cta{font-family:'DM Mono',monospace;font-size:12px;padding:8px 18px;border:1px solid var(--g);border-radius:2px;color:var(--g);text-decoration:none;letter-spacing:0.06em;transition:all 0.2s;white-space:nowrap}
 .nav-cta:hover{background:var(--g-glow)}
-.nav-drop{position:relative}
-.nav-drop-btn{font-size:12px;color:var(--txt2);background:none;border:none;cursor:pointer;letter-spacing:.06em;text-transform:uppercase;display:flex;align-items:center;gap:5px;padding:0;font-family:'DM Sans',sans-serif;transition:color .2s;white-space:nowrap;outline:none}
-.nav-drop-btn:hover,.nav-drop-btn.open{color:var(--txt)}
-.nav-drop-btn::after{content:'▾';font-size:9px;transition:transform .2s;display:inline-block}
-.nav-drop-btn.open::after{transform:rotate(180deg)}
-.drop-menu{display:none;position:absolute;top:100%;left:0;min-width:220px;z-index:200}
-.drop-menu.open{display:block}
-.drop-menu-box{background:rgba(8,11,7,.98);border:1px solid var(--bdr);border-radius:4px;overflow:hidden;backdrop-filter:blur(16px)}
-.drop-item{display:block;padding:.7rem 1.1rem;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--txt2);text-decoration:none;border-bottom:1px solid var(--bdr2);transition:all .15s;white-space:nowrap}
-.drop-item:last-child{border-bottom:none}
-.drop-item:hover{color:var(--g);background:rgba(106,184,58,.05)}
-.drop-item .drop-sub{display:block;font-size:9px;color:var(--txt3);margin-top:2px;letter-spacing:.04em;text-transform:none}
 
 /* ── HAMBURGER ── */
 .hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:none;border:none;cursor:pointer;padding:6px;z-index:201}
@@ -74,10 +62,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .mobile-menu a{font-family:'DM Mono',monospace;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--txt2);text-decoration:none;padding:.7rem 0;border-bottom:1px solid var(--bdr2);transition:color .2s;display:block}
 .mobile-menu a:hover{color:var(--txt)}
 .mobile-menu a.active{color:var(--g)}
-.mob-section{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--txt3);padding:.6rem 0 .2rem;display:block}
-.mob-indent{padding-left:.75rem!important;font-size:11px!important}
 .mob-cta{border-bottom:none!important;margin-top:.5rem;padding:.85rem 1rem!important;border:1px solid var(--g)!important;border-radius:2px;color:var(--g)!important;text-align:center}
-@media(max-width:860px){.nav-link,.nav-drop,.nav-cta{display:none}.hamburger{display:flex}}
+@media(max-width:860px){.nav-link,.nav-cta{display:none}.hamburger{display:flex}}
 
 /* ── HERO ── */
 .hero{position:relative;z-index:2;min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:4rem;padding:8rem 1.5rem 5rem;max-width:1200px;margin:0 auto}
@@ -240,37 +226,8 @@ footer{position:relative;z-index:2;border-top:1px solid var(--bdr2);padding:2rem
     <a href="index.html" class="nav-link active">Home</a>
     <a href="methodology.html" class="nav-link">Methodology</a>
     <a href="picks.html" class="nav-link">Pick Tracker</a>
-    <div class="nav-drop">
-      <button class="nav-drop-btn" data-drop="courses">Courses</button>
-      <div class="drop-menu" id="drop-courses"><div class="drop-menu-box">
-        <a href="courses.html" class="drop-item">All Course Guides<span class="drop-sub">Full library</span></a>
-        <a href="course-renaissance-club.html" class="drop-item">Renaissance Club<span class="drop-sub">Scottish Open · Jul</span></a>
-        <a href="course-shinnecock-hills.html" class="drop-item">Shinnecock Hills<span class="drop-sub">U.S. Open · Jun</span></a>
-        <a href="course-quail-hollow.html" class="drop-item">Quail Hollow<span class="drop-sub">Truist · May</span></a>
-        <a href="course-colonial.html" class="drop-item">Colonial CC<span class="drop-sub">Schwab Challenge · May</span></a>
-        <a href="course-doral.html" class="drop-item">Blue Monster / Doral<span class="drop-sub">Cadillac · Apr–May</span></a>
-        <a href="course-aronimink.html" class="drop-item">Aronimink<span class="drop-sub">PGA Championship · May</span></a>
-        <a href="course-augusta-national.html" class="drop-item">Augusta National<span class="drop-sub">The Masters · Apr</span></a>
-        <a href="course-harbour-town.html" class="drop-item">Harbour Town<span class="drop-sub">RBC Heritage · Apr</span></a>
-        <a href="course-tpc-louisiana.html" class="drop-item">TPC Louisiana<span class="drop-sub">Zurich Classic · Apr</span></a>
-        <a href="course-tpc-craig-ranch.html" class="drop-item">TPC Craig Ranch<span class="drop-sub">CJ Cup Byron Nelson · May</span></a>
-      </div></div>
-    </div>
-    <div class="nav-drop">
-      <button class="nav-drop-btn" data-drop="analysis">Analysis</button>
-      <div class="drop-menu" id="drop-analysis"><div class="drop-menu-box">
-        <a href="analysis.html" class="drop-item">Current Analysis<span class="drop-sub">US Open 2026</span></a>
-        <a href="analysis-us-open-2026.html" class="drop-item">US Open 2026<span class="drop-sub">Shinnecock Hills · Jun 12–15</span></a>
-        <a href="analysis-scottish-open-2026.html" class="drop-item">Scottish Open 2026<span class="drop-sub">Renaissance Club · Jul 10–13</span></a>
-        <a href="analysis-pga-2026.html" class="drop-item">PGA Championship 2026<span class="drop-sub">Aronimink · May 14–17</span></a>
-        <a href="analysis-truist-2026.html" class="drop-item">Truist Championship 2026<span class="drop-sub">Quail Hollow · May 7–10</span></a>
-        <a href="analysis-cadillac-2026.html" class="drop-item">Cadillac Championship 2026<span class="drop-sub">Doral · Apr 30–May 3</span></a>
-        <a href="analysis-heritage-2026.html" class="drop-item">RBC Heritage 2026<span class="drop-sub">Harbour Town · Apr 16–19</span></a>
-        <a href="analysis-masters-2026.html" class="drop-item">Masters 2026<span class="drop-sub">Augusta National · Apr 9–12</span></a>
-        <a href="analysis-valero-2026.html" class="drop-item">Valero Texas Open 2026<span class="drop-sub">TPC San Antonio · Apr 2–6</span></a>
-        <a href="analysis-cj-cup-byron-nelson-2025.html" class="drop-item">CJ Cup Byron Nelson 2025<span class="drop-sub">TPC Craig Ranch · May</span></a>
-      </div></div>
-    </div>
+    <a href="courses.html" class="nav-link">Courses</a>
+    <a href="analysis.html" class="nav-link">Analysis</a>
     <a href="https://strokesedge.substack.com" class="nav-cta" target="_blank">Subscribe →</a>
   </div>
   <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
@@ -279,29 +236,8 @@ footer{position:relative;z-index:2;border-top:1px solid var(--bdr2);padding:2rem
   <a href="index.html" class="active">Home</a>
   <a href="methodology.html">Methodology</a>
   <a href="picks.html">Pick Tracker</a>
-  <span class="mob-section">— Courses —</span>
-  <a href="courses.html" class="mob-indent">All Course Guides</a>
-  <a href="course-renaissance-club.html" class="mob-indent">Renaissance Club</a>
-  <a href="course-shinnecock-hills.html" class="mob-indent">Shinnecock Hills</a>
-  <a href="course-quail-hollow.html" class="mob-indent">Quail Hollow</a>
-  <a href="course-colonial.html" class="mob-indent">Colonial CC</a>
-  <a href="course-doral.html" class="mob-indent">Blue Monster / Doral</a>
-  <a href="course-aronimink.html" class="mob-indent">Aronimink</a>
-  <a href="course-augusta-national.html" class="mob-indent">Augusta National</a>
-  <a href="course-harbour-town.html" class="mob-indent">Harbour Town</a>
-  <a href="course-tpc-louisiana.html" class="mob-indent">TPC Louisiana</a>
-  <a href="course-tpc-craig-ranch.html" class="mob-indent">TPC Craig Ranch</a>
-  <span class="mob-section">— Analysis —</span>
-  <a href="analysis.html" class="mob-indent">Current Analysis</a>
-  <a href="analysis-us-open-2026.html" class="mob-indent">US Open 2026</a>
-  <a href="analysis-scottish-open-2026.html" class="mob-indent">Scottish Open 2026</a>
-  <a href="analysis-pga-2026.html" class="mob-indent">PGA Championship 2026</a>
-  <a href="analysis-truist-2026.html" class="mob-indent">Truist Championship 2026</a>
-  <a href="analysis-cadillac-2026.html" class="mob-indent">Cadillac Championship 2026</a>
-  <a href="analysis-heritage-2026.html" class="mob-indent">RBC Heritage 2026</a>
-  <a href="analysis-masters-2026.html" class="mob-indent">Masters 2026</a>
-  <a href="analysis-valero-2026.html" class="mob-indent">Valero Texas Open 2026</a>
-  <a href="analysis-cj-cup-byron-nelson-2025.html" class="mob-indent">CJ Cup Byron Nelson 2025</a>
+  <a href="courses.html">Courses</a>
+  <a href="analysis.html">Analysis</a>
   <a href="https://strokesedge.substack.com" class="mob-cta" target="_blank">Subscribe →</a>
 </div>
 
@@ -442,27 +378,7 @@ footer{position:relative;z-index:2;border-top:1px solid var(--bdr2);padding:2rem
   <div class="foot-note">Not financial advice. Gamble responsibly.</div>
 </footer>
 
-<script>// ── Nav dropdowns ──
-document.querySelectorAll('.nav-drop-btn').forEach(function(btn){
-  btn.addEventListener('click',function(e){
-    e.preventDefault();
-    e.stopPropagation();
-    var id='drop-'+btn.getAttribute('data-drop');
-    var menu=document.getElementById(id);
-    var isOpen=menu.classList.contains('open');
-    document.querySelectorAll('.drop-menu').forEach(function(m){m.classList.remove('open');});
-    document.querySelectorAll('.nav-drop-btn').forEach(function(b){b.classList.remove('open');});
-    if(!isOpen){menu.classList.add('open');btn.classList.add('open');}
-  });
-});
-document.addEventListener('click',function(e){
-  if(!e.target.closest('.nav-drop')){
-    document.querySelectorAll('.drop-menu').forEach(function(m){m.classList.remove('open');});
-    document.querySelectorAll('.nav-drop-btn').forEach(function(b){b.classList.remove('open');});
-  }
-});
-
-// ── Hamburger ──
+<script>// ── Hamburger ──
 var hbg=document.getElementById('hamburger'),mob=document.getElementById('mobile-menu');
 if(hbg&&mob){
   hbg.addEventListener('click',function(e){
