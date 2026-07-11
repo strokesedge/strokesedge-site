@@ -39,7 +39,7 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 }
 @media(hover:none){.cursor,.cursor-ring{display:none}}
 
-/* â”€â”€ NAV â”€â”€ */
+/* ── NAV ── */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1rem 1.5rem;border-bottom:1px solid var(--bdr2);background:rgba(8,11,7,0.95);backdrop-filter:blur(16px)}
 .nav-logo{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:0.08em;color:var(--txt);text-decoration:none;flex-shrink:0}
 .nav-logo span{color:var(--g)}
@@ -49,7 +49,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .nav-cta{font-family:'DM Mono',monospace;font-size:12px;padding:8px 18px;border:1px solid var(--g);border-radius:2px;color:var(--g);text-decoration:none;letter-spacing:0.06em;transition:all 0.2s;white-space:nowrap}
 .nav-cta:hover{background:var(--g-glow)}
 
-/* â”€â”€ HAMBURGER â”€â”€ */
+/* ── HAMBURGER ── */
 .hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:none;border:none;cursor:pointer;padding:6px;z-index:201}
 .hamburger span{display:block;width:22px;height:2px;background:var(--txt2);border-radius:2px;transition:all .25s}
 .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);background:var(--g)}
@@ -63,7 +63,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .mob-cta{border-bottom:none!important;margin-top:.5rem;padding:.85rem 1rem!important;border:1px solid var(--g)!important;border-radius:2px;color:var(--g)!important;text-align:center}
 @media(max-width:860px){.nav-link,.nav-cta{display:none}.hamburger{display:flex}}
 
-/* â”€â”€ HERO â”€â”€ */
+/* ── HERO ── */
 .hero{padding:9rem 3rem 4rem;max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:end}
 .hero-eyebrow{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.14em;color:var(--g);text-transform:uppercase;margin-bottom:1.5rem;display:flex;align-items:center;gap:10px;opacity:0;animation:up 0.6s 0.1s forwards}
 .hero-eyebrow::before{content:'';width:24px;height:1px;background:var(--g);flex-shrink:0}
@@ -76,7 +76,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .hero-stat-n{font-family:'Bebas Neue',sans-serif;font-size:42px;color:var(--g);line-height:1;margin-bottom:6px;letter-spacing:0.03em}
 .hero-stat-l{font-family:'DM Mono',monospace;font-size:10px;color:var(--txt2);letter-spacing:0.1em;text-transform:uppercase;line-height:1.5}
 
-/* â”€â”€ DIVIDERS / SECTIONS â”€â”€ */
+/* ── DIVIDERS / SECTIONS ── */
 .section-divider{max-width:1200px;margin:0 auto;padding:0 3rem}
 .divider-line{height:1px;background:var(--bdr2);margin:0 0 4rem}
 .section{max-width:1200px;margin:0 auto 6rem;padding:0 3rem}
@@ -86,7 +86,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .sec-title span{color:var(--g)}
 .sec-intro{font-size:16px;color:var(--txt2);max-width:600px;line-height:1.85;margin-bottom:3rem}
 
-/* â”€â”€ STEPS â”€â”€ */
+/* ── STEPS ── */
 .steps{display:grid;grid-template-columns:1fr;gap:1px;background:var(--bdr2);border:1px solid var(--bdr2);border-radius:4px;overflow:hidden}
 .step{background:var(--bg2);padding:2.5rem;display:grid;grid-template-columns:80px 1fr;gap:2rem;align-items:start;transition:background 0.2s}
 .step:hover{background:var(--sur)}
@@ -96,7 +96,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .step-tags{display:flex;gap:0.5rem;flex-wrap:wrap}
 .step-tag{font-family:'DM Mono',monospace;font-size:10px;padding:4px 10px;border:1px solid var(--bdr);border-radius:2px;color:var(--g);letter-spacing:0.06em;text-transform:uppercase}
 
-/* â”€â”€ GLOSSARY â”€â”€ */
+/* ── GLOSSARY ── */
 .glossary{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
 .gloss-card{background:var(--sur);border:1px solid var(--bdr2);border-radius:4px;padding:1.5rem;transition:border-color 0.2s}
 .gloss-card:hover{border-color:var(--bdr)}
@@ -104,7 +104,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .gloss-def{font-size:14px;color:var(--txt2);line-height:1.7}
 .gloss-example{font-family:'DM Mono',monospace;font-size:11px;color:var(--txt3);margin-top:8px;padding-top:8px;border-top:1px solid var(--bdr2);line-height:1.5}
 
-/* â”€â”€ FRAMEWORK â”€â”€ */
+/* ── FRAMEWORK ── */
 .framework{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
 .fw-card{background:var(--sur);border:1px solid var(--bdr2);border-radius:4px;padding:1.75rem;transition:all 0.2s;position:relative;overflow:hidden}
 .fw-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--g);opacity:0;transition:opacity 0.2s}
@@ -114,7 +114,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .fw-title{font-size:15px;font-weight:400;color:var(--txt);margin-bottom:0.75rem}
 .fw-desc{font-size:13px;color:var(--txt2);line-height:1.7}
 
-/* â”€â”€ PRINCIPLES â”€â”€ */
+/* ── PRINCIPLES ── */
 .principles{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--bdr2);border:1px solid var(--bdr2);border-radius:4px;overflow:hidden}
 .principle{background:var(--bg2);padding:2rem;transition:background 0.2s}
 .principle:hover{background:var(--sur)}
@@ -122,14 +122,14 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .principle-text{font-size:15px;color:var(--txt);line-height:1.65}
 .principle-sub{font-size:13px;color:var(--txt2);margin-top:0.5rem;line-height:1.6}
 
-/* â”€â”€ CALLOUT â”€â”€ */
+/* ── CALLOUT ── */
 .callout{background:var(--sur);border:1px solid var(--bdr);border-radius:4px;padding:2.5rem;position:relative;overflow:hidden}
 .callout::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--g)}
 .callout-label{font-family:'DM Mono',monospace;font-size:10px;color:var(--g);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1rem}
 .callout-text{font-size:16px;color:var(--txt);line-height:1.75;font-style:italic}
 .callout-attr{font-family:'DM Mono',monospace;font-size:11px;color:var(--txt3);margin-top:1rem}
 
-/* â”€â”€ CTA â”€â”€ */
+/* ── CTA ── */
 .cta-wrap{max-width:1200px;margin:0 auto 5rem;padding:0 3rem}
 .cta-box{background:var(--bg2);border:1px solid var(--bdr);border-radius:4px;padding:4rem 3rem;text-align:center;position:relative;overflow:hidden}
 .cta-box::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:50%;height:1px;background:linear-gradient(90deg,transparent,var(--g),transparent)}
@@ -149,9 +149,9 @@ footer{border-top:1px solid var(--bdr2);padding:2rem 3rem;display:flex;justify-c
 
 @keyframes up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
 
-/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+/* ─────────────────────────────────────────
    MOBILE
-â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+───────────────────────────────────────── */
 @media(max-width:900px){
   .hero{grid-template-columns:1fr;padding:6rem 1.25rem 3rem;gap:2.5rem}
   .hero-title{font-size:clamp(56px,12vw,80px)}
@@ -469,7 +469,7 @@ footer{border-top:1px solid var(--bdr2);padding:2rem 3rem;display:flex;justify-c
     <h2 class="cta-title">See the model <span>in action.</span></h2>
     <p class="cta-sub">Every week's analysis — course profile, picks, value plays, and fades — delivered to your inbox before the first tee shot.</p>
     <div class="cta-btns">
-      <a href="https://strokesedge.substack.com" class="btn-primary" target="_blank">Subscribe on Substack â†’</a>
+      <a href="https://strokesedge.substack.com" class="btn-primary" target="_blank">Subscribe on Substack →</a>
       <a href="picks.html" class="btn-ghost">View pick tracker</a>
     </div>
   </div>

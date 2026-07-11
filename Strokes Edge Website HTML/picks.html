@@ -21,7 +21,7 @@ html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--txt);font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.6;overflow-x:hidden}
 body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(106,184,58,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(106,184,58,0.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;z-index:0}
 
-/* â”€â”€ CUSTOM CURSOR — desktop only â”€â”€ */
+/* ── CUSTOM CURSOR — desktop only ── */
 @media(hover:hover){
   body,*{cursor:none}
   .cursor{position:fixed;width:8px;height:8px;background:var(--g);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%)}
@@ -29,7 +29,7 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 }
 @media(hover:none){.cursor,.cursor-ring{display:none}}
 
-/* â”€â”€ NAV â”€â”€ */
+/* ── NAV ── */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1rem 1.5rem;border-bottom:1px solid var(--bdr2);background:rgba(8,11,7,0.95);backdrop-filter:blur(16px)}
 .nav-logo{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:0.08em;color:var(--txt);text-decoration:none;flex-shrink:0}
 .nav-logo span{color:var(--g)}
@@ -39,7 +39,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .nav-cta{font-family:'DM Mono',monospace;font-size:12px;padding:8px 18px;border:1px solid var(--g);border-radius:2px;color:var(--g);text-decoration:none;letter-spacing:0.06em;transition:all 0.2s;white-space:nowrap}
 .nav-cta:hover{background:var(--g-glow)}
 
-/* â”€â”€ HAMBURGER â”€â”€ */
+/* ── HAMBURGER ── */
 .hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:none;border:none;cursor:pointer;padding:6px;z-index:201}
 .hamburger span{display:block;width:22px;height:2px;background:var(--txt2);border-radius:2px;transition:all .25s}
 .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);background:var(--g)}
@@ -53,7 +53,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .mob-cta{border-bottom:none!important;margin-top:.5rem;padding:.85rem 1rem!important;border:1px solid var(--g)!important;border-radius:2px;color:var(--g)!important;text-align:center}
 @media(max-width:860px){.nav-link,.nav-cta{display:none}.hamburger{display:flex}}
 
-/* â”€â”€ HERO â”€â”€ */
+/* ── HERO ── */
 .hero{position:relative;z-index:2;padding:7rem 1.5rem 2rem;max-width:1200px;margin:0 auto}
 .hero-tag{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.14em;color:var(--g);text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:10px}
 .hero-tag::before{content:'';width:24px;height:1px;background:var(--g)}
@@ -61,7 +61,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .hero-title span{color:var(--g)}
 .hero-context{font-family:'DM Mono',monospace;font-size:11px;color:var(--txt3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:2rem}
 
-/* â”€â”€ SUMMARY STATS â”€â”€ */
+/* ── SUMMARY STATS ── */
 .summary-wrap{position:relative;z-index:2;max-width:1200px;margin:0 auto 2.5rem;padding:0 1.5rem}
 .summary{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--bdr2);border:1px solid var(--bdr2);border-radius:4px;overflow:hidden}
 .sum-cell{background:var(--bg2);padding:1.75rem 1rem;text-align:center}
@@ -71,7 +71,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .sum-n.yellow{color:var(--y)}
 .sum-l{font-family:'DM Mono',monospace;font-size:10px;color:var(--txt2);letter-spacing:0.1em;text-transform:uppercase;line-height:1.5}
 
-/* â”€â”€ FILTERS â”€â”€ */
+/* ── FILTERS ── */
 .filters{position:relative;z-index:2;max-width:1200px;margin:0 auto 1.5rem;padding:0 1.5rem;display:flex;gap:0.5rem;flex-wrap:wrap}
 .filter-btn{font-family:'DM Mono',monospace;font-size:11px;padding:7px 14px;border:1px solid var(--bdr2);border-radius:2px;color:var(--txt2);background:transparent;cursor:pointer;letter-spacing:0.05em;text-transform:uppercase;transition:all 0.2s;text-align:left;display:flex;flex-direction:column;gap:2px}
 .filter-btn:hover{border-color:var(--bdr);color:var(--txt)}
@@ -79,7 +79,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .filter-btn .btn-date{font-size:9px;color:var(--txt3);letter-spacing:0.06em;text-transform:uppercase}
 .filter-btn.active .btn-date{color:rgba(106,184,58,0.6)}
 
-/* â”€â”€ TABLE — desktop â”€â”€ */
+/* ── TABLE — desktop ── */
 .table-wrap{position:relative;z-index:2;max-width:1200px;margin:0 auto 4rem;padding:0 1.5rem}
 table{width:100%;border-collapse:collapse;font-size:13px}
 thead tr{border-bottom:1px solid var(--bdr)}
@@ -106,7 +106,7 @@ td.wager{font-family:'DM Mono',monospace;font-size:12px}
 .spinner{display:inline-block;width:18px;height:18px;border:2px solid var(--txt3);border-top-color:var(--g);border-radius:50%;animation:spin 0.7s linear infinite;vertical-align:middle;margin-right:10px}
 @keyframes spin{to{transform:rotate(360deg)}}
 
-/* â”€â”€ MOBILE CARDS — replaces table on small screens â”€â”€ */
+/* ── MOBILE CARDS — replaces table on small screens ── */
 .card-list{display:none;flex-direction:column;gap:0.6rem}
 .pick-card{background:var(--sur);border:1px solid var(--bdr2);border-radius:4px;padding:1rem 1.1rem;transition:border-color 0.2s}
 .pick-card.result-won{border-left:2px solid var(--g)}
@@ -125,7 +125,7 @@ td.wager{font-family:'DM Mono',monospace;font-size:12px}
 .pc-value.red{color:var(--r)}
 .pc-pl{font-family:'DM Mono',monospace;font-size:13px;font-weight:500;margin-left:auto}
 
-/* â”€â”€ EMAIL GATE â”€â”€ */
+/* ── EMAIL GATE ── */
 .gate-overlay{position:fixed;inset:0;z-index:500;display:flex;align-items:center;justify-content:center;padding:1.5rem;background:rgba(8,11,7,0.92);backdrop-filter:blur(8px)}
 .gate-overlay.hidden{display:none}
 .gate-box{background:var(--sur);border:1px solid var(--bdr);border-radius:6px;padding:2.5rem 2rem;max-width:440px;width:100%;text-align:center;position:relative;z-index:501}
@@ -143,13 +143,13 @@ td.wager{font-family:'DM Mono',monospace;font-size:12px}
 /* blur tracker when gate is showing */
 .gate-active .tracker-content{filter:blur(6px);pointer-events:none;user-select:none}
 
-/* â”€â”€ FOOTER â”€â”€ */
+/* ── FOOTER ── */
 footer{position:relative;z-index:2;border-top:1px solid var(--bdr2);padding:2rem 1.5rem;display:flex;justify-content:space-between;align-items:center;max-width:1200px;margin:0 auto}
 .foot-logo{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:0.08em;color:var(--txt2)}
 .foot-logo span{color:var(--g)}
 .foot-note{font-family:'DM Mono',monospace;font-size:11px;color:var(--txt3)}
 
-/* â”€â”€ RESPONSIVE â”€â”€ */
+/* ── RESPONSIVE ── */
 @media(max-width:900px){
   .summary{grid-template-columns:repeat(3,1fr)}
   .sum-cell{padding:1.25rem 0.75rem}
@@ -435,7 +435,7 @@ function refresh(){
     return;
   }
 
-  // â”€â”€ Desktop table rows â”€â”€
+  // ── Desktop table rows ──
   document.getElementById('picks-body').innerHTML=data.map(function(p){
     return'<tr>'
       +'<td class="player">'+esc(p.player)+'</td>'
@@ -449,7 +449,7 @@ function refresh(){
       +'</tr>';
   }).join('');
 
-  // â”€â”€ Mobile cards â”€â”€
+  // ── Mobile cards ──
   document.getElementById('card-list').innerHTML=data.map(function(p){
     var diff=p.result==='open'?null:p.payout-p.wager;
     var plStr=p.result==='open'
@@ -473,7 +473,7 @@ function refresh(){
   }).join('');
 }
 
-// â”€â”€ Custom cursor (desktop only) â”€â”€
+// ── Custom cursor (desktop only) ──
 if(window.matchMedia('(hover:hover)').matches){
   var cur=document.getElementById('cur'),ring=document.getElementById('ring');
   var mx=0,my=0,rx=0,ry=0;

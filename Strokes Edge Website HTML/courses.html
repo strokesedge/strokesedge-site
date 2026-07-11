@@ -25,7 +25,7 @@ html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--txt);font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.6;overflow-x:hidden}
 body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:1;opacity:.6}
 body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(106,184,58,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(106,184,58,0.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;z-index:0}
-/* â”€â”€ NAV â”€â”€ */
+/* ── NAV ── */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1rem 1.5rem;border-bottom:1px solid var(--bdr2);background:rgba(8,11,7,.95);backdrop-filter:blur(16px)}
 .nav-logo{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.08em;color:var(--txt);text-decoration:none;flex-shrink:0}
 .nav-logo span{color:var(--g)}
@@ -46,7 +46,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .mobile-menu a.active{color:var(--g)}
 .mob-cta{border-bottom:none!important;margin-top:.5rem;padding:.85rem 1rem!important;border:1px solid var(--g)!important;border-radius:2px;color:var(--g)!important;text-align:center}
 @media(max-width:860px){.nav-link,.nav-cta{display:none}.hamburger{display:flex}}
-/* â”€â”€ PAGE â”€â”€ */
+/* ── PAGE ── */
 .wrap{max-width:1100px;margin:0 auto;padding:0 1.5rem;position:relative;z-index:2}
 .hero{padding:7rem 0 3rem}
 .eyebrow{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.14em;color:var(--g);text-transform:uppercase;margin-bottom:1.25rem;display:flex;align-items:center;gap:10px;opacity:0;animation:up .7s .1s forwards}
@@ -55,12 +55,12 @@ h1.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,9vw,88px)
 h1.hero-title span{color:var(--g);display:block}
 .hero-sub{font-size:16px;color:var(--txt2);line-height:1.85;max-width:580px;opacity:0;animation:up .7s .35s forwards}
 @keyframes up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
-/* â”€â”€ FILTER BAR â”€â”€ */
+/* ── FILTER BAR ── */
 .filter-bar{display:flex;gap:.5rem;flex-wrap:wrap;margin:2.5rem 0 2rem;padding-bottom:1.5rem;border-bottom:1px solid var(--bdr2)}
 .filter-pill{font-family:'DM Mono',monospace;font-size:10px;padding:6px 14px;border:1px solid var(--bdr2);border-radius:20px;color:var(--txt2);background:transparent;cursor:pointer;letter-spacing:.06em;text-transform:uppercase;transition:all .2s}
 .filter-pill:hover{border-color:var(--bdr);color:var(--txt)}
 .filter-pill.active{border-color:var(--g);color:var(--g);background:rgba(106,184,58,.08)}
-/* â”€â”€ COURSE GRID â”€â”€ */
+/* ── COURSE GRID ── */
 .courses-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1rem;margin-bottom:3rem}
 .course-card{background:var(--sur);border:1px solid var(--bdr2);border-radius:4px;overflow:hidden;transition:all .2s;text-decoration:none;display:block}
 .course-card:hover{border-color:var(--bdr);transform:translateY(-2px)}
@@ -85,10 +85,10 @@ h1.hero-title span{color:var(--g);display:block}
 .card-footer{padding:.75rem 1.25rem;border-top:1px solid var(--bdr2);display:flex;justify-content:space-between;align-items:center}
 .card-date{font-family:'DM Mono',monospace;font-size:10px;color:var(--txt3);letter-spacing:.06em}
 .card-link{font-family:'DM Mono',monospace;font-size:10px;color:var(--g);letter-spacing:.06em}
-/* â”€â”€ COMING SOON SECTION â”€â”€ */
+/* ── COMING SOON SECTION ── */
 .coming-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;color:var(--txt3);text-transform:uppercase;margin:2.5rem 0 1rem;display:flex;align-items:center;gap:12px}
 .coming-label::after{content:'';height:1px;flex:1;background:var(--bdr2)}
-/* â”€â”€ CTA â”€â”€ */
+/* ── CTA ── */
 .cta-box{background:var(--bg2);border:1px solid var(--bdr);border-radius:4px;padding:3rem 2rem;text-align:center;margin:3rem 0;position:relative;overflow:hidden}
 .cta-box::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:50%;height:1px;background:linear-gradient(90deg,transparent,var(--g),transparent)}
 .cta-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,5vw,48px);letter-spacing:.04em;line-height:1;margin-bottom:.75rem;color:var(--txt)}
@@ -168,7 +168,7 @@ footer{border-top:1px solid var(--bdr2);padding:2rem 1.5rem;display:flex;justify
       </div>
       <div class="card-footer">
         <div class="card-date">Scottish Open 2026 · Jul 10–13</div>
-        <div class="card-link">Read guide â†’</div>
+        <div class="card-link">Read guide →</div>
       </div>
     </a>
 
@@ -193,7 +193,7 @@ footer{border-top:1px solid var(--bdr2);padding:2rem 1.5rem;display:flex;justify
       </div>
       <div class="card-footer">
         <div class="card-date">Zurich Classic 2026 · Apr 23–26</div>
-        <div class="card-link">Read guide â†’</div>
+        <div class="card-link">Read guide →</div>
       </div>
     </a>
 
@@ -217,7 +217,7 @@ footer{border-top:1px solid var(--bdr2);padding:2rem 1.5rem;display:flex;justify
       </div>
       <div class="card-footer">
         <div class="card-date">U.S. Open 2026 · Jun</div>
-        <div class="card-link">Read guide â†’</div>
+        <div class="card-link">Read guide →</div>
       </div>
     </a>
 
@@ -240,7 +240,7 @@ footer{border-top:1px solid var(--bdr2);padding:2rem 1.5rem;display:flex;justify
       </div>
       <div class="card-footer">
         <div class="card-date">RBC Heritage 2026 · Apr 16–19</div>
-        <div class="card-link">Read guide â†’</div>
+        <div class="card-link">Read guide →</div>
       </div>
     </a>
 
@@ -264,7 +264,7 @@ footer{border-top:1px solid var(--bdr2);padding:2rem 1.5rem;display:flex;justify
       </div>
       <div class="card-footer">
         <div class="card-date">Masters 2026 · Apr 9–12</div>
-        <div class="card-link">Read guide â†’</div>
+        <div class="card-link">Read guide →</div>
       </div>
     </a>
 
@@ -288,7 +288,7 @@ footer{border-top:1px solid var(--bdr2);padding:2rem 1.5rem;display:flex;justify
       </div>
       <div class="card-footer">
         <div class="card-date">Miami Championship 2026 · Apr 30–May 3</div>
-        <div class="card-link">Read guide â†’</div>
+        <div class="card-link">Read guide →</div>
       </div>
     </a>
 
@@ -312,7 +312,7 @@ footer{border-top:1px solid var(--bdr2);padding:2rem 1.5rem;display:flex;justify
       </div>
       <div class="card-footer">
         <div class="card-date">Truist Championship 2026 · May 7–10</div>
-        <div class="card-link">Read guide â†’</div>
+        <div class="card-link">Read guide →</div>
       </div>
     </a>
 
@@ -336,7 +336,7 @@ footer{border-top:1px solid var(--bdr2);padding:2rem 1.5rem;display:flex;justify
       </div>
       <div class="card-footer">
         <div class="card-date">PGA Championship 2026 · May 14–17</div>
-        <div class="card-link">Read guide â†’</div>
+        <div class="card-link">Read guide →</div>
       </div>
     </a>
 
@@ -465,7 +465,7 @@ footer{border-top:1px solid var(--bdr2);padding:2rem 1.5rem;display:flex;justify
   <div class="cta-box">
     <h2 class="cta-title">Get the full <span>analysis</span><br>every week.</h2>
     <p class="cta-sub">Course profiles, value picks, and betting angles delivered to your inbox before every PGA Tour event. Free to subscribe.</p>
-    <a href="https://strokesedge.substack.com" class="btn-primary" target="_blank">Subscribe on Substack â†’</a>
+    <a href="https://strokesedge.substack.com" class="btn-primary" target="_blank">Subscribe on Substack →</a>
     <a href="methodology.html" class="btn-ghost">How the model works</a>
   </div>
 

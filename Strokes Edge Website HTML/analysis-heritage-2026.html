@@ -31,7 +31,7 @@ body{background:var(--bg);color:var(--txt);font-family:'DM Sans',sans-serif;font
 body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:1;opacity:.6}
 body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(106,184,58,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(106,184,58,0.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;z-index:0}
 
-/* â”€â”€ NAV â”€â”€ */
+/* ── NAV ── */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1rem 1.5rem;border-bottom:1px solid var(--bdr2);background:rgba(8,11,7,.95);backdrop-filter:blur(16px)}
 .nav-logo{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.08em;color:var(--txt);text-decoration:none}
 .nav-logo span{color:var(--g)}
@@ -41,7 +41,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .nav-cta{font-family:'DM Mono',monospace;font-size:12px;padding:8px 18px;border:1px solid var(--g);border-radius:2px;color:var(--g);text-decoration:none;letter-spacing:.06em;transition:all .2s;white-space:nowrap}
 .nav-cta:hover{background:var(--g-glow)}
 
-/* â”€â”€ HAMBURGER â”€â”€ */
+/* ── HAMBURGER ── */
 .hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:none;border:none;cursor:pointer;padding:6px;z-index:201}
 .hamburger span{display:block;width:22px;height:2px;background:var(--txt2);border-radius:2px;transition:all .25s}
 .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);background:var(--g)}
@@ -55,7 +55,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .mob-cta{border-bottom:none!important;margin-top:.5rem;padding:.85rem 1rem!important;border:1px solid var(--g)!important;border-radius:2px;color:var(--g)!important;text-align:center}
 @media(max-width:860px){.nav-link,.nav-cta{display:none}.hamburger{display:flex}}
 
-/* â”€â”€ CONTENT â”€â”€ */
+/* ── CONTENT ── */
 .wrap{max-width:900px;margin:0 auto;padding:0 1.5rem;position:relative;z-index:2}
 .hero{padding:7rem 0 2rem}
 .eyebrow{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.14em;color:var(--g);text-transform:uppercase;margin-bottom:1.5rem;display:flex;align-items:center;gap:10px}
@@ -66,7 +66,7 @@ h1.hero-title span{color:var(--g);display:block}
 .hero-sub{font-size:17px;color:var(--txt2);line-height:1.8;max-width:580px;opacity:0;animation:up .7s .4s forwards}
 @keyframes up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
 
-/* â”€â”€ ARCHIVE BAR â”€â”€ */
+/* ── ARCHIVE BAR ── */
 .archive-bar{border:1px solid var(--bdr2);border-radius:4px;overflow:hidden;margin:2rem 0 3rem;background:var(--bg2)}
 .archive-header{display:flex;justify-content:space-between;align-items:center;padding:.75rem 1.25rem;border-bottom:1px solid var(--bdr2)}
 .archive-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--g)}
@@ -81,7 +81,7 @@ h1.hero-title span{color:var(--g);display:block}
 .ai-event{font-size:13px;color:var(--txt)}
 .ai-date{font-family:'DM Mono',monospace;font-size:10px;color:var(--txt3);letter-spacing:.06em}
 
-/* â”€â”€ SECTION STYLES â”€â”€ */
+/* ── SECTION STYLES ── */
 .divider{height:1px;background:var(--bdr2);margin:3rem 0}
 .sec-num{font-family:'DM Mono',monospace;font-size:11px;color:var(--g);letter-spacing:.12em;margin-bottom:1rem;display:flex;align-items:center;gap:12px}
 .sec-num::after{content:'';height:1px;width:40px;background:var(--bdr)}
@@ -89,13 +89,13 @@ h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(32px,6vw,52px);line-heigh
 h2 span{color:var(--g)}
 .body-text{font-size:15px;color:var(--txt2);line-height:1.85;margin-bottom:2rem}
 
-/* â”€â”€ STAT GRID â”€â”€ */
+/* ── STAT GRID ── */
 .stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:1px;background:var(--bdr2);border:1px solid var(--bdr2);border-radius:4px;overflow:hidden;margin-bottom:2rem}
 .stat-cell{background:var(--bg2);padding:1.25rem 1rem;text-align:center}
 .stat-n{font-family:'Bebas Neue',sans-serif;font-size:34px;color:var(--g);line-height:1;margin-bottom:4px}
 .stat-l{font-family:'DM Mono',monospace;font-size:9px;color:var(--txt2);letter-spacing:.1em;text-transform:uppercase;line-height:1.4}
 
-/* â”€â”€ PICK CARDS â”€â”€ */
+/* ── PICK CARDS ── */
 .pick{background:var(--sur);border:1px solid var(--bdr2);border-radius:4px;padding:1.5rem;margin-bottom:.75rem;transition:all .2s;position:relative;overflow:hidden}
 .pick:hover{border-color:var(--bdr);transform:translateY(-1px)}
 .pick.featured{border-color:var(--g2);background:rgba(106,184,58,.04)}
@@ -116,13 +116,13 @@ h2 span{color:var(--g)}
 .tag-y{color:var(--y);border-color:rgba(240,180,41,.25)}
 .tag-b{color:var(--blue);border-color:rgba(74,158,255,.25)}
 
-/* â”€â”€ CALLOUT â”€â”€ */
+/* ── CALLOUT ── */
 .callout{background:var(--sur);border:1px solid var(--bdr);border-radius:4px;padding:1.75rem;margin-bottom:2rem;position:relative;overflow:hidden}
 .callout::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--g)}
 .callout-label{font-family:'DM Mono',monospace;font-size:10px;color:var(--g);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.5rem}
 .callout-text{font-size:14px;color:var(--txt);line-height:1.75}
 
-/* â”€â”€ TABLE â”€â”€ */
+/* ── TABLE ── */
 table{width:100%;border-collapse:collapse;font-size:12px;margin-bottom:2rem}
 thead{border-bottom:1px solid var(--bdr)}
 th{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--txt3);padding:.6rem .5rem;text-align:left;font-weight:400}
@@ -132,14 +132,14 @@ td{padding:.6rem .5rem;border-bottom:1px solid var(--bdr2);color:var(--txt2)}
 .cy{color:var(--y)!important}
 .cb{color:var(--blue)!important}
 
-/* â”€â”€ WEATHER â”€â”€ */
+/* ── WEATHER ── */
 .wx-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--bdr2);border:1px solid var(--bdr2);border-radius:4px;overflow:hidden;margin-bottom:2rem}
 .wx-cell{background:var(--bg2);padding:1rem;text-align:center}
 .wx-day{font-family:'DM Mono',monospace;font-size:10px;color:var(--g);letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
 .wx-temp{font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--txt);line-height:1;margin-bottom:3px}
 .wx-detail{font-size:10px;color:var(--txt3);line-height:1.3}
 
-/* â”€â”€ CTA â”€â”€ */
+/* ── CTA ── */
 .cta-box{background:var(--bg2);border:1px solid var(--bdr);border-radius:4px;padding:3rem 2rem;text-align:center;margin:3rem 0;position:relative;overflow:hidden}
 .cta-box::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:50%;height:1px;background:linear-gradient(90deg,transparent,var(--g),transparent)}
 .cta-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,5vw,48px);letter-spacing:.04em;line-height:1;margin-bottom:.75rem;color:var(--txt)}
@@ -148,13 +148,13 @@ td{padding:.6rem .5rem;border-bottom:1px solid var(--bdr2);color:var(--txt2)}
 .btn-primary{display:inline-block;padding:13px 32px;background:var(--g);color:#fff;font-family:'DM Mono',monospace;font-size:13px;letter-spacing:.06em;text-decoration:none;border-radius:2px;transition:all .2s}
 .btn-primary:hover{background:#7acc44;transform:translateY(-2px)}
 
-/* â”€â”€ FOOTER â”€â”€ */
+/* ── FOOTER ── */
 footer{border-top:1px solid var(--bdr2);padding:2rem 1.5rem;display:flex;justify-content:space-between;align-items:center;max-width:900px;margin:0 auto}
 .foot-logo{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.08em;color:var(--txt2)}
 .foot-logo span{color:var(--g)}
 .foot-note{font-family:'DM Mono',monospace;font-size:11px;color:var(--txt3)}
 
-/* â”€â”€ ARCHIVED WEEK SECTION â”€â”€ */
+/* ── ARCHIVED WEEK SECTION ── */
 .archived-week{opacity:.78;transition:opacity .3s}
 .archived-week:hover{opacity:1}
 .archive-banner{background:var(--bg2);border:1px solid var(--bdr2);border-left:3px solid var(--txt3);border-radius:4px;padding:1.25rem 1.5rem;margin:2rem 0 2rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
@@ -163,7 +163,7 @@ footer{border-top:1px solid var(--bdr2);padding:2rem 1.5rem;display:flex;justify
 .archive-banner-back{font-family:'DM Mono',monospace;font-size:11px;color:var(--g);text-decoration:none;letter-spacing:.06em;border:1px solid var(--bdr);padding:8px 14px;border-radius:2px;transition:all .2s;white-space:nowrap}
 .archive-banner-back:hover{background:var(--g-glow)}
 
-/* â”€â”€ MOBILE â”€â”€ */
+/* ── MOBILE ── */
 @media(max-width:900px){
   .archive-banner{padding:1rem 1.25rem}
 }
@@ -182,7 +182,7 @@ footer{border-top:1px solid var(--bdr2);padding:2rem 1.5rem;display:flex;justify
   .stat-grid{grid-template-columns:repeat(2,1fr)}
 }
 
-/* â”€â”€ PICKS DIVIDER â”€â”€ */
+/* ── PICKS DIVIDER ── */
 .picks-divider{text-align:center;padding:2rem 0;font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.3em;color:var(--txt3)}
 </style>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-D398EHRP6Y"></script>
@@ -229,11 +229,11 @@ footer{border-top:1px solid var(--bdr2);padding:2rem 1.5rem;display:flex;justify
 <div class="archive-bar">
   <div class="archive-header">
     <div class="archive-label">2026 Season Analysis Archive</div>
-    <button class="archive-toggle" id="archive-toggle">Show past weeks â–¾</button>
+    <button class="archive-toggle" id="archive-toggle">Show past weeks ▾</button>
   </div>
   <div class="archive-list" id="archive-list">
     <a class="archive-item current" href="#top">
-      <span class="ai-event">â›³ RBC Heritage — Harbour Town (current)</span>
+      <span class="ai-event">⛳ RBC Heritage — Harbour Town (current)</span>
       <span class="ai-date">Apr 16–19</span>
     </a>
     <a class="archive-item" href="#masters-2026">
@@ -315,7 +315,7 @@ footer{border-top:1px solid var(--bdr2);padding:2rem 1.5rem;display:flex;justify
 <section>
   <div class="sec-num">04 — 2026 YTD Field Rankings</div>
   <h2>The numbers the model <span>used.</span></h2>
-  <p class="body-text">PGA Tour 2026 YTD strokes gained rankings through the Masters, filtered to confirmed RBC Heritage field members. These are the actual inputs the model ran against the Harbour Town winner DNA filters (SG: APP â‰¥ +0.40, SG: ARG â‰¥ +0.25, top-of-field SG: T2G).</p>
+  <p class="body-text">PGA Tour 2026 YTD strokes gained rankings through the Masters, filtered to confirmed RBC Heritage field members. These are the actual inputs the model ran against the Harbour Town winner DNA filters (SG: APP ≥ +0.40, SG: ARG ≥ +0.25, top-of-field SG: T2G).</p>
 
   <table>
     <thead><tr><th>Player</th><th>SG: T2G</th><th>SG: APP</th><th>SG: ARG</th><th>SG: Total</th><th>Filter</th></tr></thead>
@@ -347,7 +347,7 @@ footer{border-top:1px solid var(--bdr2);padding:2rem 1.5rem;display:flex;justify
   <h2>Where the <span>edge</span> is.</h2>
 
   <div class="pick featured">
-    <div class="pick-badge badge-green">â˜… PICK OF THE WEEK — E/W WINNER · 2 UNITS</div>
+    <div class="pick-badge badge-green">★ PICK OF THE WEEK — E/W WINNER · 2 UNITS</div>
     <div class="pick-head"><div class="pick-name">Matt Fitzpatrick</div><div class="pick-odds">+1950</div></div>
     <div class="pick-meta">2023 Heritage champion · 2nd SG: T2G on Tour · 7th SG: APP (+0.810) · Passes all DNA filters</div>
     <div class="pick-body">The archetype Harbour Town winner, at the archetype Harbour Town price. Fitzpatrick won here in 2023 with +5.01 SG: Approach for the week and distance below field average. Exactly the profile the course demands. His 2026 YTD numbers mirror that: 2nd in SG: Tee-to-Green on Tour and 7th in SG: Approach. He passes every Harbour Town DNA filter cleanly. At +1950 he is priced behind seven players with demonstrably worse course-fit profiles. This is the highest-conviction outright on the board.</div>
@@ -526,7 +526,7 @@ footer{border-top:1px solid var(--bdr2);padding:2rem 1.5rem;display:flex;justify
   <table>
     <thead><tr><th>Tier</th><th>Player</th><th>Odds</th><th>Bet Type</th><th>Units</th></tr></thead>
     <tbody>
-      <tr><td class="cg">â˜… Best Pick</td><td>Fitzpatrick</td><td class="cg">+1950</td><td>E/W Winner</td><td>2u</td></tr>
+      <tr><td class="cg">★ Best Pick</td><td>Fitzpatrick</td><td class="cg">+1950</td><td>E/W Winner</td><td>2u</td></tr>
       <tr><td class="cg">E/W Winner</td><td>Fleetwood</td><td class="cg">+1700</td><td>E/W Winner</td><td>2u</td></tr>
       <tr><td class="cb">Top 5</td><td>Scheffler</td><td class="cb">+135</td><td>Top 5</td><td>3u</td></tr>
       <tr><td class="cb">Top 10</td><td>Morikawa</td><td class="cb">+260</td><td>Top 10</td><td>2u</td></tr>
@@ -552,7 +552,7 @@ footer{border-top:1px solid var(--bdr2);padding:2rem 1.5rem;display:flex;justify
   </div>
 
   <div class="callout" style="border-color:rgba(240,180,41,.3)">
-    <div class="callout-label" style="color:var(--y)">âš  Reminder. Check the pick tracker</div>
+    <div class="callout-label" style="color:var(--y)">⚠ Reminder. Check the pick tracker</div>
     <div class="callout-text">The card above is the pre-tournament model output. Final bet sizing and specific picks that hit the live card may shift based on line movement between now and the first tee ball. Always cross-reference the <a href="picks.html" style="color:var(--g);text-decoration:underline">pick tracker</a> for the confirmed bets before following any pick. The tracker is the authoritative record. Win, lose, or open.</div>
   </div>
 </section>

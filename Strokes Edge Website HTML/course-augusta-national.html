@@ -45,16 +45,16 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .mobile-menu a.active{color:var(--g)}
 .mob-cta{border-bottom:none!important;margin-top:.5rem;padding:.85rem 1rem!important;border:1px solid var(--g)!important;border-radius:2px;color:var(--g)!important;text-align:center}
 @media(max-width:860px){.nav-link,.nav-cta{display:none}.hamburger{display:flex}}
-/* â”€â”€ BREADCRUMB â”€â”€ */
+/* ── BREADCRUMB ── */
 .breadcrumb{position:relative;z-index:2;max-width:900px;margin:0 auto;padding:6.5rem 1.5rem 0;font-family:'DM Mono',monospace;font-size:11px;color:var(--txt3);letter-spacing:.06em}
 .breadcrumb a{color:var(--txt3);text-decoration:none;transition:color .2s}
 .breadcrumb a:hover{color:var(--g)}
 .breadcrumb span{margin:0 8px;color:var(--txt3)}
 
-/* â”€â”€ CONTENT â”€â”€ */
+/* ── CONTENT ── */
 .wrap{max-width:900px;margin:0 auto;padding:0 1.5rem;position:relative;z-index:2}
 
-/* â”€â”€ HERO â”€â”€ */
+/* ── HERO ── */
 .hero{padding:2rem 0 3rem}
 .course-tag{display:inline-flex;align-items:center;gap:8px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;color:var(--g);text-transform:uppercase;margin-bottom:1.25rem;background:rgba(106,184,58,.07);border:1px solid var(--bdr);border-radius:2px;padding:5px 12px}
 .course-tag-dot{width:5px;height:5px;border-radius:50%;background:var(--g)}
@@ -64,13 +64,13 @@ h1.hero-title span{color:var(--g);display:block}
 .hero-sub{font-size:16px;color:var(--txt2);line-height:1.85;max-width:620px;opacity:0;animation:up .7s .3s forwards;margin-bottom:2rem}
 @keyframes up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
 
-/* â”€â”€ KEY FACTS BAR â”€â”€ */
+/* ── KEY FACTS BAR ── */
 .facts-bar{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:1px;background:var(--bdr2);border:1px solid var(--bdr2);border-radius:4px;overflow:hidden;margin-bottom:3rem}
 .fact{background:var(--bg2);padding:1.25rem 1rem;text-align:center}
 .fact-n{font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--g);line-height:1;margin-bottom:4px;letter-spacing:.03em}
 .fact-l{font-family:'DM Mono',monospace;font-size:9px;color:var(--txt2);letter-spacing:.1em;text-transform:uppercase;line-height:1.4}
 
-/* â”€â”€ SECTIONS â”€â”€ */
+/* ── SECTIONS ── */
 .divider{height:1px;background:var(--bdr2);margin:3rem 0}
 .sec-num{font-family:'DM Mono',monospace;font-size:11px;color:var(--g);letter-spacing:.12em;margin-bottom:1rem;display:flex;align-items:center;gap:12px}
 .sec-num::after{content:'';height:1px;width:40px;background:var(--bdr)}
@@ -79,7 +79,7 @@ h2 span{color:var(--g)}
 .body-text{font-size:15px;color:var(--txt2);line-height:1.85;margin-bottom:1.5rem}
 .body-text strong{color:var(--txt);font-weight:400}
 
-/* â”€â”€ STAT IMPORTANCE BARS â”€â”€ */
+/* ── STAT IMPORTANCE BARS ── */
 .stat-bars{display:flex;flex-direction:column;gap:.75rem;margin-bottom:2rem}
 .stat-bar-row{background:var(--sur);border:1px solid var(--bdr2);border-radius:4px;padding:1rem 1.25rem;transition:border-color .2s}
 .stat-bar-row:hover{border-color:var(--bdr)}
@@ -93,7 +93,7 @@ h2 span{color:var(--g)}
 .stat-bar-row.fade .stat-bar-rank{color:var(--r)}
 .stat-bar-row.fade .stat-bar-name{color:var(--txt2)}
 
-/* â”€â”€ CALLOUT â”€â”€ */
+/* ── CALLOUT ── */
 .callout{background:var(--sur);border:1px solid var(--bdr);border-radius:4px;padding:1.75rem;margin-bottom:2rem;position:relative;overflow:hidden}
 .callout::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--g)}
 .callout.red::before{background:var(--r)}
@@ -101,17 +101,17 @@ h2 span{color:var(--g)}
 .callout.red .callout-label{color:var(--r)}
 .callout-text{font-size:14px;color:var(--txt);line-height:1.75}
 
-/* â”€â”€ WINNER DNA TABLE â”€â”€ */
+/* ── WINNER DNA TABLE ── */
 .dna-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2rem}
 .dna-card{background:var(--sur);border:1px solid var(--bdr2);border-radius:4px;padding:1.25rem;transition:border-color .2s}
 .dna-card:hover{border-color:var(--bdr)}
 .dna-card.must{border-color:var(--g2)}
 .dna-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--g);margin-bottom:6px}
-.dna-card.must .dna-label::before{content:'âœ“ ';color:var(--g)}
+.dna-card.must .dna-label::before{content:'✓ ';color:var(--g)}
 .dna-val{font-size:22px;font-family:'Bebas Neue',sans-serif;color:var(--txt);letter-spacing:.03em;line-height:1;margin-bottom:4px}
 .dna-desc{font-size:12px;color:var(--txt2);line-height:1.5}
 
-/* â”€â”€ HOLES TABLE â”€â”€ */
+/* ── HOLES TABLE ── */
 .holes-table{width:100%;border-collapse:collapse;font-size:13px;margin-bottom:2rem}
 .holes-table thead{border-bottom:1px solid var(--bdr)}
 .holes-table th{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--txt3);padding:.6rem .75rem;text-align:left;font-weight:400}
@@ -124,7 +124,7 @@ h2 span{color:var(--g)}
 .holes-table tr.par5{background:rgba(106,184,58,.03)}
 .holes-table tr.par5 td:first-child{color:var(--g)}
 
-/* â”€â”€ HISTORICAL TABLE â”€â”€ */
+/* ── HISTORICAL TABLE ── */
 .hist-table{width:100%;border-collapse:collapse;font-size:13px;margin-bottom:2rem}
 .hist-table thead{border-bottom:1px solid var(--bdr)}
 .hist-table th{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--txt3);padding:.5rem .75rem;text-align:left;font-weight:400}
@@ -135,7 +135,7 @@ h2 span{color:var(--g)}
 .hist-table td.score{font-family:'DM Mono',monospace;color:var(--g)}
 .hist-table td.key-stat{font-size:11px;color:var(--txt3)}
 
-/* â”€â”€ BETTING TIPS â”€â”€ */
+/* ── BETTING TIPS ── */
 .tips{display:flex;flex-direction:column;gap:.75rem;margin-bottom:2rem}
 .tip{display:grid;grid-template-columns:36px 1fr;gap:1rem;align-items:start;background:var(--sur);border:1px solid var(--bdr2);border-radius:4px;padding:1.25rem;transition:border-color .2s}
 .tip:hover{border-color:var(--bdr)}
@@ -143,7 +143,7 @@ h2 span{color:var(--g)}
 .tip-title{font-size:14px;color:var(--txt);font-weight:400;margin-bottom:4px}
 .tip-body{font-size:13px;color:var(--txt2);line-height:1.65}
 
-/* â”€â”€ CTA â”€â”€ */
+/* ── CTA ── */
 .cta-box{background:var(--bg2);border:1px solid var(--bdr);border-radius:4px;padding:3rem 2rem;text-align:center;margin:3rem 0;position:relative;overflow:hidden}
 .cta-box::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:50%;height:1px;background:linear-gradient(90deg,transparent,var(--g),transparent)}
 .cta-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,5vw,48px);letter-spacing:.04em;line-height:1;margin-bottom:.75rem;color:var(--txt)}
@@ -155,7 +155,7 @@ h2 span{color:var(--g)}
 .btn-ghost{display:inline-block;padding:13px 32px;border:1px solid var(--bdr2);color:var(--txt2);font-family:'DM Mono',monospace;font-size:13px;letter-spacing:.06em;text-decoration:none;border-radius:2px;transition:all .2s}
 .btn-ghost:hover{border-color:var(--bdr);color:var(--txt)}
 
-/* â”€â”€ RELATED LINKS â”€â”€ */
+/* ── RELATED LINKS ── */
 .related{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:3rem}
 .related-card{background:var(--sur);border:1px solid var(--bdr2);border-radius:4px;padding:1.25rem;text-decoration:none;transition:all .2s;display:block}
 .related-card:hover{border-color:var(--bdr);transform:translateY(-2px)}
@@ -221,7 +221,7 @@ footer{border-top:1px solid var(--bdr2);padding:2rem 1.5rem;display:flex;justify
 <!-- SUBSTACK NUDGE -->
 <div class="substack-nudge">
   <div class="substack-nudge-text">Get the picks that go with this guide. <strong>Weekly model output, value screen, full card</strong> — free on Substack.</div>
-  <a href="https://strokesedge.substack.com" class="substack-nudge-link" target="_blank" rel="noopener">Get the picks â†’</a>
+  <a href="https://strokesedge.substack.com" class="substack-nudge-link" target="_blank" rel="noopener">Get the picks →</a>
 </div>
 
 <div class="wrap">
@@ -569,7 +569,7 @@ footer{border-top:1px solid var(--bdr2);padding:2rem 1.5rem;display:flex;justify
   <h2 class="cta-title">See the model <span>applied</span><br>to this year's Masters.</h2>
   <p class="cta-sub">Full pick breakdown — every player, every bet type, full rationale — in this week's analysis and on the Substack.</p>
   <div class="cta-btns">
-    <a href="analysis.html" class="btn-primary">Read the Masters analysis â†’</a>
+    <a href="analysis.html" class="btn-primary">Read the Masters analysis →</a>
     <a href="https://strokesedge.substack.com" class="btn-ghost" target="_blank">Subscribe for weekly picks</a>
   </div>
 </div>

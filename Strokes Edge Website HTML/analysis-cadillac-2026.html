@@ -35,7 +35,7 @@ body{background:var(--bg);color:var(--txt);font-family:'DM Sans',sans-serif;font
 body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:1;opacity:.6}
 body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(106,184,58,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(106,184,58,0.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;z-index:0}
 
-/* â”€â”€ NAV â”€â”€ */
+/* ── NAV ── */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1rem 1.5rem;border-bottom:1px solid var(--bdr2);background:rgba(8,11,7,.95);backdrop-filter:blur(16px)}
 .nav-logo{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.08em;color:var(--txt);text-decoration:none}
 .nav-logo span{color:var(--g)}
@@ -57,7 +57,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .mob-cta{border-bottom:none!important;margin-top:.5rem;padding:.85rem 1rem!important;border:1px solid var(--g)!important;border-radius:2px;color:var(--g)!important;text-align:center}
 @media(max-width:860px){.nav-link,.nav-cta{display:none}.hamburger{display:flex}}
 
-/* â”€â”€ CONTENT â”€â”€ */
+/* ── CONTENT ── */
 .wrap{max-width:900px;margin:0 auto;padding:0 1.5rem;position:relative;z-index:2}
 .hero{padding:7rem 0 2rem}
 .eyebrow{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.14em;color:var(--g);text-transform:uppercase;margin-bottom:1.5rem;display:flex;align-items:center;gap:10px}
@@ -75,13 +75,13 @@ h2 span{color:var(--g)}
 .body-text strong{color:var(--txt);font-weight:400}
 .divider{height:1px;background:linear-gradient(90deg,transparent,var(--bdr),transparent);margin:3rem 0}
 
-/* â”€â”€ STAT GRID â”€â”€ */
+/* ── STAT GRID ── */
 .stat-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--bdr2);border:1px solid var(--bdr2);border-radius:4px;overflow:hidden;margin-bottom:2rem}
 .stat-cell{background:var(--bg2);padding:1.25rem 1rem;text-align:center}
 .stat-n{font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--g);letter-spacing:.02em;line-height:1;margin-bottom:6px}
 .stat-l{font-family:'DM Mono',monospace;font-size:9px;color:var(--txt2);letter-spacing:.1em;text-transform:uppercase;line-height:1.4}
 
-/* â”€â”€ PICK CARDS â”€â”€ */
+/* ── PICK CARDS ── */
 .pick{background:var(--sur);border:1px solid var(--bdr2);border-radius:4px;padding:1.5rem;margin-bottom:.75rem;transition:all .2s;position:relative;overflow:hidden}
 .pick:hover{border-color:var(--bdr);transform:translateY(-1px)}
 .pick.featured{border-color:var(--g2);background:rgba(106,184,58,.04)}
@@ -102,13 +102,13 @@ h2 span{color:var(--g)}
 .tag-y{color:var(--y);border-color:rgba(240,180,41,.25)}
 .tag-b{color:var(--blue);border-color:rgba(74,158,255,.25)}
 
-/* â”€â”€ CALLOUT â”€â”€ */
+/* ── CALLOUT ── */
 .callout{background:var(--sur);border:1px solid var(--bdr);border-radius:4px;padding:1.75rem;margin-bottom:2rem;position:relative;overflow:hidden}
 .callout::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--g)}
 .callout-label{font-family:'DM Mono',monospace;font-size:10px;color:var(--g);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.5rem}
 .callout-text{font-size:14px;color:var(--txt);line-height:1.75}
 
-/* â”€â”€ TABLE â”€â”€ */
+/* ── TABLE ── */
 table{width:100%;border-collapse:collapse;font-size:12px;margin-bottom:2rem}
 thead{border-bottom:1px solid var(--bdr)}
 th{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--txt3);padding:.6rem .5rem;text-align:left;font-weight:400}
@@ -118,14 +118,14 @@ td{padding:.6rem .5rem;border-bottom:1px solid var(--bdr2);color:var(--txt2)}
 .cy{color:var(--y)!important}
 .cb{color:var(--blue)!important}
 
-/* â”€â”€ WEATHER â”€â”€ */
+/* ── WEATHER ── */
 .wx-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--bdr2);border:1px solid var(--bdr2);border-radius:4px;overflow:hidden;margin-bottom:2rem}
 .wx-cell{background:var(--bg2);padding:1rem;text-align:center}
 .wx-day{font-family:'DM Mono',monospace;font-size:10px;color:var(--g);letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
 .wx-temp{font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--txt);line-height:1;margin-bottom:3px}
 .wx-detail{font-size:10px;color:var(--txt3);line-height:1.3}
 
-/* â”€â”€ CTA â”€â”€ */
+/* ── CTA ── */
 .cta-box{background:var(--bg2);border:1px solid var(--bdr);border-radius:4px;padding:3rem 2rem;text-align:center;margin:3rem 0;position:relative;overflow:hidden}
 .cta-box::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:50%;height:1px;background:linear-gradient(90deg,transparent,var(--g),transparent)}
 .cta-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,5vw,48px);letter-spacing:.04em;line-height:1;margin-bottom:.75rem;color:var(--txt)}
@@ -134,7 +134,7 @@ td{padding:.6rem .5rem;border-bottom:1px solid var(--bdr2);color:var(--txt2)}
 .btn-primary{display:inline-block;padding:13px 32px;background:var(--g);color:#fff;font-family:'DM Mono',monospace;font-size:13px;letter-spacing:.06em;text-decoration:none;border-radius:2px;transition:all .2s}
 .btn-primary:hover{background:#7acc44;transform:translateY(-2px)}
 
-/* â”€â”€ FOOTER â”€â”€ */
+/* ── FOOTER ── */
 footer{border-top:1px solid var(--bdr2);padding:2rem 1.5rem;display:flex;justify-content:space-between;align-items:center;max-width:900px;margin:0 auto;flex-wrap:wrap;gap:1rem}
 .foot-logo{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.08em;color:var(--txt2)}
 .foot-logo span{color:var(--g)}
@@ -143,7 +143,7 @@ footer{border-top:1px solid var(--bdr2);padding:2rem 1.5rem;display:flex;justify
 .foot-links a{font-family:'DM Mono',monospace;font-size:10px;color:var(--txt3);text-decoration:none;letter-spacing:.08em;text-transform:uppercase;transition:color .2s}
 .foot-links a:hover{color:var(--g)}
 
-/* â”€â”€ H2H GRID â”€â”€ */
+/* ── H2H GRID ── */
 .h2h-grid{display:grid;grid-template-columns:1fr;gap:.75rem;margin-bottom:1.5rem}
 .h2h{background:var(--sur);border:1px solid var(--bdr2);border-radius:4px;padding:1.25rem 1.5rem}
 .h2h-title{font-family:'DM Mono',monospace;font-size:10px;color:var(--g);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.75rem}
@@ -154,7 +154,7 @@ footer{border-top:1px solid var(--bdr2);padding:2rem 1.5rem;display:flex;justify
 .h2h-odds{font-family:'DM Mono',monospace;font-size:13px;color:var(--txt2)}
 .h2h-rationale{font-size:12px;color:var(--txt2);line-height:1.7;margin-top:.75rem;padding-top:.75rem;border-top:1px solid var(--bdr2)}
 
-/* â”€â”€ MOBILE â”€â”€ */
+/* ── MOBILE ── */
 @media(max-width:900px){
   .stat-grid{grid-template-columns:repeat(3,1fr)}
 }
@@ -172,7 +172,7 @@ footer{border-top:1px solid var(--bdr2);padding:2rem 1.5rem;display:flex;justify
   .stat-grid{grid-template-columns:repeat(2,1fr)}
 }
 
-/* â”€â”€ PICKS DIVIDER â”€â”€ */
+/* ── PICKS DIVIDER ── */
 .picks-divider{text-align:center;padding:2rem 0;font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.3em;color:var(--txt3)}
 
 /* ── MODEL SALES ── */
@@ -229,7 +229,7 @@ footer{border-top:1px solid var(--bdr2);padding:2rem 1.5rem;display:flex;justify
 
 <div style="background:var(--bg2);border:1px solid var(--bdr2);border-radius:4px;padding:1rem 1.5rem;margin:0 0 2rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap">
   <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--txt3)">Current Analysis · Cadillac Championship 2026 · Blue Monster at Doral</div>
-  <a href="picks.html" style="font-family:'DM Mono',monospace;font-size:11px;color:var(--g);text-decoration:none;letter-spacing:.06em;border:1px solid var(--bdr);padding:8px 14px;border-radius:2px;white-space:nowrap;transition:background .2s">Live Pick Tracker â†’</a>
+  <a href="picks.html" style="font-family:'DM Mono',monospace;font-size:11px;color:var(--g);text-decoration:none;letter-spacing:.06em;border:1px solid var(--bdr);padding:8px 14px;border-radius:2px;white-space:nowrap;transition:background .2s">Live Pick Tracker →</a>
 </div>
 
 <section class="hero">
@@ -349,7 +349,7 @@ footer{border-top:1px solid var(--bdr2);padding:2rem 1.5rem;display:flex;justify
       <tr><td>15</td><td>Rasmus Højgaard</td><td>0.744</td><td class="cg">9</td><td>61</td><td>40</td><td class="cg">27</td><td class="cg">PASS</td></tr>
     </tbody>
   </table>
-  <p class="body-text" style="font-size:13px;color:var(--txt3);margin-top:-1rem">Eight players cleared all three hard gates (Dist Rank â‰¤30, SG: Total Rank â‰¤30, positive SG: OTT). Scheffler and Young miss the distance gate by two-six spots and are treated as model edge cases below.</p>
+  <p class="body-text" style="font-size:13px;color:var(--txt3);margin-top:-1rem">Eight players cleared all three hard gates (Dist Rank ≤30, SG: Total Rank ≤30, positive SG: OTT). Scheffler and Young miss the distance gate by two-six spots and are treated as model edge cases below.</p>
 </section>
 
 <div class="divider"></div>
@@ -361,7 +361,7 @@ footer{border-top:1px solid var(--bdr2);padding:2rem 1.5rem;display:flex;justify
   <h2>Where the <span>edge</span> is.</h2>
 
   <div class="pick featured">
-    <div class="pick-badge badge-green">â˜… PICK OF THE WEEK — E/W WINNER · 2 UNITS</div>
+    <div class="pick-badge badge-green">★ PICK OF THE WEEK — E/W WINNER · 2 UNITS</div>
     <div class="pick-head"><div class="pick-name">Chris Gotterup</div><div class="pick-odds">+2700</div></div>
     <div class="pick-meta">Model Rk 1 · Dist Rk 4 (320.1 yds) · OTT Rk 8 (+0.613) · 2 wins in 2026 · Passes all gates</div>
     <div class="pick-body">The cleanest model fit in the field. Gotterup ranks 4th on Tour in driving distance, 8th in SG: Off the Tee, and 14th in SG: Total. He has already won twice in 2026 — the Sony Open and the WM Phoenix Open — and his 2025 Scottish Open win came in serious wind, which is the differentiator the Sunday forecast needs. Bermuda greens are his best surface (9th-best putter on Bermuda over the past two years per Golf Digest). He gained strokes on approach in nine straight starts before Heritage. The market is pricing him at +2700-3000 because his Heritage run was an underperformance until a Sunday 64. That's narrative, not signal. At this profile, this price is the week's best outright.</div>
@@ -628,7 +628,7 @@ footer{border-top:1px solid var(--bdr2);padding:2rem 1.5rem;display:flex;justify
   <table>
     <thead><tr><th>Tier</th><th>Player</th><th>Odds</th><th>Bet Type</th><th>Units</th></tr></thead>
     <tbody>
-      <tr><td class="cg">â˜… Best Pick</td><td>Gotterup</td><td class="cg">+2700</td><td>E/W Winner</td><td>2u</td></tr>
+      <tr><td class="cg">★ Best Pick</td><td>Gotterup</td><td class="cg">+2700</td><td>E/W Winner</td><td>2u</td></tr>
       <tr><td class="cg">E/W Winner</td><td>Min Woo Lee</td><td class="cg">+2200</td><td>E/W Winner</td><td>1.5u</td></tr>
       <tr><td class="cg">E/W Winner</td><td>Adam Scott</td><td class="cg">+3300</td><td>E/W Winner</td><td>1u</td></tr>
       <tr><td class="cb">Top 5</td><td>Scheffler</td><td class="cb">+135</td><td>Top 5</td><td>3u</td></tr>
@@ -662,7 +662,7 @@ footer{border-top:1px solid var(--bdr2);padding:2rem 1.5rem;display:flex;justify
   </div>
 
   <div class="callout" style="border-color:rgba(240,180,41,.3)">
-    <div class="callout-label" style="color:var(--y)">âš  Reminder. Check the pick tracker</div>
+    <div class="callout-label" style="color:var(--y)">⚠ Reminder. Check the pick tracker</div>
     <div class="callout-text">The card above is the pre-tournament model output. Final bet sizing and specific picks that hit the live card may shift based on line movement between now and the first tee ball. Always cross-reference the <a href="picks.html" style="color:var(--g);text-decoration:underline">pick tracker</a> for the confirmed bets before following any pick. The tracker is the authoritative record. Win, lose, or open.</div>
   </div>
 </section>
@@ -674,7 +674,7 @@ footer{border-top:1px solid var(--bdr2);padding:2rem 1.5rem;display:flex;justify
   <div class="cta-box">
     <div class="cta-title">Get next week's <span>card.</span></div>
     <div class="cta-sub">The model runs every week. Tournament breakdowns, pick rationale, and weekly P&L delivered straight to your inbox.</div>
-    <a href="https://strokesedge.substack.com" class="btn-primary" target="_blank">Subscribe on Substack â†’</a>
+    <a href="https://strokesedge.substack.com" class="btn-primary" target="_blank">Subscribe on Substack →</a>
   </div>
 </section>
 

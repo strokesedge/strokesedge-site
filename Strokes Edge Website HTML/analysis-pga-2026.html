@@ -126,7 +126,7 @@ tr:hover td{background:rgba(106,184,58,.03)}
 .gate-sub{font-size:14px;color:var(--txt2);margin-bottom:1.5rem;max-width:480px;margin-left:auto;margin-right:auto;line-height:1.65}
 .gate-list{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.75rem;text-align:left;max-width:440px;margin-left:auto;margin-right:auto}
 .gate-item{font-family:'DM Mono',monospace;font-size:12px;color:var(--txt2);display:flex;align-items:flex-start;gap:.6rem;letter-spacing:.02em}
-.gate-item::before{content:'â†’';color:var(--g);flex-shrink:0}
+.gate-item::before{content:'→';color:var(--g);flex-shrink:0}
 .gate-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
 .btn-primary{font-family:'DM Mono',monospace;font-size:12px;padding:12px 28px;background:var(--g);color:#080b07;border-radius:2px;text-decoration:none;letter-spacing:.06em;font-weight:500;transition:opacity .2s}
 .btn-primary:hover{opacity:.9}
@@ -163,7 +163,7 @@ footer a:hover{color:var(--g)}
 .top-bar-link{font-family:'DM Mono',monospace;font-size:11px;color:var(--g);text-decoration:none;letter-spacing:.06em;border:1px solid var(--bdr);padding:8px 14px;border-radius:2px;white-space:nowrap;transition:background .2s}
 .top-bar-link:hover{background:var(--g-glow)}
 
-/* â”€â”€ MODEL SALES â”€â”€ */
+/* ── MODEL SALES ── */
 .model-sales{max-width:900px;margin:0 auto 3rem;padding:0 1.5rem;text-align:center;position:relative;z-index:2}
 .model-sales-copy{font-size:15px;color:var(--txt2);margin-bottom:1.5rem}
 .model-sales-buttons{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
@@ -172,7 +172,7 @@ footer a:hover{color:var(--g)}
 .btn-model-outline{background:transparent;color:var(--g)}
 .btn-model-outline:hover{background:rgba(106,184,58,.1)}
 
-/* â”€â”€ CONTENT CLIFF GATE â”€â”€ */
+/* ── CONTENT CLIFF GATE ── */
 .cliff-section{position:relative;margin-bottom:3rem}
 .cliff-blurred{filter:blur(8px);pointer-events:none;user-select:none}
 .cliff-overlay{position:absolute;inset:0;display:none;z-index:300;align-items:center;justify-content:center;background:linear-gradient(180deg,transparent 0%,rgba(8,11,7,0.85) 50%,rgba(8,11,7,0.95) 100%);min-height:300px}
@@ -218,11 +218,11 @@ footer a:hover{color:var(--g)}
 
 <div class="top-bar">
   <div class="top-bar-label">Analysis · PGA Championship 2026 · Aronimink Golf Club · May 14–17</div>
-  <a href="picks.html" class="top-bar-link">Live Pick Tracker â†’</a>
+  <a href="picks.html" class="top-bar-link">Live Pick Tracker →</a>
 </div>
 
 <section class="hero">
-  <div class="major-badge">â›³ Major Championship — 108th PGA Championship</div>
+  <div class="major-badge">⛳ Major Championship — 108th PGA Championship</div>
   <div class="eyebrow">Aronimink Golf Club · Newtown Square, Pennsylvania</div>
   <h1 class="hero-title">PGA<span>Championship.</span></h1>
   <div class="hero-meta">Aronimink Golf Club · Par 70 · ~7,300 yards · May 14–17, 2026</div>
@@ -358,7 +358,7 @@ footer a:hover{color:var(--g)}
   <div class="sec-num">04 — Model Output</div>
   <h2>Top model <span>outputs.</span></h2>
   <p class="body-text">Composite scores from the StrokesEdge Aronimink regression. Weights: APP (28%), ARG (20%), T2G (18%), GIR 175-200 (12%), par scoring efficiency (10%), scrambling (6%), putting (4%), OTT (2%). Course history from 2018 BMW blended in at 5% bonus weight. All inputs from 2026 PGA Tour year-to-date data.</p>
-  <p class="body-text">The L2 filter requires APP â‰¥ +0.40, ARG â‰¥ +0.25, and T2G inside the top 30 on Tour. Four players clear all three gates. The top three model outputs are shown below.</p>
+  <p class="body-text">The L2 filter requires APP ≥ +0.40, ARG ≥ +0.25, and T2G inside the top 30 on Tour. Four players clear all three gates. The top three model outputs are shown below.</p>
 
   <table>
     <thead>
@@ -420,10 +420,10 @@ footer a:hover{color:var(--g)}
     <div class="cliff-box">
       <div class="cliff-title">Get the full model breakdown free every week.<br>Subscribe to StrokesEdge on Substack.</div>
       <div class="cliff-label">Full model rankings · Complete picks card · Betting strategy</div>
-      <a href="https://strokesedge.substack.com" target="_blank" class="cliff-btn">Subscribe Free â†’</a>
+      <a href="https://strokesedge.substack.com" target="_blank" class="cliff-btn">Subscribe Free →</a>
       <form class="cliff-form" id="cliff-form">
         <input type="email" placeholder="your@email.com" id="cliff-email" required>
-        <button type="submit" class="cliff-btn">Unlock â†’</button>
+        <button type="submit" class="cliff-btn">Unlock →</button>
       </form>
     </div>
   </div>
@@ -432,7 +432,7 @@ footer a:hover{color:var(--g)}
     <div class="cta-strip">
       <h3>Full card. Every pick. Zero cost.</h3>
       <p>The complete PGA Championship picks card — model rankings, value screen, tiers, fades, bankroll — is in the Substack newsletter. Free subscribers get everything before Thursday's first tee shot.</p>
-      <a href="https://strokesedge.substack.com" target="_blank">Subscribe on Substack â†’</a>
+      <a href="https://strokesedge.substack.com" target="_blank">Subscribe on Substack →</a>
     </div>
   </div><!-- end cliff-content -->
 </div><!-- end cliff-section -->
@@ -470,7 +470,7 @@ if(hbg&&mob){
   });
 }
 
-// â”€â”€ Content cliff gate â”€â”€
+// ── Content cliff gate ──
 (function(){
   var overlay=document.getElementById('cliff-overlay');
   var form=document.getElementById('cliff-form');
