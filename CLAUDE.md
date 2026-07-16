@@ -12,7 +12,7 @@ All files live in the `Strokes Edge Website HTML/` subfolder inside the repo.
 Strokes Edge Website HTML/
 ├── index.html                        ← Homepage (always shows current tournament)
 ├── analysis.html                     ← Main analysis hub (permanent, never delete)
-├── picks.html                        ← Pick tracker (Substack gate — full block)
+├── picks.html                        ← Pick tracker (weekly access code gate)
 ├── methodology.html                  ← Model methodology
 ├── courses.html                      ← Course index
 ├── analysis-[tournament]-[year].html ← Archive analysis pages
@@ -28,6 +28,41 @@ Strokes Edge Website HTML/
 
 ---
 
+## Weekly Tournament Update Protocol
+
+When Brian says "Run the weekly update for [Tournament Name]" do ALL of the following automatically without asking for more information:
+
+**Step 1 — Research**
+- Search the web for tournament details: course name, location, par, yardage, dates, field size
+- Search the web for course profile: layout type, primary defense, what SG stats matter, historical winner patterns, course conditions
+- Fetch Substack RSS feed (https://strokesedge.substack.com/feed) to find that week's published article URL
+- If Brian provides a Substack URL or Excel model file, use that as the primary source for picks and analysis content
+
+**Step 2 — Update picks.html access code**
+- Generate new code in format [TOURNAMENTSLUG][2-digit year] e.g. OPEN26, MASTERS26
+- Add new code to validCodes array in picks.html (never remove old codes)
+- Brian should include this code in his Substack newsletter
+
+**Step 3 — Build all pages in one commit**
+- Create course-[slug].html using course-quail-hollow.html as template
+- Create analysis-[tournament-slug]-[year].html using analysis-pga-2026.html as template
+- Update index.html hero to show current tournament
+- Update analysis.html: new analysis becomes featured, previous featured moves to archive cards
+- Update courses.html: new course card at top with GUIDE LIVE badge, previous top card flips to ARCHIVE
+- Update sitemap.xml with both new pages
+- Run pre-deploy audit before pushing
+- Push everything in one commit
+
+**What Brian provides (when available):**
+- Tournament name (required)
+- Substack article URL (optional but preferred for picks content)
+- Excel model workbook (optional but preferred for exact picks/odds/rankings)
+
+**If no model file or Substack provided:**
+Generate analysis content from web research only. Use placeholder picks section with note "Full picks card published on Substack."
+
+---
+
 ## What Is Free vs Gated
 
 ### Always Free (no gate, no CTA wall)
@@ -36,13 +71,9 @@ Strokes Edge Website HTML/
 - course-[name].html — all course profile pages
 - methodology.html — model methodology
 
-### Substack Gate (full block — visitor must subscribe or enter email)
-- picks.html — pick tracker
-- Bottom half of every analysis page (see Analysis Page Structure below)
-
-### Model Sales (Gumroad / BuyMeACoffee)
-- Full Excel workbook with all model tabs, charts, value screen, weights
-- Linked from homepage and all analysis pages
+### Gated
+- picks.html — weekly access code gate
+- Bottom half of every analysis page — content cliff with Substack gate
 
 ---
 
@@ -50,9 +81,7 @@ Strokes Edge Website HTML/
 
 ### picks.html — Weekly Access Code Gate
 
-The pick tracker is locked behind a weekly access code. Codes are distributed in the StrokesEdge Substack newsletter each week. Only subscribers who read the newsletter can access the tracker.
-
-**Current valid code:** SCOTTISH26
+The pick tracker is locked behind a weekly access code distributed in the Substack newsletter.
 
 Implementation:
 - Full page overlay on load, cannot be dismissed or bypassed
@@ -67,19 +96,12 @@ Implementation:
 
 **Code array in picks.html JS — never remove old codes, only add new ones:**
 ```javascript
-const validCodes = ['SCOTTISH26'];
+const validCodes = ['SCOTTISH26','OPEN2026'];
 // Add new code each week — never delete old ones
 ```
 
 **Code naming format:** [TOURNAMENTSLUG][2-digit year]
-Examples: SCOTTISH26, USOPEN26, MASTERS26, PGATOUR26
-
-**Weekly code update workflow:**
-1. Brian provides the new tournament name
-2. Generate new code in format above
-3. Add new code to validCodes array in picks.html
-4. Push picks.html to GitHub
-5. Include the code in that week's Substack newsletter
+Examples: SCOTTISH26, OPEN2026, MASTERS26
 
 **Never:**
 - Remove old codes from the array
@@ -97,22 +119,15 @@ Free section (always visible):
 
 Content cliff — gate overlay appears here:
 - Blurred content visible behind overlay (CSS blur, not hidden)
-- Overlay text:
-  ```
-  Get the full model breakdown free every week.
-  Subscribe to StrokesEdge on Substack.
+- Overlay text: "Get the full model breakdown free every week. Subscribe to StrokesEdge on Substack."
+- Green Subscribe button linking to https://strokesedge.substack.com
 
-  [Subscribe Free →]  (links to https://strokesedge.substack.com)
-  ```
-- Below the blurred section label: "Full model rankings · Complete picks card · Betting strategy"
-- Same email honor-system unlock as picks.html
-
-Blurred section contains (shown blurred, unlocked by email entry):
+Blurred section contains:
 5. Full model rankings (all players scored)
 6. Complete picks card with tiers — E/W Winner, Top 10/20/30, Longshot, Fade
 7. Fade notes (always specify what market is faded and what remains valid)
 8. Bankroll and odds notes
-9. Link to full Substack article for complete reasoning
+9. Link to full Substack article
 
 ---
 
@@ -124,15 +139,8 @@ Appears on index.html (hero area) and every analysis page (just above the conten
 - Gumroad (weekly workbook): https://strokesedge.gumroad.com/l/buehoc — $7/tournament
 - BuyMeACoffee (membership): https://buymeacoffee.com/strokesedge/membership — $21/month
 
-### Section Copy
-```
-Want the full model breakdown?
-$7 per tournament — Weekly Model Workbook
-$21/month — Monthly Membership (all main events)
-```
-
 ### Buttons
-- Primary (green `#6ab83a` fill): "Get Weekly Model — $7" → Gumroad
+- Primary (green #6ab83a fill): "Get Weekly Model — $7" → Gumroad
 - Secondary (green outline): "Monthly Membership — $21/mo" → BuyMeACoffee
 - Stack vertically on mobile, side by side on desktop
 
@@ -143,8 +151,6 @@ $21/month — Monthly Membership (all main events)
 ---
 
 ## Pick Tracker Data
-
-The pick tracker pulls from a public Google Sheet CSV. Claude Code can fetch this anytime.
 
 CSV URL:
 ```
@@ -157,13 +163,9 @@ CSV columns: player, tournament, date, type, odds, wager, payout, result
 - Result values: open, won, lost, placed (lowercase only)
 - Payout = total return including stake. 0 for open bets.
 
-When updating picks.html, fetch this CSV to get current data. Never hardcode pick data.
-
 ---
 
 ## Analysis Page Content Structure
-
-Every analysis page follows this exact structure:
 
 ```
 [HEADER]
@@ -172,14 +174,13 @@ Tournament name, course, dates, location
 [FREE — visible to all]
 Section 1: Course Overview
 - Par, yardage, course type
-- Key playing conditions (wind exposure, rough, greens)
+- Key playing conditions
 - Historical winning scores
 
 Section 2: What Stats Matter This Week
-- Primary SG category (e.g. SG: Approach) with weighting
+- Primary SG category with weighting
 - Secondary categories with weightings
-- Why these stats matter at this specific course
-- One or two stats to fade (and why)
+- Why these stats matter at this course
 
 Section 3: Top 3 Course Fits
 - Player name + stat profile only
@@ -195,8 +196,7 @@ Section 4: Featured Pick
 $7 Gumroad / $21 BMAC buttons
 
 [CONTENT CLIFF — gate overlay]
-"Get the full model breakdown free. Subscribe on Substack."
-Email field + Subscribe button
+Subscribe to Substack CTA
 
 [BLURRED BEHIND GATE]
 Section 5: Full Model Rankings
@@ -208,38 +208,31 @@ Section 9: Link to Substack article
 
 ---
 
-## Standing Template
+## Standing Templates
 
-Use `analysis-pga-2026.html` as the standing template for all new analysis pages. Match its exact structure, nav, CSS classes, and section layout. Update content only.
-
-For course pages, use `course-quail-hollow.html` as the standing template.
+- New analysis pages: use `analysis-pga-2026.html` as template
+- New course pages: use `course-quail-hollow.html` as template
 
 ---
 
-## Nav Standard — CRITICAL
+## Nav Standard
 
-### Dropdown JS Requirements
-Every nav dropdown must have BOTH:
-```javascript
-e.preventDefault();
-e.stopPropagation();
-```
-
-### Nav Links (always in this order)
+Nav is simplified — no dropdowns. Direct links only:
 - Home → index.html
-- Analysis (dropdown) — newest page always first
-- Courses (dropdown) — newest page always first
-- Picks → picks.html
 - Methodology → methodology.html
+- Pick Tracker → picks.html
+- Courses → courses.html
+- Analysis → analysis.html
+- Subscribe → https://strokesedge.substack.com (button style)
 
-### When Adding Any New Page
-Update the nav dropdown on ALL existing HTML files in the same commit.
+Mobile menu: same links, same order.
+
+Every nav must have hamburger at `@media(max-width:860px)`.
 
 ---
 
 ## Responsive Breakpoints
 
-Always check all three:
 - `@media(max-width:860px)` — hamburger nav
 - `@media(max-width:640px)` — mobile layout
 - `@media(max-width:380px)` — smallest screen (if stat grids used)
@@ -253,27 +246,6 @@ Update every new tournament week:
 2. Hero subtext — course name and dates
 3. CTA button — links to new analysis page
 4. Featured analysis card — current week
-
-Brian provides tournament name, course, and dates when ready.
-
----
-
-## Weekly Update Checklist
-
-One commit covers all of this:
-
-- [ ] Create new analysis-[tournament]-[year].html
-- [ ] Create new course-[course].html if needed
-- [ ] Update Analysis dropdown on EVERY .html file (new page at top)
-- [ ] Update Courses dropdown on EVERY .html file if new course added
-- [ ] Update index.html hero to current tournament
-- [ ] Update analysis.html archive cards (new card at top)
-- [ ] Update sitemap.xml
-- [ ] Confirm model sales section on index.html and new analysis page
-- [ ] Confirm Substack gate on picks.html is working
-- [ ] Confirm content cliff gate on new analysis page is working
-- [ ] Verify all dropdowns on mobile and desktop
-- [ ] Verify responsive breakpoints
 
 ---
 
@@ -329,6 +301,50 @@ One commit covers all of this:
 
 ---
 
+## Pre-Deploy Audit — Run Before Every Commit
+
+**Head Tags**
+- Every page has specific `<meta name="description">`
+- Every page has correct `<title>` tag
+- Every page has `<link rel="canonical">` with correct URL
+- Every page has OG and Twitter card meta tags
+- Every page has GA4 tag `G-D398EHRP6Y` in `<head>`
+- Every page has all 4 favicon link tags
+
+**Gates**
+- picks.html shows weekly access code gate — no bypass
+- All analysis pages have content cliff blur gate
+- Model sales section present on index.html and all analysis pages
+
+**Responsive**
+- `@media(max-width:860px)` hamburger breakpoint on every page
+- `@media(max-width:640px)` mobile layout on every page
+
+**Links**
+- No broken internal links
+- sitemap.xml includes all pages with correct priorities
+
+**Footer**
+- Every page has "Not financial advice. Gamble responsibly."
+
+Fix all issues found before pushing.
+
+---
+
+## Automated Weekly Script
+
+`weekly_course_update.py` runs every Sunday at 5pm automatically. It creates new course pages and updates courses.html and sitemap.xml. Never modify or delete this script. When manually updating the site, check `weekly_course_update.log` to see what the script last changed so you don't duplicate or conflict with its work.
+
+---
+
+## Substack Reference
+
+RSS feed: https://strokesedge.substack.com/feed
+
+Before writing any analysis page, fetch this RSS feed to find the latest published post. Use post titles and publish dates to link correctly to the right Substack article.
+
+---
+
 ## Key URLs
 
 - Live site: https://strokesedge.com
@@ -340,53 +356,3 @@ One commit covers all of this:
 - Pick tracker CSV: https://docs.google.com/spreadsheets/d/e/2PACX-1vRn7eBjHWBs4nag5K5QHxnKiyeC-UEobNINAfjmEKsnBgX6aqm3lEZCY1i4lg5t5Lwy3I2p8ZLrR4Gc/pub?gid=0&single=true&output=csv
 - GA4: G-D398EHRP6Y
 - Contact: strokesedge@gmail.com
-
----
-
-## Pre-Deploy Audit — Run Before Every Commit
-
-Before pushing any changes, audit ALL HTML files and fix every issue found in the same commit:
-
-**Nav & Dropdowns**
-- Every dropdown trigger has both `e.preventDefault()` AND `e.stopPropagation()`
-- Analysis dropdown present and working on every page
-- Courses dropdown present and working on every page
-- Mobile hamburger menu works and contains all same links as desktop
-- Newest analysis page is first in Analysis dropdown on every page
-- Newest course page is first in Courses dropdown on every page
-- No reference to potd.html anywhere
-
-**Head Tags**
-- Every page has `<meta name="description">` specific to that page
-- Every page has correct `<title>` tag matching formula
-- Every page has `<link rel="canonical">` with correct full URL
-- Every page has OG and Twitter card meta tags
-- Every page has GA4 tag `G-D398EHRP6Y` in `<head>`
-- Every page has all 4 favicon link tags
-
-**Gates**
-- picks.html shows full Substack block gate — no email field, no bypass, Substack button only
-- All analysis pages have content cliff blur gate at correct position
-- Model sales section ($7/$21 buttons) present on index.html and all analysis pages
-
-**Responsive**
-- `@media(max-width:860px)` hamburger breakpoint on every page
-- `@media(max-width:640px)` mobile layout on every page
-
-**Links**
-- No broken internal links
-- No links pointing to pages that don't exist
-- sitemap.xml includes all pages with correct priorities
-
-**Footer**
-- Every page has "Not financial advice. Gamble responsibly." in footer
-
-Fix all issues found before pushing.
-
----
-
-## Substack Reference
-
-RSS feed: https://strokesedge.substack.com/feed
-
-Before writing any analysis page or referencing recent articles, fetch this RSS feed to see the latest published posts. Use post titles and publish dates to link correctly to the right Substack article from each analysis page.
