@@ -7,18 +7,18 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon32x32.png">
 <link rel="icon" type="image/png" sizes="512x512" href="/favicon512x512.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/favicon180x180.png">
-<title>Scottish Open 2026 Analysis — StrokesEdge</title>
-<meta name="description" content="StrokesEdge quantitative model for the 2026 Scottish Open at Renaissance Club. Course regression weights, links-adjusted stat targets, top model outputs, and value screen preview.">
+<title>3M Open 2026 Analysis — StrokesEdge</title>
+<meta name="description" content="StrokesEdge quantitative model for the 2026 3M Open at TPC Twin Cities. Course regression weights, birdiefest-adjusted stat targets, top model outputs, and value screen preview.">
 <link rel="canonical" href="https://strokesedge.com/analysis.html">
-<meta property="og:title" content="Scottish Open 2026 Analysis — StrokesEdge">
-<meta property="og:description" content="Data-driven model analysis for the 2026 Scottish Open at Renaissance Club, North Berwick, Scotland.">
+<meta property="og:title" content="3M Open 2026 Analysis — StrokesEdge">
+<meta property="og:description" content="Data-driven model analysis for the 2026 3M Open at TPC Twin Cities, Blaine, Minnesota.">
 <meta property="og:url" content="https://strokesedge.com/analysis.html">
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://strokesedge.com/ogimage.png">
 <meta property="og:site_name" content="StrokesEdge">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Scottish Open 2026 Analysis — StrokesEdge">
-<meta name="twitter:description" content="Quantitative model output for the 2026 Scottish Open. Course regression, links adjustment, value screen top plays.">
+<meta name="twitter:title" content="3M Open 2026 Analysis — StrokesEdge">
+<meta name="twitter:description" content="Quantitative model output for the 2026 3M Open. Course regression, birdiefest adjustment, value screen top plays.">
 <meta name="twitter:image" content="https://strokesedge.com/ogimage.png">
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-D398EHRP6Y"></script>
@@ -229,12 +229,12 @@ footer a{color:var(--g);text-decoration:none}
 
 <div class="page-header">
   <div class="page-header-inner">
-    <h1>2026 Scottish <span>Open</span></h1>
+    <h1>2026 3M <span>Open</span></h1>
     <div class="event-meta">
-      <div class="event-meta-item">Course: <strong>Renaissance Club</strong></div>
-      <div class="event-meta-item">Location: <strong>North Berwick, Scotland</strong></div>
-      <div class="event-meta-item">Dates: <strong>Jul 10–13, 2026</strong></div>
-      <div class="event-meta-item">Par: <strong>71 · 7,266 yds</strong></div>
+      <div class="event-meta-item">Course: <strong>TPC Twin Cities</strong></div>
+      <div class="event-meta-item">Location: <strong>Blaine, Minnesota</strong></div>
+      <div class="event-meta-item">Dates: <strong>Jul 23–26, 2026</strong></div>
+      <div class="event-meta-item">Par: <strong>71 · 7,431 yds</strong></div>
       <div class="event-meta-item">Field: <strong>156 Players</strong></div>
     </div>
   </div>
@@ -258,23 +258,23 @@ footer a{color:var(--g);text-decoration:none}
     <div class="course-grid">
       <div class="stat-card">
         <div class="stat-card-label">Layout Type</div>
-        <div class="stat-card-value">Links</div>
-        <div class="stat-card-sub">Coastal North Berwick. Minimal rough, firm turf, ground-game options on every hole.</div>
+        <div class="stat-card-value">Parkland</div>
+        <div class="stat-card-sub">Arnold Palmer design in Blaine, Minnesota. Bentgrass tee to green, moderate rough, water in play across a large share of holes.</div>
       </div>
       <div class="stat-card">
         <div class="stat-card-label">Primary Defense</div>
-        <div class="stat-card-value">Wind</div>
-        <div class="stat-card-sub">Firth of Forth exposure shifts wind direction round to round. No single line to memorize.</div>
+        <div class="stat-card-value">Water</div>
+        <div class="stat-card-sub">27 water features in play, most notably the closing 17th (par 3, all carry) and 18th (par 5 along a lake).</div>
       </div>
       <div class="stat-card">
-        <div class="stat-card-label">Green Speed (Est.)</div>
-        <div class="stat-card-value">10.5+</div>
-        <div class="stat-card-sub">Firm and fast-running. Approach shots release well past first bounce.</div>
+        <div class="stat-card-label">Field Scoring Profile</div>
+        <div class="stat-card-value">Birdiefest</div>
+        <div class="stat-card-sub">Moderate rough and generous fairways turn this into a birdie-making contest rather than a survival test.</div>
       </div>
       <div class="stat-card">
         <div class="stat-card-label">Winning Score Trend</div>
-        <div class="stat-card-value">-15 to -20</div>
-        <div class="stat-card-sub">Recent winners have gone well under par — a birdie-heavy week relative to Open Championship setups.</div>
+        <div class="stat-card-value">-15 to -24</div>
+        <div class="stat-card-sub">Every 3M Open champion since the 2019 debut has finished in this range — one of the lowest-scoring stops on Tour.</div>
       </div>
     </div>
 
@@ -282,7 +282,7 @@ footer a{color:var(--g);text-decoration:none}
 
     <p class="section-label">02 — L1 Regression Weights</p>
     <div class="prose" style="margin-bottom:16px">
-      <p>Renaissance Club requires a fundamentally different regression template than American parkland venues. Wide, minimal-rough fairways strip driving distance of its usual predictive weight, while firm, fast-running links turf elevates approach precision and scrambling. Links and European Tour pedigree function as a qualitative overlay on top of the standard SG-based score.</p>
+      <p>TPC Twin Cities requires a birdiefest-adjusted regression template. With winning scores routinely at -20 or lower, the model shifts weight toward SG: Approach and SG: Off the Tee in combination, plus a recent Birdie-or-Better rate input. Driving accuracy is intentionally downweighted relative to most parkland venues.</p>
     </div>
     <table class="weights-table">
       <thead>
@@ -296,71 +296,71 @@ footer a{color:var(--g);text-decoration:none}
       <tbody>
         <tr>
           <td class="stat-name">SG: Approach the Green</td>
-          <td>30%</td>
+          <td>28%</td>
           <td class="weight-bar-cell"><div class="weight-bar-wrap"><div class="weight-bar" style="width:100%"></div></div></td>
-          <td><span class="gate-badge">#1 Predictor</span> Firm, fast-running greens punish anything but precise approach play. The primary separator at Renaissance Club.</td>
+          <td><span class="gate-badge">#1 Predictor</span> Every 3M Open winner since 2019 has ranked top 20 in SG: Approach for the week. The clearest separator in a low-scoring field.</td>
         </tr>
         <tr>
-          <td class="stat-name">SG: Around the Green</td>
-          <td>27%</td>
-          <td class="weight-bar-cell"><div class="weight-bar-wrap"><div class="weight-bar" style="width:90%"></div></div></td>
-          <td><span class="gate-badge">Elevated</span> No rough to bail out misses. Scrambling off tight turf and pot bunkers is a major score differential.</td>
+          <td class="stat-name">SG: Off the Tee</td>
+          <td>26%</td>
+          <td class="weight-bar-cell"><div class="weight-bar-wrap"><div class="weight-bar" style="width:93%"></div></div></td>
+          <td><span class="gate-badge">Elevated</span> Length opens up short-iron approaches and a reachable closing par 5. A strong signal, not a hard gate — see Winner DNA note below.</td>
         </tr>
         <tr>
-          <td class="stat-name">Links / European Tour Experience</td>
-          <td>25%</td>
-          <td class="weight-bar-cell"><div class="weight-bar-wrap"><div class="weight-bar" style="width:83%"></div></div></td>
-          <td><span class="gate-badge modified">Qualitative Overlay</span> Prior European Tour, Ryder Cup, or Open Championship links results correlate strongly with Renaissance Club finishes.</td>
+          <td class="stat-name">Birdie-or-Better % (L50)</td>
+          <td>24%</td>
+          <td class="weight-bar-cell"><div class="weight-bar-wrap"><div class="weight-bar" style="width:86%"></div></div></td>
+          <td><span class="gate-badge">Elevated</span> With winning totals of -15 to -24, the event is decided by conversion rate on birdie chances, not avoiding bogeys.</td>
         </tr>
         <tr>
-          <td class="stat-name low">SG: Off the Tee</td>
-          <td>18%</td>
-          <td class="weight-bar-cell"><div class="weight-bar-wrap"><div class="weight-bar low" style="width:60%"></div></div></td>
-          <td><span class="gate-badge modified">Below Standard</span> Wide, minimal-rough fairways strip the distance advantage that dominates parkland venues.</td>
+          <td class="stat-name low">Driving Accuracy</td>
+          <td>14%</td>
+          <td class="weight-bar-cell"><div class="weight-bar-wrap"><div class="weight-bar low" style="width:47%"></div></div></td>
+          <td><span class="gate-badge modified">Below Standard</span> Moderate rough and generous fairway widths strip accuracy of the predictive value it carries at tighter venues.</td>
         </tr>
       </tbody>
     </table>
 
     <div class="model-callout">
-      <p><strong>L2 Gate Modification:</strong> The standard "3+ prior starts at venue" filter is suspended for Renaissance Club given a short Scottish Open history at this site (since 2019). The gate is replaced by <strong>prior links success (top-20 finish at The Open Championship or a European links venue in the past five years)</strong> as the comparable-pressure filter. All other L2 gates apply. See full methodology at <a href="methodology.html" style="color:var(--g);text-decoration:none">strokesedge.com/methodology.html</a>.</p>
+      <p><strong>L2 Gate Modification:</strong> The standard course-history bonus weight is suspended for TPC Twin Cities. Seven different champions in seven playings (2019–2025) means no repeat-winner pattern exists yet at this venue. The gate is replaced by <strong>current-season Birdie-or-Better rate and SG: Approach form over the trailing 10 rounds</strong> as the comparable-pressure filter. All other L2 gates apply. See full methodology at <a href="methodology.html" style="color:var(--g);text-decoration:none">strokesedge.com/methodology.html</a>.</p>
     </div>
 
     <hr class="section-divider">
 
     <p class="section-label">03 — Weather This Week</p>
     <div class="prose" style="margin-bottom:8px">
-      <p>Typical July conditions for this stretch of the East Lothian coast: mild temperatures, persistent breeze off the Firth of Forth, and a real chance the wind direction flips between rounds. Saturday is historically the most volatile day at this venue. This is an active variable in the L3 value screen.</p>
+      <p>Typical late-July conditions for the Minneapolis-St. Paul area: warm, humid, and lighter wind than a coastal or links venue, with a real chance of pop-up afternoon thunderstorms. This is an active variable in the L3 value screen, particularly for weekend tee times.</p>
     </div>
     <div class="weather-strip">
-      <div class="wx-day">
+      <div class="wx-day hot">
         <div class="wx-label">R1 · Thu</div>
-        <div class="wx-temp">61°</div>
-        <div class="wx-wind">15–25 mph</div>
+        <div class="wx-temp">84°</div>
+        <div class="wx-wind">5–10 mph</div>
         <div class="wx-rain">30% rain</div>
       </div>
-      <div class="wx-day">
-        <div class="wx-label">R2 · Fri</div>
-        <div class="wx-temp">63°</div>
-        <div class="wx-wind">10–18 mph</div>
-        <div class="wx-rain">20% rain</div>
-      </div>
       <div class="wx-day hot">
+        <div class="wx-label">R2 · Fri</div>
+        <div class="wx-temp">86°</div>
+        <div class="wx-wind">5–12 mph</div>
+        <div class="wx-rain">35% rain</div>
+      </div>
+      <div class="wx-day">
         <div class="wx-label">R3 · Sat</div>
-        <div class="wx-temp">60°</div>
-        <div class="wx-wind">Gusts 20–30 mph</div>
+        <div class="wx-temp">82°</div>
+        <div class="wx-wind">8–15 mph</div>
         <div class="wx-rain">40% rain</div>
       </div>
       <div class="wx-day">
         <div class="wx-label">R4 · Sun</div>
-        <div class="wx-temp">64°</div>
-        <div class="wx-wind">12–20 mph</div>
-        <div class="wx-rain">15% rain</div>
+        <div class="wx-temp">80°</div>
+        <div class="wx-wind">6–12 mph</div>
+        <div class="wx-rain">25% rain</div>
       </div>
     </div>
 
     <hr class="section-divider">
 
-    <p class="section-label">04 — Course History (Scottish Open at Renaissance Club)</p>
+    <p class="section-label">04 — Course History (3M Open at TPC Twin Cities)</p>
     <table class="ch-table">
       <thead>
         <tr>
@@ -372,26 +372,26 @@ footer a{color:var(--g);text-decoration:none}
         </tr>
       </thead>
       <tbody>
-        <tr><td>2025</td><td class="finish-won">Chris Gotterup</td><td>266</td><td>-18</td><td>—</td></tr>
-        <tr><td>2024</td><td>Robert MacIntyre</td><td>—</td><td>—</td><td>—</td></tr>
-        <tr><td>2023</td><td>Robert MacIntyre</td><td>—</td><td>—</td><td>—</td></tr>
-        <tr><td>2022</td><td>Xander Schauffele</td><td>—</td><td>—</td><td>—</td></tr>
-        <tr><td>2021</td><td>Min Woo Lee</td><td>—</td><td>—</td><td>—</td></tr>
-        <tr><td>2020</td><td>Aaron Rai</td><td>—</td><td>—</td><td>—</td></tr>
-        <tr><td>2019</td><td>Bernd Wiesberger</td><td>—</td><td>—</td><td>—</td></tr>
+        <tr><td>2025</td><td class="finish-won">Kurt Kitayama</td><td>261</td><td>-23</td><td>1 stroke</td></tr>
+        <tr><td>2024</td><td>Jhonattan Vegas</td><td>267</td><td>-17</td><td>1 stroke</td></tr>
+        <tr><td>2023</td><td>Lee Hodges</td><td>260</td><td>-24</td><td>7 strokes</td></tr>
+        <tr><td>2022</td><td>Tony Finau</td><td>267</td><td>-17</td><td>3 strokes</td></tr>
+        <tr><td>2021</td><td>Cameron Champ</td><td>269</td><td>-15</td><td>2 strokes</td></tr>
+        <tr><td>2020</td><td>Michael Thompson</td><td>265</td><td>-19</td><td>2 strokes</td></tr>
+        <tr><td>2019</td><td>Matthew Wolff</td><td>263</td><td>-21</td><td>1 stroke</td></tr>
       </tbody>
     </table>
 
-    <p style="margin-top:20px;font-size:13px;color:var(--muted)">Full course profile and betting angle breakdown at <a href="course-renaissance-club.html" style="color:var(--g);text-decoration:none">course-renaissance-club.html</a>.</p>
+    <p style="margin-top:20px;font-size:13px;color:var(--muted)">Full course profile and betting angle breakdown at <a href="course-tpc-twin-cities.html" style="color:var(--g);text-decoration:none">course-tpc-twin-cities.html</a>.</p>
 
   </div><!-- /tab-course -->
 
   <!-- MODEL RANKINGS TAB -->
   <div class="tab-content" id="tab-model">
 
-    <p class="section-label">Model Rankings — 2026 Scottish Open</p>
+    <p class="section-label">Model Rankings — 2026 3M Open</p>
     <div class="prose">
-      <p>Blended 60/40 season/form regression with Renaissance Club-adjusted weights (links/wind composite). Full rankings, tier assignments, and reasoning on Substack. Top 3 model outputs shown below.</p>
+      <p>Blended 60/40 season/form regression with TPC Twin Cities-adjusted weights (birdiefest/approach composite). Full rankings, tier assignments, and reasoning on Substack. Top 3 model outputs shown below.</p>
     </div>
 
     <div class="cliff-section">
@@ -484,6 +484,11 @@ footer a{color:var(--g);text-decoration:none}
     </div>
 
     <div class="archive-grid">
+      <a href="analysis-scottish-open-2026.html" class="archive-card">
+        <div class="archive-card-event">Scottish Open 2026</div>
+        <div class="archive-card-meta">Renaissance Club · North Berwick, Scotland · Jul 10–13</div>
+        <div class="archive-card-link">View archive →</div>
+      </a>
       <a href="analysis-pga-2026.html" class="archive-card">
         <div class="archive-card-event">PGA Championship 2026</div>
         <div class="archive-card-meta">Aronimink Golf Club · Wayne, PA · May 14–17</div>
