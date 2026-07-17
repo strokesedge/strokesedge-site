@@ -623,6 +623,12 @@ def update_courses_index(details: dict, top_stat: str, insight: str) -> tuple:
     text, has_bom, had_crlf = read_text(COURSES_INDEX_FILE)
     slug = details["slug"]
 
+    # A run for a course that's already in the grid (re-run, overlapping
+    # instance, etc.) must not insert another copy of its card.
+    if f'href="course-{slug}.html"' in text:
+        logger.info(f"courses.html already has a card for course-{slug}.html — skipping duplicate insert")
+        return text, has_bom, had_crlf
+
     # "Guide live" is not a unique "current tournament" marker — multiple
     # cards can carry it at once (verified: 4 do, as of writing this).
     # What actually needs to flip is specifically the CURRENT TOP card,
@@ -685,6 +691,11 @@ def update_courses_index(details: dict, top_stat: str, insight: str) -> tuple:
 # ─────────────────────────────────────────────────────────────────────────
 def update_sitemap(slug: str) -> tuple:
     text, has_bom, had_crlf = read_text(SITEMAP_FILE)
+
+    if f"course-{slug}.html</loc>" in text:
+        logger.info(f"sitemap.xml already has an entry for course-{slug}.html — skipping duplicate insert")
+        return text, has_bom, had_crlf
+
     entry = (
         f'  <url>\n'
         f'    <loc>https://strokesedge.com/course-{slug}.html</loc>\n'
@@ -841,14 +852,30 @@ def run(test_mode: bool) -> None:
                f"{'course-' + details['slug'] + '.html, ' if not page_already_exists else ''}"
                f"courses.html, sitemap.xml")
 
-    committed = git_commit_local(
-        (new_page_path if not page_already_exists else COURSES_INDEX_FILE).relative_to(REPO_ROOT).as_posix(),
-        details["tournament_name"], details["dates"],
-    )
+    try:
+        committed = git_commit_local(
+            (new_page_path if not page_already_exists else COURSES_INDEX_FILE).relative_to(REPO_ROOT).as_posix(),
+            details["tournament_name"], details["dates"],
+        )
+    except Exception as e:
+        logger.error(f"FATAL: git commit failed: {e}")
+        send_email("StrokesEdge: Weekly course update FAILED — git commit failed",
+                   f"Files were written successfully but the git commit step failed "
+                   f"(possibly a lock conflict from an overlapping run). "
+                   f"courses.html/sitemap.xml on disk may be ahead of the last commit — "
+                   f"check `git status` before the next run.\n\nError: {e}")
+        sys.exit(1)
 
     if AUTO_PUSH and committed:
-        git_push()
-        push_note = "Pushed automatically (AUTO_PUSH=True)."
+        try:
+            git_push()
+            push_note = "Pushed automatically (AUTO_PUSH=True)."
+        except Exception as e:
+            logger.error(f"FATAL: git push failed: {e}")
+            send_email("StrokesEdge: Weekly course update FAILED — git push failed",
+                       f"Commit succeeded locally but the push step failed.\n\n"
+                       f"Run `python weekly_course_update.py --push` manually.\n\nError: {e}")
+            sys.exit(1)
     else:
         push_note = ("Held locally — review the commit, then run:\n"
                      "    python weekly_course_update.py --push")
