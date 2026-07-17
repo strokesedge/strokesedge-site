@@ -78,6 +78,7 @@ Usage:
 """
 
 import argparse
+import atexit
 import json
 import logging
 import os
@@ -85,6 +86,7 @@ import re
 import smtplib
 import subprocess
 import sys
+import time
 import urllib.parse
 import urllib.request
 from datetime import date, datetime
@@ -100,6 +102,13 @@ TEMPLATE_FILE = SITE_DIR / "course-quail-hollow.html"
 COURSES_INDEX_FILE = SITE_DIR / "courses.html"
 SITEMAP_FILE = SITE_DIR / "sitemap.xml"
 LOG_FILE = REPO_ROOT / "weekly_course_update.log"
+LOCK_FILE = REPO_ROOT / ".weekly_course_update.lock"
+
+# How old an unclaimed lock file has to be before we treat it as an orphan
+# from a crashed run rather than a live instance. Normal runs (including
+# --push) finish in well under a minute; 15 minutes is a generous margin
+# that still clears the lock long before the next weekly trigger.
+LOCK_STALE_SECONDS = 15 * 60
 
 # Safety allowlist — the ONLY files this script is permitted to write.
 # Enforced in write_text(); anything else is a bug, not a config option.
@@ -765,6 +774,45 @@ def send_email(subject: str, body: str) -> None:
 
 
 # ─────────────────────────────────────────────────────────────────────────
+# Concurrency guard
+# ─────────────────────────────────────────────────────────────────────────
+class AlreadyRunningError(Exception):
+    pass
+
+
+def acquire_lock() -> None:
+    """Refuse to proceed if another instance holds the lock.
+
+    Closes the gap Task Scheduler's own MultipleInstances=IgnoreNew setting
+    can't: a fresh launch can slip through if it lands before Task Scheduler
+    has finished marking the prior instance as Running (this script exits
+    its early steps in well under a second, so rapid manual re-clicks can
+    land inside that window). The os.open(..., O_CREAT | O_EXCL) call is an
+    atomic exclusive-create at the OS level, so only one process can ever
+    win it, no matter how close together two launches are.
+    """
+    if LOCK_FILE.exists():
+        age = time.time() - LOCK_FILE.stat().st_mtime
+        if age < LOCK_STALE_SECONDS:
+            raise AlreadyRunningError(
+                f"Lock file is {age:.0f}s old — another instance appears to be running."
+            )
+        logger.info(f"Removing stale lock file (age {age:.0f}s, over {LOCK_STALE_SECONDS}s threshold)")
+        LOCK_FILE.unlink()
+
+    try:
+        fd = os.open(LOCK_FILE, os.O_CREAT | os.O_EXCL | os.O_WRONLY)
+    except FileExistsError:
+        raise AlreadyRunningError("Another instance won the lock first.")
+    os.write(fd, str(os.getpid()).encode())
+    os.close(fd)
+
+
+def release_lock() -> None:
+    LOCK_FILE.unlink(missing_ok=True)
+
+
+# ─────────────────────────────────────────────────────────────────────────
 # Main
 # ─────────────────────────────────────────────────────────────────────────
 def run(test_mode: bool) -> None:
@@ -903,6 +951,13 @@ def main():
     parser.add_argument("--push", action="store_true",
                         help="Push whatever is already locally committed. Does nothing else.")
     args = parser.parse_args()
+
+    try:
+        acquire_lock()
+    except AlreadyRunningError as e:
+        logger.info(f"Exiting without running — {e}")
+        return
+    atexit.register(release_lock)
 
     if args.push:
         logger.info("=" * 70)
