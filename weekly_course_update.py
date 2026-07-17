@@ -842,7 +842,7 @@ def run(test_mode: bool) -> None:
                f"courses.html, sitemap.xml")
 
     committed = git_commit_local(
-        str((new_page_path if not page_already_exists else COURSES_INDEX_FILE).relative_to(REPO_ROOT)),
+        (new_page_path if not page_already_exists else COURSES_INDEX_FILE).relative_to(REPO_ROOT).as_posix(),
         details["tournament_name"], details["dates"],
     )
 
