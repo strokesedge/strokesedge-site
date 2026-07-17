@@ -730,10 +730,17 @@ def git(*args, check=True):
 
 
 def git_commit_local(new_page_relpath: str, tourn: str, dates: str) -> bool:
+    # weekly_course_update.log is in .gitignore on purpose — passing it to
+    # `git add` explicitly makes git refuse the whole add (exit 1), which is
+    # why this step has never actually succeeded in production before.
     git("add", new_page_relpath, "Strokes Edge Website HTML/courses.html",
-        "Strokes Edge Website HTML/sitemap.xml", "weekly_course_update.log")
-    status = git("status", "--short").stdout
-    if not status.strip():
+        "Strokes Edge Website HTML/sitemap.xml")
+    # Check the staged diff specifically, not overall repo status — an
+    # unrelated unstaged/untracked file elsewhere (e.g. a WIP edit) would
+    # otherwise make this look non-empty even though nothing relevant to
+    # this run was actually staged, and the commit below would then fail.
+    staged = git("diff", "--cached", "--name-only").stdout
+    if not staged.strip():
         logger.info("Nothing staged — skipping commit")
         return False
     message = f"Auto: Add {tourn} course page — {dates}"
