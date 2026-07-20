@@ -935,12 +935,24 @@ def run(test_mode: bool) -> None:
         push_note = ("Held locally — review the commit, then run:\n"
                      "    python weekly_course_update.py --push")
 
+    # page_already_exists short-circuits the generate_analysis() call entirely
+    # (see above) — analysis_failed is left at its True initializer in that
+    # case, which is correct for the content-building logic but wrongly reads
+    # as "the Claude API call failed" in the summary/email. It never ran.
+    # Distinguish "skipped, page already existed" from an actual API failure.
+    if page_already_exists:
+        analysis_status = "skipped — page already existed, Claude was not called"
+    elif analysis_failed:
+        analysis_status = "FAILED — minimal placeholder page used"
+    else:
+        analysis_status = "generated"
+
     summary = (
         f"Tournament: {tournament['name']} ({details['dates']})\n"
         f"Course: {details['course_name']}, {details['location']}\n"
         f"Page: course-{details['slug']}.html "
         f"{'(already existed — not overwritten)' if page_already_exists else '(new)'}\n"
-        f"Claude analysis: {'FAILED — minimal placeholder page used' if analysis_failed else 'generated'}\n\n"
+        f"Claude analysis: {analysis_status}\n\n"
         f"{push_note}\n"
     )
     logger.info(summary)
