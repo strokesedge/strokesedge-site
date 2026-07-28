@@ -43,14 +43,17 @@ not guessed):
     (verified: The Open Championship and Genesis Scottish Open both
     appear in the "R" tour-code schedule feed) — so ESPN and European
     Tour scraping were dropped rather than shipped as untested/broken.
-  - Par / yardage: NOT present anywhere in the PGA Tour JSON (checked
-    every field on multiple tournaments). Falls back to Wikipedia's
-    {{Infobox golf facility}} template (par1/length1 fields), resolved
-    via Wikipedia's opensearch API so it doesn't depend on guessing the
-    exact article title. This works for most tournament-host courses but
-    not all — e.g. Bellerive Country Club has no infobox on Wikipedia at
-    all. When it's missing, the field is marked "TBD" rather than
-    invented, and this is logged.
+  - Par / yardage: NOT present in the schedule JSON, but IS present on
+    pgatour.com's own /course-stats page for the tournament (Next.js
+    __NEXT_DATA__, courses[0].par / courses[0].yardage) — this is the
+    tour's current-year figure, so it reflects mid-year course changes
+    (e.g. a renovation that converts par-5s to par-4s) that a Wikipedia
+    infobox can lag behind or miss entirely. Tried first. Falls back to
+    Wikipedia's {{Infobox golf facility}} template (par1/length1 fields,
+    resolved via Wikipedia's opensearch API) only if the tour's own page
+    doesn't have it — e.g. Bellerive Country Club has no infobox on
+    Wikipedia at all. When neither source has it, the field is marked
+    "TBD" rather than invented, and this is logged.
   - Course type (links/parkland/desert/etc): no reliable structured
     source exists for this. Inferred with a simple keyword heuristic
     (see infer_course_type) — treat this as a rough guess, not a fact.
@@ -245,8 +248,44 @@ def pick_next_tournament(tournaments: list) -> dict:
 
 
 # ─────────────────────────────────────────────────────────────────────────
-# STEP 2 — course details (par/yardage fallback via Wikipedia)
+# STEP 2 — course details (par/yardage: pgatour.com course-stats first,
+# Wikipedia infobox as fallback if the tour site doesn't have it)
 # ─────────────────────────────────────────────────────────────────────────
+def pgatour_course_par_yardage(tournament: dict) -> tuple:
+    """Returns (par, yardage) as strings from pgatour.com's own course-stats
+    page for this tournament, or (None, None) if unavailable. Never raises —
+    best-effort, same contract as the Wikipedia fallback below. This is the
+    tour's own current-year data (reflects mid-year course changes like
+    renovations), so it's tried before Wikipedia, which can lag or reflect an
+    old routing."""
+    tid = tournament.get("tournamentId")
+    year = tournament.get("year")
+    name = tournament.get("name")
+    if not tid or not year or not name:
+        return None, None
+    slug = slugify(name)
+    url = f"https://www.pgatour.com/tournaments/{year}/{slug}/{tid}/course-stats"
+    try:
+        html = http_get(url, timeout=15)
+        m = re.search(r'<script id="__NEXT_DATA__" type="application/json">(.+?)</script>', html, re.S)
+        if not m:
+            return None, None
+        data = json.loads(m.group(1))
+        queries = data["props"]["pageProps"]["dehydratedState"]["queries"]
+        course_q = next(q for q in queries
+                        if isinstance(q.get("state", {}).get("data"), dict)
+                        and q["state"]["data"].get("courses"))
+        course = course_q["state"]["data"]["courses"][0]
+        par = course.get("par")
+        yardage = course.get("yardage")
+        if not par or not yardage:
+            return None, None
+        return str(par), f"{int(yardage):,}"
+    except Exception as e:
+        logger.info(f"pgatour.com course-stats fetch failed for '{name}': {e}")
+        return None, None
+
+
 def wikipedia_resolve_title(query: str) -> str | None:
     url = f"https://en.wikipedia.org/w/api.php?action=opensearch&search={urllib.parse.quote(query)}&limit=1&format=json"
     try:
@@ -314,9 +353,14 @@ def get_course_details(tournament: dict) -> dict:
     country = course_data.get("country", "")
     location = ", ".join(p for p in [city, state or country] if p)
 
-    par, yardage = wikipedia_par_yardage(course_name)
-    if not par or not yardage:
-        logger.info(f"Par/yardage missing for '{course_name}' after Wikipedia fallback — marking TBD")
+    par, yardage = pgatour_course_par_yardage(tournament)
+    if par and yardage:
+        logger.info(f"Par/yardage for '{course_name}' sourced from pgatour.com course-stats (current-year, authoritative)")
+    else:
+        logger.info(f"pgatour.com course-stats had no par/yardage for '{course_name}' — trying Wikipedia fallback")
+        par, yardage = wikipedia_par_yardage(course_name)
+        if not par or not yardage:
+            logger.info(f"Par/yardage missing for '{course_name}' after Wikipedia fallback — marking TBD")
     par = par or "TBD"
     yardage = yardage or "TBD"
 
