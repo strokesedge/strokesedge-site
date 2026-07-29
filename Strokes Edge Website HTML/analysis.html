@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -7,37 +7,42 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon32x32.png">
 <link rel="icon" type="image/png" sizes="512x512" href="/favicon512x512.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/favicon180x180.png">
-<title>3M Open 2026 Analysis — StrokesEdge</title>
-<meta name="description" content="StrokesEdge quantitative model for the 2026 3M Open at TPC Twin Cities. Course regression weights, approach-adjusted stat targets, top model outputs, and value screen preview.">
+<meta name="description" content="Rocket Classic 2026 picks: Detroit Golf Club course profile after its $16.1M restoration, strokes gained model weights, and top model outputs. StrokesEdge quant model.">
+<title>Rocket Classic 2026 Analysis — StrokesEdge</title>
 <link rel="canonical" href="https://strokesedge.com/analysis.html">
-<meta property="og:title" content="3M Open 2026 Analysis — StrokesEdge">
-<meta property="og:description" content="Data-driven model analysis for the 2026 3M Open at TPC Twin Cities, Blaine, Minnesota.">
-<meta property="og:url" content="https://strokesedge.com/analysis.html">
 <meta property="og:type" content="article">
-<meta property="og:image" content="https://strokesedge.com/ogimage.png">
+<meta property="og:url" content="https://strokesedge.com/analysis.html">
+<meta property="og:title" content="Rocket Classic 2026 Analysis — StrokesEdge">
+<meta property="og:description" content="Detroit Golf Club course profile, strokes gained regression, and model weights for the 2026 Rocket Classic — after the course's $16.1M restoration.">
+<meta property="og:image" content="https://strokesedge.com/og-image.png">
 <meta property="og:site_name" content="StrokesEdge">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="3M Open 2026 Analysis — StrokesEdge">
-<meta name="twitter:description" content="Quantitative model output for the 2026 3M Open. Course regression, approach adjustment, value screen top plays.">
-<meta name="twitter:image" content="https://strokesedge.com/ogimage.png">
+<meta name="twitter:title" content="Rocket Classic 2026 Analysis — StrokesEdge">
+<meta name="twitter:description" content="Detroit Golf Club course profile and model weights for the 2026 Rocket Classic, after the course's $16.1M restoration.">
+<meta name="twitter:image" content="https://strokesedge.com/og-image.png">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-D398EHRP6Y"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-D398EHRP6Y');</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#080b07;--bg2:#0d1209;--bg3:#111a0e;--g:#6ab83a;--g2:#3d7a18;--g3:#1a3a08;--text:#d4e8c2;--muted:#7a9666;--border:#1e2e18;--fade:#2a3d22;--y:#f0b429;--r:#c0392b;--bdr:rgba(106,184,58,0.18);--bdr2:rgba(255,255,255,0.07);--txt:#e6ede0;--txt2:#8a9e80;--txt3:#3a4a34;}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --g:#6ab83a;--g2:#3d7a18;--g3:#1a3a08;--r:#e05252;--y:#f0b429;--blue:#4a9eff;
+  --g-glow:rgba(106,184,58,0.12);
+  --bg:#080b07;--bg2:#0c0f0b;--sur:#141a12;
+  --bdr:rgba(106,184,58,0.18);--bdr2:rgba(255,255,255,0.07);
+  --txt:#e6ede0;--txt2:#8a9e80;--txt3:#3a4a34;
+}
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-weight:300;font-size:16px;line-height:1.6;min-height:100vh}
+body{background:var(--bg);color:var(--txt);font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.6;overflow-x:hidden}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:1;opacity:.6}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(106,184,58,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(106,184,58,0.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;z-index:0}
 
-/* ── NAV ── */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1rem 1.5rem;border-bottom:1px solid var(--bdr2);background:rgba(8,11,7,.95);backdrop-filter:blur(16px)}
-.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.08em;color:var(--txt);text-decoration:none;flex-shrink:0}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.08em;color:var(--txt);text-decoration:none}
 .nav-logo span{color:var(--g)}
 .nav-links{display:flex;align-items:center;gap:1.5rem}
-.nav-link{font-size:12px;color:var(--txt2);text-decoration:none;letter-spacing:.06em;text-transform:uppercase;transition:color .2s;white-space:nowrap}
+.nav-link{font-size:12px;color:var(--txt2);text-decoration:none;letter-spacing:.06em;text-transform:uppercase;transition:color .2s}
 .nav-link:hover,.nav-link.active{color:var(--txt)}
 .nav-cta{font-family:'DM Mono',monospace;font-size:12px;padding:8px 18px;border:1px solid var(--g);border-radius:2px;color:var(--g);text-decoration:none;letter-spacing:.06em;transition:all .2s;white-space:nowrap}
 .nav-cta:hover{background:var(--g-glow)}
@@ -54,156 +59,145 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .mob-cta{border-bottom:none!important;margin-top:.5rem;padding:.85rem 1rem!important;border:1px solid var(--g)!important;border-radius:2px;color:var(--g)!important;text-align:center}
 @media(max-width:860px){.nav-link,.nav-cta{display:none}.hamburger{display:flex}}
 
-/* PAGE HEADER */
-.page-header{background:linear-gradient(180deg,var(--bg3) 0%,var(--bg) 100%);border-bottom:1px solid var(--border);padding:96px 24px 40px}
-.page-header-inner{max-width:1100px;margin:0 auto}
-h1{font-family:'Bebas Neue',cursive;font-size:clamp(38px,6vw,68px);line-height:.95;color:#fff;letter-spacing:.02em;margin-bottom:12px}
-h1 span{color:var(--g)}
-.event-meta{display:flex;flex-wrap:wrap;gap:16px;margin-top:16px}
-.event-meta-item{font-family:'DM Mono',monospace;font-size:12px;color:var(--muted)}
-.event-meta-item strong{color:var(--text)}
+.wrap{max-width:900px;margin:0 auto;padding:0 1.5rem;position:relative;z-index:2}
+.hero{padding:7rem 0 2rem}
+.eyebrow{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.14em;color:var(--g);text-transform:uppercase;margin-bottom:1.5rem;display:flex;align-items:center;gap:10px}
+.eyebrow::before{content:'';width:24px;height:1px;background:var(--g)}
+.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(60px,10vw,100px);line-height:.92;letter-spacing:.02em;color:var(--txt);margin-bottom:1.2rem}
+.hero-title span{color:var(--g)}
+.hero-meta{font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.08em;color:var(--txt2);text-transform:uppercase;margin-bottom:1.5rem}
+.hero-sub{font-size:16px;color:var(--txt2);max-width:680px;line-height:1.7;font-weight:300}
+.divider{height:1px;background:var(--bdr);margin:2.5rem 0}
+section{padding:2rem 0 1rem}
+.sec-num{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.16em;color:var(--txt3);text-transform:uppercase;margin-bottom:.75rem}
+h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(32px,5vw,46px);color:var(--txt);line-height:1;margin-bottom:1.5rem}
+h2 span{color:var(--g)}
+.body-text{font-size:15px;color:var(--txt2);line-height:1.75;margin-bottom:1.25rem;font-weight:300}
+.body-text strong{color:var(--txt);font-weight:500}
+.body-text a{color:var(--g);text-decoration:none}
+.body-text a:hover{text-decoration:underline}
 
-/* TABS */
-.tabs-bar{border-bottom:1px solid var(--border);background:var(--bg);position:sticky;top:60px;z-index:50}
-.tabs-inner{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;gap:0}
-.tab-btn{font-family:'DM Mono',monospace;font-size:12px;color:var(--muted);background:none;border:none;border-bottom:2px solid transparent;padding:14px 16px;cursor:pointer;transition:color .2s,border-color .2s;white-space:nowrap}
-.tab-btn:hover{color:var(--text)}
-.tab-btn.active{color:var(--g);border-bottom-color:var(--g)}
-.tab-content{display:none}
-.tab-content.active{display:block}
+.stat-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--bdr2);border:1px solid var(--bdr2);border-radius:4px;overflow:hidden;margin:1.5rem 0}
+.stat-cell{background:var(--sur);padding:1rem .75rem;text-align:center}
+.stat-n{font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--g);line-height:1}
+.stat-l{font-family:'DM Mono',monospace;font-size:9px;color:var(--txt3);letter-spacing:.08em;text-transform:uppercase;margin-top:.35rem;line-height:1.4}
+@media(max-width:640px){.stat-grid{grid-template-columns:repeat(3,1fr)}}
 
-/* MAIN */
-.main{max-width:1100px;margin:0 auto;padding:40px 24px 80px}
-.section-label{font-family:'Bebas Neue',cursive;font-size:13px;letter-spacing:.12em;color:var(--g);margin-bottom:8px}
-.section-divider{border:none;border-top:1px solid var(--border);margin:40px 0}
+.callout{border-left:2px solid var(--g);padding:1rem 1.25rem;background:rgba(106,184,58,.05);margin-bottom:1rem;border-radius:0 4px 4px 0}
+.callout-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;color:var(--g);text-transform:uppercase;margin-bottom:.5rem}
+.callout-text{font-size:14px;color:var(--txt2);line-height:1.7;font-weight:300}
+.callout.fade{border-left-color:var(--r);background:rgba(224,82,82,.05)}
+.callout.fade .callout-label{color:var(--r)}
+.callout.note{border-left-color:var(--y);background:rgba(240,180,41,.05)}
+.callout.note .callout-label{color:var(--y)}
 
-/* STAT CARDS */
-.course-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:24px}
-.stat-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:20px}
-.stat-card-label{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
-.stat-card-value{font-family:'Bebas Neue',cursive;font-size:36px;color:var(--g);line-height:1}
-.stat-card-sub{font-size:12px;color:var(--muted);margin-top:4px}
+/* Weight bars */
+.weight-grid{display:flex;flex-direction:column;gap:.75rem;margin:1.5rem 0}
+.w-row{display:grid;grid-template-columns:180px 1fr 60px;gap:1rem;align-items:center}
+.w-label{font-family:'DM Mono',monospace;font-size:11px;color:var(--txt2);letter-spacing:.04em}
+.w-label.fade-stat{color:var(--r)}
+.w-bar-track{height:6px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden}
+.w-bar-fill{height:100%;background:var(--g);border-radius:3px;transition:width .3s}
+.w-bar-fill.fade{background:var(--r)}
+.w-pct{font-family:'DM Mono',monospace;font-size:11px;color:var(--txt3);text-align:right}
+@media(max-width:640px){.w-row{grid-template-columns:140px 1fr 50px}}
 
-/* WEIGHTS */
-.weights-table{width:100%;border-collapse:collapse;margin-top:24px}
-.weights-table th{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;text-align:left;padding:8px 12px;border-bottom:1px solid var(--border)}
-.weights-table td{font-family:'DM Mono',monospace;font-size:13px;color:var(--text);padding:10px 12px;border-bottom:1px solid rgba(30,46,24,.6)}
-.weights-table tr:last-child td{border-bottom:none}
-.weight-bar-cell{width:160px}
-.weight-bar-wrap{background:var(--bg3);border-radius:2px;height:6px;width:100%}
-.weight-bar{height:6px;border-radius:2px;background:var(--g)}
-.weight-bar.reduced{background:var(--y)}
-.weight-bar.low{background:#5a6a52}
-.stat-name{color:var(--g);font-weight:500}
-.stat-name.reduced{color:var(--y)}
-.stat-name.low{color:var(--muted)}
-.gate-badge{display:inline-block;background:rgba(106,184,58,.12);border:1px solid var(--g3);border-radius:3px;font-size:10px;color:var(--g);padding:1px 6px}
-.gate-badge.modified{background:rgba(240,180,41,.1);border-color:rgba(240,180,41,.3);color:var(--y)}
+/* Model table */
+table{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:13px}
+thead tr{border-bottom:1px solid var(--g)}
+th{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;color:var(--g);text-transform:uppercase;padding:.6rem .5rem;text-align:left;font-weight:400}
+td{padding:.55rem .5rem;color:var(--txt2);border-bottom:1px solid rgba(255,255,255,.04)}
+tr:hover td{background:rgba(106,184,58,.03)}
+.cg{color:var(--g)!important;font-weight:500}
+.cy{color:var(--y)!important}
+.cr{color:var(--r)!important}
+.cb{color:var(--blue)!important}
+.tag-pass{font-family:'DM Mono',monospace;font-size:9px;background:rgba(106,184,58,.12);color:var(--g);padding:2px 6px;border-radius:2px;letter-spacing:.06em}
+.tag-fail{font-family:'DM Mono',monospace;font-size:9px;background:rgba(224,82,82,.12);color:var(--r);padding:2px 6px;border-radius:2px;letter-spacing:.06em}
+.tag-soft{font-family:'DM Mono',monospace;font-size:9px;background:rgba(240,180,41,.12);color:var(--y);padding:2px 6px;border-radius:2px;letter-spacing:.06em}
 
-/* PROSE */
-.prose{font-size:15px;line-height:1.7;color:var(--text);max-width:720px}
-.prose p{margin-bottom:18px}
-.prose p:last-child{margin-bottom:0}
+/* Gate wall CTA */
+.gate{background:var(--bg2);border:1px solid var(--bdr);border-radius:6px;padding:2.5rem 2rem;margin:2.5rem 0;text-align:center;position:relative;overflow:hidden}
+.gate::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(106,184,58,.06));pointer-events:none}
+.gate-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.16em;color:var(--g);text-transform:uppercase;margin-bottom:.75rem}
+.gate-title{font-family:'Bebas Neue',sans-serif;font-size:36px;color:var(--txt);margin-bottom:.75rem;line-height:1}
+.gate-title span{color:var(--g)}
+.gate-sub{font-size:14px;color:var(--txt2);margin-bottom:1.5rem;max-width:480px;margin-left:auto;margin-right:auto;line-height:1.65}
+.gate-list{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.75rem;text-align:left;max-width:440px;margin-left:auto;margin-right:auto}
+.gate-item{font-family:'DM Mono',monospace;font-size:12px;color:var(--txt2);display:flex;align-items:flex-start;gap:.6rem;letter-spacing:.02em}
+.gate-item::before{content:'→';color:var(--g);flex-shrink:0}
+.gate-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn-primary{font-family:'DM Mono',monospace;font-size:12px;padding:12px 28px;background:var(--g);color:#080b07;border-radius:2px;text-decoration:none;letter-spacing:.06em;font-weight:500;transition:opacity .2s}
+.btn-primary:hover{opacity:.9}
+.btn-ghost{font-family:'DM Mono',monospace;font-size:12px;padding:12px 24px;border:1px solid var(--bdr);color:var(--txt2);border-radius:2px;text-decoration:none;letter-spacing:.06em;transition:all .2s}
+.btn-ghost:hover{border-color:var(--g);color:var(--g)}
 
-/* RANKINGS TABLE */
-.rankings-table-wrap{overflow-x:auto;margin-top:24px}
-.rankings-table{width:100%;border-collapse:collapse;min-width:700px}
-.rankings-table th{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;text-align:right;padding:8px 12px;border-bottom:1px solid var(--border)}
-.rankings-table th:first-child,.rankings-table th:nth-child(2){text-align:left}
-.rankings-table td{font-family:'DM Mono',monospace;font-size:13px;padding:10px 12px;border-bottom:1px solid rgba(30,46,24,.5);text-align:right;color:var(--muted)}
-.rankings-table td:first-child{text-align:left;color:var(--muted);width:40px}
-.rankings-table td:nth-child(2){text-align:left;color:var(--text);font-weight:500}
-.rankings-table tr:hover td{background:rgba(106,184,58,.03)}
-.score-val{color:var(--g)}
-.edge-pos{color:#6ab83a}
-.edge-neg{color:#c0392b}
-.verdict-play{color:var(--g);font-weight:600}
-.verdict-fade{color:#c0392b}
-.verdict-monitor{color:#e8a838}
-.rk-top{color:var(--g);font-family:'Bebas Neue',cursive;font-size:18px}
+.divider-picks{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.28em;color:var(--txt3);text-align:center;margin:2rem 0;text-transform:uppercase}
 
-/* CONTENT CLIFF */
-.cliff-section{position:relative;margin-top:40px}
-.cliff-blur{position:relative;overflow:hidden;border-radius:8px}
-.cliff-blur::after{content:'';position:absolute;bottom:0;left:0;right:0;height:180px;background:linear-gradient(0deg,var(--bg) 40%,transparent 100%);pointer-events:none;z-index:2}
-.cliff-table-ghost{opacity:.35;pointer-events:none;user-select:none}
-.cliff-cta{position:relative;z-index:3;background:linear-gradient(135deg,var(--bg3) 0%,var(--bg2) 100%);border:1px solid var(--g3);border-radius:10px;padding:36px 32px;text-align:center;margin-top:-60px}
-.cliff-cta h3{font-family:'Bebas Neue',cursive;font-size:32px;color:#fff;margin-bottom:8px;letter-spacing:.02em}
-.cliff-cta h3 span{color:var(--g)}
-.cliff-cta p{font-size:14px;color:var(--muted);max-width:480px;margin:0 auto 24px}
-.cta-btn{display:inline-flex;align-items:center;gap:8px;background:var(--g);color:#080b07;font-family:'DM Mono',monospace;font-size:13px;font-weight:600;text-decoration:none;padding:13px 28px;border-radius:6px;transition:background .2s,transform .1s;letter-spacing:.04em}
-.cta-btn:hover{background:#7fcf47;transform:translateY(-1px)}
-.cta-free-note{font-size:12px;color:var(--muted);margin-top:12px}
+/* Course history table */
+.hist-table{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:13px}
+.hist-table th{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;color:var(--g);text-transform:uppercase;padding:.6rem .5rem;text-align:left;border-bottom:1px solid var(--g)}
+.hist-table td{padding:.5rem;border-bottom:1px solid rgba(255,255,255,.04);color:var(--txt2)}
+.hist-table tr:hover td{background:rgba(106,184,58,.03)}
+.sg-high{color:var(--g);font-weight:500}
+.sg-mid{color:var(--y)}
+.sg-low{color:var(--txt3)}
+.sg-neg{color:var(--r)}
 
-/* VALUE CARDS */
-.value-preview{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-top:24px}
-.value-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:18px;position:relative;overflow:hidden}
-.value-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--g)}
-.value-card.fade-card::before{background:#c0392b}
-.value-card.monitor-card::before{background:#e8a838}
-.value-card-player{font-family:'Bebas Neue',cursive;font-size:20px;color:#fff;margin-bottom:4px}
-.value-card-odds{font-family:'DM Mono',monospace;font-size:12px;color:var(--muted)}
-.value-card-edge{font-family:'Bebas Neue',cursive;font-size:28px;margin-top:8px}
-.value-card-edge.pos{color:var(--g)}
-.value-card-edge.neg{color:#c0392b}
-.value-card-label{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
-.value-card-blur{filter:blur(5px);user-select:none;pointer-events:none}
+/* Archive cards */
+.archive-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin-top:1.5rem}
+.archive-card{background:var(--sur);border:1px solid var(--bdr2);border-radius:4px;padding:1.1rem 1.25rem;text-decoration:none;transition:border-color .2s,background .2s;display:block}
+.archive-card:hover{border-color:var(--g2);background:rgba(106,184,58,.04)}
+.archive-card-event{font-family:'Bebas Neue',sans-serif;font-size:18px;color:var(--txt);letter-spacing:.02em}
+.archive-card-meta{font-family:'DM Mono',monospace;font-size:11px;color:var(--txt3);margin-top:4px}
+.archive-card-link{font-family:'DM Mono',monospace;font-size:11px;color:var(--g);margin-top:10px;display:flex;align-items:center;gap:4px}
 
-/* COURSE HISTORY */
-.ch-table{width:100%;border-collapse:collapse;margin-top:24px}
-.ch-table th{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;text-align:left;padding:8px 12px;border-bottom:1px solid var(--border)}
-.ch-table th:nth-child(n+3){text-align:center}
-.ch-table td{font-family:'DM Mono',monospace;font-size:13px;padding:10px 12px;border-bottom:1px solid rgba(30,46,24,.5);color:var(--muted)}
-.ch-table td:nth-child(2){color:var(--text);font-weight:500}
-.ch-table td:nth-child(n+3){text-align:center}
-.ch-table tr:hover td{background:rgba(106,184,58,.03)}
-.finish-won{color:var(--g);font-weight:600}
+.cta-strip{background:rgba(106,184,58,.06);border:1px solid var(--bdr);border-radius:4px;padding:2rem;margin:2rem 0;text-align:center}
+.cta-strip h3{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--txt);margin-bottom:.5rem}
+.cta-strip p{font-size:14px;color:var(--txt2);margin-bottom:1.25rem}
+.cta-strip a{font-family:'DM Mono',monospace;font-size:12px;color:var(--g);text-decoration:none;border:1px solid var(--g);padding:10px 22px;border-radius:2px;letter-spacing:.06em;transition:all .2s;display:inline-block}
+.cta-strip a:hover{background:var(--g-glow)}
+.disclaimer{font-family:'DM Mono',monospace;font-size:10px;color:var(--txt3);text-align:center;padding:1.5rem 0;letter-spacing:.06em}
+footer{border-top:1px solid var(--bdr2);padding:1.5rem;text-align:center;font-family:'DM Mono',monospace;font-size:11px;color:var(--txt3);letter-spacing:.06em;position:relative;z-index:2}
+footer a{color:var(--txt3);text-decoration:none;transition:color .2s}
+footer a:hover{color:var(--g)}
+@media(hover:hover){*{cursor:none}html{cursor:none}
+.cursor{position:fixed;width:8px;height:8px;background:var(--g);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .1s,opacity .2s;mix-blend-mode:screen}}
 
-/* ARCHIVE */
-.archive-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin-top:24px}
-.archive-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:20px;text-decoration:none;transition:border-color .2s,background .2s;display:block}
-.archive-card:hover{border-color:var(--g2);background:var(--bg3)}
-.archive-card-event{font-family:'Bebas Neue',cursive;font-size:18px;color:#fff;letter-spacing:.02em}
-.archive-card-meta{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);margin-top:4px}
-.archive-card-link{font-family:'DM Mono',monospace;font-size:11px;color:var(--g);margin-top:12px;display:flex;align-items:center;gap:4px}
+/* top bar strip */
+.top-bar{background:var(--bg2);border:1px solid var(--bdr2);border-radius:4px;padding:1rem 1.5rem;margin:0 0 2rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
+.top-bar-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--txt3)}
+.top-bar-link{font-family:'DM Mono',monospace;font-size:11px;color:var(--g);text-decoration:none;letter-spacing:.06em;border:1px solid var(--bdr);padding:8px 14px;border-radius:2px;white-space:nowrap;transition:background .2s}
+.top-bar-link:hover{background:var(--g-glow)}
 
-/* CALLOUT */
-.model-callout{background:var(--bg2);border:1px solid rgba(240,180,41,.2);border-left:3px solid var(--y);border-radius:6px;padding:16px 20px;margin-top:24px}
-.model-callout p{font-family:'DM Mono',monospace;font-size:12px;color:var(--muted);line-height:1.6}
-.model-callout p strong{color:var(--y)}
+/* ── MODEL SALES ── */
+.model-sales{max-width:900px;margin:0 auto 3rem;padding:0 1.5rem;text-align:center;position:relative;z-index:2}
+.model-sales-copy{font-size:15px;color:var(--txt2);margin-bottom:1.5rem}
+.model-sales-buttons{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn-model{display:inline-block;padding:13px 28px;background:var(--g);color:#fff;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.06em;text-decoration:none;border-radius:2px;border:1px solid var(--g);transition:all .2s}
+.btn-model:hover{background:#7acc44;transform:translateY(-2px)}
+.btn-model-outline{background:transparent;color:var(--g)}
+.btn-model-outline:hover{background:rgba(106,184,58,.1)}
 
-/* WEATHER STRIP */
-.weather-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-top:24px}
-.wx-day{background:var(--bg2);padding:16px 12px;text-align:center}
-.wx-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
-.wx-temp{font-family:'Bebas Neue',cursive;font-size:26px;color:var(--text);line-height:1;margin-bottom:4px}
-.wx-wind{font-family:'DM Mono',monospace;font-size:10px;color:var(--g)}
-.wx-rain{font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);margin-top:2px}
-.wx-day.hot .wx-wind{color:var(--y)}
-.wx-day.hot .wx-label{color:var(--y)}
-
-/* FOOTER */
-footer{border-top:1px solid var(--border);padding:32px 24px;text-align:center}
-footer p{font-family:'DM Mono',monospace;font-size:12px;color:var(--muted)}
-footer a{color:var(--g);text-decoration:none}
-
-@media(max-width:860px){
-  .course-grid{grid-template-columns:1fr}
-  .weather-strip{grid-template-columns:repeat(2,1fr)}
-}
-@media(max-width:640px){
-  .event-meta{gap:10px}
-  .cliff-cta{padding:24px 20px}
-  .value-preview{grid-template-columns:1fr}
-}
-@media(max-width:380px){h1{font-size:32px}}
-@media(hover:hover){
-  *{cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='3' fill='%236ab83a'/%3E%3C/svg%3E") 8 8,auto}
-  a,button,[role=button]{cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='4' fill='%236ab83a'/%3E%3C/svg%3E") 8 8,pointer}
-}
-</style>
+/* ── CONTENT CLIFF GATE ── */
+.cliff-section{position:relative;margin-bottom:3rem}
+.cliff-blurred{filter:blur(8px);pointer-events:none;user-select:none}
+.cliff-overlay{position:absolute;inset:0;display:none;z-index:300;align-items:center;justify-content:center;background:linear-gradient(180deg,transparent 0%,rgba(8,11,7,0.85) 50%,rgba(8,11,7,0.95) 100%);min-height:300px}
+.cliff-overlay.active{display:flex}
+.cliff-overlay.hidden{display:none}
+.cliff-box{background:transparent;text-align:center;max-width:400px;padding:0}
+.cliff-title{font-size:16px;color:var(--txt);line-height:1.6;margin-bottom:1.5rem}
+.cliff-label{font-family:'DM Mono',monospace;font-size:10px;color:var(--txt3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:1rem}
+.cliff-btn{display:block;width:100%;max-width:240px;margin:0 auto 1rem;padding:12px 24px;background:var(--g);color:#fff;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.06em;text-decoration:none;border-radius:2px;border:none;cursor:pointer;transition:all .2s}
+.cliff-btn:hover{background:#7acc44}
+.cliff-form{margin-top:1.5rem;display:none}
+.cliff-form.active{display:block}
+.cliff-form input{width:100%;max-width:240px;padding:10px 14px;background:rgba(255,255,255,.05);border:1px solid var(--bdr);border-radius:2px;color:var(--txt);font-family:'DM Sans',sans-serif;font-size:13px;margin-bottom:10px;display:block;margin-left:auto;margin-right:auto}
+.cliff-form input::placeholder{color:var(--txt3)}</style>
 </head>
 <body>
+
+<div class="cursor" id="cursor"></div>
 
 <nav>
   <a href="index.html" class="nav-logo">Strokes<span>Edge</span></a>
@@ -227,315 +221,336 @@ footer a{color:var(--g);text-decoration:none}
   <a href="https://strokesedge.substack.com" class="mob-cta" target="_blank">Subscribe →</a>
 </div>
 
-<div class="page-header">
-  <div class="page-header-inner">
-    <h1>2026 3M <span>Open</span></h1>
-    <div class="event-meta">
-      <div class="event-meta-item">Course: <strong>TPC Twin Cities</strong></div>
-      <div class="event-meta-item">Location: <strong>Blaine, Minnesota</strong></div>
-      <div class="event-meta-item">Dates: <strong>Jul 23–26, 2026</strong></div>
-      <div class="event-meta-item">Par: <strong>71 · 7,431 yds</strong></div>
-      <div class="event-meta-item">Field: <strong>156 Players</strong></div>
+<div class="wrap">
+
+<div class="top-bar">
+  <div class="top-bar-label">Analysis · Rocket Classic 2026 · Detroit Golf Club · Jul 30–Aug 2</div>
+  <a href="picks.html" class="top-bar-link">Live Pick Tracker →</a>
+</div>
+
+<section class="hero">
+  <div class="eyebrow">Detroit Golf Club · Detroit, Michigan</div>
+  <h1 class="hero-title">Rocket<span>Classic.</span></h1>
+  <div class="hero-meta">Detroit Golf Club · Par 70 · 7,328 Yards · Jul 30–Aug 2, 2026</div>
+  <p class="hero-sub">The 2026 Rocket Classic arrives at a freshly restored Detroit Golf Club. A $16.1 million restoration led by architect Tyler Rae converted two former par 5s into long par 4s, rebuilt every green toward Donald Ross's original shapes, and removed the pond guarding the par-5 14th. Par 70, 7,328 yards — down from the par-72 layout every prior Rocket Classic champion actually played. Tree-lined corridors and quick, contoured greens make this as much a putting contest as a ball-striking exam.</p>
+</section>
+
+<!-- ═══ COURSE OVERVIEW ═══ -->
+<section>
+  <div class="sec-num">01 — Course Overview</div>
+  <h2>Detroit Golf Club <span>fingerprint.</span></h2>
+  <p class="body-text">Detroit Golf Club plays to a par 70 at 7,328 yards for the 2026 Rocket Classic (verified directly against pgatour.com's course-stats page — par and yardage confirmed hole-by-hole, not carried over from a prior year). The North Course is a Donald Ross design dating to 1899, and 2026 marks its most significant change since the tournament arrived in 2019.</p>
+  <p class="body-text"><strong>What stats matter this week:</strong> SG: Approach and SG: Putting carry the two heaviest weights in the model, with SG: Around the Green close behind — a field that plays this low on quick, contoured greens rewards precise iron play and hot putting well ahead of raw distance.</p>
+
+  <div class="stat-grid">
+    <div class="stat-cell"><div class="stat-n">Par 70</div><div class="stat-l">2026<br>setup</div></div>
+    <div class="stat-cell"><div class="stat-n">7,328</div><div class="stat-l">Yards</div></div>
+    <div class="stat-cell"><div class="stat-n">2</div><div class="stat-l">Par 5s<br>remaining</div></div>
+    <div class="stat-cell"><div class="stat-n">2026</div><div class="stat-l">Restoration<br>year</div></div>
+    <div class="stat-cell"><div class="stat-n">8th</div><div class="stat-l">Playing at<br>Detroit GC</div></div>
+  </div>
+
+  <div class="callout note">
+    <div class="callout-label">Course change flag — 2026 restoration</div>
+    <div class="callout-text">Detroit Golf Club underwent a $16.1 million restoration ahead of this year's event (architect Tyler Rae, honoring Donald Ross's original design). The par-5 7th (505 yards) and par-5 17th (537 yards) were rebuilt as long par 4s, leaving only two par 5s on the course — the 4th (592 yards) and 14th (561 yards). Every green was rebuilt toward its original Ross shape, and the pond that guarded the par-5 14th was removed. This is functionally a new golf course. <strong>Course History and Course Experience are weighted at just 2% and 1% this week (down from a typical 4%/3%)</strong> because most of the field's past results here predate the current layout and carry less signal than usual.</div>
+  </div>
+
+  <p class="body-text"><strong>Conditions this week:</strong> wind running around 10 mph with gusts up to 22 mph, temperatures ranging 62–89°F, and one day in the window carrying meaningful rain. Softer greens from that rain should favor players willing to be aggressive into the flag rather than those leaning on a firm-and-fast bounce.</p>
+  <p class="body-text"><strong>Historical winning scores:</strong> Rocket Classic winners at Detroit Golf Club have finished between -18 and -26 since the event's 2019 debut (full table in Section 03 below) — but every one of those scores came on the old par-72 routing. With two strokes removed from par this year, this year's winning score won't be directly comparable to past years' — treat the historical range as context, not a target.</p>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ KEY STATS ═══ -->
+<section>
+  <div class="sec-num">02 — Predictive Stats</div>
+  <h2>What the data says <span>actually matters.</span></h2>
+  <p class="body-text">SG: Approach (20%), SG: Putting (17%), and SG: Around the Green (13%) combine for half the model's total weight this week — a low-scoring, short-game-driven field on quick Ross greens rewards precision over power. Course History and Course Experience sit at just 2% and 1%, reduced specifically because of the restoration (see Section 01).</p>
+
+  <div class="weight-grid">
+    <div class="w-row">
+      <div class="w-label">SG: Approach</div>
+      <div class="w-bar-track"><div class="w-bar-fill" style="width:100%"></div></div>
+      <div class="w-pct">20%</div>
     </div>
+    <div class="w-row">
+      <div class="w-label">SG: Putting</div>
+      <div class="w-bar-track"><div class="w-bar-fill" style="width:85%"></div></div>
+      <div class="w-pct">17%</div>
+    </div>
+    <div class="w-row">
+      <div class="w-label">SG: Around the Green</div>
+      <div class="w-bar-track"><div class="w-bar-fill" style="width:65%"></div></div>
+      <div class="w-pct">13%</div>
+    </div>
+    <div class="w-row">
+      <div class="w-label">Course-Fit Approach</div>
+      <div class="w-bar-track"><div class="w-bar-fill" style="width:50%"></div></div>
+      <div class="w-pct">10%</div>
+    </div>
+    <div class="w-row">
+      <div class="w-label">Course-Fit Short Game</div>
+      <div class="w-bar-track"><div class="w-bar-fill" style="width:40%"></div></div>
+      <div class="w-pct">8%</div>
+    </div>
+    <div class="w-row">
+      <div class="w-label">SG: Off the Tee</div>
+      <div class="w-bar-track"><div class="w-bar-fill" style="width:35%"></div></div>
+      <div class="w-pct">7%</div>
+    </div>
+    <div class="w-row">
+      <div class="w-label">Birdie-or-Better %</div>
+      <div class="w-bar-track"><div class="w-bar-fill" style="width:30%"></div></div>
+      <div class="w-pct">6%</div>
+    </div>
+    <div class="w-row">
+      <div class="w-label">Driving Accuracy Fit</div>
+      <div class="w-bar-track"><div class="w-bar-fill" style="width:25%"></div></div>
+      <div class="w-pct">5%</div>
+    </div>
+    <div class="w-row">
+      <div class="w-label">Driving Distance Fit</div>
+      <div class="w-bar-track"><div class="w-bar-fill" style="width:15%"></div></div>
+      <div class="w-pct">3%</div>
+    </div>
+    <div class="w-row">
+      <div class="w-label">Greens in Regulation %</div>
+      <div class="w-bar-track"><div class="w-bar-fill" style="width:15%"></div></div>
+      <div class="w-pct">3%</div>
+    </div>
+    <div class="w-row">
+      <div class="w-label">Scrambling %</div>
+      <div class="w-bar-track"><div class="w-bar-fill" style="width:15%"></div></div>
+      <div class="w-pct">3%</div>
+    </div>
+    <div class="w-row">
+      <div class="w-label fade-stat">Course History</div>
+      <div class="w-bar-track"><div class="w-bar-fill fade" style="width:10%"></div></div>
+      <div class="w-pct">2%</div>
+    </div>
+    <div class="w-row">
+      <div class="w-label">Proximity 100-150 FW</div>
+      <div class="w-bar-track"><div class="w-bar-fill" style="width:10%"></div></div>
+      <div class="w-pct">2%</div>
+    </div>
+    <div class="w-row">
+      <div class="w-label fade-stat">Course Experience</div>
+      <div class="w-bar-track"><div class="w-bar-fill fade" style="width:5%"></div></div>
+      <div class="w-pct">1%</div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">#1 — SG: Approach (20% weight)</div>
+    <div class="callout-text">Small Ross greens demand precise iron play to score in a field this low. Winner DNA gate: SG: Approach ≥ -0.05 (Data Golf scale) — a clearly negative approach game is disqualifying regardless of everything else.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">#2 — SG: Putting (17% weight)</div>
+    <div class="callout-text">Historically a putting contest on quick, contoured Ross greens where birdies pile up. Winner DNA gate: SG: Putting ≥ -0.10 — the model treats a clearly below-average putting week as too severe a handicap on greens this demanding.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">#3 — SG: Around the Green (13% weight)</div>
+    <div class="callout-text">Missed greens around tight Ross green complexes require a sharp short game to save par. Paired with a Scrambling % gate (≥ 55%) and a Driving Accuracy gate (≥ -0.10, tree-lined corridors punish stray tee shots).</div>
+  </div>
+
+  <div class="callout note">
+    <div class="callout-label">Course History (2%) &amp; Course Experience (1%) — reduced, not removed</div>
+    <div class="callout-text">Both factors are weighted well below their typical 4%/3% levels this week specifically because of the 2026 restoration (see Section 01) — most players' prior Detroit Golf Club results happened on a course that no longer exists in that form. They're not zeroed out entirely since some signal (temperament, local familiarity with the property) still carries over, but neither should be read as a strong predictor this year.</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ COURSE HISTORY ═══ -->
+<section>
+  <div class="sec-num">03 — Course History</div>
+  <h2>Who has <span>won here.</span></h2>
+  <p class="body-text">Detroit Golf Club has hosted the Rocket Classic every year since 2019; 2026 is the 8th playing. <strong>Every score below was posted on the old par-72 routing</strong> — with the 2026 restoration removing two par 5s (four total strokes of par across the field over 72 holes), this year's winning score will not be directly comparable to the range below.</p>
+
+  <table class="hist-table">
+    <thead>
+      <tr><th>Year</th><th>Winner</th><th>Score</th><th>To Par</th><th>Margin</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>2025</td><td class="sg-high">Aldrich Potgieter</td><td>266</td><td>-22</td><td>Playoff</td></tr>
+      <tr><td>2024</td><td>Cam Davis (2nd win)</td><td>270</td><td>-18</td><td>1 stroke</td></tr>
+      <tr><td>2023</td><td>Rickie Fowler</td><td>264</td><td>-24</td><td>Playoff</td></tr>
+      <tr><td>2022</td><td>Tony Finau</td><td>262</td><td>-26</td><td>5 strokes</td></tr>
+      <tr><td>2021</td><td>Cameron Davis</td><td>270</td><td>-18</td><td>Playoff</td></tr>
+      <tr><td>2020</td><td>Bryson DeChambeau</td><td>265</td><td>-23</td><td>3 strokes</td></tr>
+      <tr><td>2019</td><td>Nate Lashley</td><td>263</td><td>-25</td><td>6 strokes</td></tr>
+    </tbody>
+  </table>
+
+  <p class="body-text" style="font-size:13px;color:var(--txt3)">Cam Davis is the only multi-time winner (2021, 2024). Given the thin, now-outdated historical sample, course history carries just 2% weight in this week's model — see Section 02.</p>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ MODEL OUTPUT — TOP 3 (FREE TIER) ═══ -->
+<section>
+  <div class="sec-num">04 — Model Output</div>
+  <h2>Top model <span>outputs.</span></h2>
+  <p class="body-text">Composite scores from the StrokesEdge Detroit Golf Club regression. Weights: SG:APP (20%), SG:PUTT (17%), SG:ARG (13%), Course-Fit Approach (10%), Course-Fit Short Game (8%), plus 9 secondary factors down to Course Experience (1%). All inputs from Data Golf's 2026 season data, blended 60/40 with a computed L30-day recent-form window.</p>
+  <p class="body-text">The L2 filter requires SG: Approach ≥ -0.05, SG: Putting ≥ -0.10, Scrambling % ≥ 55, and Driving Accuracy ≥ -0.10. 52 of 134 scored players clear all four gates. The top three model outputs are shown below.</p>
+
+  <table>
+    <thead>
+      <tr><th>Rk</th><th>Player</th><th>Score</th><th>APP</th><th>PUTT</th><th>ARG</th><th>Edge</th><th>L2</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="cg" style="font-weight:700">1</td>
+        <td style="color:var(--txt);font-weight:500">Emiliano Grillo</td>
+        <td class="cg">66.7</td>
+        <td class="cg">+0.304</td>
+        <td class="cg">+0.411</td>
+        <td class="cy">+0.079</td>
+        <td class="cg">+2.36%</td>
+        <td><span class="tag-pass">PASS</span></td>
+      </tr>
+      <tr>
+        <td style="font-weight:700">2</td>
+        <td style="color:var(--txt);font-weight:500">Ben Kohles</td>
+        <td class="cg">66.2</td>
+        <td class="cg">+0.672</td>
+        <td class="cy">+0.175</td>
+        <td class="cy">+0.065</td>
+        <td class="cg">+1.93%</td>
+        <td><span class="tag-pass">PASS</span></td>
+      </tr>
+      <tr>
+        <td style="font-weight:700">3</td>
+        <td style="color:var(--txt);font-weight:500">Chandler Phillips</td>
+        <td class="cg">66.2</td>
+        <td class="cy">+0.020</td>
+        <td class="cg">+0.533</td>
+        <td class="cg">+0.417</td>
+        <td class="cg">+2.17%</td>
+        <td><span class="tag-pass">PASS</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p class="body-text" style="font-size:13px;color:var(--txt3)">52 of 134 scored players clear every L2 gate (13 additional players sit on the Watch List, outside regression, for insufficient Data Golf sample). The full ranked field, L3 value screen against sportsbook odds, complete picks card, fades, and DFS lineups are in the Substack newsletter.</p>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ ARCHIVE ═══ -->
+<section>
+  <div class="sec-num">05 — Analysis Archive</div>
+  <h2>Previous <span>weeks.</span></h2>
+  <p class="body-text">Every past week's analysis stays live as its own standalone page. Results tracked publicly at <a href="picks.html">strokesedge.com/picks.html</a>.</p>
+  <div class="archive-grid">
+    <a href="analysis-3m-open-2026.html" class="archive-card">
+      <div class="archive-card-event">3M Open 2026</div>
+      <div class="archive-card-meta">TPC Twin Cities · Blaine, MN · Jul 23–26</div>
+      <div class="archive-card-link">View archive →</div>
+    </a>
+    <a href="analysis-open-championship-2026.html" class="archive-card">
+      <div class="archive-card-event">The Open Championship 2026</div>
+      <div class="archive-card-meta">Royal Birkdale · Southport, England · Jul 16–19</div>
+      <div class="archive-card-link">View archive →</div>
+    </a>
+    <a href="analysis-scottish-open-2026.html" class="archive-card">
+      <div class="archive-card-event">Scottish Open 2026</div>
+      <div class="archive-card-meta">Renaissance Club · North Berwick, Scotland · Jul 10–13</div>
+      <div class="archive-card-link">View archive →</div>
+    </a>
+    <a href="analysis-pga-2026.html" class="archive-card">
+      <div class="archive-card-event">PGA Championship 2026</div>
+      <div class="archive-card-meta">Aronimink Golf Club · Wayne, PA · May 14–17</div>
+      <div class="archive-card-link">View archive →</div>
+    </a>
+    <a href="analysis-truist-2026.html" class="archive-card">
+      <div class="archive-card-event">Truist Championship 2026</div>
+      <div class="archive-card-meta">Quail Hollow · Charlotte, NC · May 7–10</div>
+      <div class="archive-card-link">View archive →</div>
+    </a>
+    <a href="analysis-cadillac-2026.html" class="archive-card">
+      <div class="archive-card-event">Cadillac Championship 2026</div>
+      <div class="archive-card-meta">Blue Monster / Doral · Miami, FL · Apr 30–May 3</div>
+      <div class="archive-card-link">View archive →</div>
+    </a>
+    <a href="analysis-heritage-2026.html" class="archive-card">
+      <div class="archive-card-event">RBC Heritage 2026</div>
+      <div class="archive-card-meta">Harbour Town · Hilton Head, SC · Apr 16–19</div>
+      <div class="archive-card-link">View archive →</div>
+    </a>
+    <a href="analysis-masters-2026.html" class="archive-card">
+      <div class="archive-card-event">Masters 2026</div>
+      <div class="archive-card-meta">Augusta National · Augusta, GA · Apr 9–12</div>
+      <div class="archive-card-link">View archive →</div>
+    </a>
+    <a href="analysis-valero-2026.html" class="archive-card">
+      <div class="archive-card-event">Valero Texas Open 2026</div>
+      <div class="archive-card-meta">TPC San Antonio · Apr 2–6</div>
+      <div class="archive-card-link">View archive →</div>
+    </a>
+    <a href="analysis-cj-cup-byron-nelson-2025.html" class="archive-card">
+      <div class="archive-card-event">CJ Cup Byron Nelson 2025</div>
+      <div class="archive-card-meta">TPC Craig Ranch · McKinney, TX · May 2025</div>
+      <div class="archive-card-link">View archive →</div>
+    </a>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ MODEL SALES SECTION ═══ -->
+<div class="model-sales">
+  <div class="model-sales-copy">Want the full model breakdown?<br><strong style="color:var(--txt)">$7 per tournament — Weekly Model Workbook&nbsp;&nbsp;&nbsp;$21/month — Monthly Membership</strong></div>
+  <div class="model-sales-buttons">
+    <a href="https://strokesedge.gumroad.com/l/buehoc" target="_blank" class="btn-model">Get Weekly Model — $7</a>
+    <a href="https://buymeacoffee.com/strokesedge/membership" target="_blank" class="btn-model btn-model-outline">Monthly Membership — $21/mo</a>
   </div>
 </div>
 
-<div class="tabs-bar">
-  <div class="tabs-inner">
-    <button class="tab-btn active" data-tab="course">Course Profile</button>
-    <button class="tab-btn" data-tab="model">Model Rankings</button>
-    <button class="tab-btn" data-tab="value">Value Screen</button>
-    <button class="tab-btn" data-tab="archive">Archive</button>
+<div class="divider"></div>
+
+<!-- ═══ CONTENT CLIFF GATE ═══ -->
+<div class="cliff-section">
+  <div class="cliff-overlay" id="cliff-overlay">
+    <div class="cliff-box">
+      <div class="cliff-title">Get the full model breakdown free every week.<br>Subscribe to StrokesEdge on Substack.</div>
+      <div class="cliff-label">Full model rankings · Complete picks card · Betting strategy</div>
+      <a href="https://strokesedge.substack.com" target="_blank" class="cliff-btn">Subscribe Free →</a>
+      <form class="cliff-form" id="cliff-form">
+        <input type="email" placeholder="your@email.com" id="cliff-email" required>
+        <button type="submit" class="cliff-btn">Unlock →</button>
+      </form>
+    </div>
   </div>
+
+  <div class="cliff-blurred" id="cliff-content">
+    <div class="cta-strip">
+      <h3>Full card. Every pick. Zero cost.</h3>
+      <p>The complete Rocket Classic picks card — model rankings, value screen, tiers, fades, bankroll — is in the Substack newsletter. Free subscribers get everything before Thursday's first tee shot.</p>
+      <a href="https://strokesedge.substack.com" target="_blank">Subscribe on Substack →</a>
+    </div>
+  </div><!-- end cliff-content -->
+</div><!-- end cliff-section -->
+
+<div class="disclaimer">
+  <p>Not financial advice. Gamble responsibly.</p>
+  <p>Past performance does not guarantee future results.</p>
 </div>
 
-<div class="main">
-
-  <!-- COURSE PROFILE TAB -->
-  <div class="tab-content active" id="tab-course">
-
-    <p class="section-label">01 — Course Overview</p>
-    <div class="course-grid">
-      <div class="stat-card">
-        <div class="stat-card-label">Layout Type</div>
-        <div class="stat-card-value">Parkland</div>
-        <div class="stat-card-sub">TPC Twin Cities, Blaine. An Arnold Palmer design with bentgrass tee-to-green and water in play across a large share of the layout.</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-card-label">Primary Defense</div>
-        <div class="stat-card-value">Approach Play</div>
-        <div class="stat-card-sub">Moderate rough and generous fairway widths mean precision alone doesn't separate the field — hitting it close enough to convert does.</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-card-label">Field Scoring Profile</div>
-        <div class="stat-card-value">Birdiefest</div>
-        <div class="stat-card-sub">Every 3M Open winner since the 2019 debut has finished between -15 and -24 — one of the lowest-scoring stops on Tour.</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-card-label">Playings at Twin Cities</div>
-        <div class="stat-card-value">8th</div>
-        <div class="stat-card-sub">TPC Twin Cities has hosted the 3M Open every year since 2019; 2026 marks the 8th playing.</div>
-      </div>
-    </div>
-
-    <hr class="section-divider">
-
-    <p class="section-label">02 — L1 Regression Weights</p>
-    <div class="prose" style="margin-bottom:16px">
-      <p>TPC Twin Cities's regression cuts against the market's "bomber's paradise" framing for the 3M Open. SG: Approach and SG: Off the Tee carry roughly equal weight, with Birdie-or-Better percentage close behind in a field that's going low all four days — Driving Accuracy is overweighted by the market and carries the lowest weight of the group.</p>
-    </div>
-    <table class="weights-table">
-      <thead>
-        <tr>
-          <th>Stat</th>
-          <th class="weight-bar-cell">Visual</th>
-          <th>Notes</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="stat-name">SG: Approach the Green</td>
-          <td class="weight-bar-cell"><div class="weight-bar-wrap"><div class="weight-bar" style="width:90%"></div></div></td>
-          <td><span class="gate-badge">#1 Predictor</span> Every 3M Open winner since 2019 has ranked in the top 20 of the field in SG: Approach for the week.</td>
-        </tr>
-        <tr>
-          <td class="stat-name">SG: Off the Tee</td>
-          <td class="weight-bar-cell"><div class="weight-bar-wrap"><div class="weight-bar" style="width:82%"></div></div></td>
-          <td><span class="gate-badge">#2 Predictor</span> Length opens up short-iron approaches and reachable par 5s. A strong signal, not a gate — see Winner DNA on the course guide.</td>
-        </tr>
-        <tr>
-          <td class="stat-name">Birdie-or-Better % (L50)</td>
-          <td class="weight-bar-cell"><div class="weight-bar-wrap"><div class="weight-bar" style="width:74%"></div></div></td>
-          <td><span class="gate-badge modified">#3 Predictor</span> With winning scores routinely -15 to -24, the event is decided by who converts the most chances, not who avoids bogeys.</td>
-        </tr>
-        <tr>
-          <td class="stat-name low">Driving Accuracy</td>
-          <td class="weight-bar-cell"><div class="weight-bar-wrap"><div class="weight-bar low" style="width:20%"></div></div></td>
-          <td><span class="gate-badge modified">Below Standard</span> Moderate rough and generous fairways mean precision alone doesn't create separation — the market overweights this stat here.</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <div class="model-callout">
-      <p><strong>L2 Gate:</strong> Players are screened for sufficient PGA Tour ShotLink data and minimum SG: Approach / SG: Off the Tee thresholds before entering the ranked model. Players without enough current-season data sit on a Watch List rather than being scored outright. All other L2 gates apply. See full methodology at <a href="methodology.html" style="color:var(--g);text-decoration:none">strokesedge.com/methodology.html</a>.</p>
-    </div>
-
-    <hr class="section-divider">
-
-    <p class="section-label">03 — Weather This Week</p>
-    <div class="prose" style="margin-bottom:8px">
-      <p>Sunny and hot all four rounds in Blaine, with temperatures building from the mid-80s to the mid-90s by Sunday. Light southwest wind all week keeps club selection straightforward. The one wrinkle: a 20% chance of showers and thunderstorms Saturday night, which could leave greens softer than the rest of the week for Sunday's final round. (Source: National Weather Service, as of Jul 20.)</p>
-    </div>
-    <div class="weather-strip">
-      <div class="wx-day hot">
-        <div class="wx-label">R1 · Thu</div>
-        <div class="wx-temp">86°</div>
-        <div class="wx-wind">SW 5–10 mph</div>
-        <div class="wx-rain">0% rain</div>
-      </div>
-      <div class="wx-day hot">
-        <div class="wx-label">R2 · Fri</div>
-        <div class="wx-temp">87°</div>
-        <div class="wx-wind">SW 5–10 mph</div>
-        <div class="wx-rain">0% rain</div>
-      </div>
-      <div class="wx-day hot">
-        <div class="wx-label">R3 · Sat</div>
-        <div class="wx-temp">91°</div>
-        <div class="wx-wind">SSW 5–10 mph</div>
-        <div class="wx-rain">20% overnight</div>
-      </div>
-      <div class="wx-day hot">
-        <div class="wx-label">R4 · Sun</div>
-        <div class="wx-temp">96°</div>
-        <div class="wx-wind">SW 5–10 mph</div>
-        <div class="wx-rain">0% rain</div>
-      </div>
-    </div>
-
-    <hr class="section-divider">
-
-    <p class="section-label">04 — Course History (3M Open at TPC Twin Cities)</p>
-    <table class="ch-table">
-      <thead>
-        <tr>
-          <th>Year</th>
-          <th>Winner</th>
-          <th>Score</th>
-          <th>To Par</th>
-          <th>Margin</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td>2025</td><td class="finish-won">Kurt Kitayama</td><td>-23</td><td>-23</td><td>1 stroke</td></tr>
-        <tr><td>2024</td><td>Jhonattan Vegas</td><td>-17</td><td>-17</td><td>1 stroke</td></tr>
-        <tr><td>2023</td><td>Lee Hodges</td><td>-24</td><td>-24</td><td>7 strokes</td></tr>
-        <tr><td>2022</td><td>Tony Finau</td><td>-17</td><td>-17</td><td>3 strokes</td></tr>
-        <tr><td>2021</td><td>Cameron Champ</td><td>-15</td><td>-15</td><td>2 strokes</td></tr>
-        <tr><td>2020</td><td>Michael Thompson</td><td>-19</td><td>-19</td><td>2 strokes</td></tr>
-        <tr><td>2019</td><td>Matthew Wolff</td><td>-21</td><td>-21</td><td>1 stroke</td></tr>
-      </tbody>
-    </table>
-
-    <p style="margin-top:20px;font-size:13px;color:var(--muted)">Full course profile and betting angle breakdown at <a href="course-tpc-twin-cities.html" style="color:var(--g);text-decoration:none">course-tpc-twin-cities.html</a>.</p>
-
-  </div><!-- /tab-course -->
-
-  <!-- MODEL RANKINGS TAB -->
-  <div class="tab-content" id="tab-model">
-
-    <p class="section-label">Model Rankings — 2026 3M Open</p>
-    <div class="prose">
-      <p>Blended regression with TPC Twin Cities-adjusted weights (approach/distance composite, birdiefest scoring profile). Full player rankings, tier assignments, and reasoning on Substack. Top model outputs shown below.</p>
-    </div>
-
-    <div class="cliff-section">
-      <div class="cliff-blur">
-        <div class="rankings-table-wrap cliff-table-ghost">
-          <table class="rankings-table">
-            <thead>
-              <tr>
-                <th>Rk</th>
-                <th>Player</th>
-                <th>Blended Score</th>
-                <th>ARG</th>
-                <th>APP</th>
-                <th>PUTT</th>
-                <th>OTT</th>
-                <th>L3 Verdict</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr><td class="rk-top">1</td><td>████████████</td><td class="score-val">+2.84</td><td>+0.68</td><td>+0.71</td><td>+0.44</td><td>+0.61</td><td class="verdict-play">PLAY</td></tr>
-              <tr><td class="rk-top">2</td><td>████████████</td><td class="score-val">+2.61</td><td>+0.52</td><td>+0.58</td><td>+0.39</td><td>+0.72</td><td class="verdict-play">PLAY</td></tr>
-              <tr><td class="rk-top">3</td><td>████████████</td><td class="score-val">+2.48</td><td>+0.44</td><td>+0.63</td><td>+0.31</td><td>+0.60</td><td class="verdict-monitor">MONITOR</td></tr>
-              <tr><td>4</td><td>████████████</td><td>+2.31</td><td>+0.38</td><td>+0.54</td><td>+0.28</td><td>+0.71</td><td class="verdict-play">PLAY</td></tr>
-              <tr><td>5</td><td>████████████</td><td>+2.19</td><td>+0.41</td><td>+0.49</td><td>+0.22</td><td>+0.67</td><td class="verdict-fade">FADE</td></tr>
-              <tr><td>6</td><td>████████████</td><td>+2.08</td><td>+0.29</td><td>+0.61</td><td>+0.19</td><td>+0.59</td><td class="verdict-monitor">MONITOR</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <div class="cliff-cta">
-        <h3>Full Rankings on <span>Substack</span></h3>
-        <p>Complete model output, tier assignments (Winner / Top 10 / Top 20 / Longshot / Fade), bankroll structure, and DFS lineups. Free to subscribe.</p>
-        <a href="https://strokesedge.substack.com" class="cta-btn" target="_blank">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          Get the Full Picks Card
-        </a>
-        <p class="cta-free-note">Free tier includes full picks card. Paid tier coming soon.</p>
-      </div>
-    </div>
-
-  </div><!-- /tab-model -->
-
-  <!-- VALUE SCREEN TAB -->
-  <div class="tab-content" id="tab-value">
-
-    <p class="section-label">L3 Value Screen Preview</p>
-    <div class="prose">
-      <p>Model-implied probability vs. current market odds. Full screen and odds comparisons on Substack. Below: a directional signal on three names the model is watching closely this week.</p>
-    </div>
-
-    <div class="value-preview">
-      <div class="value-card">
-        <div class="value-card-player value-card-blur">████████</div>
-        <div class="value-card-odds value-card-blur">+0000 · Top 10</div>
-        <div class="value-card-edge pos">+EV</div>
-        <div class="value-card-label">Model implied vs. market</div>
-      </div>
-      <div class="value-card">
-        <div class="value-card-player value-card-blur">████████</div>
-        <div class="value-card-odds value-card-blur">+0000 · Top 20</div>
-        <div class="value-card-edge pos">+EV</div>
-        <div class="value-card-label">Model implied vs. market</div>
-      </div>
-      <div class="value-card fade-card">
-        <div class="value-card-player value-card-blur">████████</div>
-        <div class="value-card-odds value-card-blur">+0000 · Outright</div>
-        <div class="value-card-edge neg">FADE</div>
-        <div class="value-card-label">Outright only · Finish markets valid</div>
-      </div>
-    </div>
-
-    <div class="cliff-cta" style="margin-top:8px">
-      <h3>Full Value Screen on <span>Substack</span></h3>
-      <p>Exact odds, implied probabilities, and market edge calculations for every pick tier. Line shopping notes included.</p>
-      <a href="https://strokesedge.substack.com" class="cta-btn" target="_blank">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        Subscribe Free
-      </a>
-    </div>
-
-  </div><!-- /tab-value -->
-
-  <!-- ARCHIVE TAB -->
-  <div class="tab-content" id="tab-archive">
-
-    <p class="section-label">Analysis Archive</p>
-    <div class="prose" style="margin-bottom:24px">
-      <p>Previous week model outputs. Each archive is a standalone page with its own picks context. Results tracked publicly at <a href="picks.html" style="color:var(--g);text-decoration:none">strokesedge.com/picks.html</a>.</p>
-    </div>
-
-    <div class="archive-grid">
-      <a href="analysis-open-championship-2026.html" class="archive-card">
-        <div class="archive-card-event">The Open Championship 2026</div>
-        <div class="archive-card-meta">Royal Birkdale · Southport, England · Jul 16–19</div>
-        <div class="archive-card-link">View archive →</div>
-      </a>
-      <a href="analysis-scottish-open-2026.html" class="archive-card">
-        <div class="archive-card-event">Scottish Open 2026</div>
-        <div class="archive-card-meta">Renaissance Club · North Berwick, Scotland · Jul 10–13</div>
-        <div class="archive-card-link">View archive →</div>
-      </a>
-      <a href="analysis-pga-2026.html" class="archive-card">
-        <div class="archive-card-event">PGA Championship 2026</div>
-        <div class="archive-card-meta">Aronimink Golf Club · Wayne, PA · May 14–17</div>
-        <div class="archive-card-link">View archive →</div>
-      </a>
-      <a href="analysis-truist-2026.html" class="archive-card">
-        <div class="archive-card-event">Truist Championship 2026</div>
-        <div class="archive-card-meta">Quail Hollow · Charlotte, NC · May 7–10</div>
-        <div class="archive-card-link">View archive →</div>
-      </a>
-      <a href="analysis-cadillac-2026.html" class="archive-card">
-        <div class="archive-card-event">Cadillac Championship 2026</div>
-        <div class="archive-card-meta">Blue Monster / Doral · Miami, FL · Apr 30–May 3</div>
-        <div class="archive-card-link">View archive →</div>
-      </a>
-      <a href="analysis-heritage-2026.html" class="archive-card">
-        <div class="archive-card-event">RBC Heritage 2026</div>
-        <div class="archive-card-meta">Harbour Town · Hilton Head, SC · Apr 16–19</div>
-        <div class="archive-card-link">View archive →</div>
-      </a>
-      <a href="analysis-masters-2026.html" class="archive-card">
-        <div class="archive-card-event">Masters 2026</div>
-        <div class="archive-card-meta">Augusta National · Augusta, GA · Apr 9–12</div>
-        <div class="archive-card-link">View archive →</div>
-      </a>
-      <a href="analysis-valero-2026.html" class="archive-card">
-        <div class="archive-card-event">Valero Texas Open 2026</div>
-        <div class="archive-card-meta">TPC San Antonio · Apr 2–6</div>
-        <div class="archive-card-link">View archive →</div>
-      </a>
-      <a href="analysis-cj-cup-byron-nelson-2025.html" class="archive-card">
-        <div class="archive-card-event">CJ Cup Byron Nelson 2025</div>
-        <div class="archive-card-meta">TPC Craig Ranch · McKinney, TX · May 2025</div>
-        <div class="archive-card-link">View archive →</div>
-      </a>
-    </div>
-
-    <p style="margin-top:32px;font-size:13px;color:var(--muted)">Full pick tracking at <a href="picks.html" style="color:var(--g);text-decoration:none">strokesedge.com/picks.html</a>.</p>
-  </div><!-- /tab-archive -->
-
-</div><!-- /main -->
+</div>
 
 <footer>
-  <p>Not financial advice. Gamble responsibly. | <a href="https://strokesedge.substack.com">Newsletter</a> · <a href="picks.html">Pick Tracker</a> · <a href="methodology.html">Model</a></p>
+  <a href="index.html">Home</a> · <a href="methodology.html">Methodology</a> · <a href="picks.html">Pick Tracker</a> · <a href="courses.html">Courses</a> · <a href="analysis.html">Analysis</a> · <a href="course-detroit-golf-club.html">Detroit Golf Club Guide</a> · <a href="https://strokesedge.substack.com" target="_blank">Substack</a>
+  <p style="margin-top:1rem">© 2026 StrokesEdge · Independent quantitative golf betting analytics</p>
 </footer>
 
 <script>
+// Cursor
+var cur=document.getElementById('cursor');
+if(cur){document.addEventListener('mousemove',function(e){cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px';});}
+
 // ── Hamburger ──
 var hbg=document.getElementById('hamburger'),mob=document.getElementById('mobile-menu');
 if(hbg&&mob){
@@ -552,17 +567,33 @@ if(hbg&&mob){
   });
 }
 
-// Tabs
-document.querySelectorAll('.tab-btn').forEach(function(btn){
-  btn.addEventListener('click',function(){
-    document.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active');});
-    document.querySelectorAll('.tab-content').forEach(function(c){c.classList.remove('active');});
-    btn.classList.add('active');
-    document.getElementById('tab-'+btn.dataset.tab).classList.add('active');
-  });
-});
+// ── Content cliff gate ──
+(function(){
+  var overlay=document.getElementById('cliff-overlay');
+  var form=document.getElementById('cliff-form');
+  var GATE_KEY='se_analysis_unlocked';
 
+  function isUnlocked(){
+    try{return sessionStorage.getItem(GATE_KEY)==='1';}catch(e){return false;}
+  }
+  function unlock(){
+    try{sessionStorage.setItem(GATE_KEY,'1');}catch(e){}
+    if(overlay)overlay.classList.add('hidden');
+  }
+
+  if(!isUnlocked()&&overlay){
+    overlay.classList.add('active');
+    form.classList.add('active');
+    form.addEventListener('submit',function(e){
+      e.preventDefault();
+      var email=document.getElementById('cliff-email').value.trim();
+      if(email){unlock();}
+    });
+  } else if(overlay){
+    overlay.classList.add('hidden');
+  }
+})();
 </script>
+
 </body>
 </html>
-
