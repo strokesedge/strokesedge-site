@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+
+# Runtime queue data — generated per-environment, not source. .gitkeep
+# files keep the directories present in a fresh checkout.
+**/queue/*.jsonl
+**/queue/*.json
+!**/queue/.gitkeep
