@@ -38,6 +38,12 @@ When Brian says "Run the weekly update for [Tournament Name]" do ALL of the foll
 - Fetch Substack RSS feed (https://strokesedge.substack.com/feed) to find that week's published article URL
 - If Brian provides a Substack URL or Excel model file, use that as the primary source for picks and analysis content
 
+**Course data verification rules (added after the Rocket Classic 2026 par/yardage error — see "Known Data Sourcing Pitfalls" below):**
+- Cross-check par, yardage, and any course specs against **at least two sources**. Prefer pgatour.com's own current-year tournament page over Wikipedia — Wikipedia frequently lags behind course renovations by a full season or more.
+- If a course has undergone a material physical change since its last tour visit (restoration, redesign, hole conversions, green rebuilds), flag this prominently in the course profile copy itself, not just in a passing note. Also flag it to Brian so any course-history/course-experience weighting in that week's model can get a manual review rather than defaulting to standard weights.
+- If any data point (par, yardage, tournament dates) cannot be verified from a reliable current source, do not publish a guess or carry over a stale fallback value. Flag it explicitly to Brian and hold that page for confirmation before pushing.
+- Verify tournament dates against the current-year PGA Tour schedule specifically. Events can and do shift weeks or months year over year (the Rocket Classic moved from its historical June slot to late July for 2026) — don't assume last year's dates or slot still apply.
+
 **Step 2 — Update picks.html access code**
 - Generate new code in format [TOURNAMENTSLUG][2-digit year] e.g. OPEN26, MASTERS26
 - Add new code to validCodes array in picks.html (never remove old codes)
@@ -96,7 +102,7 @@ Implementation:
 
 **Code array in picks.html JS — never remove old codes, only add new ones:**
 ```javascript
-const validCodes = ['SCOTTISH26','OPEN2026'];
+const validCodes = ['SCOTTISH26','OPEN2026','Rocket2026'];
 // Add new code each week — never delete old ones
 ```
 
@@ -204,6 +210,9 @@ Section 6: Complete Picks Card (all tiers)
 Section 7: Fade notes
 Section 8: Bankroll/odds notes
 Section 9: Link to Substack article
+
+[NEW — FAQ Section, added for SEO]
+Add a short FAQ block (3-5 Q&A pairs) near the bottom of every analysis page, above the footer, targeting likely search queries for that week's tournament (e.g. "What is par at [course] for [year]?", "Who is favored to win the [tournament]?"). This mirrors the FAQ pattern now standard on Substack articles and helps capture Google's "People Also Ask" / featured-snippet placements. Keep answers factual and sourced from the same verified course/model data used elsewhere on the page — don't introduce new unverified claims just to fill out the FAQ.
 ```
 
 ---
@@ -268,6 +277,8 @@ Update every new tournament week:
 | Methodology | `Golf Betting Model — How StrokesEdge Works \| StrokesEdge` |
 | Picks | `PGA Tour Pick Tracker & Betting Record — StrokesEdge` |
 
+**SEO priority rule (reinforced):** when optimizing any title tag or meta description, always optimize for search ranking first, brand name second. Titles under 60 characters. Meta descriptions 150-160 characters, naming the specific tournament, course, and stat angle rather than a generic "StrokesEdge analysis" description. Pack in real search terms people type: tournament name, year, "picks," "betting," "odds," "best bets," course name.
+
 ---
 
 ## Sitemap Priorities
@@ -327,6 +338,10 @@ Update every new tournament week:
 **Footer**
 - Every page has "Not financial advice. Gamble responsibly."
 
+**Course data (new)**
+- Any course profile touched this week has par/yardage verified against pgatour.com, not just Wikipedia
+- Any material course change (restoration, redesign) is flagged in the copy, not buried
+
 Fix all issues found before pushing.
 
 ---
@@ -335,6 +350,22 @@ Fix all issues found before pushing.
 
 `weekly_course_update.py` runs every Sunday at 5pm automatically. It creates new course pages and updates courses.html and sitemap.xml. Never modify or delete this script. When manually updating the site, check `weekly_course_update.log` to see what the script last changed so you don't duplicate or conflict with its work.
 
+**Status note (added after the Rocket Classic 2026 incident where the Sunday run silently failed to push):** a failure/success notification system is being added to this script (email alert on both successful and failed runs, plus a retry on the GitHub push step specifically). Once that's confirmed live, treat a missing Sunday-night confirmation email as a signal the automation failed — don't assume it succeeded just because no error was reported to Brian directly. Until that notification system is confirmed working, manually check `weekly_course_update.log` and the actual GitHub commit history every Monday before doing manual updates, to confirm whether Sunday's run actually pushed or needs to be redone.
+
+---
+
+## Related Automation (context only)
+
+Other independent pipelines touch the same weekly cycle: the Google Apps Script workbook sender (member emails), the `weekly-model/` pipeline (Data Golf model, generates the Excel workbook), and the X/Twitter auto-post pipeline. **If something looks off with picks data, odds, or the model workbook itself, that's upstream in `weekly-model/` — don't try to patch model output inside this site repo.**
+
+---
+
+## Known Data Sourcing Pitfalls (rules learned from past incidents)
+
+- Course renovations can outdate Wikipedia by a full season or more (happened at Detroit Golf Club, 2026) — verify against pgatour.com.
+- Tournaments can shift calendar slots year over year (Rocket Classic moved from June to late July for 2026) — confirm current-year dates, don't assume last year's slot.
+- Model rank/salary/edge figures can drift between workbook versions — always pull the specific number from the current workbook tab directly, never reuse a number from a prior draft.
+
 ---
 
 ## Substack Reference
@@ -342,6 +373,16 @@ Fix all issues found before pushing.
 RSS feed: https://strokesedge.substack.com/feed
 
 Before writing any analysis page, fetch this RSS feed to find the latest published post. Use post titles and publish dates to link correctly to the right Substack article.
+
+---
+
+## Substack Article Standards
+
+Every betting picks article must include this block immediately after the opening paragraph, before any picks:
+
+---
+Want the full model workbook that generated these picks? Full rankings, regression scores, course-fit data, and picks card for all players in the field — $7 this week. Grab it at strokesedge.gumroad.com or get every main event workbook with the monthly membership at buymeacoffee.com/strokesedge.
+---
 
 ---
 

@@ -384,7 +384,11 @@ CLAUDE_MAX_TOKENS = 2000
 
 ANALYSIS_PROMPT_TEMPLATE = """You are StrokesEdge, a quantitative PGA Tour golf betting analytics brand. Write a detailed course profile for {course_name} hosting {tournament_name} ({dates}, {location}).
 
-Cover all of the following sections:
+Before anything else, on its own line, output exactly:
+COURSE_CHANGE_FLAG: <yes / no / uncertain> — <if yes or uncertain: one sentence on what changed (restoration, redesign, holes converted between par values, greens rebuilt); if no: "No indication of a material recent course change.">
+Only say yes/uncertain if you're genuinely confident of a material recent physical change at THIS specific course — a guess extended from "old courses sometimes get renovated" should be "no", not "uncertain". This line will be stripped before publishing; it's a review flag, not part of the profile.
+
+Then write the course profile itself. Cover all of the following sections:
 - Course overview: layout type, yardage, par, course design philosophy, what makes it unique
 - Primary defense: what the course uses to separate the field (rough, wind, greens, length, accuracy)
 - What stats matter most: rank the SG categories (OTT, APP, ARG, PUTT) with specific weightings and explain why each matters or doesn't at this course
@@ -401,13 +405,17 @@ Rules:
 - Around 600-800 words total"""
 
 
-def generate_analysis(details: dict) -> str | None:
-    """Calls the Claude API. Returns the generated text, or None if the
+COURSE_CHANGE_FLAG_RE = re.compile(r"^COURSE_CHANGE_FLAG:\s*(yes|no|uncertain)\s*—\s*(.+?)\s*$", re.M | re.I)
+
+
+def generate_analysis(details: dict) -> tuple:
+    """Calls the Claude API. Returns (text, course_change_flag) where text
+    has the COURSE_CHANGE_FLAG line stripped out, or (None, None) if the
     call fails for any reason — caller decides whether that's fatal."""
     api_key = os.environ.get("ANTHROPIC_API_KEY")
     if not api_key:
         logger.error("ANTHROPIC_API_KEY environment variable is not set")
-        return None
+        return None, None
 
     prompt = ANALYSIS_PROMPT_TEMPLATE.format(**details)
     body = json.dumps({
@@ -429,10 +437,21 @@ def generate_analysis(details: dict) -> str | None:
     try:
         with urllib.request.urlopen(req, timeout=60) as resp:
             result = json.loads(resp.read().decode("utf-8"))
-        return "".join(block.get("text", "") for block in result.get("content", []))
+        text = "".join(block.get("text", "") for block in result.get("content", []))
+        flag_m = COURSE_CHANGE_FLAG_RE.search(text)
+        if flag_m:
+            course_change_flag = {"status": flag_m.group(1).strip().lower(), "note": flag_m.group(2).strip()}
+            text = COURSE_CHANGE_FLAG_RE.sub("", text, count=1).strip()
+        else:
+            # Model didn't return the line in the expected shape — treat as
+            # "uncertain" rather than silently "no", so a parsing miss still
+            # surfaces for a human to check rather than disappearing.
+            course_change_flag = {"status": "uncertain",
+                                   "note": "Model did not return a parseable COURSE_CHANGE_FLAG line — check manually."}
+        return text, course_change_flag
     except Exception as e:
         logger.error(f"Claude API call failed: {e}")
-        return None
+        return None, None
 
 
 def split_analysis_into_sections(analysis_text: str) -> dict:
@@ -903,8 +922,9 @@ def run(test_mode: bool) -> None:
 
     analysis_text = None
     analysis_failed = True
+    course_change_flag = None
     if not page_already_exists:
-        analysis_text = generate_analysis(details)
+        analysis_text, course_change_flag = generate_analysis(details)
         analysis_failed = analysis_text is None
         if analysis_failed:
             logger.error("Claude API call failed — falling back to a minimal factual page "
@@ -991,19 +1011,25 @@ def run(test_mode: bool) -> None:
     else:
         analysis_status = "generated"
 
+    change_flagged = bool(course_change_flag) and course_change_flag["status"] in ("yes", "uncertain")
+    change_note = (f"\n!! COURSE CHANGE FLAG — review before publishing !!\n  {course_change_flag['note']}\n"
+                   if change_flagged else "")
+
     summary = (
         f"Tournament: {tournament['name']} ({details['dates']})\n"
         f"Course: {details['course_name']}, {details['location']}\n"
         f"Page: course-{details['slug']}.html "
         f"{'(already existed — not overwritten)' if page_already_exists else '(new)'}\n"
-        f"Claude analysis: {analysis_status}\n\n"
+        f"Claude analysis: {analysis_status}\n"
+        f"{change_note}\n"
         f"{push_note}\n"
     )
     logger.info(summary)
 
-    subject = (f"StrokesEdge: {tournament['name']} course page is live"
+    subject_prefix = "[COURSE CHANGE] " if change_flagged else ""
+    subject = (f"{subject_prefix}StrokesEdge: {tournament['name']} course page is live"
                if (AUTO_PUSH and committed) else
-               f"StrokesEdge: {tournament['name']} course page ready for review")
+               f"{subject_prefix}StrokesEdge: {tournament['name']} course page ready for review")
     send_email(subject, summary)
 
 

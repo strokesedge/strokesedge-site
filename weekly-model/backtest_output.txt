@@ -1,0 +1,93 @@
+Pre-fetching full-season historical rounds (cached across all events)...
+Fetching historical-raw-data/rounds (tour=pga, year=2026) — large response, caching
+
+=== Masters Tournament (2026-04-09) ===
+Proposed weights: sg_app_blend=19%, cf_approach_comp=10%, sg_arg_blend=10%, cf_short_comp=9%, sg_putt_blend=12%, sg_ott_blend=10%, driving_distance_adjustment=8%, driving_accuracy_adjustment=3%, course_history_adjustment=5%, course_experience_adjustment=4%, major_adjustment=5%, bob_pct=5%
+Players scored: 67 | Spearman(L1, actual finish): +0.421 | Spearman(MDL PROB%, actual finish): +0.421
+weight_coverage_pct — min 56%, median 56%, max 56%
+Top 10 by L1 score vs actual finish:
+  Young, Cameron               L1= 82.6  MDL=15.18%  coverage= 56.0%  actual=T3
+  Fitzpatrick, Matt            L1= 81.3  MDL=12.90%  coverage= 56.0%  actual=T18
+  Aberg, Ludvig                L1= 78.6  MDL= 9.20%  coverage= 56.0%  actual=T21
+  Lee, Min Woo                 L1= 75.8  MDL= 6.49%  coverage= 56.0%  actual=CUT
+  Schauffele, Xander           L1= 74.9  MDL= 5.80%  coverage= 56.0%  actual=T9
+  MacIntyre, Robert            L1= 73.8  MDL= 5.05%  coverage= 56.0%  actual=CUT
+  Bhatia, Akshay               L1= 73.6  MDL= 4.93%  coverage= 56.0%  actual=CUT
+  Scheffler, Scottie           L1= 73.0  MDL= 4.57%  coverage= 56.0%  actual=2
+  Morikawa, Collin             L1= 72.4  MDL= 4.24%  coverage= 56.0%  actual=T7
+  Fleetwood, Tommy             L1= 70.5  MDL= 3.34%  coverage= 56.0%  actual=T33
+
+=== U.S. Open (2026-06-18) ===
+Proposed weights: sg_app_blend=20%, cf_approach_comp=12%, driving_accuracy_adjustment=12%, sg_ott_blend=10%, sg_arg_blend=8%, rough_recovery_over150=8%, sg_putt_blend=8%, cf_short_comp=7%, major_adjustment=6%, course_history_adjustment=4%, course_experience_adjustment=3%, driving_distance_adjustment=2%
+Players scored: 99 | Spearman(L1, actual finish): +0.213 | Spearman(MDL PROB%, actual finish): +0.213
+weight_coverage_pct — min 46%, median 46%, max 46%
+Top 10 by L1 score vs actual finish:
+  Scheffler, Scottie           L1= 90.6  MDL=21.45%  coverage= 46.0%  actual=T4
+  Hatton, Tyrrell              L1= 82.4  MDL= 7.69%  coverage= 46.0%  actual=T7
+  Kim, Si Woo                  L1= 82.4  MDL= 7.69%  coverage= 46.0%  actual=CUT
+  McIlroy, Rory                L1= 81.9  MDL= 7.23%  coverage= 46.0%  actual=T32
+  Fitzpatrick, Alex            L1= 79.8  MDL= 5.56%  coverage= 46.0%  actual=T23
+  Reed, Patrick                L1= 79.7  MDL= 5.49%  coverage= 46.0%  actual=CUT
+  Clark, Wyndham               L1= 77.8  MDL= 4.33%  coverage= 46.0%  actual=1
+  Henley, Russell              L1= 76.2  MDL= 3.54%  coverage= 46.0%  actual=T65
+  Fitzpatrick, Matt            L1= 75.7  MDL= 3.33%  coverage= 46.0%  actual=22
+  Hovland, Viktor              L1= 73.7  MDL= 2.59%  coverage= 46.0%  actual=CUT
+
+=== THE PLAYERS Championship (2026-03-12) ===
+Proposed weights: sg_app_blend=17%, cf_approach_comp=11%, sg_arg_blend=11%, cf_short_comp=9%, driving_accuracy_adjustment=9%, sg_ott_blend=6%, sg_putt_blend=8%, course_history_adjustment=6%, course_experience_adjustment=5%, bob_pct=5%, prox_100_150_fw=4%, prox_150_200_fw=3%, rough_recovery_over150=3%, driving_distance_adjustment=3%
+Players scored: 120 | Spearman(L1, actual finish): +0.348 | Spearman(MDL PROB%, actual finish): +0.348
+weight_coverage_pct — min 47%, median 47%, max 47%
+Top 10 by L1 score vs actual finish:
+  McIlroy, Rory                L1= 90.1  MDL=22.62%  coverage= 47.0%  actual=T46
+  Bhatia, Akshay               L1= 82.9  MDL= 9.20%  coverage= 47.0%  actual=T13
+  Knapp, Jake                  L1= 78.9  MDL= 5.58%  coverage= 47.0%  actual=CUT
+  Castillo, Ricky              L1= 76.4  MDL= 4.08%  coverage= 47.0%  actual=T70
+  Lee, Min Woo                 L1= 76.3  MDL= 4.03%  coverage= 47.0%  actual=T32
+  Lowry, Shane                 L1= 75.1  MDL= 3.47%  coverage= 47.0%  actual=CUT
+  Scott, Adam                  L1= 73.9  MDL= 2.99%  coverage= 47.0%  actual=T56
+  Bridgeman, Jacob             L1= 73.8  MDL= 2.95%  coverage= 47.0%  actual=T5
+  Kim, Si Woo                  L1= 72.5  MDL= 2.51%  coverage= 47.0%  actual=T50
+  Dou, Zecheng                 L1= 72.3  MDL= 2.44%  coverage= 47.0%  actual=CUT
+
+=== John Deere Classic (2026-07-02) ===
+Proposed weights: sg_app_blend=18%, sg_putt_blend=15%, sg_arg_blend=12%, cf_approach_comp=10%, cf_short_comp=9%, bob_pct=10%, prox_100_150_fw=8%, driving_accuracy_adjustment=6%, driving_distance_adjustment=4%, course_history_adjustment=4%, course_experience_adjustment=4%
+Players scored: 132 | Spearman(L1, actual finish): +0.427 | Spearman(MDL PROB%, actual finish): +0.427
+weight_coverage_pct — min 55%, median 55%, max 55%
+Top 10 by L1 score vs actual finish:
+  Cole, Eric                   L1= 88.7  MDL=15.67%  coverage= 55.0%  actual=T39
+  Kim, Tom                     L1= 85.9  MDL=11.04%  coverage= 55.0%  actual=T46
+  Ewart, A.J.                  L1= 83.4  MDL= 8.08%  coverage= 55.0%  actual=T71
+  Bridgeman, Jacob             L1= 77.8  MDL= 4.01%  coverage= 55.0%  actual=T26
+  Brown, Blades                L1= 77.3  MDL= 3.77%  coverage= 55.0%  actual=T12
+  Dou, Zecheng                 L1= 75.8  MDL= 3.12%  coverage= 55.0%  actual=T21
+  Bauchou, Zach                L1= 75.8  MDL= 3.12%  coverage= 55.0%  actual=T67
+  Mitchell, Keith              L1= 75.6  MDL= 3.05%  coverage= 55.0%  actual=T51
+  Hossler, Beau                L1= 74.9  MDL= 2.79%  coverage= 55.0%  actual=T39
+  Griffin, Ben                 L1= 74.6  MDL= 2.69%  coverage= 55.0%  actual=T21
+
+=== WM Phoenix Open (2026-02-05) ===
+Proposed weights: sg_app_blend=15%, sg_putt_blend=14%, sg_arg_blend=9%, sg_ott_blend=8%, cf_approach_comp=9%, cf_short_comp=6%, driving_accuracy_adjustment=4%, driving_distance_adjustment=6%, course_history_adjustment=4%, course_experience_adjustment=3%, bob_pct=8%, prox_100_150_fw=8%, prox_150_200_fw=4%, rough_recovery_over150=2%
+Players scored: 101 | Spearman(L1, actual finish): +0.351 | Spearman(MDL PROB%, actual finish): +0.351
+weight_coverage_pct — min 54%, median 54%, max 54%
+Top 10 by L1 score vs actual finish:
+  Bridgeman, Jacob             L1= 84.0  MDL=10.89%  coverage= 54.0%  actual=T18
+  Gotterup, Chris              L1= 83.5  MDL=10.23%  coverage= 54.0%  actual=1
+  Rodgers, Patrick             L1= 81.3  MDL= 7.77%  coverage= 54.0%  actual=T60
+  Coody, Pierceson             L1= 79.4  MDL= 6.13%  coverage= 54.0%  actual=T10
+  Novak, Andrew                L1= 79.4  MDL= 6.13%  coverage= 54.0%  actual=CUT
+  Bezuidenhout, Christiaan     L1= 78.2  MDL= 5.28%  coverage= 54.0%  actual=CUT
+  Jaeger, Stephan              L1= 78.0  MDL= 5.15%  coverage= 54.0%  actual=T28
+  Berger, Daniel               L1= 76.9  MDL= 4.48%  coverage= 54.0%  actual=T16
+  Hisatsune, Ryo               L1= 75.8  MDL= 3.91%  coverage= 54.0%  actual=T10
+  Theegala, Sahith             L1= 73.9  MDL= 3.08%  coverage= 54.0%  actual=T18
+
+==============================================================================
+SUMMARY
+==============================================================================
+Masters Tournament               n= 67  rho(L1)=+0.421  rho(MDL%)=+0.421  coverage_med=56%  top_prob=15.18%
+U.S. Open                        n= 99  rho(L1)=+0.213  rho(MDL%)=+0.213  coverage_med=46%  top_prob=21.45%
+THE PLAYERS Championship         n=120  rho(L1)=+0.348  rho(MDL%)=+0.348  coverage_med=47%  top_prob=22.62%
+John Deere Classic               n=132  rho(L1)=+0.427  rho(MDL%)=+0.427  coverage_med=55%  top_prob=15.67%
+WM Phoenix Open                  n=101  rho(L1)=+0.351  rho(MDL%)=+0.351  coverage_med=54%  top_prob=10.89%
+
+Mean rho(L1, actual finish) across 5 events: +0.352

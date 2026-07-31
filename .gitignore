@@ -1,1 +1,13 @@
 weekly_course_update.log
+weekly-model/weekly_model_pipeline.log
+weekly-model/.weekly_model_pipeline.lock
+weekly-model/__pycache__/
+# Per-tournament runtime output — generated each week, not source.
+# ** (not a single *) so this also catches archived subfolders like
+# weekly-model/the-open-championship/_archived_pre_styling_test/ — a
+# single-level */ pattern missed those and almost let a generated .xlsx
+# and state.json into a commit (caught 2026-07-31).
+weekly-model/**/state.json
+weekly-model/**/weights_proposal.md
+weekly-model/**/pga_tour_supplement.csv
+weekly-model/**/*.xlsx
