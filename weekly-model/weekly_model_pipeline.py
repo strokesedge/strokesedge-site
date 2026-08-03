@@ -549,9 +549,28 @@ def pgatour_course_par_yardage(event_name: str) -> tuple:
         if not m2:
             return None, None
         stats_data = json.loads(m2.group(1))
-        course_q = next(q for q in stats_data["props"]["pageProps"]["dehydratedState"]["queries"]
-                        if isinstance(q.get("state", {}).get("data"), dict)
-                        and q["state"]["data"].get("courses"))
+        # Target the "courseStats" query specifically, not just any query
+        # with a truthy "courses" list — this page's __NEXT_DATA__ bundles
+        # queries for every tour's tournament running the same week (e.g.
+        # PGA Tour + Korn Ferry + Champions + DP World, each keyed by its
+        # own tournamentId), and several of THOSE "tournament" queries also
+        # carry a "courses" list, just a bare id/courseName one with no
+        # par/yardage fields. A bare `next(... and data.get("courses"))`
+        # matches the first of those (often even the right tournament ID,
+        # just the wrong query shape) and returns par=None/yardage=None
+        # before ever reaching the "courseStats" query that actually has
+        # them — confirmed live 2026-08-03: the Wyndham Championship page's
+        # first "tournament" query WAS R2026013 (correct event) but its
+        # courses entry only had id/courseName/courseCode, silently
+        # producing a (None, None) result and falling back to a stale
+        # Wikipedia yardage (7127 vs the real 7131) even though the
+        # correct par/yardage were sitting a few queries later.
+        course_q = next((q for q in stats_data["props"]["pageProps"]["dehydratedState"]["queries"]
+                         if q.get("queryKey", [None])[0] == "courseStats"
+                         and isinstance(q.get("state", {}).get("data"), dict)
+                         and q["state"]["data"].get("courses")), None)
+        if not course_q:
+            return None, None
         course = course_q["state"]["data"]["courses"][0]
         par, yardage = course.get("par"), course.get("yardage")
         if not par or not yardage:
@@ -623,7 +642,20 @@ def wikipedia_course_facts(course_name: str) -> dict:
             year_m = re.search(r"(\d{4})", established_m.group(1))
             facts["established_year"] = int(year_m.group(1)) if year_m else None
 
-    text_lower = wikitext.lower()
+    # Strip the boilerplate tail before keyword-checking course_type.
+    # "External links" is a standard section heading on nearly every
+    # Wikipedia article, and the naive "links" substring check below was
+    # matching on that heading alone, not real prose — confirmed live
+    # 2026-08-03: Wyndham Championship, Sedgefield Country Club, AND
+    # Detroit Golf Club's articles all contain exactly one "links" match,
+    # every time from "==External links==", regardless of actual course
+    # type. This silently mislabeled Detroit Golf Club (a parkland
+    # course) as "links" last week too — state.json shows "parkland" now
+    # only because it was hand-corrected after the fact, not because this
+    # function got it right. Only the article's real body prose (and
+    # infobox, already parsed above) should ever feed this heuristic.
+    body_text = re.split(r"==\s*(?:External links|References|See also)\s*==", wikitext, flags=re.I)[0]
+    text_lower = body_text.lower()
     # Broad "links" check first (a Royal Birkdale-style article often just
     # says "links" without "links course" as an exact phrase — confirmed
     # by running this against the real article while testing), narrower
