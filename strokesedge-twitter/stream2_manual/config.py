@@ -9,7 +9,15 @@ import os
 QUEUE_DIR = os.path.join(os.path.dirname(__file__), "queue")
 SENT_LOG = os.path.join(QUEUE_DIR, "sent_log.jsonl")  # every batch emailed to Brian, for audit/dedup context only — nothing here gates posting, he posts by hand
 FAILED_LOG = os.path.join(QUEUE_DIR, "failed_log.jsonl")  # slots that failed generation/validation — never emailed, logged so failures don't vanish silently
+CHART_OUT_DIR = os.path.join(QUEUE_DIR, "charts")  # PNGs are deleted right after the email send attempt — see run_cycle.py — this dir should stay empty between runs
 GENERATE_SCHEDULE_STATE = os.path.join(QUEUE_DIR, "generate_schedule_state.json")
+
+# ── Picks-vs-live-standings updates (standings_cycle.py) ─────────────
+# Separate schedule state file and cadence from the main category
+# rotation above — this runs hourly, gated on shared.tracker.is_picks_phase()
+# and a live leaderboard match, not on the 90-minute category ticker.
+STANDINGS_SCHEDULE_STATE = os.path.join(QUEUE_DIR, "standings_schedule_state.json")
+STANDINGS_CADENCE_MINUTES = 60
 
 # ── Content categories ─────────────────────────────────────────────
 # Same base categories as Stream 1, plus "picks" — added only once the

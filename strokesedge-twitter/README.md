@@ -49,6 +49,32 @@ to Task Scheduler, never posted anything for real).
   10-11 batches — a cleaner number than the exact 96-minute division of
   16h/10, landing on the same "~10/day").
 
+### Picks-vs-live-standings updates (`standings_cycle.py`) — added 2026-08-09
+
+A second, independent cadence within Stream 2, closing the "Known gap"
+below for the picks-phase portion of the week: hourly (60-minute cadence,
+same 7am-11pm window, own schedule state file) email updates comparing
+each OPEN tracker-CSV pick against its CURRENT live leaderboard position.
+Still email-only, same as the rest of Stream 2 — never posts to X,
+never calls the X API.
+
+- **Live data source:** Data Golf's `preds/in-play` feed (`shared/
+  leaderboard.py`), reusing the same `DATAGOLF_API_KEY` already
+  configured for `weekly-model/`. Fails safe (skips the slot, no email)
+  if the feed's event name doesn't match `shared/tournament_config.py`,
+  or if no open pick matches a live leaderboard row.
+- **Only runs during picks phase** (`shared.tracker.is_picks_phase()`) —
+  naturally stops once every bet for the tournament settles; final
+  results stay Stream 1's recap job, never this script's.
+- **Parlay bets are excluded** from this comparison — a parlay's
+  settlement depends on multiple legs together, and this only ever
+  reports one player's live position, never a compound win/loss
+  judgment. Single-player open bets only (`standings_content.py`).
+- **Never claims a result.** The prompt (`standings_generator.py`)
+  explicitly forbids "won/lost/cashed/hit" language — these are
+  in-progress positions, not final outcomes, no matter how good or bad
+  the live position looks.
+
 ## `shared/`
 
 Pure utilities only, reused by both streams to avoid the two definitions
@@ -111,21 +137,31 @@ separate concerns even though Stream 1 does both in one script call):
 |---|---|---|---|
 | Stream 1 cycle | `python run_cycle.py` | `stream1_auto/` | every 15 min, always |
 | Stream 2 cycle | `python run_cycle.py` | `stream2_manual/` | every 15 min, always |
+| Stream 2 standings updates | `python standings_cycle.py` | `stream2_manual/` | every 15 min, always |
+
+Live in Windows Task Scheduler as "StrokesEdge Twitter Stream1 Auto",
+"StrokesEdge Twitter Stream2 Manual", and "StrokesEdge Twitter Stream2
+Standings" respectively.
 
 Each script decides for itself whether it's actually time to act (active
-hours + cadence, persisted in its own `queue/generate_schedule_state.json`)
-— the 15-minute trigger is just a tick, not the real schedule. This is the
-same pattern the legacy prototype used, just split two ways instead of one.
+hours + cadence, persisted in its own `queue/generate_schedule_state.json`
+or `queue/standings_schedule_state.json`) — the 15-minute trigger is just
+a tick, not the real schedule. This is the same pattern the legacy
+prototype used, just split ways instead of one.
 
-## Known gap — flag if you want this scoped out
+## Known gap — partially closed 2026-08-09
 
-There's no real-time leaderboard data source wired in anywhere in this
-system. Stream 1's Wed-Sat content deliberately stays in the "here's the
-model, here's the course" lane rather than reporting live standings, and
-recap only fires once the tracker CSV shows a tournament fully settled.
-If you want Thu-Sun content to reference actual live position, that needs
-a leaderboard API integration scoped separately — say the word and I'll
-put together options.
+There's still no real-time leaderboard data source feeding Stream 1.
+Stream 1's Wed-Sat content deliberately stays in the "here's the model,
+here's the course" lane rather than reporting live standings, and recap
+only fires once the tracker CSV shows a tournament fully settled.
+
+Stream 2 now has one: the picks-vs-live-standings updates described above
+pull from Data Golf's live feed once picks go live, but only for Stream
+2's own hourly email, and only comparing OPEN picks against their current
+position — not a general live-leaderboard feature. If you want Stream 1's
+Wed-Sat/recap content to reference live position too, that's still a
+separate scope — say the word.
 
 ## Safety notes (do not remove without a good reason)
 
