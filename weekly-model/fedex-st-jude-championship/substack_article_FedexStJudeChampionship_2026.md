@@ -80,6 +80,8 @@ Si Woo Kim's iron play stands out at the 88th percentile, and his off-the-tee nu
 
 Southwind has a track record of rewarding approach-heavy winners over the past decade, the kind of players who live in the 60th percentile or better on approach metrics. That said, the model only weights course history at 2% this week. History color is fine for conversation. It isn't doing real work in this model, and treating it otherwise would be sloppy.
 
+One name worth flagging for the storyline alone: Jackson Koivun. The 21-year-old rookie won the 3M Open in his third pro start, then climbed to the final FedExCup playoff spot (No. 70) to qualify for this field in just his fifth start, and followed that with a T-5 at last week's Wyndham Championship. He's not in the model rankings above and won't be — Data Golf doesn't yet have enough strokes-gained sample to score him, so he sits on the Watch List (Win +4000, Top 20 +155) rather than in L1/L2 regression. That's a note for readers who want to know why a hot name is missing from this week's breakdown, not a pick either way.
+
 ## 06 — The Number That Runs This Model
 
 Scheffler sits at the top of the model with an L1 score of 73.8 and elite approach form, but the win edge comes in negative at -6.27%, meaning the market has already priced in most of that dominance. The poor course-fit approach component is the wrinkle worth watching. This is a projection built on skill level, not on a clean fit with the golf course in front of him.

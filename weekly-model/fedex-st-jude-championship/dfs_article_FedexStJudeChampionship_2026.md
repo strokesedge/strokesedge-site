@@ -41,6 +41,8 @@ Thomas at $8,100 with a 1.00 value score is the backbone here, a number that doe
 
 Scheffler and McIlroy carry the two worst edge scores on the board at -6.27% and -6.63%, and they'll still be the most-rostered names on the slate by habit alone. Schauffele isn't far behind at -2.57% edge despite showing up in the cash build here, which says more about salary necessity than model conviction. Ownership will flow to name recognition this week regardless of what TPC Southwind actually rewards. The model's just not paying for reputation at these price points.
 
+The other ownership magnet this week won't even show up in the model rankings above: Jackson Koivun. The 21-year-old rookie won the 3M Open in his third pro start, climbed all the way to the No. 70 spot to make this field in only his fifth start, and just posted a T-5 at the Wyndham Championship last week. That's a real story, and DFS ownership will chase it. It's also why he's sitting on the Watch List, not in the field above — Data Golf doesn't have enough strokes-gained sample on him yet to score him in L1/L2, so there's no model edge attached to his name in either direction. His Watch List odds (Win +4000, Top 20 +155) are the only numbers StrokesEdge has on him this week. Any Koivun exposure in a lineup is a pure ownership/story bet, not something the model is backing.
+
 ## 05 — Weather Note for DFS Builders
 
 Gusts to 25 mph with no rain in the forecast favors ball-strikers who can control trajectory over pure aggression off the tee, which lines up with why Conners and Rai show up where they do. Heat climbing toward 109F is more of a fatigue factor for Sunday roster construction than anything to price in now.
