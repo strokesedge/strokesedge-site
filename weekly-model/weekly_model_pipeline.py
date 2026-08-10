@@ -174,6 +174,7 @@ FACTOR_CATALOG = {
     "course_experience_adjustment": "Course Experience (Data Golf player-decompositions)",
     "major_adjustment": "Major Championship Factor (Data Golf player-decompositions — majors only)",
     "bob_pct": "Birdie or Better % (computed from historical-raw-data/rounds)",
+    "dba_pct": "Double Bogey Avoidance % — share of holes NOT double-bogey-or-worse (computed from historical-raw-data/rounds)",
     "gir_pct": "Greens in Regulation % (computed from historical-raw-data/rounds)",
     "scrambling_pct": "Scrambling % — up-and-down rate from missed greens (computed from historical-raw-data/rounds)",
     "prox_100_150_fw": "Proximity 100-150yd Fairway, SG-per-shot (Data Golf approach-skill)",
@@ -974,11 +975,13 @@ def compute_l30_window_stats(tour: str, as_of: date) -> tuple:
     {'sg_app','sg_arg','sg_ott','sg_putt','rounds'}; entries with fewer
     than L30_MIN_ROUNDS are omitted entirely (caller must treat a missing
     dg_id as 'unavailable', never assume 0). rate_by_dg_id maps dg_id ->
-    {'bob_pct','gir_pct','scrambling_pct','rounds'} over the same window
-    and same minimum-sample rule — birdie-or-better, greens in regulation,
-    and scrambling (up-and-down from missed greens) are all direct
-    per-round fields on historical-raw-data/rounds, aggregated the same
-    way as the SG stats.
+    {'bob_pct','dba_pct','gir_pct','scrambling_pct','rounds'} over the same
+    window and same minimum-sample rule — birdie-or-better, double-bogey-
+    or-worse, greens in regulation, and scrambling (up-and-down from missed
+    greens) are all direct per-round fields on historical-raw-data/rounds,
+    aggregated the same way as the SG stats. dba_pct is the mirror of
+    bob_pct: share of holes that were NOT a double bogey or worse, same
+    holes-played denominator, so a higher number is always better for both.
     """
     cutoff = as_of - timedelta(days=L30_WINDOW_DAYS)
     rounds_data = get_year_rounds_cached(tour, as_of.year)
@@ -1005,7 +1008,7 @@ def compute_l30_window_stats(tour: str, as_of: date) -> tuple:
             if dg_id is None:
                 continue
             bucket = accum.setdefault(dg_id, {"sg_app": [], "sg_arg": [], "sg_ott": [], "sg_putt": [],
-                                                "birdies_plus": 0, "holes": 0, "rounds": 0,
+                                                "birdies_plus": 0, "doubles_plus": 0, "holes": 0, "rounds": 0,
                                                 "gir_sum": 0.0, "scrambling_sum": 0.0, "rate_rounds": 0})
             for rk, rv in score.items():
                 if not rk.startswith("round_") or not isinstance(rv, dict):
@@ -1017,6 +1020,7 @@ def compute_l30_window_stats(tour: str, as_of: date) -> tuple:
                 birdies = rv.get("birdies") or 0
                 eagles_plus = rv.get("eagles_or_better") or 0
                 bucket["birdies_plus"] += birdies + eagles_plus
+                bucket["doubles_plus"] += rv.get("doubles_or_worse") or 0
                 bucket["holes"] += 18  # Data Golf round records don't expose a holes-played count directly
                 # gir/scrambling are per-round FRACTIONS (0-1), not counts — average them
                 # across rounds rather than summing, so a round with a missing value doesn't
@@ -1040,6 +1044,7 @@ def compute_l30_window_stats(tour: str, as_of: date) -> tuple:
         entry = {"rounds": b["rounds"]}
         if b["holes"] > 0:
             entry["bob_pct"] = b["birdies_plus"] / b["holes"] * 100.0
+            entry["dba_pct"] = 100.0 - (b["doubles_plus"] / b["holes"] * 100.0)
         if b["rate_rounds"] > 0:
             entry["gir_pct"] = b["gir_sum"] / b["rate_rounds"] * 100.0
             entry["scrambling_pct"] = b["scrambling_sum"] / b["rate_rounds"] * 100.0
@@ -1140,6 +1145,7 @@ def build_player_metrics(event: dict, field: dict, skill_ratings: dict, approach
             "course_experience_adjustment": decomp.get("course_experience_adjustment"),
             "major_adjustment": decomp.get("major_adjustment"),
             "bob_pct": rates.get("bob_pct") if rates else None,
+            "dba_pct": rates.get("dba_pct") if rates else None,
             "gir_pct": rates.get("gir_pct") if rates else None,
             "scrambling_pct": rates.get("scrambling_pct") if rates else None,
             "prox_100_150_fw": appr.get("100_150_fw_sg_per_shot"),
