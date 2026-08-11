@@ -225,4 +225,25 @@
     <priority>0.7</priority>
   </url>
 
+  <url>
+    <loc>https://strokesedge.com/course-colonial.html</loc>
+    <lastmod>2026-08-11</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://strokesedge.com/course-tpc-craig-ranch.html</loc>
+    <lastmod>2026-08-11</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://strokesedge.com/course-cj-cup-byron-nelson.html</loc>
+    <lastmod>2026-08-11</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
 </urlset>
