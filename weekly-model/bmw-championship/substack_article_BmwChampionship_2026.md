@@ -1,8 +1,11 @@
-=== SEO METADATA — copy into Substack's SEO settings ===
-Article Title: BMW Championship 2026 Picks: Model Best Bets and Fades for Bellerive Country Club
-SEO Title (57 chars): BMW Championship 2026 Picks, Best Bets & Odds | Bellerive
-SEO Description (154 chars): 2026 BMW Championship picks, best bets, and odds at Bellerive Country Club. Quant model flags a +1600 value play and fades a +300 favorite. Free analysis.
-==========================================================
+=== SEO METADATA — copy into Substack ===
+ARTICLE TITLE:   BMW Championship 2026 Picks: Model Best Bets and Fades for Bellerive Country Club
+SEO TITLE:       BMW Championship 2026 Picks, Best Bets & Odds | Bellerive (57 chars)
+SEO DESCRIPTION: 2026 BMW Championship picks, best bets, and odds at Bellerive Country Club. Quant model flags a +1600 value play and fades a +300 favorite. Free analysis. (154 chars)
+EMAIL SUBJECT:   BMW Championship picks are live: Xander at +1600 is the play (60 chars)
+TAGS:            Golf, BMW Championship, Golf Betting, PGA Tour, Xander Schauffele
+POST URL:        bmw-championship-2026-picks-best-bets-bellerive (47 chars)
+==========================================
 
 # BMW Championship 2026 Picks: Model Best Bets and Fades for Bellerive Country Club
 Bellerive Country Club  ·  St. Louis, MO  ·  2026-08-20  ·  Par 70  ·  7,448 Yds

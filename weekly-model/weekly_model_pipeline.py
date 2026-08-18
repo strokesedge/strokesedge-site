@@ -2659,18 +2659,21 @@ def generate_pick_writeups(player_data: dict) -> dict:
 
 
 # ─────────────────────────────────────────────────────────────────────────
-# SEO metadata block — Brian's standing rule (2026-08-18, see
-# weekly-model/CLAUDE.md "StrokesEdge Article SEO Fields"): every picks
-# article run must surface an Article Title, an SEO Title (<60 chars), and
-# an SEO Description (50-160 chars, ends "Free analysis.", real odds) for
-# copy-pasting into Substack's SEO settings. Same discipline as everything
-# else in this pipeline — real odds pulled from l3, never invented, and a
-# field that doesn't fit its length rule gets a loud log line instead of a
-# silent truncation.
+# SEO metadata block — Brian's standing rule (2026-08-18, extended to six
+# fields 2026-08-18 same day, see weekly-model/CLAUDE.md "StrokesEdge
+# Article SEO Fields"): every picks article run must surface Article
+# Title, SEO Title (<60 chars), SEO Description (50-160 chars, ends "Free
+# analysis.", real odds), Email Subject, Tags, and Post URL Slug, labeled
+# and ready to copy-paste into Substack. Same discipline as everything
+# else in this pipeline — real odds and names pulled from l3/metrics,
+# never invented, and a field that doesn't fit its length rule gets a
+# loud log line instead of a silent truncation.
 # ─────────────────────────────────────────────────────────────────────────
 COURSE_NAME_SUFFIXES_TO_STRIP = (
     " Country Club", " Golf Club", " Golf Links", " Golf Course", " National Golf Club", " Links",
 )
+
+SLUG_STOPWORDS = {"the", "of", "a", "an"}
 
 
 def _short_course_name(course_name: str) -> str:
@@ -2682,7 +2685,29 @@ def _short_course_name(course_name: str) -> str:
     return course_name
 
 
-def build_seo_fields(event: dict, year: int, article_title: str, l3: dict, l2_results: dict) -> dict:
+def _slugify(text: str) -> str:
+    if not text:
+        return ""
+    words = [w for w in re.findall(r"[a-zA-Z0-9]+", text.lower()) if w not in SLUG_STOPWORDS]
+    return "-".join(words)
+
+
+def _player_first_last(player_name: str) -> str:
+    # metrics[...]['player_name'] is stored "Last, First" — flip to
+    # "First Last" for anything reader-facing (tags, email subject).
+    if "," in player_name:
+        last, first = (p.strip() for p in player_name.split(",", 1))
+        return f"{first} {last}"
+    return player_name
+
+
+def _player_first_name(player_name: str) -> str:
+    if "," in player_name:
+        return player_name.split(",", 1)[1].strip()
+    return player_name.split()[0] if player_name else player_name
+
+
+def build_seo_fields(event: dict, year: int, article_title: str, l3: dict, l2_results: dict, metrics: dict) -> dict:
     course_name = event.get("course_name") or "TBD"
     short_course = _short_course_name(course_name)
 
@@ -2737,15 +2762,62 @@ def build_seo_fields(event: dict, year: int, article_title: str, l3: dict, l2_re
         logger.error(f"[{event['slug']}] SEO description is {len(seo_description)} chars, outside the "
                      f"50-160 rule — trim/expand manually before publishing: {seo_description!r}")
 
-    return {"article_title": article_title, "seo_title": seo_title, "seo_description": seo_description}
+    # Falls back to the top overall L1-ranked L2-pass player when no
+    # positive-edge value pick exists this week — tags/email subject
+    # should never go empty, and the model's top pick is a reasonable
+    # substitute for "the value play" when nothing clears a positive edge.
+    headline_id = value_id
+    if headline_id is None:
+        passers = [d for d, r in l2_results.items() if r.get("pass") and d in l3]
+        headline_id = max(passers, key=lambda d: l3[d]["l1_score"]) if passers else None
+
+    if headline_id is not None:
+        headline_name_full = _player_first_last(metrics[headline_id]["player_name"])
+        headline_first = _player_first_name(metrics[headline_id]["player_name"])
+    else:
+        headline_name_full = None
+        headline_first = None
+
+    # Email Subject — under 50 chars preferred (advisory, not a hard
+    # length gate like SEO title/description above), must name something
+    # specific (player + odds) rather than generic hype copy.
+    if headline_first and value_odds:
+        email_subject = f"{event['event_name']} picks are live: {headline_first} at {value_odds} is the play"
+    elif headline_first:
+        email_subject = f"{event['event_name']} picks are live: {headline_first} is the play"
+    else:
+        email_subject = f"{event['event_name']} picks are live: full card inside"
+    if len(email_subject) > 50:
+        logger.info(f"[{event['slug']}] Email subject is {len(email_subject)} chars (>50 preferred) — "
+                     f"{email_subject!r}")
+
+    # Tags — exactly 5, fixed order, last slot is the headline player's
+    # full name (First Last), never left blank.
+    tags = ["Golf", event["event_name"], "Golf Betting", "PGA Tour", headline_name_full or "TBD"]
+
+    # Post URL Slug — event['slug'] is already Data Golf's own
+    # lowercase-hyphenated tournament slug (e.g. "bmw-championship"), so
+    # it's reused directly rather than re-derived, same "don't duplicate
+    # a value that already exists" discipline as elsewhere in this file.
+    post_url_slug = f"{event['slug']}-{year}-picks-best-bets-{_slugify(short_course)}"
+    if len(post_url_slug) > 60:
+        logger.info(f"[{event['slug']}] Post URL slug is {len(post_url_slug)} chars (>60) — {post_url_slug!r}")
+
+    return {
+        "article_title": article_title, "seo_title": seo_title, "seo_description": seo_description,
+        "email_subject": email_subject, "tags": tags, "post_url_slug": post_url_slug,
+    }
 
 
 def render_seo_block(seo: dict) -> str:
-    return ("=== SEO METADATA — copy into Substack's SEO settings ===\n"
-            f"Article Title: {seo['article_title']}\n"
-            f"SEO Title ({len(seo['seo_title'])} chars): {seo['seo_title']}\n"
-            f"SEO Description ({len(seo['seo_description'])} chars): {seo['seo_description']}\n"
-            "==========================================================")
+    return ("=== SEO METADATA — copy into Substack ===\n"
+            f"ARTICLE TITLE:   {seo['article_title']}\n"
+            f"SEO TITLE:       {seo['seo_title']} ({len(seo['seo_title'])} chars)\n"
+            f"SEO DESCRIPTION: {seo['seo_description']} ({len(seo['seo_description'])} chars)\n"
+            f"EMAIL SUBJECT:   {seo['email_subject']} ({len(seo['email_subject'])} chars)\n"
+            f"TAGS:            {', '.join(seo['tags'])}\n"
+            f"POST URL:        {seo['post_url_slug']} ({len(seo['post_url_slug'])} chars)\n"
+            "==========================================")
 
 
 def generate_substack_article(event: dict, ctx: dict) -> Path:
@@ -2796,7 +2868,7 @@ def generate_substack_article(event: dict, ctx: dict) -> Path:
     # Claude-written hook, same discipline as the lead sentence below.
     title = f"{event['event_name']} {year} Picks: Model Best Bets and Fades for {event.get('course_name') or 'TBD'}"
 
-    seo = build_seo_fields(event, year, title, l3, l2_results)
+    seo = build_seo_fields(event, year, title, l3, l2_results, metrics)
     logger.info(f"[{event['slug']}] {render_seo_block(seo)}")
 
     # Guaranteed lead sentence, not left to the Claude-written intro_hook to

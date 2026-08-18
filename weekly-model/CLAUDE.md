@@ -310,7 +310,7 @@ Use the full official course name every time. This format is proven to drive Goo
 
 ## StrokesEdge Article SEO Fields (Generate Every Week)
 
-Applies to the picks/Substack article specifically (the one actually published to Substack, where these fields get pasted into the platform's SEO settings) — not the DFS or recap articles. Claude Code must generate all three fields every time it produces this article:
+Applies to the picks/Substack article specifically (the one actually published to Substack, where these fields get pasted in) — not the DFS or recap articles. Claude Code must generate all six fields every time it produces an article, labeled and ready to copy-paste directly into Substack.
 
 ### 1. Article Title
 `[Tournament Name] [Year] Picks: Model Best Bets and Fades for [Full Course Name]`
@@ -325,11 +325,42 @@ Rules: Keep under 60 chars. Use `&` not "and". Use short course name after the p
 ### 3. SEO Description (must be 50-160 characters)
 Format: `[Year] [Tournament] picks, best bets, and odds at [Full Course Name]. Quant model flags [specific value play with odds] and fades [specific fade]. Free analysis.`
 Example: "2026 BMW Championship picks, best bets, and odds at Bellerive Country Club. Quant model flags a +1800 value play and fades a +1600 favorite. Free analysis."
-Rules: Always end with "Free analysis." Always include real odds from the model. Stay between 50-160 characters. Be specific — use actual odds numbers, not generic language.
+Rules: Always end with "Free analysis." Always use real odds from the model. Stay between 50-160 characters.
 
-Output all three fields at the top of every article run, clearly labeled, so they can be copy-pasted directly into Substack's SEO settings.
+### 4. Email Subject Line (under 50 characters, mobile-first)
+Format: Punchy, teases the top play or key angle without giving it away.
+Example: "BMW picks are live — Xander at +1800 is the play"
+Rules: Never generic. Always include something specific — a player name, an odds number, or a one-line angle. Under 50 characters preferred.
 
-**Enforced in code** (Brian, 2026-08-18): `build_seo_fields()` / `render_seo_block()` in `weekly_model_pipeline.py`, called from `generate_substack_article()`. The block is prepended to the top of the generated `.md` file (delete it before pasting the article body into Substack) and logged to `weekly_model_pipeline.log`. Short course name strips a fixed list of suffixes (`Country Club`, `Golf Club`, `Golf Links`, etc. — see `COURSE_NAME_SUFFIXES_TO_STRIP`) only when the full name would push the SEO title over 60 chars; if even the short name doesn't fit, that's logged as an error for Brian to trim by hand rather than silently mangled. The value play is the single biggest positive `WIN EDGE%` among L2-PASS players; the fade is the shortest-priced favorite (odds ≤ +2000) with the most negative edge — the same definitions `assign_pick_tiers()` already uses for the E/W Winner and Fade tiers, so the SEO description can never disagree with the picks card. If neither exists in a given week (thin field, no qualifying favorite), the description falls back to an odds-free but still accurate sentence rather than inventing numbers — logged so it's visible, not silent.
+### 5. Tags (exactly 5, always in this order)
+1. Golf
+2. [Tournament Name]
+3. Golf Betting
+4. PGA Tour
+5. [Top value play player first and last name]
+
+### 6. Post URL Slug (lowercase, hyphens, no stop words)
+Format: `[tournament-name]-[year]-picks-best-bets-[short-course-name]`
+Example: "bmw-championship-2026-picks-best-bets-bellerive"
+Rules: All lowercase. Hyphens only. Drop filler words. Keep tournament name, year, "picks", "best-bets", and short course name. Under 60 characters total.
+
+Output all six fields at the top of every article run in this format:
+
+```
+ARTICLE TITLE:
+SEO TITLE:
+SEO DESCRIPTION:
+EMAIL SUBJECT:
+TAGS:
+POST URL:
+```
+
+**Enforced in code** (Brian, 2026-08-18): `build_seo_fields()` / `render_seo_block()` in `weekly_model_pipeline.py`, called from `generate_substack_article()`. The block is prepended to the top of the generated `.md` file (delete it before pasting the article body into Substack) and logged to `weekly_model_pipeline.log`.
+
+- **Short course name** strips a fixed list of suffixes (`Country Club`, `Golf Club`, `Golf Links`, etc. — see `COURSE_NAME_SUFFIXES_TO_STRIP`), used in the SEO title (only when the full name would push it over 60 chars) and always in the Post URL slug. If the SEO title still doesn't fit even with the short name, that's logged as an error to trim by hand rather than silently mangled.
+- **Value play / fade** (SEO description, and the fallback headline name for email subject/tags): value play is the single biggest positive `WIN EDGE%` among L2-PASS players; fade is the shortest-priced favorite (odds ≤ +2000) with the most negative edge — the same definitions `assign_pick_tiers()` already uses for the E/W Winner and Fade tiers, so these fields can never disagree with the actual picks card. If neither exists in a given week (thin field, no qualifying favorite), the description falls back to an odds-free but accurate sentence, and the email subject/tags fall back to the model's top overall L1-ranked L2-pass player instead of going blank — every fallback is logged, never silent.
+- **Post URL slug** reuses `event['slug']` (Data Golf's own lowercase-hyphenated tournament slug) directly for the tournament-name portion rather than re-deriving it, so it can't drift from the slug the rest of the pipeline already uses for filenames/state.
+- **Email subject's 50-char limit is advisory** (logged as info, not an error) per the rule's own "preferred" wording — unlike the SEO title/description limits, which are hard rules.
 
 ## Recap Article — Post-Tournament FedEx Cup / Results Recap
 
