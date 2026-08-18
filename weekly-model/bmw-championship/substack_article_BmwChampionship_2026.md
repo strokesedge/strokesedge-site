@@ -1,3 +1,9 @@
+=== SEO METADATA — copy into Substack's SEO settings ===
+Article Title: BMW Championship 2026 Picks: Model Best Bets and Fades for Bellerive Country Club
+SEO Title (57 chars): BMW Championship 2026 Picks, Best Bets & Odds | Bellerive
+SEO Description (154 chars): 2026 BMW Championship picks, best bets, and odds at Bellerive Country Club. Quant model flags a +1600 value play and fades a +300 favorite. Free analysis.
+==========================================================
+
 # BMW Championship 2026 Picks: Model Best Bets and Fades for Bellerive Country Club
 Bellerive Country Club  ·  St. Louis, MO  ·  2026-08-20  ·  Par 70  ·  7,448 Yds
 

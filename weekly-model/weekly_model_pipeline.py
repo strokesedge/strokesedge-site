@@ -2658,6 +2658,96 @@ def generate_pick_writeups(player_data: dict) -> dict:
     return writeups  # possibly incomplete — caller (generate_substack_article) fills any gap
 
 
+# ─────────────────────────────────────────────────────────────────────────
+# SEO metadata block — Brian's standing rule (2026-08-18, see
+# weekly-model/CLAUDE.md "StrokesEdge Article SEO Fields"): every picks
+# article run must surface an Article Title, an SEO Title (<60 chars), and
+# an SEO Description (50-160 chars, ends "Free analysis.", real odds) for
+# copy-pasting into Substack's SEO settings. Same discipline as everything
+# else in this pipeline — real odds pulled from l3, never invented, and a
+# field that doesn't fit its length rule gets a loud log line instead of a
+# silent truncation.
+# ─────────────────────────────────────────────────────────────────────────
+COURSE_NAME_SUFFIXES_TO_STRIP = (
+    " Country Club", " Golf Club", " Golf Links", " Golf Course", " National Golf Club", " Links",
+)
+
+
+def _short_course_name(course_name: str) -> str:
+    if not course_name:
+        return course_name
+    for suf in COURSE_NAME_SUFFIXES_TO_STRIP:
+        if course_name.endswith(suf):
+            return course_name[: -len(suf)].strip()
+    return course_name
+
+
+def build_seo_fields(event: dict, year: int, article_title: str, l3: dict, l2_results: dict) -> dict:
+    course_name = event.get("course_name") or "TBD"
+    short_course = _short_course_name(course_name)
+
+    seo_title = f"{event['event_name']} {year} Picks, Best Bets & Odds | {course_name}"
+    if len(seo_title) > 60:
+        seo_title = f"{event['event_name']} {year} Picks, Best Bets & Odds | {short_course}"
+    if len(seo_title) > 60:
+        logger.error(f"[{event['slug']}] SEO title still {len(seo_title)} chars (>60) even with short course "
+                     f"name {short_course!r} — trim manually before publishing: {seo_title!r}")
+
+    def odds_val(dg_id):
+        try:
+            return float(l3[dg_id]["win_odds"])
+        except (TypeError, ValueError, KeyError):
+            return None
+
+    # Value play: single biggest positive WIN EDGE among L2-PASS players —
+    # the same real number the E/W Winner / Longshot tiers are built from.
+    value_pool = [d for d, r in l2_results.items()
+                  if r.get("pass") and d in l3 and (l3[d]["win_edge_pct"] or -999) > 0]
+    value_id = max(value_pool, key=lambda d: l3[d]["win_edge_pct"]) if value_pool else None
+
+    # Fade: same "short favorite, most negative edge" definition assign_pick_tiers() uses.
+    fade_pool = [d for d in l3 if (odds_val(d) or 99999) <= 2000 and (l3[d]["win_edge_pct"] or 0) < 0]
+    fade_id = min(fade_pool, key=lambda d: l3[d]["win_edge_pct"]) if fade_pool else None
+
+    def _fmt_plain_odds(v):
+        # l3[...]["win_odds"] is already a resolved American-odds number
+        # (see compute_l3 -> pick_book_odds), not the odds_row dict
+        # _fmt_odds() elsewhere expects — plain +/-NNN formatting here.
+        try:
+            return f"{float(v):+.0f}"
+        except (TypeError, ValueError):
+            return None
+
+    value_odds = _fmt_plain_odds(odds_val(value_id)) if value_id is not None else None
+    fade_odds = _fmt_plain_odds(odds_val(fade_id)) if fade_id is not None else None
+
+    if value_odds and fade_odds:
+        seo_description = (f"{year} {event['event_name']} picks, best bets, and odds at {course_name}. "
+                            f"Quant model flags a {value_odds} value play and fades a {fade_odds} favorite. "
+                            f"Free analysis.")
+    else:
+        # Real, if rare, case (thin field, no short favorites this week) —
+        # never fabricate odds just to fill the template.
+        logger.info(f"[{event['slug']}] SEO description: no qualifying value play and/or fade this week "
+                     f"(value_id={value_id}, fade_id={fade_id}) — using odds-free fallback")
+        seo_description = (f"{year} {event['event_name']} picks, best bets, and odds at {course_name}. "
+                            f"Quant model course-fit rankings and full picks card. Free analysis.")
+
+    if not (50 <= len(seo_description) <= 160):
+        logger.error(f"[{event['slug']}] SEO description is {len(seo_description)} chars, outside the "
+                     f"50-160 rule — trim/expand manually before publishing: {seo_description!r}")
+
+    return {"article_title": article_title, "seo_title": seo_title, "seo_description": seo_description}
+
+
+def render_seo_block(seo: dict) -> str:
+    return ("=== SEO METADATA — copy into Substack's SEO settings ===\n"
+            f"Article Title: {seo['article_title']}\n"
+            f"SEO Title ({len(seo['seo_title'])} chars): {seo['seo_title']}\n"
+            f"SEO Description ({len(seo['seo_description'])} chars): {seo['seo_description']}\n"
+            "==========================================================")
+
+
 def generate_substack_article(event: dict, ctx: dict) -> Path:
     metrics, l1_results, l2_results, l3 = ctx["metrics"], ctx["l1_results"], ctx["l2_results"], ctx["l3"]
     market_data = ctx["market_data"]
@@ -2706,6 +2796,9 @@ def generate_substack_article(event: dict, ctx: dict) -> Path:
     # Claude-written hook, same discipline as the lead sentence below.
     title = f"{event['event_name']} {year} Picks: Model Best Bets and Fades for {event.get('course_name') or 'TBD'}"
 
+    seo = build_seo_fields(event, year, title, l3, l2_results)
+    logger.info(f"[{event['slug']}] {render_seo_block(seo)}")
+
     # Guaranteed lead sentence, not left to the Claude-written intro_hook to
     # remember — standing SEO requirement added 2026-07-28: every weekly
     # article's first paragraph must name the tournament, year, and course,
@@ -2728,6 +2821,8 @@ def generate_substack_article(event: dict, ctx: dict) -> Path:
     ]
 
     sections = [
+        render_seo_block(seo),
+        "",
         f"# {title}",
         "  ·  ".join(str(b) for b in meta_bits),
         "",

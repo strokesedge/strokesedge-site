@@ -308,6 +308,29 @@ Use the full official course name every time. This format is proven to drive Goo
 
 **Enforced in code, not left to the model to remember** (Brian, 2026-08-18): `generate_substack_article()` and `generate_dfs_article()` in `weekly_model_pipeline.py` build the title directly from `event['event_name']`, the year, and `event['course_name']` — the same "code-templated, can't drift" discipline as the lead sentence and FAQ section. Previously the picks article title used a Claude-generated `TITLE_HOOK` phrase (removed from the narrative prompt entirely, since nothing else used it) — that was a real gap, since a model-written hook could vary the exact title structure week to week even though everything else about the format was already fixed.
 
+## StrokesEdge Article SEO Fields (Generate Every Week)
+
+Applies to the picks/Substack article specifically (the one actually published to Substack, where these fields get pasted into the platform's SEO settings) — not the DFS or recap articles. Claude Code must generate all three fields every time it produces this article:
+
+### 1. Article Title
+`[Tournament Name] [Year] Picks: Model Best Bets and Fades for [Full Course Name]`
+
+Same value as the "StrokesEdge Article Title Format" rule above — not a separate thing to independently generate.
+
+### 2. SEO Title (must be under 60 characters)
+Format: `[Tournament] [Year] Picks, Best Bets & Odds | [Short Course Name]`
+Example: "BMW Championship 2026 Picks, Best Bets & Odds | Bellerive"
+Rules: Keep under 60 chars. Use `&` not "and". Use short course name after the pipe if full name would push over limit.
+
+### 3. SEO Description (must be 50-160 characters)
+Format: `[Year] [Tournament] picks, best bets, and odds at [Full Course Name]. Quant model flags [specific value play with odds] and fades [specific fade]. Free analysis.`
+Example: "2026 BMW Championship picks, best bets, and odds at Bellerive Country Club. Quant model flags a +1800 value play and fades a +1600 favorite. Free analysis."
+Rules: Always end with "Free analysis." Always include real odds from the model. Stay between 50-160 characters. Be specific — use actual odds numbers, not generic language.
+
+Output all three fields at the top of every article run, clearly labeled, so they can be copy-pasted directly into Substack's SEO settings.
+
+**Enforced in code** (Brian, 2026-08-18): `build_seo_fields()` / `render_seo_block()` in `weekly_model_pipeline.py`, called from `generate_substack_article()`. The block is prepended to the top of the generated `.md` file (delete it before pasting the article body into Substack) and logged to `weekly_model_pipeline.log`. Short course name strips a fixed list of suffixes (`Country Club`, `Golf Club`, `Golf Links`, etc. — see `COURSE_NAME_SUFFIXES_TO_STRIP`) only when the full name would push the SEO title over 60 chars; if even the short name doesn't fit, that's logged as an error for Brian to trim by hand rather than silently mangled. The value play is the single biggest positive `WIN EDGE%` among L2-PASS players; the fade is the shortest-priced favorite (odds ≤ +2000) with the most negative edge — the same definitions `assign_pick_tiers()` already uses for the E/W Winner and Fade tiers, so the SEO description can never disagree with the picks card. If neither exists in a given week (thin field, no qualifying favorite), the description falls back to an odds-free but still accurate sentence rather than inventing numbers — logged so it's visible, not silent.
+
 ## Recap Article — Post-Tournament FedEx Cup / Results Recap
 
 A separate weekly deliverable from the picks and DFS articles: instead of previewing the upcoming field, it looks back at the tournament that just finished. First built manually 2026-08-18 for the FedEx St. Jude Championship (`fedex-st-jude-championship/recap_article_FedexStJudeChampionship_2026.md`) — use that file as the reference example for structure and tone until a second real week confirms the pattern holds.
