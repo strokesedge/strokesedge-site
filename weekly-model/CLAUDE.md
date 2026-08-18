@@ -315,9 +315,9 @@ Opens with the code-templated lead-sentence convention (tournament, year, course
 
 **Data rules:** same as the rest of this pipeline — never invent a leaderboard position, standings number, or tracker result. If the tracker CSV shows no bets logged for a tournament, say so plainly rather than skipping the section.
 
-### Automation — Sunday 8:00 PM
+### Automation — Monday 9:00 AM
 
-Runs as a scheduled Claude Code cloud routine (not `weekly_model_pipeline.py` / Task Scheduler — see rationale above), weekly, Sunday 8:00 PM, timed to land after PGA Tour final rounds finish (typically wrapped by 7-7:30 PM ET) so the leaderboard and tracker are both settled before the run starts. The routine:
+Runs as a scheduled Claude Code cloud routine (not `weekly_model_pipeline.py` / Task Scheduler — see rationale above), weekly, Monday 9:00 AM ET. Deliberately the morning after, not Sunday night: the tracker CSV's `result` column for that week's bets is filled in by Brian by hand (not automatically settled), so the run is timed to land after he's had Sunday evening to update it, not immediately after final rounds finish. Running before he updates it would mean grading picks against a still-`open` tracker, silently wrong. The routine:
 1. Identifies the tournament that just completed (checks `weekly-model/` for the most recent tournament-slug folder with a `substack_article_*` but no `recap_article_*` yet — that's the one still owed a recap).
 2. Follows the Data sources and Structure steps above.
 3. Writes `recap_article_[TournamentSlug]_[Year].md` into that tournament's folder.
