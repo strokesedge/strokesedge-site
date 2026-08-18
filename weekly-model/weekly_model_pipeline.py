@@ -2360,8 +2360,6 @@ VOICE RULES — non-negotiable:
 
 Respond with exactly this format, no extra commentary:
 
-TITLE_HOOK: <a short phrase, 4-9 words, NOT a full sentence, no trailing period — goes after "[Tournament] Picks:" as the headline hook, matching the reference articles' title style>
-
 INTRO_HOOK: <2-3 sentences opening the article, tied to this week's course storyline — what makes this course/week distinct>
 
 WEATHER_NARRATIVE: <2-4 sentences turning the weather data into a modeling implication — why it matters for who contends>
@@ -2420,11 +2418,8 @@ def generate_article_narrative(event: dict, ctx: dict, weather: dict | None, ran
         headers={"x-api-key": api_key, "anthropic-version": "2023-06-01", "content-type": "application/json"},
         method="POST",
     )
-    expected_keys = ("TITLE_HOOK", "INTRO_HOOK", "WEATHER_NARRATIVE", "COURSE_HISTORY_NOTE", "CLOSING")
-    # TITLE_HOOK is deliberately a short phrase with "no trailing period"
-    # per the prompt — terminal-punctuation completeness checking doesn't
-    # apply to it, only to the four prose fields.
-    prose_keys = ("INTRO_HOOK", "WEATHER_NARRATIVE", "COURSE_HISTORY_NOTE", "CLOSING")
+    expected_keys = ("INTRO_HOOK", "WEATHER_NARRATIVE", "COURSE_HISTORY_NOTE", "CLOSING")
+    prose_keys = expected_keys
 
     # Found in testing: an otherwise well-formed Claude response can still
     # occasionally drop or empty one field (non-deterministic LLM output,
@@ -2706,7 +2701,10 @@ def generate_substack_article(event: dict, ctx: dict) -> Path:
         meta_bits.append(f"{course_facts['yardage']:,} Yds")
 
     top_id = ranked[0]
-    title = f"{event['event_name']} {year} Picks: {narrative['title_hook'].rstrip('.')}"
+    # Fixed title format (Brian, 2026-08-18) — proven to drive Google search
+    # traffic, must not vary week to week. Code-templated, never left to a
+    # Claude-written hook, same discipline as the lead sentence below.
+    title = f"{event['event_name']} {year} Picks: Model Best Bets and Fades for {event.get('course_name') or 'TBD'}"
 
     # Guaranteed lead sentence, not left to the Claude-written intro_hook to
     # remember — standing SEO requirement added 2026-07-28: every weekly
@@ -2956,7 +2954,9 @@ def generate_dfs_article(event: dict, ctx: dict) -> Path | None:
     ]
 
     sections = [
-        f"# {event['event_name']} {year} DFS: Two DraftKings Lineups Built Off the Model",
+        # Fixed title format (Brian, 2026-08-18) — proven to drive Google
+        # search traffic, must not vary week to week.
+        f"# {event['event_name']} {year} DFS Picks: Best DraftKings Lineups for {course_name}",
         f"### {course_name} · {location} · {start_date} · DraftKings Main Slate · ${DFS_SALARY_CAP:,} Salary Cap",
         "",
         lead_sentence,

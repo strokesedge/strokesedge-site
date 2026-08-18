@@ -292,6 +292,22 @@ Every firing that builds the workbook + picks article now also attempts a DFS ar
 
 **Manual rebuild (`--rebuild SLUG`)** — added specifically to backfill a deliverable (like the DFS article) into a week whose state already reached `complete` without it, without re-running the whole approval/regression pipeline. Bypasses the step machine, loads the event fresh from `detect_events_this_week()` (so course/location/lat-lon are current, not stale) and the saved `metrics`/`l1_results`/`l2_results`/`weights`/`gates` from `state.json`, re-checks that outright odds are still live (aborts if not — WIN EDGE can't be recomputed without them), and calls `_build_and_deliver()` directly. Only works while Data Golf still lists the event as upcoming (i.e., before/during tournament week) — there's no path to rebuild for an event that's already been played and dropped off the schedule feed.
 
+## StrokesEdge Article Title Format
+
+Always use this exact structure for weekly tournament articles (picks/substack and DFS — not the recap article below, which uses its own past-tense title convention):
+
+Substack/betting article:
+`[Tournament Name] [Year] Picks: Model Best Bets and Fades for [Full Course Name]`
+
+DFS article:
+`[Tournament Name] [Year] DFS Picks: Best DraftKings Lineups for [Full Course Name]`
+
+Example: "BMW Championship 2026 Picks: Model Best Bets and Fades for Bellerive Country Club"
+
+Use the full official course name every time. This format is proven to drive Google search traffic and must not be changed.
+
+**Enforced in code, not left to the model to remember** (Brian, 2026-08-18): `generate_substack_article()` and `generate_dfs_article()` in `weekly_model_pipeline.py` build the title directly from `event['event_name']`, the year, and `event['course_name']` — the same "code-templated, can't drift" discipline as the lead sentence and FAQ section. Previously the picks article title used a Claude-generated `TITLE_HOOK` phrase (removed from the narrative prompt entirely, since nothing else used it) — that was a real gap, since a model-written hook could vary the exact title structure week to week even though everything else about the format was already fixed.
+
 ## Recap Article — Post-Tournament FedEx Cup / Results Recap
 
 A separate weekly deliverable from the picks and DFS articles: instead of previewing the upcoming field, it looks back at the tournament that just finished. First built manually 2026-08-18 for the FedEx St. Jude Championship (`fedex-st-jude-championship/recap_article_FedexStJudeChampionship_2026.md`) — use that file as the reference example for structure and tone until a second real week confirms the pattern holds.

@@ -1,4 +1,4 @@
-# BMW Championship 2026 DFS: Two DraftKings Lineups Built Off the Model
+# BMW Championship 2026 DFS Picks: Best DraftKings Lineups for Bellerive Country Club
 ### Bellerive Country Club · St. Louis, MO · 2026-08-20 · DraftKings Main Slate · $50,000 Salary Cap
 
 The 2026 BMW Championship runs 2026-08-20 at Bellerive Country Club, St. Louis, MO.

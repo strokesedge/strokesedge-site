@@ -1,4 +1,4 @@
-# BMW Championship 2026 Picks: Scheffler's Numbers Are Absurd Again
+# BMW Championship 2026 Picks: Model Best Bets and Fades for Bellerive Country Club
 Bellerive Country Club  ·  St. Louis, MO  ·  2026-08-20  ·  Par 70  ·  7,448 Yds
 
 The 2026 BMW Championship runs 2026-08-20 at Bellerive Country Club, St. Louis, MO.
