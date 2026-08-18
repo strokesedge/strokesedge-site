@@ -158,14 +158,32 @@ SKIP_KEYWORDS = (
     "lpga", "qbe shootout", "liv golf",
 )
 
+# Standing default per the SG Methodology doc: 60% DG skill-ratings baseline,
+# 40% computed L30. Read from env vars (not just hardcoded) so a specific
+# week's run can override the ratio — e.g. a FedEx Cup Playoffs week's
+# smaller, hotter field weighting recent form more heavily — without editing
+# this file's checked-in default. Must be set (if overriding) BEFORE this
+# module is imported: FACTOR_CATALOG's labels below are built once at import
+# time from these values, so a post-import monkeypatch would leave the
+# labels stale even though the actual blended() math picked up the change.
+SG_BLEND_SKILL_WEIGHT = float(os.environ.get("SG_BLEND_SKILL_WEIGHT_OVERRIDE", "0.60"))
+SG_BLEND_L30_WEIGHT = float(os.environ.get("SG_BLEND_L30_WEIGHT_OVERRIDE", "0.40"))
+
+
+def _blend_label(stat_name: str) -> str:
+    skill_pct = round(SG_BLEND_SKILL_WEIGHT * 100)
+    l30_pct = round(SG_BLEND_L30_WEIGHT * 100)
+    return f"{stat_name} (Blended, {skill_pct}% DG skill-ratings baseline / {l30_pct}% computed DG L30)"
+
+
 # The fixed whitelist of factors this pipeline can actually compute, handed
 # to Claude as the menu it must choose from and weight — it may not invent
 # a key outside this list. See propose_weights().
 FACTOR_CATALOG = {
-    "sg_app_blend": "SG: Approach (Blended, 60% DG skill-ratings baseline / 40% computed DG L30)",
-    "sg_putt_blend": "SG: Putting (Blended, 60% DG skill-ratings baseline / 40% computed DG L30)",
-    "sg_arg_blend": "SG: Around the Green (Blended, 60% DG skill-ratings baseline / 40% computed DG L30)",
-    "sg_ott_blend": "SG: Off the Tee (Blended, 60% DG skill-ratings baseline / 40% computed DG L30)",
+    "sg_app_blend": _blend_label("SG: Approach"),
+    "sg_putt_blend": _blend_label("SG: Putting"),
+    "sg_arg_blend": _blend_label("SG: Around the Green"),
+    "sg_ott_blend": _blend_label("SG: Off the Tee"),
     "cf_approach_comp": "Course-Fit Approach Component (Data Golf player-decompositions)",
     "cf_short_comp": "Course-Fit Short-Game Component (Data Golf player-decompositions)",
     "driving_accuracy_adjustment": "Driving Accuracy Fit (Data Golf player-decompositions)",
@@ -1125,7 +1143,7 @@ def build_player_metrics(event: dict, field: dict, skill_ratings: dict, approach
             if base is None:
                 return None
             if l30 and l30.get(stat_key) is not None:
-                return round(0.60 * base + 0.40 * l30[stat_key], 4)
+                return round(SG_BLEND_SKILL_WEIGHT * base + SG_BLEND_L30_WEIGHT * l30[stat_key], 4)
             return base  # L30 unavailable — use baseline alone, flagged via l30_available
 
         appr = approach_idx.get(dg_id, {})
