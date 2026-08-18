@@ -292,6 +292,39 @@ Every firing that builds the workbook + picks article now also attempts a DFS ar
 
 **Manual rebuild (`--rebuild SLUG`)** — added specifically to backfill a deliverable (like the DFS article) into a week whose state already reached `complete` without it, without re-running the whole approval/regression pipeline. Bypasses the step machine, loads the event fresh from `detect_events_this_week()` (so course/location/lat-lon are current, not stale) and the saved `metrics`/`l1_results`/`l2_results`/`weights`/`gates` from `state.json`, re-checks that outright odds are still live (aborts if not — WIN EDGE can't be recomputed without them), and calls `_build_and_deliver()` directly. Only works while Data Golf still lists the event as upcoming (i.e., before/during tournament week) — there's no path to rebuild for an event that's already been played and dropped off the schedule feed.
 
+## Recap Article — Post-Tournament FedEx Cup / Results Recap
+
+A separate weekly deliverable from the picks and DFS articles: instead of previewing the upcoming field, it looks back at the tournament that just finished. First built manually 2026-08-18 for the FedEx St. Jude Championship (`fedex-st-jude-championship/recap_article_FedexStJudeChampionship_2026.md`) — use that file as the reference example for structure and tone until a second real week confirms the pattern holds.
+
+**Not part of `weekly_model_pipeline.py`.** The picks/DFS articles are deterministic-data-plus-narration (every number comes from code, Claude only writes connective prose) because Data Golf supplies every input pre-tournament. The recap needs two things Data Golf's API doesn't confirm-available: the tournament's actual final leaderboard and the FedEx Cup points standings after it. Both are sourced by live web search each run, not a typed API call — this is a research-and-write task, not a regression pipeline, so it runs as a scheduled Claude Code agent (see Automation below), not a Task Scheduler Python job.
+
+**Trigger:** the most recently completed PGA Tour event as of the run — normally the prior week's featured event, but during the FedEx Cup Playoffs specifically (St. Jude → BMW → Tour Championship) this is always a Playoffs event.
+
+**Data sources, in order:**
+1. `weekly-model/[tournament-slug]/substack_article_*.md` from that same tournament's preview — this is what tells you which players StrokesEdge actually had picks on and why, so the recap can grade the model's own reasoning rather than just restating final scores.
+2. The pick tracker CSV (see Pick Tracker Data above, same URL) — pull every row for that tournament and tally the record (bets, W-L, total wagered, total payout, net, ROI) **in code/arithmetic, not from memory or estimation** — same "never let an LLM's arithmetic be the record" discipline as `shared/tracker.py`'s `summarize_final_results()` in the Twitter pipeline. Cross-check every bet's `result` column against the actual final leaderboard position before writing a line about it.
+3. Web search (at least one sports-media source, e.g. CBS Sports/PGA Tour leaderboard pages) for the final leaderboard: winner, score, margin, and enough of the top finishers to cover every player StrokesEdge had a bet on.
+4. Web search for FedEx Cup points standings after the event, and for the next Playoffs event's course/dates/field-size, during Playoffs weeks specifically. **Open question, same caveat as the Open Questions list below:** no Data Golf endpoint for FedEx Cup point totals has been confirmed — this is sourced from web search every time and should be cross-checked against a second source when the numbers matter (e.g. the leader's point cushion), same bar as the par/yardage cross-check rule in the site's `CLAUDE.md`.
+
+**Structure** (matched against the FedEx St. Jude recap, adjust section count for non-Playoffs weeks that don't need a standings section):
+`01 Final Leaderboard` (table, enough rows to cover every player StrokesEdge picked) / `02 How the Model's Picks Actually Played` (grade each pick against what the model's own rationale said, not just win/lose — the FADE vs Top-10/20 distinction on the week's biggest name is exactly the kind of thing worth calling out when the model got the *shape* of a call right even if a bet on that player lost) / Tracker Record table (bet type broken out, not just one aggregate line) / `03 FedEx Cup Standings` (Playoffs weeks only) / `04 Looking Ahead` (next event's course/dates, teases that week's upcoming picks article) / `## FAQ` (`render_faq_section`-style, 3-5 Q&A: who won, how did StrokesEdge do, standings snapshot, next event logistics).
+
+Opens with the code-templated lead-sentence convention (tournament, year, course, but past tense since it's a recap) and closes with the same footer block as the picks article (full record link, workbook/membership plug, "Not financial advice. Gamble responsibly.").
+
+**File naming:** `recap_article_[TournamentSlug]_[Year].md`, same folder as that week's `substack_article_*`/`dfs_article_*`.
+
+**Data rules:** same as the rest of this pipeline — never invent a leaderboard position, standings number, or tracker result. If the tracker CSV shows no bets logged for a tournament, say so plainly rather than skipping the section.
+
+### Automation — Sunday 8:00 PM
+
+Runs as a scheduled Claude Code cloud routine (not `weekly_model_pipeline.py` / Task Scheduler — see rationale above), weekly, Sunday 8:00 PM, timed to land after PGA Tour final rounds finish (typically wrapped by 7-7:30 PM ET) so the leaderboard and tracker are both settled before the run starts. The routine:
+1. Identifies the tournament that just completed (checks `weekly-model/` for the most recent tournament-slug folder with a `substack_article_*` but no `recap_article_*` yet — that's the one still owed a recap).
+2. Follows the Data sources and Structure steps above.
+3. Writes `recap_article_[TournamentSlug]_[Year].md` into that tournament's folder.
+4. **Unlike the local Task Scheduler jobs elsewhere in this pipeline, this routine runs in an ephemeral cloud sandbox with its own git checkout — nothing persists unless it's committed.** It commits the new file to a new branch (never pushes to `main` directly) and opens a pull request against `strokesedge/strokesedge-site` for Brian to review and merge — same "hold for review, human sends" posture as the rest of this pipeline, just implemented as a PR instead of a local held file, since there's no local disk to hold it on. Brian merges the PR, then publishes to Substack manually. Never posts anywhere else and never touches the deployed site pages (`Strokes Edge Website HTML/`).
+
+If the tracker CSV fetch fails, or web search can't confirm a final leaderboard (event still in progress, postponed, etc.), the routine skips the week and notes why rather than publishing a guess — same fail-safe posture as `shared/tracker.py` in the Twitter pipeline.
+
 ## Open Questions
 1. **`tour=opp` absence ≠ confirmed "no alt event"** — a failed/empty response from `tour=opp` is being treated as "no concurrent alternate event this week," but that's indistinguishable from a transient API issue without more observation. Worth logging the raw response for the first several real weeks to sanity-check this assumption before trusting it silently.
 2. **Co-sanctioned Euro Tour weeks** — reasoned (not exhaustively tested) that `tour=pga` already captures co-sanctioned events like Genesis Scottish Open, so the `pga`/`opp` split alone should cover Brian's example. Worth confirming against a real Scottish-Open-type week once one comes up.
