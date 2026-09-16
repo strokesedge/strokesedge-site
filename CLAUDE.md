@@ -364,7 +364,7 @@ Other independent pipelines touch the same weekly cycle: the Google Apps Script 
 
 - Course renovations can outdate Wikipedia by a full season or more (happened at Detroit Golf Club, 2026) — verify against pgatour.com.
 - Tournaments can shift calendar slots year over year (Rocket Classic moved from June to late July for 2026) — confirm current-year dates, don't assume last year's slot.
-- Model rank/salary/edge figures can drift between workbook versions — always pull the specific number from the current workbook tab directly, never reuse a number from a prior draft.
+- Model rank/salary/edge figures can drift between workbook versions — always pull the specific number from the current workbook tab directly, never reuse a number from a prior draft. **Confirmed recurring specifically in the DFS article's "Model Rank" column (Rocket Classic and Wyndham Championship, two separate weeks)** — salaries and DK values were correct both times, only the rank numbers were wrong or blank. Treat this as a standing pre-publish check on every DFS article, not a one-off fix: cross-check every player's stated model rank against the live workbook's Model Rankings tab (RK column) before publishing.
 
 ---
 
