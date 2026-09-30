@@ -27,7 +27,7 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
 {"@type":"Question","name":"What is par at Black Desert Resort for the 2026 Bank of Utah Championship?","acceptedAnswer":{"@type":"Answer","text":"Par 71 at 7,421 yards, cross-checked against pgatour.com's course overview and the official Wikipedia tournament record."}},
-{"@type":"Question","name":"Who is favored to win the 2026 Bank of Utah Championship?","acceptedAnswer":{"@type":"Answer","text":"Jackson Koivun is the market favorite at +1100 to +1300 depending on the book, fresh off an undefeated Presidents Cup debut, a 3M Open win, and a T5 at the Biltmore Championship."}},
+{"@type":"Question","name":"Who is favored to win the 2026 Bank of Utah Championship?","acceptedAnswer":{"@type":"Answer","text":"Jackson Koivun (+1200), the StrokesEdge model's number-1-ranked player (L1 score 78.9) on the field's cleanest tee-to-green profile, 97th-percentile approach and 96th-percentile off the tee. The model's win edge on him is slightly negative, so he is a correct favorite rather than a value bet."}},
 {"@type":"Question","name":"Was the Bank of Utah Championship previously called the Black Desert Championship?","acceptedAnswer":{"@type":"Answer","text":"Yes. The event launched in 2024 as the Black Desert Championship and was renamed the Bank of Utah Championship for 2025 after a new sponsorship agreement. It's still played at Black Desert Resort."}},
 {"@type":"Question","name":"When is the 2026 Bank of Utah Championship and where is it played?","acceptedAnswer":{"@type":"Answer","text":"October 1-4, 2026, at Black Desert Resort in Ivins, Utah, the second of eight FedExCup Fall events."}},
 {"@type":"Question","name":"How low do scores usually go at Black Desert Resort?","acceptedAnswer":{"@type":"Answer","text":"Very low. Matt McCarty won the 2024 inaugural at 23-under (261), the course record, and Michael Brennan won in 2025 at 22-under (262). Data Golf ranks it the 9th-easiest course on Tour over its first two years."}}
@@ -239,39 +239,39 @@ footer a:hover{color:var(--g)}
 <section>
   <div class="sec-num">02 — What Stats Matter This Week</div>
   <h2>Approach and putting <span>decide a low-scoring week.</span></h2>
-  <p class="body-text">No full model workbook was run for this event this week, so these are directional weights built from Black Desert's physical profile (wide fairways, flat greens, altitude-shortened yardage) and public strokes-gained data, not a proprietary regression output. With winning scores of -23 and -22 in the two prior editions, the model treats this as an approach-and-putting course first, with driving accuracy mattering more for hazard avoidance than for scoring access.</p>
+  <p class="body-text">Full StrokesEdge model workbook run for this event (live Data Golf field, skill ratings, and course-fit decompositions, blended 60% skill-ratings baseline / 40% computed L30 form). SG: Approach and SG: Off the Tee lead, but SG: Putting carries real weight too, both returning champions (McCarty 2024, Brennan 2025) ranked top 8 in the field in SG: Putting the week they won.</p>
 
   <div class="weight-grid">
     <div class="w-row">
       <div class="w-label">SG: Approach</div>
       <div class="w-bar-track"><div class="w-bar-fill" style="width:100%"></div></div>
-      <div class="w-pct">~20%</div>
+      <div class="w-pct">21%</div>
+    </div>
+    <div class="w-row">
+      <div class="w-label">SG: Off the Tee</div>
+      <div class="w-bar-track"><div class="w-bar-fill" style="width:76%"></div></div>
+      <div class="w-pct">16%</div>
     </div>
     <div class="w-row">
       <div class="w-label">SG: Putting</div>
-      <div class="w-bar-track"><div class="w-bar-fill" style="width:80%"></div></div>
-      <div class="w-pct">~16%</div>
+      <div class="w-bar-track"><div class="w-bar-fill" style="width:67%"></div></div>
+      <div class="w-pct">14%</div>
     </div>
     <div class="w-row">
-      <div class="w-label">Driving Accuracy (hazard avoidance)</div>
-      <div class="w-bar-track"><div class="w-bar-fill" style="width:65%"></div></div>
-      <div class="w-pct">~13%</div>
-    </div>
-    <div class="w-row">
-      <div class="w-label">SG: Off the Tee (distance)</div>
-      <div class="w-bar-track"><div class="w-bar-fill" style="width:50%"></div></div>
-      <div class="w-pct">~10%</div>
+      <div class="w-label">Driving Distance Fit + Course-Fit Approach</div>
+      <div class="w-bar-track"><div class="w-bar-fill" style="width:38%"></div></div>
+      <div class="w-pct">8% each</div>
     </div>
     <div class="w-row">
       <div class="w-label fade-stat">Course History (2 editions only)</div>
-      <div class="w-bar-track"><div class="w-bar-fill fade" style="width:20%"></div></div>
-      <div class="w-pct">Thin sample</div>
+      <div class="w-bar-track"><div class="w-bar-fill fade" style="width:14%"></div></div>
+      <div class="w-pct">3%</div>
     </div>
   </div>
 
   <div class="callout">
-    <div class="callout-label">Why approach and putting, not distance</div>
-    <div class="callout-text">Elevation already shortens this course relative to its scorecard yardage, and the manageable Kentucky bluegrass rough rarely punishes a miss the way thick tour-standard rough would. That combination flattens the edge a pure bomber usually has. Two editions won inside 23-under says the winner is usually the player hitting the most greens and making the most putts, not the player hitting it furthest.</div>
+    <div class="callout-label">Why the GIR% gate got dropped this week</div>
+    <div class="callout-text">This is only the 2nd FedExCup Fall event after the Presidents Cup break, so trailing-30-day round samples are thin tour-wide. GIR% was uncomputable for 45% of the field for that reason, not a skill reason, so the model's usual GIR% Winner DNA gate was dropped this week (same precedent as the Biltmore Championship's dropped double-bogey-avoidance gate). SG: Approach and SG: Off the Tee gates were loosened accordingly after backtesting found only 29% of the field clearing the original thresholds; both returning champions clear the final gates on real numbers.</div>
   </div>
 </section>
 
@@ -281,7 +281,7 @@ footer a:hover{color:var(--g)}
 <section>
   <div class="sec-num">03 — Top 3 Course Fits</div>
   <h2>Whose stat profile <span>fits this week.</span></h2>
-  <p class="body-text">Stat profile only, no odds or pick tiers here, that's below the gate in Section 05. These are the three players whose current strokes-gained trend best matches what Black Desert rewards.</p>
+  <p class="body-text">Stat profile only, no odds or pick tiers here, that's below the gate in Section 05. These are the model's top 3 ranked players by L1 score.</p>
 
   <table>
     <thead>
@@ -290,18 +290,18 @@ footer a:hover{color:var(--g)}
     <tbody>
       <tr>
         <td style="color:var(--txt);font-weight:500">Jackson Koivun</td>
-        <td class="cg">6th in field, SG: App (L20 rds)</td>
-        <td>Gained approach strokes in all four rounds at the Biltmore Championship; enters off an undefeated Presidents Cup debut</td>
+        <td class="cg">97th pctile App, 96th pctile OTT</td>
+        <td>Model rank #1, L1 78.9. Cleanest tee-to-green profile in the field, off-the-tee and approach both top-decile</td>
       </tr>
       <tr>
-        <td style="color:var(--txt);font-weight:500">Billy Horschel</td>
-        <td class="cg">+0.68 SG: App/rd (L36 rds)</td>
-        <td>Gained strokes on approach in 9 of his last 10 starts; led the field in birdies in his 2025 start at this course</td>
+        <td style="color:var(--txt);font-weight:500">Ben James</td>
+        <td class="cg">100th pctile App, 98th pctile OTT</td>
+        <td>Model rank #2, L1 75.1. Best approach number in the entire field, backed by elite driving</td>
       </tr>
       <tr>
-        <td style="color:var(--txt);font-weight:500">Jackson Suber</td>
-        <td class="cg">SG: App gained, 7 of L8 rds</td>
-        <td>Gained approach strokes in all four rounds at Biltmore and seven of his last eight overall, plus back-to-back top-25s</td>
+        <td style="color:var(--txt);font-weight:500">Johnny Keefer</td>
+        <td class="cg">97th pctile Putt, 92nd pctile App</td>
+        <td>Model rank #3, L1 71.5. Putter-driven profile with strong approach; only real gap is a modest 58th-percentile off-the-tee number</td>
       </tr>
     </tbody>
   </table>
@@ -314,8 +314,8 @@ footer a:hover{color:var(--g)}
   <div class="sec-num">04 — Featured Pick</div>
   <h2>This week's <span>headline play.</span></h2>
   <div class="callout">
-    <div class="callout-label">Jackson Suber</div>
-    <div class="callout-text">The best combination of current approach form and market price in the field this week. Full odds, tier, and reasoning in the picks card below the gate. <a href="https://strokesedge.substack.com" target="_blank">Full breakdown on Substack →</a></div>
+    <div class="callout-label">Johnny Keefer</div>
+    <div class="callout-text">The model's best combination of rank and market value this week, model rank #3 with the field's largest positive win edge among E/W-tier plays. Full odds, tier, and reasoning in the picks card below the gate. <a href="https://strokesedge.substack.com" target="_blank">Full breakdown on Substack →</a></div>
   </div>
 </section>
 
@@ -360,38 +360,38 @@ footer a:hover{color:var(--g)}
         <tbody>
           <tr>
             <td><span class="tag-pass">E/W WINNER</span></td>
-            <td style="color:var(--txt);font-weight:500">Jackson Suber</td>
-            <td class="cg">+3800</td>
-            <td>SG: App gained in 7 of last 8 rounds and all four rounds at Biltmore; back-to-back top-25s heading in</td>
+            <td style="color:var(--txt);font-weight:500">Johnny Keefer</td>
+            <td class="cg">+3500</td>
+            <td>Model rank #3, L1 71.5. 97th-percentile putting and 92nd-percentile approach, +0.87% win edge, the field's cleanest positive-edge outright play</td>
           </tr>
           <tr>
-            <td><span class="tag-soft">TOP 10</span></td>
+            <td><span class="tag-soft">LONGSHOT / VALUE</span></td>
+            <td style="color:var(--txt);font-weight:500">Seamus Power</td>
+            <td class="cg">+8000</td>
+            <td>Model rank #12. 90th-percentile putting and 82nd-percentile approach with +1.01% edge, the weak spot is a 37th-percentile off-the-tee number</td>
+          </tr>
+          <tr>
+            <td><span class="tag-soft">TOP 10 / TOP 20</span></td>
             <td style="color:var(--txt);font-weight:500">Jackson Koivun</td>
-            <td class="cg">+1100</td>
-            <td>Correct favorite on current form (Presidents Cup, 3M Open win, T5 Biltmore); limited outright value at short odds but a strong top-10 floor</td>
+            <td class="cg">+1200</td>
+            <td>Model rank #1, L1 78.9. Cleanest ball-striking profile in the field (97th App / 96th OTT); edge is slightly negative (-0.68%), so this is a floor play, not a value play</td>
           </tr>
           <tr>
-            <td><span class="tag-soft">TOP 30</span></td>
-            <td style="color:var(--txt);font-weight:500">Billy Horschel</td>
-            <td class="cg">+225</td>
-            <td>SG: App gained in 9 of his last 10 starts (+0.68/rd over his last 36); T11 here in 2025 despite two doubles and a quad</td>
-          </tr>
-          <tr>
-            <td><span class="tag-soft">PROP</span></td>
-            <td style="color:var(--txt);font-weight:500">Horschel &amp; Stephan Jaeger, both Top 20</td>
-            <td class="cg">+800</td>
-            <td>Both approach-form plays paired in a single parlay for plus-money value on a course that rewards iron play</td>
+            <td><span class="tag-soft">MATCHUP</span></td>
+            <td style="color:var(--txt);font-weight:500">Max Greyserman over Matt McCarty</td>
+            <td class="cg">—</td>
+            <td>Model favors Greyserman (L1 67.2) over the 2024 champion McCarty (L1 52.2) despite the market pricing it the other way</td>
           </tr>
           <tr>
             <td><span class="tag-fail">FADE</span></td>
-            <td style="color:var(--txt);font-weight:500">Matt McCarty</td>
-            <td class="cg">+3500</td>
-            <td>The 2024 inaugural champion and course-record holder, but the price leans on that name recognition, not this year's approach or putting data. Nothing in current-season strokes-gained trends puts him in the same tier as the plays above.</td>
+            <td style="color:var(--txt);font-weight:500">Michael Brennan</td>
+            <td class="cg">+1600</td>
+            <td>Defending champion with an elite 99th-percentile off-the-tee number, but the steepest negative win edge in the field at -3.64%. Fade outright only, still viable in Top 10/20 markets.</td>
           </tr>
         </tbody>
       </table>
 
-      <p class="body-text" style="font-size:13px;color:var(--txt3)">Odds current as of publish and will move before Thursday's first tee time. Shop multiple books. The complete field notes and bankroll sizing publish free on the StrokesEdge Substack.</p>
+      <p class="body-text" style="font-size:13px;color:var(--txt3)">Odds and model output current as of this week's live field pull and will move before Thursday's first tee time. Shop multiple books. The complete field notes and bankroll sizing publish free on the StrokesEdge Substack.</p>
     </section>
 
     <div class="cta-strip">
@@ -412,7 +412,7 @@ footer a:hover{color:var(--g)}
   </div>
   <div class="callout">
     <div class="callout-label">Who is favored to win the 2026 Bank of Utah Championship?</div>
-    <div class="callout-text">Jackson Koivun, priced between +1100 (DraftKings) and +1300 (FanDuel), fresh off an undefeated Presidents Cup debut, a 3M Open win, and a T5 at the Biltmore Championship.</div>
+    <div class="callout-text">Jackson Koivun (+1200), the StrokesEdge model's #1-ranked player (L1 78.9) on the field's cleanest tee-to-green profile, 97th-percentile approach and 96th-percentile off the tee. The model's win edge on him is slightly negative, so he's a correct favorite rather than a value bet.</div>
   </div>
   <div class="callout">
     <div class="callout-label">Was the Bank of Utah Championship previously called the Black Desert Championship?</div>
