@@ -429,3 +429,7 @@ Brian is running one full week manually (not yet via Task Scheduler) to personal
 Article verified clean after all fixes: no fallback text, FADE/MATCHUPS present with correct messaging, Top Model Outputs and Full Picks Card sections use genuinely distinct wording per player, and prose structure varies player to player.
 
 Otherwise ready to move to implementation.
+
+## Weekly Access Code in Articles (Brian, 2026-10-07)
+
+Every picks (Substack) article and DFS article must include that week's pick-tracker access code in the footer: `Pick tracker access code this week: CODE  ·  Unlock it at strokesedge.com/picks.html`. Enforced in code by `weekly_access_code()` in `weekly_model_pipeline.py` (both `generate_substack_article()` and `generate_dfs_article()`). Default is the first four letters of the tournament name plus the 4-digit year; pin a specific code in `ACCESS_CODE_OVERRIDES` (e.g. `baycurrent-classic` -> `BAYC2026`). The same code must be added to `validCodes` in the site's `picks.html` during the weekly site update (never remove old codes).

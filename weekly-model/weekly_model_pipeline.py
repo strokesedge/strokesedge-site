@@ -2266,6 +2266,20 @@ def render_top_model_outputs_section(event: dict, ctx: dict, win_idx: dict, rank
     return "\n".join(lines)
 
 
+ACCESS_CODE_OVERRIDES = {"baycurrent-classic": "BAYC2026",
+                         "butterfield-bermuda-championship": "BERMUDA2026"}
+
+
+def weekly_access_code(event: dict, year: int) -> str:
+    """Pick-tracker access code for this event. Must match the code added to validCodes in
+    picks.html by the weekly site update (never remove old codes there). Default is the first
+    four letters of the tournament name + 4-digit year; ACCESS_CODE_OVERRIDES pins specific ones."""
+    if event["slug"] in ACCESS_CODE_OVERRIDES:
+        return ACCESS_CODE_OVERRIDES[event["slug"]]
+    first_word = re.sub(r"[^A-Za-z]", "", event["event_name"].split()[0]).upper()
+    return f"{first_word[:4]}{year}"
+
+
 def render_faq_section(event: dict, year: int, course_facts: dict, extra_qas: list) -> str:
     """Standing SEO section for every weekly article (picks + DFS), added
     2026-07-28 as a templated requirement rather than something requested
@@ -2921,6 +2935,7 @@ def generate_substack_article(event: dict, ctx: dict) -> Path:
         render_faq_section(event, year, course_facts, faq_extra),
         "",
         "---",
+        f"Pick tracker access code this week: {weekly_access_code(event, year)}  ·  Unlock it at {SITE_LINKS['picks']}",
         f"Full betting record: {SITE_LINKS['picks']}  ·  Analysis: {SITE_LINKS['analysis']}  ·  "
         f"Methodology: {SITE_LINKS['methodology']}",
         f"Weekly model workbook: {SITE_LINKS['gumroad']} ($7)  ·  Membership: {SITE_LINKS['bmac']} ($21/mo)",
@@ -3161,6 +3176,7 @@ def generate_dfs_article(event: dict, ctx: dict) -> Path | None:
         render_faq_section(event, year, course_facts, faq_extra),
         "",
         "---",
+        f"Pick tracker access code this week: {weekly_access_code(event, year)}  ·  Unlock it at {SITE_LINKS['picks']}",
         f"Full betting record: {SITE_LINKS['picks']}  ·  Analysis: {SITE_LINKS['analysis']}  ·  "
         f"Methodology: {SITE_LINKS['methodology']}",
         f"Weekly model workbook: {SITE_LINKS['gumroad']} ($7)  ·  Membership: {SITE_LINKS['bmac']} ($21/mo)",
