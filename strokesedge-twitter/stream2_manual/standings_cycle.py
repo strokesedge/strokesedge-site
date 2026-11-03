@@ -41,6 +41,7 @@ if hasattr(sys.stdout, "reconfigure"):
 
 from email_utils import send_email
 from tracker import is_picks_phase
+from live_picks import get_live_picks_status
 
 from config import (
     ACTIVE_START_HOUR, ACTIVE_END_HOUR, STANDINGS_CADENCE_MINUTES,
@@ -107,7 +108,7 @@ def run(force=False):
               f"{STANDINGS_CADENCE_MINUTES} min, only {elapsed:.0f} min since last update, skipping.")
         return 0
 
-    if not force and not is_picks_phase():
+    if not force and not (is_picks_phase() or get_live_picks_status()):
         print(f"[stream2-standings] {now.isoformat(timespec='minutes')} — no open picks logged "
               f"for the current tournament, nothing to compare against a live leaderboard yet, skipping.")
         return 0

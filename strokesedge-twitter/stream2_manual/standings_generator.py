@@ -19,6 +19,7 @@ if hasattr(sys.stdout, "reconfigure"):
 
 from claude_api import call_claude
 from tournament_config import TOURNAMENT
+from tweet_style import POSITIVE_TONE_RULES, SEO_RULES_WITH_LINK
 
 from config import PICKS_URL, DISCLAIMER, MIN_OPTIONS_PER_SLOT, MAX_OPTIONS_PER_SLOT
 from generator import _extract_json_array, _validate_options
@@ -44,6 +45,10 @@ VOICE RULES (strict):
   link and optional disclaimer add the rest. Any option that comes in over
   280 gets filtered out silently before Brian ever sees it, which just
   means fewer options to choose from, so leave real margin.
+
+{POSITIVE_TONE_RULES}
+
+{SEO_RULES_WITH_LINK.format(tournament=TOURNAMENT['name'], hashtag=TOURNAMENT['hashtag'])}
 
 LINK REQUIRED — every single option must include exactly this link, as
 plain text (not markdown, no brackets): {PICKS_URL}
@@ -80,8 +85,8 @@ INSTRUCTION_TEMPLATE = (
     "Options should compare the confirmed open picks below against their CURRENT live "
     "position in this week's {tournament} {year}, sourced from a live leaderboard feed. "
     "Vary the angle across options (one could spotlight the best-placed pick, one could "
-    "give a quick spread across all live picks, one could focus on a pick in danger of "
-    "missing its tier) but every option must use only the exact positions/scores given "
+    "give a quick spread across all live picks, one could compare the picks with the current leaders, "
+    "keeping the tone positive and leading with the best-placed pick) but every option must use only the exact positions/scores given "
     "below — never estimate, round, or invent a value, and never claim a bet has won, "
     "lost, or cashed."
 )

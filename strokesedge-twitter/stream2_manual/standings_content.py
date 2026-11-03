@@ -20,6 +20,7 @@ if _SHARED_DIR not in sys.path:
 from tournament_config import TOURNAMENT
 from tracker import get_open_bets_for_tournament
 from leaderboard import get_live_leaderboard, match_player
+from live_picks import build_live_picks_context
 
 
 def build_standings_matchups():
@@ -61,7 +62,20 @@ def build_standings_matchups():
 
 def build_standings_context():
     """Returns the source-content string for the Claude prompt, or None if
-    there's nothing usable right now."""
+    there's nothing usable right now.
+
+    Published picks (the free weekly Substack picks article) are preferred
+    over tracker-CSV open bets, since the public tweets promote that article
+    (see shared/live_picks.py). Falls back to the tracker when the article
+    or live feed isn't usable. Odds are never in the published-picks context."""
+    try:
+        published = build_live_picks_context()
+    except Exception as e:
+        print(f"[standings] published-picks context unavailable: {e}")
+        published = None
+    if published:
+        return published
+
     matchups = build_standings_matchups()
     if not matchups:
         return None

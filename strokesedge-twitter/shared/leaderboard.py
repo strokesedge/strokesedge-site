@@ -69,6 +69,30 @@ def get_live_leaderboard(tour="pga"):
     return out
 
 
+def get_live_feed(tour="pga"):
+    """Like get_live_leaderboard() but also returns the feed's info block
+    (current_round, last_update). Returns (info, rows) or None, with the
+    same event-name mismatch / request-failure fail-safe."""
+    try:
+        payload = _dg_get("preds/in-play", {"tour": tour})
+    except Exception as e:
+        print(f"[leaderboard] Could not reach Data Golf in-play feed: {e}")
+        return None
+    info = payload.get("info", {})
+    feed_event = (info.get("event_name") or "").strip().lower()
+    configured_event = TOURNAMENT["name"].strip().lower()
+    if not feed_event or (feed_event not in configured_event and configured_event not in feed_event):
+        print(f"[leaderboard] Live feed event {info.get('event_name')!r} does not match "
+              f"configured tournament {TOURNAMENT['name']!r}, skipping.")
+        return None
+    rows = [{
+        "player_name": r.get("player_name"), "position": r.get("current_pos"),
+        "score_to_par": r.get("current_score"), "round": r.get("round"),
+        "thru": r.get("thru"), "today": r.get("today"),
+    } for r in payload.get("data", [])]
+    return info, rows
+
+
 def _normalize_name(name):
     """Data Golf format: 'Last, First'. Tracker CSV format: 'First Last'.
     Normalizes both to a sorted lowercase token set so punctuation and

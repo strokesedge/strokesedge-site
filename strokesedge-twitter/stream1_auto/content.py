@@ -17,7 +17,27 @@ from tournament_config import TOURNAMENT, SITE_REPO
 from html_utils import load_local_file
 from tracker import is_tournament_complete, get_settled_bets_for_tournament, summarize_final_results
 
-from config import CATEGORIES_DEFAULT, RECAP_WEEKDAYS
+from live_picks import build_live_picks_context
+
+from config import CATEGORIES_DEFAULT, RECAP_WEEKDAYS, POSTED_LOG
+
+_LIVE_CONTEXT_CACHE = {}
+
+
+def live_picks_context():
+    """Live picks-vs-leaderboard source content, or None when the
+    tournament isn't live. Fetched at most once per minute per process so
+    available_categories()/build_context() agree within a single run
+    without hammering the Data Golf feed."""
+    now_key = datetime.now().strftime("%Y%m%d%H%M")
+    if _LIVE_CONTEXT_CACHE.get("key") != now_key:
+        try:
+            _LIVE_CONTEXT_CACHE["value"] = build_live_picks_context()
+        except Exception as e:
+            print(f"[content] live picks context unavailable: {e}")
+            _LIVE_CONTEXT_CACHE["value"] = None
+        _LIVE_CONTEXT_CACHE["key"] = now_key
+    return _LIVE_CONTEXT_CACHE["value"]
 
 
 def available_categories(now=None):
@@ -25,15 +45,31 @@ def available_categories(now=None):
     cats = list(CATEGORIES_DEFAULT)
     if now.weekday() in RECAP_WEEKDAYS and is_tournament_complete():
         cats.append("recap")
+    if live_picks_context():
+        cats.append("live_picks")
     return cats
 
 
+def _posted_count():
+    if not os.path.exists(POSTED_LOG):
+        return 0
+    with open(POSTED_LOG, "r", encoding="utf-8") as f:
+        return sum(1 for line in f if line.strip())
+
+
 def next_category(last_category, now=None):
-    """Round-robins through whatever's available right now. If the
+    """While the tournament is live, every other slot is live_picks
+    commentary and the slots in between rotate through the normal
+    categories. Outside live play it's the original round-robin. If the
     previous category isn't in today's available list (e.g. it was
     "recap" on Monday and now it's Tuesday), just starts from the top
     rather than erroring."""
     cats = available_categories(now)
+    if "live_picks" in cats:
+        if last_category != "live_picks":
+            return "live_picks"
+        base = [c for c in cats if c != "live_picks"]
+        return base[_posted_count() % len(base)]
     if last_category in cats:
         idx = (cats.index(last_category) + 1) % len(cats)
     else:
@@ -41,10 +77,25 @@ def next_category(last_category, now=None):
     return cats[idx]
 
 
+def _matches_current_tournament(text):
+    """Guards against shared/tournament_config.py going stale relative to
+    the actual site pages (this bit us once: TOURNAMENT still said Rocket
+    Classic / Detroit Golf Club while analysis.html had already been
+    hand-updated to Wyndham, and the model faithfully reported Detroit's
+    own real stats under a tweet that was effectively about the wrong
+    week). If the page doesn't even mention this week's tournament name,
+    it's not safe source content, regardless of how real its numbers are."""
+    return text is not None and TOURNAMENT["name"].lower() in text.lower()
+
+
 def _analysis_and_course_context():
     chunks = []
     course_text = load_local_file(TOURNAMENT["course_file"], SITE_REPO)
     analysis_text = load_local_file(TOURNAMENT["analysis_file"], SITE_REPO)
+    if course_text and not _matches_current_tournament(course_text):
+        course_text = None
+    if analysis_text and not _matches_current_tournament(analysis_text):
+        analysis_text = None
     if course_text:
         chunks.append(f"COURSE GUIDE CONTENT:\n{course_text[:4000]}")
     if analysis_text:
@@ -75,9 +126,12 @@ def build_context(category):
         # has nothing to say this run; generator.py falls back rather
         # than let the model invent a forecast.
         text = load_local_file(TOURNAMENT["analysis_file"], SITE_REPO)
-        if not text or "weather" not in text.lower():
+        if not text or not _matches_current_tournament(text) or "weather" not in text.lower():
             return None
         return f"ANALYSIS PAGE CONTENT (contains weather section):\n{text[:4000]}"
+
+    if category == "live_picks":
+        return live_picks_context()
 
     if category == "recap":
         if not is_tournament_complete():

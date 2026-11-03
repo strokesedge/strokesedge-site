@@ -29,7 +29,8 @@ import tweepy
 from link_check import contains_site_link
 from email_utils import send_email
 
-from config import POSTED_LOG, FLAGGED_LOG, MONTHLY_AUTO_POST_BUDGET, COST_PER_AUTO_POST
+from config import POSTED_LOG, FLAGGED_LOG, CHART_FAILED_LOG, MONTHLY_AUTO_POST_BUDGET, COST_PER_AUTO_POST
+from x_media import upload_image
 
 
 def load_jsonl(path):
@@ -74,10 +75,18 @@ def current_month_post_count():
     return count
 
 
-def post_if_safe(category, text, dry_run=False):
+def post_if_safe(category, text, dry_run=False, image_path=None, alt_text=None):
     """The only entry point run_cycle.py should call. Returns True if
     posted (or would post, under --dry-run), False otherwise — every
-    False path logs why to FLAGGED_LOG rather than silently dropping."""
+    False path logs why to FLAGGED_LOG rather than silently dropping.
+
+    image_path (optional): a local PNG to attach via the X v2 media
+    upload flow before create_tweet. Chart upload failures are NEVER a
+    reason to withhold the post — they're logged separately to
+    CHART_FAILED_LOG and the tweet still goes out text-only. The caller
+    (run_cycle.py) owns the file's lifecycle (chart_gen already produced
+    it, and is responsible for deleting it after this call returns,
+    success or not) — this function only reads it."""
 
     # HARD SAFETY NET — re-checked here even though generator.py already
     # checked, because this is the last point before a real, irreversible
@@ -113,21 +122,38 @@ def post_if_safe(category, text, dry_run=False):
         return False
 
     if dry_run:
+        chart_note = f", with chart {image_path}" if image_path else ""
         print(f"[DRY RUN] Would post ({category}, {len(text)} chars, "
-              f"${COST_PER_AUTO_POST:.3f}):\n{text}")
+              f"${COST_PER_AUTO_POST:.3f}{chart_note}):\n{text}")
         return True
+
+    media_id = None
+    if image_path:
+        try:
+            media_id = upload_image(image_path, alt_text=alt_text)
+        except Exception as e:
+            # Chart upload is never a reason to withhold the post — log it
+            # separately and fall through to a text-only create_tweet.
+            append_jsonl(CHART_FAILED_LOG, {
+                "category": category, "image_path": image_path,
+                "reason": f"media upload failed: {e!r}",
+                "failed_at": datetime.now().isoformat(),
+            })
+            print(f"[post_tweets] Chart upload failed, posting text-only: {e!r}")
+            media_id = None
 
     client = get_client()
     try:
-        resp = client.create_tweet(text=text)
+        resp = client.create_tweet(text=text, media_ids=[media_id] if media_id else None)
         append_jsonl(POSTED_LOG, {
             "category": category,
             "text": text,
             "char_count": len(text),
             "posted_id": resp.data.get("id"),
+            "had_chart": media_id is not None,
             "posted_at": datetime.now().isoformat(),
         })
-        print(f"[post_tweets] Posted ({category}): {text[:80]}...")
+        print(f"[post_tweets] Posted ({category}, chart={media_id is not None}): {text[:80]}...")
         return True
     except Exception as e:
         append_jsonl(FLAGGED_LOG, {

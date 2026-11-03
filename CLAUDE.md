@@ -26,6 +26,8 @@ Strokes Edge Website HTML/
 
 **Note:** `potd.html` has been removed. Do not reference it anywhere.
 
+**Evergreen pages (added 2026-11-02, not part of the weekly cycle, do not delete):** `pga-tour-betting-guide.html`, `strokes-gained-explained.html`, `how-to-bet-on-golf.html` (SEO guides targeting "PGA Tour betting"), `results.html` (public record, reads the tracker CSV live), `about.html`. They are linked from the homepage and footer, not the main nav. The homepage "This week" sections are static HTML: see the Homepage section for what to update weekly.
+
 ---
 
 ## Weekly Tournament Update Protocol
@@ -58,6 +60,13 @@ When Brian says "Run the weekly update for [Tournament Name]" do ALL of the foll
 - Update sitemap.xml with both new pages
 - Run pre-deploy audit before pushing
 - Push everything in one commit
+
+**Step 4 — Update the X/Twitter pipeline for the new tournament (added 2026-10-30)**
+- Edit `strokesedge-twitter/shared/tournament_config.py`: `TOURNAMENT` (name, `course_file`, `analysis_file`, hashtag), `COURSE_STATS`, `MODEL_WEIGHTS`. Both streams read this one file, so it is the only weekly edit. Transcribe numbers from the published site pages only, never guess.
+- The tournament name must match Data Golf's `preds/in-play` `event_name` (the live leaderboard fails safe on a mismatch) and the slug must match the `weekly-model/<slug>/` folder holding that week's `substack_article_*.md`. Live "our picks vs the leaderboard" tweets are built from that article's Full Picks Card (`shared/live_picks.py`), not the tracker CSV.
+- Tweet tone and SEO rules (standing, apply every week, defined once in `shared/tweet_style.py`): tweets are **positive**, lead with the strongest true fact (best-placed pick, a good round, a model/course fit), and never spotlight a struggling pick or missed cut, but positivity never overrides accuracy (no invented good news, no result words like won/lost/cashed on in-progress positions). Each tweet names the tournament and course and uses the weekly hashtag and natural search phrases ("[Tournament] picks", "course fit", "best bets"). The goal is search traction for strokesedge.com and the weekly Substack picks article.
+- Stream 1 (auto-posted) stays **link-free** by design since nobody reviews it. Stream 2 (emailed drafts for Brian) carries the `strokesedge.com/picks.html` link as the call to action and mentions the free Substack picks when there is room. Do not add links to Stream 1.
+- Smoke test after editing: `python shared/live_picks.py` (shows published picks and live status) and `python stream2_manual/standings_generator.py` (prints draft tweets, posts nothing).
 
 **What Brian provides (when available):**
 - Tournament name (required)
@@ -250,11 +259,26 @@ Every nav must have hamburger at `@media(max-width:860px)`.
 
 ## Homepage (index.html) — Always Shows Current Tournament
 
-Update every new tournament week:
-1. Hero headline — current tournament name
-2. Hero subtext — course name and dates
-3. CTA button — links to new analysis page
-4. Featured analysis card — current week
+The homepage was redesigned 2026-11-03 (mint on green-black, WebGL golf ball hero, headline "Bet the course, not the name."). Its CSS and JS are inline in `index.html`. Every other page loads `se-theme.css` last, which remaps the old tokens to the new palette.
+
+Update every new tournament week (all static HTML, edit by hand):
+1. Hero `.src` line: event name and dates ("El Cardonal · Nov 5 to 8").
+2. Hero callouts `.call`: the two top model weights and yardage/par.
+3. "This week" section (`#desk`): event title, course line, intro paragraph, the five weight gauges (`--w` is weight / top weight), the course facts cell (par, yards, round 1 date), and both links (analysis page and course guide).
+4. "Read next" featured card: this week's analysis link and title.
+5. Leave the headline, newsletter and membership paths, FAQ and record section alone. The settled-bet count fills in live from the tracker sheet.
+
+---
+
+## Design System (added 2026-11-03)
+
+- **Palette:** mint `#00e676` (`--g`), ink `#050807`, panels `#09110d` / `#0d1a14`, bone text `#e8efe9`, dim text `#8da398`, amber `#ffb547` for warnings and fades.
+- **Type:** Archivo (headlines, wide and heavy on the homepage, `font-stretch:94%` on inner pages), Instrument Serif italic for the one accent word in a headline, Outfit for body, DM Mono for labels, data and nav.
+- **Inner pages:** each page keeps its own inline CSS but `<link rel="stylesheet" href="se-theme.css">` must be the last thing in `<head>`. Do not hard-code the old turf green `#6ab83a` or Bebas Neue/DM Sans anywhere. Filled mint buttons use dark text (`#031008`), never white.
+- **Templates:** `analysis-pga-2026.html` and `course-quail-hollow.html` are already converted, so new weekly pages inherit the design.
+- **Forbidden tropes (instant reject):** no purple/indigo gradients or floating blur blobs, no generic 3-column feature grids with icon circles, no unrequested stat counters (real data only), no rounded pill buttons or sparkles, no lazy Inter/Roboto/system stacks.
+- **Mandatory:** mobile-first, intentional whitespace and asymmetric or editorial layouts, ask clarifying questions about emotion, voice and conversion before building anything new.
+- **Motion:** purposeful only (headline wipe, gauges that fill on scroll, one slow ball). Always respect `prefers-reduced-motion`.
 
 ---
 
