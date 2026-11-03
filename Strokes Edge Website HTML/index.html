@@ -3,587 +3,483 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="StrokesEdge — quantitative PGA Tour golf betting picks and analysis. Strokes gained modeling, course-fit profiling, and weekly value plays. No narratives. No gut feels.">
-<title>StrokesEdge — PGA Tour Golf Betting Analysis & Picks</title>
+<meta name="description" content="Free PGA Tour betting picks, odds analysis and course guides every week. A strokes gained model, course-fit profiles and a public bet tracker.">
+<title>PGA Tour Betting Picks, Odds &amp; Analysis | StrokesEdge</title>
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://strokesedge.com/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://strokesedge.com/">
-<meta property="og:title" content="StrokesEdge — PGA Tour Golf Betting Analysis & Picks">
-<meta property="og:description" content="Quantitative PGA Tour golf betting picks and analysis. Strokes gained modeling, course-fit profiling, and weekly value plays. No narratives. No gut feels.">
+<meta property="og:title" content="PGA Tour Betting Picks, Odds &amp; Analysis | StrokesEdge">
+<meta property="og:description" content="Free PGA Tour betting picks, odds analysis and course guides every week. A strokes gained model, course-fit profiles and a public bet tracker.">
 <meta property="og:image" content="https://strokesedge.com/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@StrokesEdge">
-<meta name="twitter:title" content="StrokesEdge — PGA Tour Golf Betting Analysis & Picks">
-<meta name="twitter:description" content="Quantitative PGA Tour golf betting picks and analysis. Strokes gained modeling, course-fit profiling, and weekly value plays.">
+<meta name="twitter:title" content="PGA Tour Betting Picks, Odds &amp; Analysis | StrokesEdge">
+<meta name="twitter:description" content="Free PGA Tour betting picks, odds analysis and course guides every week. A strokes gained model, course-fit profiles and a public bet tracker.">
 <meta name="twitter:image" content="https://strokesedge.com/og-image.png">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon-180x180.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://strokesedge.com/#org", "name": "StrokesEdge", "url": "https://strokesedge.com/", "logo": "https://strokesedge.com/favicon-512x512.png", "sameAs": ["https://strokesedge.substack.com", "https://x.com/StrokesEdge"]}, {"@type": "WebSite", "@id": "https://strokesedge.com/#website", "url": "https://strokesedge.com/", "name": "StrokesEdge", "description": "Free PGA Tour betting picks, odds analysis and course guides every week. A strokes gained model, course-fit profiles and a public bet tracker.", "publisher": {"@id": "https://strokesedge.com/#org"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is the best way to find value in PGA Tour betting?", "acceptedAnswer": {"@type": "Answer", "text": "Compare a player's strokes gained profile to what the course demands, then compare the model's win probability to the sportsbook price. A bet only has value when the model probability is higher than the price implies. StrokesEdge screens every player in the field this way each week."}}, {"@type": "Question", "name": "What is StrokesEdge?", "acceptedAnswer": {"@type": "Answer", "text": "StrokesEdge is a quantitative PGA Tour betting analysis site. It publishes a free picks article every tournament week, course betting guides, a strokes gained model methodology, and a public tracker of every bet."}}, {"@type": "Question", "name": "Are the PGA Tour betting picks free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The weekly picks article is free on the StrokesEdge Substack, and the top of every analysis page is free. The full model workbook with rankings for the whole field is $7 per tournament, or included with the $21 monthly membership."}}, {"@type": "Question", "name": "Which stats matter most for PGA Tour betting?", "acceptedAnswer": {"@type": "Answer", "text": "It changes by course. Strokes gained approach is the most common predictor, but the model re-weights approach, off the tee, around the green, putting and course fit for each venue. The methodology page shows how."}}, {"@type": "Question", "name": "Does StrokesEdge publish its results?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Every bet is logged on the public pick tracker with odds, wager and result, wins and losses included."}}]}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500&display=swap">
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+/* Layout: mobile-first single column. Full-bleed type hero with a WebGL golf ball breaking out of the grid on desktop, an asymmetric "model desk" bento, a long editorial column with margin notes, then two equal membership paths. */
 :root{
-  --g:#6ab83a;--g2:#3d7a18;--g3:#1a3a08;--r:#e05252;--y:#f0b429;
-  --g-glow:rgba(106,184,58,0.12);
-  --bg:#080b07;--bg2:#0c0f0b;--bg3:#111610;--sur:#141a12;
-  --bdr:rgba(106,184,58,0.18);--bdr2:rgba(255,255,255,0.07);
-  --txt:#e6ede0;--txt2:#8a9e80;--txt3:#3a4a34;
+  --ink:#050807;--deep:#09110d;--panel:#0d1a14;--panel2:#10211a;
+  --line:rgba(0,230,118,.16);--line2:rgba(232,239,233,.09);
+  --mint:#00e676;--mint-d:#00b85c;--bone:#e8efe9;--dim:#8da398;--amber:#ffb547;
+  --f-display:'Archivo','Arial Narrow',sans-serif;--f-serif:'Instrument Serif',Georgia,serif;--f-body:'Outfit','Helvetica Neue',sans-serif;--f-mono:'DM Mono',ui-monospace,monospace;
+  color-scheme:dark;
 }
+*,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--txt);font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.6;overflow-x:hidden}
-body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:1;opacity:0.6}
-body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(106,184,58,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(106,184,58,0.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;z-index:0}
+body{margin:0;background:var(--ink);color:var(--bone);font-family:var(--f-body);font-weight:300;font-size:17px;line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img,canvas{max-width:100%}
+:focus-visible{outline:2px solid var(--mint);outline-offset:3px}
+.wrap{max-width:1240px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.mono{font-family:var(--f-mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase}
 
-/* ── CUSTOM CURSOR — desktop only ── */
-@media(hover:hover){
-  body,*{cursor:none}
-  .cursor{position:fixed;width:8px;height:8px;background:var(--g);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform 0.1s}
-  .cursor-ring{position:fixed;width:32px;height:32px;border:1px solid rgba(106,184,58,0.4);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all 0.15s ease}
+/* nav */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;background:rgba(5,8,7,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:border-color .3s,background .3s}
+.top.s{border-color:var(--line2);background:rgba(5,8,7,.94)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--ink);z-index:45}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:16px;transition:padding .3s}
+.top.s .nav{padding-block:10px}
+.logo{font:800 20px/1 var(--f-display);font-stretch:118%;letter-spacing:-.02em;text-decoration:none}
+.logo b{color:var(--mint);font-weight:800}
+.links{display:none;align-items:center;gap:28px}
+.links a{font:400 13px/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:var(--dim);transition:color .2s}
+.links a:hover{color:var(--bone)}
+.navbtn{border:1px solid var(--mint);color:var(--mint)!important;padding:11px 16px;border-radius:2px}
+.navbtn:hover{background:rgba(0,230,118,.1)}
+.burger{background:none;border:0;color:var(--bone);cursor:pointer;padding:8px;display:flex;flex-direction:column;gap:5px}
+.burger span{display:block;width:24px;height:2px;background:currentColor;transition:transform .25s,opacity .25s}
+.burger.o span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.burger.o span:nth-child(2){opacity:0}
+.burger.o span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mob{display:none;flex-direction:column;border-top:1px solid var(--line2);padding-block:8px 18px}
+.mob.o{display:flex}
+.mob a{font:400 14px/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;text-decoration:none;padding:15px 0;border-bottom:1px solid var(--line2);color:var(--dim)}
+.mob a.pri{color:var(--mint)}
+@media(max-width:860px){.links{display:none!important}}
+@media(min-width:861px){.links{display:flex}.burger,.mob{display:none!important}}
+
+/* hero */
+.hero{position:relative;overflow:hidden;padding-block:44px 28px}
+.hero::before{content:"";position:absolute;width:140vw;height:140vw;max-width:1500px;max-height:1500px;right:-45%;top:-8%;background:radial-gradient(closest-side,rgba(0,230,118,.22),rgba(0,230,118,.07) 45%,transparent 72%);pointer-events:none}
+.hero-grid{position:relative;display:grid;gap:20px}
+.kick{display:block;font:400 12px/1.4 var(--f-mono);letter-spacing:.16em;text-transform:uppercase;color:var(--mint);margin-bottom:18px}
+h1{margin:0;font:800 clamp(46px,12.5vw,100px)/.9 var(--f-display);font-stretch:112%;letter-spacing:-.045em;text-wrap:balance}
+h1 em{font:italic 400 1.04em/.9 var(--f-serif);letter-spacing:-.02em;color:var(--mint);display:inline-block;animation:wipe 1.1s .35s cubic-bezier(.2,.7,.1,1) both}
+@keyframes wipe{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+.sub{max-width:520px;font-size:19px;color:var(--dim);margin:26px 0 30px}
+.sub strong{color:var(--bone);font-weight:400}
+.ctas{display:grid;gap:12px;max-width:560px}
+.btn{position:relative;display:flex;justify-content:space-between;align-items:center;gap:16px;text-decoration:none;font:500 13px/1.2 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;padding:19px 20px;border:1px solid var(--mint);border-radius:2px;overflow:hidden;isolation:isolate;transition:color .25s}
+.btn::before{content:"";position:absolute;inset:0;background:var(--mint);transform:translateX(-101%);transition:transform .35s cubic-bezier(.2,.7,.1,1);z-index:-1}
+.btn span.a{transition:transform .25s}
+.btn.fill{background:var(--mint);color:#031008}
+.btn.fill::before{background:var(--bone)}
+.btn.line{color:var(--mint)}
+.btn.line:hover{color:#031008}
+.btn:hover::before{transform:translateX(0)}
+.btn:hover span.a{transform:translateX(5px)}
+.note{margin-top:14px;font:400 12px/1.5 var(--f-mono);letter-spacing:.08em;color:var(--dim)}
+.note a{color:var(--bone)}
+.stage{position:relative;aspect-ratio:1/1;max-width:560px;margin:0 auto;width:100%}
+#ball{position:absolute;inset:0;width:100%;height:100%;display:block}
+.fallback{position:absolute;inset:14%;border-radius:50%;background:radial-gradient(circle at 34% 30%,#fff,#d9e4dc 40%,#7f958a 78%,#2a3a32);box-shadow:0 0 90px rgba(0,230,118,.35);display:none}
+.nogl .fallback{display:block}
+.nogl #ball{display:none}
+.call{display:none}
+.src{margin-top:34px;padding-top:18px;border-top:1px solid var(--line2);display:flex;flex-wrap:wrap;gap:6px 26px;font:400 12px/1.5 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
+@media(min-width:861px){
+  .hero{padding-block:72px 40px}
+  .hero-grid{grid-template-columns:1.12fr .88fr;align-items:center;gap:0}
+  .copy{position:relative;z-index:2}
+  .stage{max-width:none;width:116%;margin-left:-4%;margin-right:-12%}
+  .ctas{grid-template-columns:1fr 1fr;max-width:640px}
+  .call{display:block;position:absolute;z-index:3;font:400 11px/1.4 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--bone);white-space:nowrap}
+  .call b{display:block;color:var(--mint);font-weight:500;font-size:22px;letter-spacing:0;font-family:var(--f-display);font-stretch:110%}
+  .call::before{content:"";position:absolute;height:1px;background:var(--mint);opacity:.6;top:12px}
+  .c1{left:4%;top:20%;padding-left:0}.c1::before{left:calc(100% + 10px);width:86px}
+  .c2{left:2%;bottom:24%}.c2::before{left:calc(100% + 10px);width:120px}
+  .c3{right:10%;top:2%;text-align:right}.c3::before{right:calc(100% + 10px);width:70px}
 }
-@media(hover:none){.cursor,.cursor-ring{display:none}}
 
-/* ── NAV ── */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1rem 1.5rem;border-bottom:1px solid var(--bdr2);background:rgba(8,11,7,0.95);backdrop-filter:blur(16px)}
-.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:0.08em;color:var(--txt);text-decoration:none;flex-shrink:0}
-.nav-logo span{color:var(--g)}
-.nav-links{display:flex;align-items:center;gap:1.5rem}
-.nav-link{font-size:12px;color:var(--txt2);text-decoration:none;letter-spacing:0.06em;text-transform:uppercase;transition:color 0.2s}
-.nav-link:hover,.nav-link.active{color:var(--txt)}
-.nav-cta{font-family:'DM Mono',monospace;font-size:12px;padding:8px 18px;border:1px solid var(--g);border-radius:2px;color:var(--g);text-decoration:none;letter-spacing:0.06em;transition:all 0.2s;white-space:nowrap}
-.nav-cta:hover{background:var(--g-glow)}
+/* sections shared */
+section{position:relative}
+.eb{display:flex;align-items:center;gap:12px;font:400 12px/1 var(--f-mono);letter-spacing:.16em;text-transform:uppercase;color:var(--mint);margin-bottom:18px}
+.eb::after{content:"";flex:0 0 44px;height:1px;background:var(--line)}
+h2{margin:0 0 20px;font:800 clamp(34px,8vw,76px)/.95 var(--f-display);font-stretch:108%;letter-spacing:-.035em;text-wrap:balance}
+h2 em{font:italic 400 1.05em/.9 var(--f-serif);color:var(--mint);letter-spacing:-.01em}
 
-/* ── HAMBURGER ── */
-.hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:none;border:none;cursor:pointer;padding:6px;z-index:201}
-.hamburger span{display:block;width:22px;height:2px;background:var(--txt2);border-radius:2px;transition:all .25s}
-.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);background:var(--g)}
-.hamburger.open span:nth-child(2){opacity:0}
-.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);background:var(--g)}
-.mobile-menu{display:none;position:fixed;top:57px;left:0;right:0;background:rgba(8,11,7,.98);backdrop-filter:blur(16px);border-bottom:1px solid var(--bdr2);z-index:99;flex-direction:column;padding:1rem 1.5rem 1.5rem;max-height:80vh;overflow-y:auto}
-.mobile-menu.open{display:flex}
-.mobile-menu a{font-family:'DM Mono',monospace;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--txt2);text-decoration:none;padding:.7rem 0;border-bottom:1px solid var(--bdr2);transition:color .2s;display:block}
-.mobile-menu a:hover{color:var(--txt)}
-.mobile-menu a.active{color:var(--g)}
-.mob-cta{border-bottom:none!important;margin-top:.5rem;padding:.85rem 1rem!important;border:1px solid var(--g)!important;border-radius:2px;color:var(--g)!important;text-align:center}
-@media(max-width:860px){.nav-link,.nav-cta{display:none}.hamburger{display:flex}}
-
-/* ── HERO ── */
-.hero{position:relative;z-index:2;min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:4rem;padding:8rem 1.5rem 5rem;max-width:1200px;margin:0 auto}
-.hero-tag{display:inline-flex;align-items:center;gap:10px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.14em;color:var(--g);text-transform:uppercase;margin-bottom:2rem;opacity:0;animation:up 0.7s 0.1s forwards}
-.hero-tag-dot{width:6px;height:6px;border-radius:50%;background:var(--g);animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(0.8)}}
-.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(64px,8vw,110px);line-height:0.92;letter-spacing:0.03em;color:var(--txt);margin-bottom:2rem;opacity:0;animation:up 0.7s 0.2s forwards}
-.hero-title span{color:var(--g);display:block}
-.hero-sub{font-size:17px;font-weight:300;color:var(--txt2);line-height:1.75;max-width:460px;margin-bottom:2.5rem;opacity:0;animation:up 0.7s 0.35s forwards}
-.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;opacity:0;animation:up 0.7s 0.5s forwards}
-.btn-primary{display:inline-block;padding:14px 36px;background:var(--g);color:#fff;font-family:'DM Mono',monospace;font-size:13px;letter-spacing:0.06em;text-decoration:none;border-radius:2px;transition:all 0.2s}
-.btn-primary:hover{background:#7acc44;transform:translateY(-2px)}
-.btn-ghost{display:inline-block;padding:14px 36px;border:1px solid var(--bdr2);color:var(--txt2);font-family:'DM Mono',monospace;font-size:13px;letter-spacing:0.06em;text-decoration:none;border-radius:2px;transition:all 0.2s}
-.btn-ghost:hover{border-color:var(--bdr);color:var(--txt)}
-
-/* ── MODEL SALES SECTION ── */
-.model-sales{position:relative;z-index:2;max-width:1200px;margin:0 auto 4rem;padding:0 1.5rem;text-align:center}
-.model-sales-copy{font-size:15px;color:var(--txt2);margin-bottom:2rem}
-.model-sales-buttons{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
-.btn-model{display:inline-block;padding:14px 32px;background:var(--g);color:#fff;font-family:'DM Mono',monospace;font-size:13px;letter-spacing:0.06em;text-decoration:none;border-radius:2px;border:1px solid var(--g);transition:all 0.2s;cursor:pointer}
-.btn-model:hover{background:#7acc44;transform:translateY(-2px)}
-.btn-model-outline{background:transparent;color:var(--g);border:1px solid var(--g)}
-.btn-model-outline:hover{background:rgba(106,184,58,0.1)}
-
-.hero-right{opacity:0;animation:up 0.8s 0.6s forwards}
-.live-card{background:var(--sur);border:1px solid var(--bdr);border-radius:4px;overflow:hidden}
-.live-card-header{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.25rem;border-bottom:1px solid var(--bdr2);background:rgba(106,184,58,0.04)}
-.live-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--g);display:flex;align-items:center;gap:7px}
-.live-dot{width:5px;height:5px;background:var(--g);border-radius:50%;animation:pulse 1.5s infinite}
-.live-event{font-family:'DM Mono',monospace;font-size:10px;color:var(--txt3);letter-spacing:0.06em;text-transform:uppercase}
-.pick-row{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.25rem;border-bottom:1px solid var(--bdr2);transition:background 0.2s}
-.pick-row:hover{background:rgba(106,184,58,0.03)}
-.pick-row:last-child{border-bottom:none}
-.pick-row.value-row{background:rgba(106,184,58,0.05);border-left:2px solid var(--g)}
-.pick-tier-tag{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--g);margin-bottom:4px}
-.pick-player{font-size:16px;font-weight:400;color:var(--txt);margin-bottom:2px}
-.pick-note{font-size:12px;color:var(--txt2)}
-.pick-number{font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--g);letter-spacing:0.04em;flex-shrink:0;line-height:1;margin-top:4px}
-
-/* ── TICKER ── */
-.ticker{position:relative;z-index:2;border-top:1px solid var(--bdr2);border-bottom:1px solid var(--bdr2);background:var(--bg2);padding:12px 0;overflow:hidden;margin:3rem 0}
-.ticker-track{display:flex;gap:4rem;animation:tick 25s linear infinite;white-space:nowrap}
-.ticker-item{font-family:'DM Mono',monospace;font-size:11px;color:var(--txt3);letter-spacing:0.08em;text-transform:uppercase;flex-shrink:0}
-.ticker-item b{color:var(--g);font-weight:400}
-@keyframes tick{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-
-/* ── SEASON RECORD BAR ── */
-.record-bar{position:relative;z-index:2;max-width:1200px;margin:0 auto 1.5rem;padding:0 1.5rem}
-.record-inner{background:var(--bg2);border:1px solid var(--bdr);border-radius:4px;overflow:hidden}
-.record-header{display:flex;justify-content:space-between;align-items:center;padding:0.9rem 1.5rem;border-bottom:1px solid var(--bdr2)}
-.record-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.14em;color:var(--g);text-transform:uppercase;display:flex;align-items:center;gap:8px}
-.record-label::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--g)}
-.record-link{font-family:'DM Mono',monospace;font-size:10px;color:var(--txt3);letter-spacing:0.06em;text-decoration:none;text-transform:uppercase;transition:color 0.2s}
-.record-link:hover{color:var(--g)}
-.record-cells{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--bdr2)}
-.record-cell{background:var(--bg2);padding:1.25rem 1rem;text-align:center;transition:background 0.2s}
-.record-cell:hover{background:var(--sur)}
-.record-cell.loading{opacity:0.3}
-.record-n{font-family:'Bebas Neue',sans-serif;font-size:36px;line-height:1;margin-bottom:5px;letter-spacing:0.03em;color:var(--txt3)}
-.record-n.green{color:var(--g)}
-.record-n.red{color:var(--r)}
-.record-n.yellow{color:var(--y)}
-.record-l{font-family:'DM Mono',monospace;font-size:9px;color:var(--txt3);letter-spacing:0.1em;text-transform:uppercase;line-height:1.4}
-.hits-row{display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;padding:0.75rem 1.5rem;border-top:1px solid var(--bdr2);background:rgba(106,184,58,0.02)}
-.hits-label{font-family:'DM Mono',monospace;font-size:9px;color:var(--txt3);letter-spacing:0.1em;text-transform:uppercase;margin-right:4px;white-space:nowrap}
-.hit-badge{font-family:'DM Mono',monospace;font-size:9px;padding:3px 9px;border-radius:2px;letter-spacing:0.08em;text-transform:uppercase;background:rgba(106,184,58,0.1);color:var(--g);border:1px solid rgba(106,184,58,0.22);white-space:nowrap}
-
-/* ── STATS ── */
-.stats{position:relative;z-index:2;display:grid;grid-template-columns:repeat(3,1fr);max-width:1200px;margin:0 auto 6rem;padding:0 1.5rem;gap:1px;background:var(--bdr2);border:1px solid var(--bdr2);border-radius:4px;overflow:hidden}
-.stat-cell{background:var(--bg2);padding:3rem 2rem;text-align:center}
-.stat-n{font-family:'Bebas Neue',sans-serif;font-size:64px;color:var(--g);line-height:1;margin-bottom:8px;letter-spacing:0.03em}
-.stat-l{font-family:'DM Mono',monospace;font-size:10px;color:var(--txt2);letter-spacing:0.1em;text-transform:uppercase;line-height:1.5}
-
-/* ── SECTIONS ── */
-.section{position:relative;z-index:2;max-width:1200px;margin:0 auto 7rem;padding:0 1.5rem}
-.sec-eyebrow{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.14em;color:var(--g);text-transform:uppercase;margin-bottom:1.25rem;display:flex;align-items:center;gap:12px}
-.sec-eyebrow::after{content:'';height:1px;width:48px;background:var(--bdr)}
-.sec-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,5vw,68px);letter-spacing:0.04em;line-height:1;margin-bottom:1.5rem;color:var(--txt)}
-.sec-title span{color:var(--g)}
-.sec-body{font-size:16px;color:var(--txt2);max-width:520px;line-height:1.8;margin-bottom:3rem}
-.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--bdr2);border:1px solid var(--bdr2);border-radius:4px;overflow:hidden}
-.pillar{background:var(--bg2);padding:2.5rem 2rem;transition:background 0.2s}
-.pillar:hover{background:var(--sur)}
-.pillar-n{font-family:'Bebas Neue',sans-serif;font-size:48px;color:var(--g3);line-height:1;margin-bottom:1.25rem;letter-spacing:0.04em}
-.pillar-t{font-size:15px;font-weight:400;color:var(--txt);margin-bottom:0.75rem;line-height:1.3}
-.pillar-b{font-size:13px;color:var(--txt2);line-height:1.7}
-
-/* ── PICKS GRID ── */
-.picks-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
-.p-card{background:var(--sur);border:1px solid var(--bdr2);border-radius:4px;padding:1.75rem;display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;transition:all 0.2s}
-.p-card:hover{border-color:var(--bdr);transform:translateY(-2px)}
-.p-card.feat{border-color:var(--g2);background:rgba(106,184,58,0.04)}
-.p-tier{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--g);margin-bottom:8px}
-.p-name{font-size:18px;font-weight:400;color:var(--txt);margin-bottom:6px}
-.p-why{font-size:13px;color:var(--txt2);line-height:1.6}
-.p-odds{font-family:'Bebas Neue',sans-serif;font-size:38px;color:var(--g);letter-spacing:0.04em;flex-shrink:0;line-height:1;margin-top:4px}
-
-/* ── CTA ── */
-.cta-wrap{position:relative;z-index:2;max-width:1200px;margin:0 auto 5rem;padding:0 1.5rem}
-.cta-box{background:var(--bg2);border:1px solid var(--bdr);border-radius:4px;padding:5rem 4rem;text-align:center;position:relative;overflow:hidden}
-.cta-box::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:50%;height:1px;background:linear-gradient(90deg,transparent,var(--g),transparent)}
-.cta-box::after{content:'STROKESEDGE';position:absolute;bottom:-20px;left:50%;transform:translateX(-50%);font-family:'Bebas Neue',sans-serif;font-size:120px;color:rgba(106,184,58,0.03);letter-spacing:0.08em;white-space:nowrap;pointer-events:none}
-.cta-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,5vw,64px);letter-spacing:0.04em;line-height:1;margin-bottom:1.25rem;color:var(--txt)}
-.cta-title span{color:var(--g)}
-.cta-sub{font-size:16px;color:var(--txt2);max-width:440px;margin:0 auto 2.5rem;line-height:1.75}
-.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
-
-/* ── FOOTER ── */
-footer{position:relative;z-index:2;border-top:1px solid var(--bdr2);padding:2rem 1.5rem;display:flex;justify-content:space-between;align-items:center;max-width:1200px;margin:0 auto}
-.foot-logo{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:0.08em;color:var(--txt2)}
-.foot-logo span{color:var(--g)}
-.foot-note{font-family:'DM Mono',monospace;font-size:11px;color:var(--txt3);letter-spacing:0.04em}
-
-/* ── LEAD MAGNET STRIP ── */
-.lead-strip{position:relative;z-index:2;background:rgba(106,184,58,0.08);border-top:1px solid rgba(106,184,58,0.2);border-bottom:1px solid rgba(106,184,58,0.2);padding:0.85rem 1.5rem}
-.lead-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
-.lead-tag{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;background:var(--g);color:#fff;padding:3px 8px;border-radius:2px;white-space:nowrap;flex-shrink:0}
-.lead-copy{font-size:13px;color:var(--txt2);line-height:1.5;flex:1;min-width:200px}
-.lead-copy strong{color:var(--txt);font-weight:400}
-.lead-cta{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.06em;color:var(--g);text-decoration:none;border:1px solid rgba(106,184,58,0.4);padding:6px 16px;border-radius:2px;white-space:nowrap;flex-shrink:0;transition:all 0.2s}
-.lead-cta:hover{background:var(--g-glow);border-color:var(--g)}
-.lead-close{background:none;border:none;color:var(--txt3);cursor:pointer;font-size:12px;padding:4px;flex-shrink:0;transition:color 0.2s;line-height:1}
-.lead-close:hover{color:var(--txt2)}
-@media(max-width:640px){.lead-inner{gap:0.6rem}.lead-copy{font-size:12px}}
-
-@keyframes up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-
-/* ── RESPONSIVE ── */
-@media(max-width:900px){
-  .hero{grid-template-columns:1fr;padding:7rem 1.5rem 4rem;gap:3rem;min-height:auto}
-  .hero-right{display:none}
-  .record-cells{grid-template-columns:repeat(3,1fr)}
-  .record-n{font-size:28px}
-  .stats{grid-template-columns:1fr}
-  .pillars{grid-template-columns:1fr}
-  .picks-grid{grid-template-columns:1fr}
-  .cta-box{padding:3rem 1.5rem}
+/* model desk */
+.desk{margin-top:56px;background:linear-gradient(180deg,var(--deep),var(--ink));border-block:1px solid var(--line2);padding-block:64px}
+.desk-h{display:grid;gap:8px;margin-bottom:34px}
+.desk-h p{margin:0;color:var(--dim);max-width:520px}
+.bento{display:grid;gap:12px}
+.cell{background:var(--panel);border:1px solid var(--line2);border-radius:6px;padding:22px;position:relative}
+.cell h3{margin:0 0 18px;font:400 12px/1.4 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+.gauge{display:grid;grid-template-columns:1fr auto;gap:8px 12px;align-items:end;margin-bottom:20px}
+.gauge:last-child{margin-bottom:0}
+.gauge span{font:400 14px/1.2 var(--f-body);color:var(--bone)}
+.gauge b{font:800 30px/.9 var(--f-display);font-stretch:110%;letter-spacing:-.03em;color:var(--mint);font-variant-numeric:tabular-nums}
+.ticks{grid-column:1/-1;position:relative;height:18px;background:repeating-linear-gradient(90deg,rgba(232,239,233,.16) 0 2px,transparent 2px 7px)}
+.ticks i{position:absolute;left:0;top:0;bottom:0;width:var(--w);background:repeating-linear-gradient(90deg,var(--mint) 0 2px,transparent 2px 7px);transition:width 1.1s cubic-bezier(.2,.7,.1,1)}
+.arm .ticks i{width:0}
+.arm.in .ticks i{width:var(--w)}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
+.fact b{display:block;font:800 clamp(28px,7vw,44px)/1 var(--f-display);font-stretch:112%;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.fact span{font:400 11px/1.4 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+.go{display:flex;flex-direction:column;justify-content:space-between;gap:48px;text-decoration:none;min-height:190px;transition:border-color .25s,background .25s}
+.go:hover{border-color:var(--mint);background:var(--panel2)}
+.go strong{font:800 clamp(24px,5vw,34px)/1.02 var(--f-display);font-stretch:108%;letter-spacing:-.03em;font-weight:800}
+.go .arrow{font:400 28px/1 var(--f-body);color:var(--mint);transition:transform .25s}
+.go:hover .arrow{transform:translate(5px,-5px)}
+.go small{display:block;font:400 11px/1.4 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--mint);margin-bottom:10px}
+@media(min-width:861px){
+  .desk-h{grid-template-columns:1.2fr .8fr;align-items:end}
+  .bento{grid-template-columns:repeat(12,1fr)}
+  .b-w{grid-column:span 7;grid-row:span 2}
+  .b-f{grid-column:span 5}
+  .b-a{grid-column:span 5}
+  .b-c{grid-column:span 12}
+  .b-c.go{min-height:0;flex-direction:row;align-items:center}
 }
-@media(max-width:480px){
-  .record-cells{grid-template-columns:repeat(2,1fr)}
-  .record-n{font-size:24px}
-  .stat-n{font-size:48px}
-  .stat-cell{padding:2rem 1rem}
-  .cta-btns{flex-direction:column;align-items:center}
-  .btn-primary,.btn-ghost{width:100%;max-width:280px;text-align:center}
-  footer{flex-direction:column;gap:1rem;text-align:center}
+
+/* editorial */
+.ed{padding-block:96px 24px}
+.ed-grid{display:grid;gap:36px}
+.ed-lead{font:800 clamp(30px,6vw,52px)/1.02 var(--f-display);font-stretch:106%;letter-spacing:-.03em;max-width:15ch;text-wrap:balance}
+.ed-body p{margin:0 0 24px;max-width:60ch;font-size:19px;color:#b9c9bf}
+.ed-body p b{color:var(--bone);font-weight:400}
+.step{display:grid;gap:8px;padding:26px 0;border-top:1px solid var(--line2)}
+.step:last-of-type{border-bottom:1px solid var(--line2)}
+.step .m{font:400 12px/1.4 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--mint)}
+.step h3{margin:0;font:700 22px/1.2 var(--f-display);font-stretch:106%;letter-spacing:-.02em}
+.step p{margin:0;font-size:18px;color:#b9c9bf;max-width:58ch}
+.pull{margin:40px 0 0;font:italic 400 clamp(44px,10vw,104px)/.9 var(--f-serif);color:var(--mint);letter-spacing:-.02em}
+@media(min-width:861px){
+  .ed-grid{grid-template-columns:5fr 7fr;gap:72px}
+  .ed-lead{position:sticky;top:110px;align-self:start}
+  .step{grid-template-columns:150px 1fr;gap:28px}
+  .step .m{padding-top:6px}
 }
+
+/* record */
+.rec{margin-top:80px;padding-block:64px;border-block:1px solid var(--line2);background:var(--deep)}
+.rec-grid{display:grid;gap:18px;align-items:end}
+.rec h2{margin:0}
+.rec p{margin:0;max-width:46ch;color:#b9c9bf;font-size:19px}
+.lnk{display:inline-flex;gap:10px;align-items:center;margin-top:22px;font:500 13px/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:var(--mint);border-bottom:1px solid var(--mint);padding-bottom:6px}
+.lnk:hover{color:var(--bone);border-color:var(--bone)}
+@media(min-width:861px){.rec-grid{grid-template-columns:1.1fr .9fr;gap:72px}}
+
+/* two paths */
+.paths{padding-block:96px 16px;position:relative}
+.paths::before{content:"";position:absolute;left:50%;top:40%;width:min(1100px,120vw);height:700px;transform:translate(-50%,-50%);background:radial-gradient(closest-side,rgba(0,230,118,.14),transparent 70%);pointer-events:none}
+.paths-in{position:relative}
+.two{display:grid;gap:12px;margin-top:34px}
+.path{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:30px 24px;display:flex;flex-direction:column;gap:22px;justify-content:space-between}
+.path small{font:400 12px/1 var(--f-mono);letter-spacing:.16em;text-transform:uppercase;color:var(--mint)}
+.path h3{margin:12px 0 10px;font:800 clamp(30px,6vw,46px)/.98 var(--f-display);font-stretch:108%;letter-spacing:-.035em}
+.path p{margin:0;color:#b9c9bf;font-size:18px;max-width:40ch}
+.path .price{font:800 28px/1 var(--f-display);font-stretch:110%;letter-spacing:-.03em;color:var(--bone)}
+.path .price span{font:400 13px/1 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-left:6px}
+@media(min-width:861px){.two{grid-template-columns:1fr 1fr;gap:16px}.path{padding:40px 36px;min-height:360px}}
+
+/* read next */
+.read{padding-block:96px 8px}
+.read-grid{display:grid;gap:12px}
+.feat{display:flex;flex-direction:column;justify-content:space-between;gap:70px;text-decoration:none;background:var(--mint);color:#031008;border-radius:6px;padding:28px 24px;min-height:300px;transition:background .25s}
+.feat:hover{background:var(--bone)}
+.feat small{font:500 12px/1.3 var(--f-mono);letter-spacing:.14em;text-transform:uppercase}
+.feat strong{display:block;font:800 clamp(28px,6vw,52px)/.98 var(--f-display);font-stretch:108%;letter-spacing:-.035em;margin-top:12px;text-wrap:balance}
+.feat .arrow{font:400 34px/1 var(--f-body)}
+.sml{display:flex;flex-direction:column;gap:12px}
+.sml a{display:block;text-decoration:none;border-top:1px solid var(--line2);padding:22px 0}
+.sml a:last-child{border-bottom:1px solid var(--line2)}
+.sml small{font:400 11px/1.3 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--mint)}
+.sml strong{display:block;font:700 22px/1.2 var(--f-display);font-stretch:106%;letter-spacing:-.02em;margin:8px 0 4px}
+.sml p{margin:0;color:var(--dim);font-size:16px}
+.sml a:hover strong{color:var(--mint)}
+@media(min-width:861px){.read-grid{grid-template-columns:1.25fr .75fr;gap:48px;align-items:stretch}.feat{min-height:420px}}
+
+/* faq */
+.faq{padding-block:96px 8px}
+.faq-in{display:grid;gap:26px}
+details{border-top:1px solid var(--line2);padding:20px 0}
+details:last-child{border-bottom:1px solid var(--line2)}
+summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:20px;font:600 19px/1.35 var(--f-body)}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font:400 22px/1 var(--f-mono);color:var(--mint);transition:transform .25s}
+details[open] summary::after{transform:rotate(45deg)}
+details p{margin:12px 0 0;color:#b9c9bf;max-width:62ch;font-size:17px}
+@media(min-width:861px){.faq-in{grid-template-columns:5fr 7fr;gap:72px}}
+
+/* footer */
+footer{margin-top:96px;border-top:1px solid var(--line2);padding-block:40px 56px}
+.fgrid{display:grid;gap:30px}
+.fl{display:flex;flex-wrap:wrap;gap:10px 26px}
+.fl a{font:400 13px/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:var(--dim)}
+.fl a:hover{color:var(--bone)}
+.rg{font-size:13px;line-height:1.7;color:var(--dim);max-width:70ch}
+.rg strong{color:var(--bone);font-weight:400}
+@media(min-width:861px){.fgrid{grid-template-columns:1fr 1.2fr;gap:72px}}
+@media(max-width:640px){body{font-size:16px}.cell{padding:18px}}
+@media(max-width:380px){h1{font-size:46px}.btn{padding:17px 16px;font-size:12px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
 </style>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-D398EHRP6Y"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-D398EHRP6Y');</script>
 </head>
 <body>
-
-<div class="cursor" id="cur"></div>
-<div class="cursor-ring" id="ring"></div>
-
-<nav>
-  <a href="index.html" class="nav-logo">Strokes<span>Edge</span></a>
-  <div class="nav-links">
-    <a href="index.html" class="nav-link active">Home</a>
-    <a href="methodology.html" class="nav-link">Methodology</a>
-    <a href="picks.html" class="nav-link">Pick Tracker</a>
-    <a href="courses.html" class="nav-link">Courses</a>
-    <a href="analysis.html" class="nav-link">Analysis</a>
-    <a href="https://strokesedge.substack.com" class="nav-cta" target="_blank">Subscribe →</a>
+<header class="top" id="top">
+  <div class="wrap">
+    <nav class="nav" aria-label="Main">
+      <a class="logo" href="index.html">Strokes<b>Edge</b></a>
+      <div class="links">
+        <a href="index.html">Home</a><a href="methodology.html">Methodology</a><a href="picks.html">Pick Tracker</a><a href="courses.html">Courses</a><a href="analysis.html">Analysis</a>
+        <a class="navbtn" href="https://strokesedge.substack.com" target="_blank" rel="noopener">Subscribe →</a>
+      </div>
+      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </nav>
+    <div class="mob" id="mob">
+      <a href="index.html">Home</a><a href="methodology.html">Methodology</a><a href="picks.html">Pick Tracker</a><a href="courses.html">Courses</a><a href="analysis.html">Analysis</a>
+      <a class="pri" href="https://strokesedge.substack.com" target="_blank" rel="noopener">Subscribe →</a>
+    </div>
   </div>
-  <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
-</nav>
-<div class="mobile-menu" id="mobile-menu">
-  <a href="index.html" class="active">Home</a>
-  <a href="methodology.html">Methodology</a>
-  <a href="picks.html">Pick Tracker</a>
-  <a href="courses.html">Courses</a>
-  <a href="analysis.html">Analysis</a>
-  <a href="https://strokesedge.substack.com" class="mob-cta" target="_blank">Subscribe →</a>
-</div>
+</header>
 
+<main>
 <section class="hero">
-  <div class="hero-left">
-    <div class="hero-tag"><div class="hero-tag-dot"></div>Quantitative Golf Analysis</div>
-    <h1 class="hero-title">Strokes<span>Edge.</span></h1>
-    <p class="hero-sub">The same edge-finding frameworks used in financial markets — applied to the PGA Tour every single week. No narratives. No gut feels. Just the numbers.</p>
-    <div class="hero-actions">
-      <a href="https://strokesedge.substack.com" class="btn-primary" target="_blank">Get the picks →</a>
-      <a href="methodology.html" class="btn-ghost">How it works</a>
-    </div>
-  </div>
-  <div class="hero-right">
-    <div class="live-card">
-      <div class="live-card-header">
-        <div class="live-label"><div class="live-dot"></div>Live Analysis</div>
-        <div class="live-event" id="live-event-label">Loading...</div>
+  <div class="wrap hero-grid">
+    <div class="copy">
+      <h1><span class="kick">PGA Tour betting picks</span>Bet the course, <em>not the name.</em></h1>
+      <p class="sub">Free weekly PGA Tour betting picks and odds analysis from a <strong>strokes gained model rebuilt for every course.</strong> Every bet we make goes on a public tracker.</p>
+      <div class="ctas">
+        <a class="btn fill" href="https://strokesedge.substack.com" target="_blank" rel="noopener">Free newsletter <span class="a">→</span></a>
+        <a class="btn line" href="https://buymeacoffee.com/strokesedge/membership" target="_blank" rel="noopener">Membership · $21/mo <span class="a">→</span></a>
       </div>
-      <div id="live-picks-rows">
-        <div style="padding:2rem;font-family:'DM Mono',monospace;font-size:11px;color:var(--txt3);text-align:center;letter-spacing:0.08em">Loading picks...</div>
+      <p class="note">Or grab this week's model workbook for <a href="https://strokesedge.gumroad.com/l/buehoc" target="_blank" rel="noopener">$7</a>.</p>
+    </div>
+    <div class="stage" aria-hidden="true">
+      <div class="fallback"></div>
+      <canvas id="ball"></canvas>
+      <div class="call c1"><b>20%</b>SG: Approach</div>
+      <div class="call c2"><b>14%</b>Off the tee</div>
+      <div class="call c3"><b>7,452</b>Yards · Par 72</div>
+    </div>
+  </div>
+  <div class="wrap"><div class="src"><span>El Cardonal · Nov 5 to 8</span><span>Built on Data Golf strokes gained data</span><span>21+ · Gamble responsibly</span></div></div>
+</section>
+
+<section class="desk" id="desk">
+  <div class="wrap">
+    <div class="desk-h">
+      <div><div class="eb">This week</div><h2>World Wide Technology <em>Championship</em></h2></div>
+      <p>El Cardonal at Diamante, Cabo San Lucas, Mexico. A long Tiger Woods design on paspalum greens, so the model leans on approach play and the tee ball.</p>
+    </div>
+    <div class="bento">
+      <div class="cell b-w arm" id="weights">
+        <h3>How the model weights this course</h3>
+        <div class="gauge"><span>SG: Approach</span><b>20%</b><div class="ticks"><i style="--w:100%"></i></div></div>
+        <div class="gauge"><span>SG: Off the tee</span><b>14%</b><div class="ticks"><i style="--w:70%"></i></div></div>
+        <div class="gauge"><span>Course-fit approach</span><b>10%</b><div class="ticks"><i style="--w:50%"></i></div></div>
+        <div class="gauge"><span>Driving distance fit</span><b>10%</b><div class="ticks"><i style="--w:50%"></i></div></div>
+        <div class="gauge"><span>SG: Around the green</span><b>10%</b><div class="ticks"><i style="--w:50%"></i></div></div>
+      </div>
+      <div class="cell b-f"><h3>The course</h3><div class="facts"><div class="fact"><b>72</b><span>Par</span></div><div class="fact"><b>7,452</b><span>Yards</span></div><div class="fact"><b>Nov 5</b><span>Round 1</span></div></div></div>
+      <a class="cell go b-a" href="analysis-world-wide-technology-championship-2026.html"><div><small>Free</small><strong>Read the full analysis</strong></div><span class="arrow">↗</span></a>
+      <a class="cell go b-c" href="course-el-cardonal.html"><div><small>Course guide</small><strong>El Cardonal at Diamante betting guide</strong></div><span class="arrow">↗</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="ed" id="method">
+  <div class="wrap ed-grid">
+    <div class="ed-lead">How a pick gets made.</div>
+    <div class="ed-body">
+      <div class="step"><div class="m">Step 1 · The course</div><div><h3>Work out what the course asks.</h3><p>Every venue asks different questions. We find which strokes gained categories have actually separated the field there before we look at a single player.</p></div></div>
+      <div class="step"><div class="m">Step 2 · The field</div><div><h3>Score every player against it.</h3><p>Each player is rated on those demands and screened against minimum thresholds. A player who fails a threshold can still be a top 10 candidate, but not an outright bet.</p></div></div>
+      <div class="step"><div class="m">Step 3 · The price</div><div><h3>Compare the model to the market.</h3><p>The model's win probability is set against the sportsbook price. If we like a player more than the market does, that gap is the edge. If there is no gap, there is no bet.</p></div></div>
+      <div class="pull">No gap, no bet.</div>
+    </div>
+  </div>
+</section>
+
+<section class="rec" id="record">
+  <div class="wrap rec-grid">
+    <h2>Every bet, <em>in public.</em></h2>
+    <div>
+      <p>We log each bet with its odds, stake and result, losses included. <span id="betcount"></span></p>
+      <a class="lnk" href="results.html">See the full record <span>→</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="paths" id="join">
+  <div class="wrap paths-in">
+    <div class="eb">Join</div>
+    <h2>Two ways <em>in.</em></h2>
+    <div class="two">
+      <div class="path">
+        <div><small>Free</small><h3>The newsletter</h3><p>The weekly PGA Tour picks article, free on Substack, before every event.</p></div>
+        <a class="btn fill" href="https://strokesedge.substack.com" target="_blank" rel="noopener">Subscribe free <span class="a">→</span></a>
+      </div>
+      <div class="path">
+        <div><small>Membership</small><h3>The full model</h3><p>The model workbook for every main event, with rankings for the whole field, plus the weekly picks.</p><div class="price" style="margin-top:18px">$21<span>per month</span></div></div>
+        <a class="btn line" href="https://buymeacoffee.com/strokesedge/membership" target="_blank" rel="noopener">Join the membership <span class="a">→</span></a>
+      </div>
+    </div>
+    <p class="note" style="margin-top:18px">Just want one week? The workbook for a single tournament is <a href="https://strokesedge.gumroad.com/l/buehoc" target="_blank" rel="noopener">$7</a>.</p>
+  </div>
+</section>
+
+<section class="read" id="read">
+  <div class="wrap">
+    <div class="eb">Read next</div>
+    <h2>Start <em>here.</em></h2>
+    <div class="read-grid">
+      <a class="feat" href="analysis-world-wide-technology-championship-2026.html"><div><small>This week · Nov 5 to 8</small><strong>World Wide Technology Championship picks and analysis</strong></div><span class="arrow">↗</span></a>
+      <div class="sml">
+        <a href="pga-tour-betting-guide.html"><small>Guide</small><strong>PGA Tour betting guide</strong><p>Markets, odds, each-way terms and a repeatable process.</p></a>
+        <a href="strokes-gained-explained.html"><small>Guide</small><strong>Strokes gained explained</strong><p>What each category measures and how to use it.</p></a>
+        <a href="how-to-bet-on-golf.html"><small>Guide</small><strong>How to bet on golf</strong><p>A plain-English walkthrough for first-timers.</p></a>
       </div>
     </div>
   </div>
 </section>
 
-<div class="model-sales">
-  <div class="model-sales-copy">Want the full model breakdown?<br><strong style="color:var(--txt)">$7 per tournament — Weekly Model Workbook&nbsp;&nbsp;&nbsp;$21/month — Monthly Membership</strong></div>
-  <div class="model-sales-buttons">
-    <a href="https://strokesedge.gumroad.com/l/buehoc" target="_blank" class="btn-model">Get Weekly Model — $7</a>
-    <a href="https://buymeacoffee.com/strokesedge/membership" target="_blank" class="btn-model btn-model-outline">Monthly Membership — $21/mo</a>
-  </div>
-</div>
-
-  <div class="lead-strip" id="lead-strip">
-  <div class="lead-inner">
-    <div class="lead-text">
-      <span class="lead-tag">Free</span>
-      <span class="lead-copy">This week: <strong>World Wide Technology Championship</strong> at El Cardonal — course breakdown, SG angles, and best bets.</span>
-    </div>
-    <a href="analysis.html" class="lead-cta">Get it free →</a>
-    <button class="lead-close" id="lead-close" aria-label="Dismiss">✕</button>
-  </div>
-</div>
-
-  <div class="ticker">
-  <div class="ticker-track" id="ticker-track">
-    <span class="ticker-item"><b>THIS WEEK</b> World Wide Technology Championship · El Cardonal</span>
-    <span class="ticker-item"><b>#1 STAT</b> SG: Approach</span>
-    <span class="ticker-item"><b>Edge</b> Approach + putting form over raw distance</span>
-    <span class="ticker-item"><b>0</b> Gut feels. Ever.</span>
-    <span class="ticker-item"><b>THIS WEEK</b> World Wide Technology Championship · El Cardonal</span>
-    <span class="ticker-item"><b>#1 STAT</b> SG: Approach</span>
-    <span class="ticker-item"><b>Edge</b> Approach + putting form over raw distance</span>
-    <span class="ticker-item"><b>0</b> Gut feels. Ever.</span>
-  </div>
-</div>
-
-<div class="record-bar">
-  <div class="record-inner">
-    <div class="record-header">
-      <div class="record-label">2026 Season Record · Settled Bets</div>
-      <a href="picks.html" class="record-link">Full tracker →</a>
-    </div>
-    <div class="record-cells" id="record-cells">
-      <div class="record-cell loading"><div class="record-n">—</div><div class="record-l">Net Profit<br>2026 Season</div></div>
-      <div class="record-cell loading"><div class="record-n">—</div><div class="record-l">Winning<br>Bets</div></div>
-      <div class="record-cell loading"><div class="record-n">—</div><div class="record-l">Losing<br>Bets</div></div>
-      <div class="record-cell loading"><div class="record-n">—</div><div class="record-l">ROI<br>Settled</div></div>
-      <div class="record-cell loading"><div class="record-n">—</div><div class="record-l">Tournaments<br>Tracked</div></div>
-    </div>
-    <div class="hits-row" id="hits-row">
-      <span class="hits-label">Notable hits →</span>
-    </div>
-  </div>
-</div>
-
-<div class="stats">
-  <div class="stat-cell">
-    <div class="stat-n">5+</div>
-    <div class="stat-l">Years of course<br>data modeled</div>
-  </div>
-  <div class="stat-cell">
-    <div class="stat-n">3</div>
-    <div class="stat-l">Primary stat<br>filters per course</div>
-  </div>
-  <div class="stat-cell">
-    <div class="stat-n">0</div>
-    <div class="stat-l">Gut feels.<br>Ever.</div>
-  </div>
-</div>
-
-<section class="section" id="method">
-  <div class="sec-eyebrow">Methodology</div>
-  <h2 class="sec-title">Built like a <span>quant model.</span><br>Applied to golf.</h2>
-  <p class="sec-body">The same systematic edge-finding frameworks used in financial markets — applied to the PGA Tour. Every week. Every course. No shortcuts. See how it works on the <a href="analysis-world-wide-technology-championship-2026.html" style="color:var(--g);text-decoration:none">2026 World Wide Technology Championship analysis</a> — the current event in focus.</p>
-  <div class="pillars">
-    <div class="pillar">
-      <div class="pillar-n">01</div>
-      <div class="pillar-t">Strokes Gained Modeling</div>
-      <div class="pillar-b">We identify which SG categories actually predict finishing position at each course — not what the narrative says. What the data says.</div>
-    </div>
-    <div class="pillar">
-      <div class="pillar-n">02</div>
-      <div class="pillar-t">Course-Fit Profiling</div>
-      <div class="pillar-b">Every course has a unique fingerprint. We match player stat profiles to course demands and find the players whose game fits best.</div>
-    </div>
-    <div class="pillar">
-      <div class="pillar-n">03</div>
-      <div class="pillar-t">Value Screening</div>
-      <div class="pillar-b">Course-fit score vs. market odds. When the gap is wide enough — that's the edge. We find it systematically, every single tournament.</div>
+<section class="faq" id="faq">
+  <div class="wrap faq-in">
+    <div><div class="eb">FAQ</div><h2>PGA Tour betting, <em>answered.</em></h2></div>
+    <div>
+      <details><summary>What is the best way to find value in PGA Tour betting?</summary><p>Compare a player's strokes gained profile to what the course demands, then compare the model's win probability to the sportsbook price. A bet has value only when the model probability is higher than the price implies. StrokesEdge screens every player in the field this way each week.</p></details>
+      <details><summary>Are the PGA Tour betting picks free?</summary><p>Yes. The weekly picks article is free on the StrokesEdge Substack, and the top of every analysis page is free. The full model workbook is $7 per tournament, or included with the $21 monthly membership.</p></details>
+      <details><summary>Which stats matter most for PGA Tour betting?</summary><p>It changes by course. Strokes gained approach is the most common predictor, but the model re-weights approach, off the tee, around the green, putting and course fit for each venue.</p></details>
+      <details><summary>Does StrokesEdge publish its results?</summary><p>Yes. Every bet is logged on the public pick tracker with odds, wager and result, wins and losses included.</p></details>
     </div>
   </div>
 </section>
-
-<section class="section" id="picks">
-  <div class="sec-eyebrow" id="picks-eyebrow">This Week</div>
-  <h2 class="sec-title">Where the <span>model</span><br>sees value.</h2>
-  <p class="sec-body">A sample of this week's analysis. Full breakdown, all picks, course profile, weather, and fades, for subscribers only.</p>
-  <div class="picks-grid" id="picks-grid">
-    <div style="padding:2rem;font-family:'DM Mono',monospace;font-size:11px;color:var(--txt3);letter-spacing:0.08em">Loading...</div>
-  </div>
-</section>
-
-<div class="cta-wrap">
-  <div class="cta-box">
-    <h2 class="cta-title">Get the full <span>edge</span><br>every week.</h2>
-    <p class="cta-sub">Tournament previews, full pick breakdowns, course profiles, and value plays. Delivered before every PGA Tour event.</p>
-    <div class="cta-btns">
-      <a href="https://strokesedge.substack.com" class="btn-primary" target="_blank">Subscribe on Substack →</a>
-      <a href="https://strokesedge.substack.com" class="btn-ghost" target="_blank">Read free picks first</a>
-    </div>
-  </div>
-</div>
+</main>
 
 <footer>
-  <div class="foot-logo">Strokes<span>Edge</span></div>
-  <div class="foot-note">Not financial advice. Gamble responsibly.</div>
+  <div class="wrap fgrid">
+    <div>
+      <a class="logo" href="index.html">Strokes<b>Edge</b></a>
+      <div class="fl" style="margin-top:22px"><a href="analysis.html">Analysis</a><a href="picks.html">Pick Tracker</a><a href="courses.html">Courses</a><a href="methodology.html">Methodology</a><a href="results.html">Results</a><a href="about.html">About</a><a href="https://x.com/StrokesEdge" target="_blank" rel="noopener">X</a></div>
+    </div>
+    <p class="rg"><strong>21+ only. Not financial advice. Gamble responsibly.</strong> Sports betting involves risk and no pick is guaranteed. If gambling is a problem, call 1-800-GAMBLER (US) for free, confidential help.</p>
+  </div>
 </footer>
 
-<script>// ── Hamburger ──
-var hbg=document.getElementById('hamburger'),mob=document.getElementById('mobile-menu');
-if(hbg&&mob){
-  hbg.addEventListener('click',function(e){
-    e.stopPropagation();
-    hbg.classList.toggle('open');
-    mob.classList.toggle('open');
-  });
-  document.addEventListener('click',function(e){
-    if(!hbg.contains(e.target)&&!mob.contains(e.target)){
-      hbg.classList.remove('open');
-      mob.classList.remove('open');
-    }
-  });
-}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  /* nav */
+  var top=document.getElementById('top'),bg=document.getElementById('burger'),mob=document.getElementById('mob');
+  function sc(){top.classList.toggle('s',window.scrollY>24)}
+  window.addEventListener('scroll',sc,{passive:true});sc();
+  bg.addEventListener('click',function(e){e.stopPropagation();var o=mob.classList.toggle('o');bg.classList.toggle('o',o);bg.setAttribute('aria-expanded',o?'true':'false')});
+  document.addEventListener('click',function(e){if(!mob.contains(e.target)&&!bg.contains(e.target)){mob.classList.remove('o');bg.classList.remove('o');bg.setAttribute('aria-expanded','false')}});
 
-var SHEET_ID='2PACX-1vRn7eBjHWBs4nag5K5QHxnKiyeC-UEobNINAfjmEKsnBgX6aqm3lEZCY1i4lg5t5Lwy3I2p8ZLrR4Gc';
-var DIRECT_URL='https://docs.google.com/spreadsheets/d/e/'+SHEET_ID+'/pub?gid=0&single=true&output=csv';
-var PROXY_URL='https://corsproxy.io/?'+encodeURIComponent(DIRECT_URL);
+  /* gauges arm only when JS runs, fill when scrolled into view */
+  var w=document.getElementById('weights');
+  if('IntersectionObserver' in window&&!reduce){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.35});
+    w.classList.add('arm');
+    var rect=w.getBoundingClientRect();
+    if(rect.top<window.innerHeight*.65&&rect.bottom>0){requestAnimationFrame(function(){requestAnimationFrame(function(){w.classList.add('in')})})}
+    else{io.observe(w)}
+  }else{w.classList.remove('arm')}
 
-function parseCSV(text){
-  var lines=text.trim().split('\n');
-  if(lines.length<2)return[];
-  var headers=splitLine(lines[0]);
-  var rows=[];
-  for(var i=1;i<lines.length;i++){
-    if(!lines[i].trim())continue;
-    var vals=splitLine(lines[i]);
-    var obj={};
-    headers.forEach(function(h,idx){obj[h.trim().toLowerCase()]=vals[idx]?vals[idx].trim():'';});
-    rows.push(obj);
+  /* settled-bet count from the public tracker sheet; stays blank if the fetch fails */
+  (function(){
+    var D='https://docs.google.com/spreadsheets/d/e/2PACX-1vRn7eBjHWBs4nag5K5QHxnKiyeC-UEobNINAfjmEKsnBgX6aqm3lEZCY1i4lg5t5Lwy3I2p8ZLrR4Gc/pub?gid=0&single=true&output=csv';
+    function fill(t){var L=t.trim().split(String.fromCharCode(10)),H=L[0].toLowerCase().split(',').map(function(h){return h.trim()}),ri=H.indexOf('result'),pi=H.indexOf('player'),n=0;
+      for(var i=1;i<L.length;i++){var c=L[i].split(',');if(c[pi]&&c[ri]&&c[ri].trim().toLowerCase()!=='open')n++}
+      if(n>0)document.getElementById('betcount').textContent=n+' settled bets are on the record so far.'}
+    fetch(D).then(function(r){if(!r.ok)throw 0;return r.text()}).then(fill).catch(function(){fetch('https://corsproxy.io/?'+encodeURIComponent(D)).then(function(r){return r.text()}).then(fill).catch(function(){})})
+  })();
+  /* golf ball */
+  var cv=document.getElementById('ball'),stage=cv.parentNode;
+  function fail(){stage.classList.add('nogl');document.documentElement.classList.add('nogl')}
+  if(!window.THREE){fail();return}
+  var gl;try{gl=new THREE.WebGLRenderer({canvas:cv,alpha:true,antialias:true})}catch(err){fail();return}
+  gl.setPixelRatio(Math.min(window.devicePixelRatio||1,2));
+  gl.outputEncoding=THREE.sRGBEncoding;
+  gl.toneMapping=THREE.ACESFilmicToneMapping;gl.toneMappingExposure=1.05;
+  var scene=new THREE.Scene(),cam=new THREE.PerspectiveCamera(28,1,.1,60);cam.position.set(0,0,7);
+
+  /* neutral studio environment: warm key softbox, neutral rim strip, floor bounce, one faint mint strip for the edge */
+  (function(){
+    var es=new THREE.Scene();
+    es.add(new THREE.Mesh(new THREE.SphereGeometry(30,32,16),new THREE.MeshBasicMaterial({color:0x151816,side:THREE.BackSide})));
+    function panel(w,h,x,y,z,r,g,b){var m=new THREE.Mesh(new THREE.PlaneGeometry(w,h),new THREE.MeshBasicMaterial({color:new THREE.Color(r,g,b),side:THREE.DoubleSide}));m.position.set(x,y,z);m.lookAt(0,0,0);es.add(m)}
+    panel(10,7,-7,7,7,11,10.4,9.4);
+    panel(5,10,10,1,-2,2.6,2.6,2.6);
+    panel(14,4,0,-9,5,1.4,1.3,1.15);
+    panel(1.4,10,9,0,-8,0,3.2,1.7);
+    var pm=new THREE.PMREMGenerator(gl);scene.environment=pm.fromScene(es,.03).texture;pm.dispose();
+  })();
+
+  /* dimpled sphere: ~392 fibonacci-packed dimples with soft rims */
+  var R=1.3,geo=new THREE.SphereGeometry(R,200,150),pos=geo.attributes.position,N=392,pts=[],ga=Math.PI*(3-Math.sqrt(5)),i,j;
+  for(i=0;i<N;i++){var y=1-(i/(N-1))*2,rr=Math.sqrt(1-y*y),t=ga*i;pts.push(new THREE.Vector3(Math.cos(t)*rr,y,Math.sin(t)*rr))}
+  var v=new THREE.Vector3(),rad=.138,depth=.034;
+  for(i=0;i<pos.count;i++){
+    v.set(pos.getX(i),pos.getY(i),pos.getZ(i)).normalize();
+    var best=0;
+    for(j=0;j<N;j++){var d=Math.acos(Math.min(1,Math.max(-1,v.dot(pts[j]))));if(d<rad){var k=1-d/rad;k=k*k*(3-2*k);if(k>best)best=k}}
+    var s=R-depth*best;pos.setXYZ(i,v.x*s,v.y*s,v.z*s)
   }
-  return rows;
-}
+  geo.computeVertexNormals();
 
-function splitLine(line){
-  var result=[],cur='',inQ=false;
-  for(var i=0;i<line.length;i++){
-    var c=line[i];
-    if(c==='"'){inQ=!inQ;}
-    else if(c===','&&!inQ){result.push(cur);cur='';}
-    else{cur+=c;}
+  /* printed brand mark: warm white urethane with a small StrokesEdge logotype and numeral */
+  var tc=document.createElement('canvas');tc.width=2048;tc.height=1024;var cx=tc.getContext('2d');
+  cx.fillStyle='#f4f2ec';cx.fillRect(0,0,2048,1024);
+  for(i=0;i<9000;i++){cx.fillStyle='rgba(120,115,100,'+(Math.random()*.035)+')';cx.fillRect(Math.random()*2048,Math.random()*1024,1.5,1.5)}
+  cx.textAlign='center';cx.textBaseline='middle';
+  cx.fillStyle='#0a7a45';cx.font='800 34px Archivo, Arial, sans-serif';cx.fillText('STROKESEDGE',1024,486);
+  cx.fillStyle='#1b1f1c';cx.font='800 64px Archivo, Arial, sans-serif';cx.fillText('1',1024,548);
+  cx.fillStyle='#0a7a45';cx.fillRect(944,508,160,3);
+  cx.fillStyle='#0a7a45';cx.font='800 26px Archivo, Arial, sans-serif';cx.fillText('STROKESEDGE',1536,330);
+  var tex=new THREE.CanvasTexture(tc);tex.encoding=THREE.sRGBEncoding;tex.anisotropy=8;
+  var ball=new THREE.Mesh(geo,new THREE.MeshPhysicalMaterial({map:tex,roughness:.46,metalness:0,clearcoat:.5,clearcoatRoughness:.28,envMapIntensity:1.0}));
+  var grp=new THREE.Group();grp.add(ball);
+  var ring=new THREE.Mesh(new THREE.TorusGeometry(1.86,.007,12,240),new THREE.MeshBasicMaterial({color:0x00e676,transparent:true,opacity:.8,toneMapped:false}));
+  ring.rotation.x=1.25;ring.rotation.y=.35;grp.add(ring);
+  var ring2=new THREE.Mesh(new THREE.TorusGeometry(2.14,.004,12,240),new THREE.MeshBasicMaterial({color:0x00e676,transparent:true,opacity:.3,toneMapped:false}));
+  ring2.rotation.x=1.05;ring2.rotation.y=-.5;grp.add(ring2);
+  grp.rotation.z=-.16;scene.add(grp);
+  var key=new THREE.DirectionalLight(0xfff3e2,1.25);key.position.set(-3.2,3.4,4.4);scene.add(key);
+  var rim=new THREE.PointLight(0x00e676,3.2,12);rim.position.set(3.8,-.2,-1.6);scene.add(rim);
+
+  function size(){var b=stage.getBoundingClientRect(),s=Math.max(2,Math.round(b.width));gl.setSize(s,s,false);cam.aspect=1;cam.updateProjectionMatrix()}
+  size();window.addEventListener('resize',size);
+  var tx=0,ty=0,mx=0,my=0;
+  window.addEventListener('pointermove',function(e){mx=(e.clientX/window.innerWidth-.5);my=(e.clientY/window.innerHeight-.5)},{passive:true});
+  var run=true,last=performance.now(),pending=false;
+  if('IntersectionObserver' in window){new IntersectionObserver(function(es){run=es[0].isIntersecting;if(run){last=performance.now();loop()}}).observe(stage)}
+  document.addEventListener('visibilitychange',function(){if(!document.hidden&&run){last=performance.now();loop()}});
+  function frame(dt){
+    if(!reduce){ball.rotation.y+=dt*.00022;ball.rotation.x+=dt*.00005;ring.rotation.z+=dt*.00018;ring2.rotation.z-=dt*.00012;}
+    tx+=(mx*.5-tx)*.04;ty+=(my*.35-ty)*.04;grp.rotation.y=tx;grp.rotation.x=ty;
+    gl.render(scene,cam)
   }
-  result.push(cur);
-  return result;
-}
-
-function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
-
-function processData(picks){
-  var settled=picks.filter(function(p){return p.result!=='open';});
-  var open=picks.filter(function(p){return p.result==='open';});
-  var won=settled.filter(function(p){return p.result==='won'||p.result==='placed';});
-  var lost=settled.filter(function(p){return p.result==='lost';});
-  var wagered=settled.reduce(function(s,p){return s+p.wager;},0);
-  var returned=settled.reduce(function(s,p){return s+p.payout;},0);
-  var net=returned-wagered;
-  var roi=wagered>0?(net/wagered)*100:0;
-  var tourns=new Set(settled.map(function(p){return p.tournament;})).size;
-
-  var netStr=(net>=0?'+':'-')+'$'+Math.abs(net).toFixed(0);
-  var roiStr=(roi>=0?'+':'-')+Math.abs(roi).toFixed(0)+'%';
-
-  document.getElementById('record-cells').innerHTML=
-    rcell(netStr,net>=0?'green':'red','Net Profit<br>2026 Season')+
-    rcell(won.length,'green','Winning<br>Bets')+
-    rcell(lost.length,'red','Losing<br>Bets')+
-    rcell(roiStr,roi>=0?'green':'red','ROI<br>Settled')+
-    rcell(tourns,'green','Tournaments<br>Tracked');
-
-  var topHits=won.slice().sort(function(a,b){return b.payout-a.payout;}).slice(0,5);
-  var hitsHtml='<span class="hits-label">Notable hits →</span>';
-  topHits.forEach(function(h){
-    hitsHtml+='<span class="hit-badge">'+esc(h.player.split(' ').pop())+' '+esc(h.odds)+'</span>';
-  });
-  document.getElementById('hits-row').innerHTML=hitsHtml;
-
-  var currentTourn=open.length>0?open[0].tournament:'';
-
-  if(currentTourn){
-    var tickerItems=[
-      '<b>NOW</b> '+esc(currentTourn),
-      '<b>#1 STAT</b> SG: Approach',
-      '<b>MODEL</b> 5yr course-fit profiling',
-      '<b>NET</b> '+netStr+' · 2026 Season',
-      '<b>ROI</b> '+roiStr+' · Settled bets',
-      '<b>0</b> Gut feels. Ever.',
-    ];
-    var doubled=tickerItems.concat(tickerItems);
-    document.getElementById('ticker-track').innerHTML=doubled.map(function(t){
-      return'<span class="ticker-item">'+t+'</span>';
-    }).join('');
+  function loop(){
+    if(pending||!run||document.hidden)return;pending=true;
+    requestAnimationFrame(function(now){pending=false;var dt=Math.min(64,now-last);last=now;frame(dt);if(!reduce)loop()})
   }
-
-  document.getElementById('live-event-label').textContent=currentTourn||'Season Complete';
-  document.getElementById('picks-eyebrow').textContent=currentTourn?'This Week · '+currentTourn:'Latest Picks';
-
-  var heroOpen=open.filter(function(p){
-    return p.type==='Winner'||p.type==='E/W Winner'||p.type==='Top 20'||p.type==='Top 5';
-  }).slice(0,4);
-  if(!heroOpen.length)heroOpen=open.slice(0,4);
-
-  var tierLabels={'Winner':'Outright Pick','E/W Winner':'Each Way Play','Top 20':'Top-20 Lock','Top 5':'Top-5 Play','Top 10':'Top-10 Play'};
-
-  if(heroOpen.length){
-    document.getElementById('live-picks-rows').innerHTML=heroOpen.map(function(p,i){
-      var cls=i===0?'pick-row value-row':'pick-row';
-      var tierLabel=tierLabels[p.type]||p.type;
-      return'<div class="'+cls+'">'
-        +'<div>'
-        +'<div class="pick-tier-tag">'+esc(tierLabel)+'</div>'
-        +'<div class="pick-player">'+esc(p.player)+'</div>'
-        +'<div class="pick-note">'+esc(p.tournament)+' · '+esc(p.date)+'</div>'
-        +'</div>'
-        +'<div class="pick-number">'+esc(p.odds)+'</div>'
-        +'</div>';
-    }).join('');
-  } else {
-    document.getElementById('live-picks-rows').innerHTML='<div style="padding:1.5rem 1.25rem;font-family:\'DM Mono\',monospace;font-size:11px;color:var(--txt3);letter-spacing:0.08em">No open picks — check back before the next event.</div>';
-  }
-
-  var gridPicks=open.filter(function(p){
-    return p.type==='Winner'||p.type==='E/W Winner';
-  }).slice(0,4);
-  if(!gridPicks.length)gridPicks=open.slice(0,4);
-
-  var tierColors={'Winner':'Value Play','E/W Winner':'Each Way','Top 20':'Top-20 Lock','Top 5':'Top-5 Pick','Top 10':'Top-10 Pick','Longshot':'Longshot'};
-
-  if(gridPicks.length){
-    document.getElementById('picks-grid').innerHTML=gridPicks.map(function(p,i){
-      var cls=i===0?'p-card feat':'p-card';
-      var tier=tierColors[p.type]||p.type;
-      return'<div class="'+cls+'">'
-        +'<div>'
-        +'<div class="p-tier">'+esc(tier)+'</div>'
-        +'<div class="p-name">'+esc(p.player)+'</div>'
-        +'<div class="p-why">'+esc(p.tournament)+' · '+esc(p.type)+'</div>'
-        +'</div>'
-        +'<div class="p-odds">'+esc(p.odds)+'</div>'
-        +'</div>';
-    }).join('');
-  } else {
-    document.getElementById('picks-grid').innerHTML='<div style="padding:2rem;font-family:\'DM Mono\',monospace;font-size:11px;color:var(--txt3);letter-spacing:0.08em;grid-column:1/-1">No open picks right now — check back before the next event or <a href="picks.html" style="color:var(--g)">view full tracker</a>.</div>';
-  }
-}
-
-function rcell(val,cls,label){
-  return'<div class="record-cell"><div class="record-n '+cls+'">'+val+'</div><div class="record-l">'+label+'</div></div>';
-}
-
-function loadSheet(){
-  fetch(DIRECT_URL)
-    .then(function(r){if(!r.ok)throw new Error();return r.text();})
-    .then(function(csv){processData(parseCSV(csv).map(norm).filter(function(p){return p.player;}));})
-    .catch(function(){
-      fetch(PROXY_URL)
-        .then(function(r){if(!r.ok)throw new Error();return r.text();})
-        .then(function(csv){processData(parseCSV(csv).map(norm).filter(function(p){return p.player;}));})
-        .catch(function(){
-          document.getElementById('record-cells').innerHTML=
-            rcell('—','green','Net Profit<br>2026 Season')+
-            rcell('—','green','Winning<br>Bets')+
-            rcell('—','red','Losing<br>Bets')+
-            rcell('—','green','ROI<br>Settled')+
-            rcell('—','green','Tournaments<br>Tracked');
-        });
-    });
-}
-
-function norm(row){
-  return{
-    player:row.player||'',
-    tournament:row.tournament||'',
-    date:row.date||'',
-    type:row.type||'',
-    odds:row.odds||'',
-    wager:parseFloat(row.wager)||0,
-    payout:parseFloat(row.payout)||0,
-    result:(row.result||'open').toLowerCase().trim()
-  };
-}
-
-// ── Custom cursor (desktop only) ──
-if(window.matchMedia('(hover:hover)').matches){
-  var cur=document.getElementById('cur'),ring=document.getElementById('ring');
-  var mx=0,my=0,rx=0,ry=0;
-  document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
-  (function loop(){rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(loop);})();
-  document.querySelectorAll('a,button').forEach(function(el){
-    el.addEventListener('mouseenter',function(){ring.style.width='48px';ring.style.height='48px';ring.style.borderColor='rgba(106,184,58,0.6)';});
-    el.addEventListener('mouseleave',function(){ring.style.width='32px';ring.style.height='32px';ring.style.borderColor='rgba(106,184,58,0.4)';});
-  });
-}
-
-// ── Lead strip dismiss ──
-var closeBtn=document.getElementById('lead-close');
-var leadStrip=document.getElementById('lead-strip');
-if(closeBtn&&leadStrip){
-  if(localStorage.getItem('se-lead-dismissed')){leadStrip.style.display='none';}
-  closeBtn.addEventListener('click',function(){
-    leadStrip.style.display='none';
-    try{localStorage.setItem('se-lead-dismissed','1');}catch(e){}
-  });
-}
-
-loadSheet();
+  ball.rotation.y=-.5;frame(16);loop();
+})();
 </script>
 </body>
 </html>
-<!-- Claude Code connected -->

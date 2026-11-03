@@ -7,31 +7,31 @@
 <title>Pick Tracker — StrokesEdge</title>
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://strokesedge.com/picks.html">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@300;400;500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --g:#6ab83a;--r:#e05252;--y:#f0b429;
-  --g-glow:rgba(106,184,58,0.12);
-  --bg:#080b07;--bg2:#0c0f0b;--sur:#141a12;
-  --bdr:rgba(106,184,58,0.18);--bdr2:rgba(255,255,255,0.07);
-  --txt:#e6ede0;--txt2:#8a9e80;--txt3:#3a4a34;
+  --g:#00e676;--r:#e05252;--y:#ffb547;
+  --g-glow:rgba(0,230,118,0.12);
+  --bg:#050807;--bg2:#09110d;--sur:#0d1a14;
+  --bdr:rgba(0,230,118,0.18);--bdr2:rgba(255,255,255,0.07);
+  --txt:#e8efe9;--txt2:#8da398;--txt3:#6b8076;
 }
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--txt);font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.6;overflow-x:hidden}
-body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(106,184,58,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(106,184,58,0.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;z-index:0}
+body{background:var(--bg);color:var(--txt);font-family:'Outfit',sans-serif;font-weight:300;line-height:1.6;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,230,118,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,230,118,0.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;z-index:0}
 
 /* ── CUSTOM CURSOR — desktop only ── */
 @media(hover:hover){
   body,*{cursor:none}
   .cursor{position:fixed;width:8px;height:8px;background:var(--g);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%)}
-  .cursor-ring{position:fixed;width:32px;height:32px;border:1px solid rgba(106,184,58,0.4);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all 0.15s ease}
+  .cursor-ring{position:fixed;width:32px;height:32px;border:1px solid rgba(0,230,118,0.4);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all 0.15s ease}
 }
 @media(hover:none){.cursor,.cursor-ring{display:none}}
 
 /* ── NAV ── */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1rem 1.5rem;border-bottom:1px solid var(--bdr2);background:rgba(8,11,7,0.95);backdrop-filter:blur(16px)}
-.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:0.08em;color:var(--txt);text-decoration:none;flex-shrink:0}
+.nav-logo{font-family:'Archivo',sans-serif;font-weight:800;font-stretch:94%;font-size:22px;letter-spacing:0.08em;color:var(--txt);text-decoration:none;flex-shrink:0}
 .nav-logo span{color:var(--g)}
 .nav-links{display:flex;align-items:center;gap:1.5rem}
 .nav-link{font-size:12px;color:var(--txt2);text-decoration:none;letter-spacing:0.06em;text-transform:uppercase;transition:color 0.2s}
@@ -57,7 +57,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .hero{position:relative;z-index:2;padding:7rem 1.5rem 2rem;max-width:1200px;margin:0 auto}
 .hero-tag{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.14em;color:var(--g);text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:10px}
 .hero-tag::before{content:'';width:24px;height:1px;background:var(--g)}
-.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,7vw,88px);line-height:0.92;letter-spacing:0.03em;margin-bottom:0.5rem}
+.hero-title{font-family:'Archivo',sans-serif;font-weight:800;font-stretch:94%;font-size:clamp(48px,7vw,88px);line-height:0.92;letter-spacing:0.03em;margin-bottom:0.5rem}
 .hero-title span{color:var(--g)}
 .hero-context{font-family:'DM Mono',monospace;font-size:11px;color:var(--txt3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:2rem}
 
@@ -65,7 +65,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .summary-wrap{position:relative;z-index:2;max-width:1200px;margin:0 auto 2.5rem;padding:0 1.5rem}
 .summary{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--bdr2);border:1px solid var(--bdr2);border-radius:4px;overflow:hidden}
 .sum-cell{background:var(--bg2);padding:1.75rem 1rem;text-align:center}
-.sum-n{font-family:'Bebas Neue',sans-serif;font-size:44px;line-height:1;margin-bottom:6px;letter-spacing:0.03em}
+.sum-n{font-family:'Archivo',sans-serif;font-weight:800;font-stretch:94%;font-size:44px;line-height:1;margin-bottom:6px;letter-spacing:0.03em}
 .sum-n.green{color:var(--g)}
 .sum-n.red{color:var(--r)}
 .sum-n.yellow{color:var(--y)}
@@ -75,9 +75,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .filters{position:relative;z-index:2;max-width:1200px;margin:0 auto 1.5rem;padding:0 1.5rem;display:flex;gap:0.5rem;flex-wrap:wrap}
 .filter-btn{font-family:'DM Mono',monospace;font-size:11px;padding:7px 14px;border:1px solid var(--bdr2);border-radius:2px;color:var(--txt2);background:transparent;cursor:pointer;letter-spacing:0.05em;text-transform:uppercase;transition:all 0.2s;text-align:left;display:flex;flex-direction:column;gap:2px}
 .filter-btn:hover{border-color:var(--bdr);color:var(--txt)}
-.filter-btn.active{border-color:var(--g);color:var(--g);background:rgba(106,184,58,0.08)}
+.filter-btn.active{border-color:var(--g);color:var(--g);background:rgba(0,230,118,0.08)}
 .filter-btn .btn-date{font-size:9px;color:var(--txt3);letter-spacing:0.06em;text-transform:uppercase}
-.filter-btn.active .btn-date{color:rgba(106,184,58,0.6)}
+.filter-btn.active .btn-date{color:rgba(0,230,118,0.6)}
 
 /* ── TABLE — desktop ── */
 .table-wrap{position:relative;z-index:2;max-width:1200px;margin:0 auto 4rem;padding:0 1.5rem}
@@ -85,7 +85,7 @@ table{width:100%;border-collapse:collapse;font-size:13px}
 thead tr{border-bottom:1px solid var(--bdr)}
 th{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--txt3);padding:0.75rem 1rem;text-align:left;font-weight:400}
 tbody tr{border-bottom:1px solid var(--bdr2);transition:background 0.15s}
-tbody tr:hover{background:rgba(106,184,58,0.03)}
+tbody tr:hover{background:rgba(0,230,118,0.03)}
 td{padding:0.9rem 1rem;color:var(--txt2);vertical-align:middle}
 td.player{color:var(--txt);font-weight:400;font-size:14px}
 td.date-col{font-family:'DM Mono',monospace;font-size:11px;color:var(--txt3);white-space:nowrap}
@@ -95,10 +95,10 @@ td.wager{font-family:'DM Mono',monospace;font-size:12px}
 .p-neg{font-family:'DM Mono',monospace;font-size:13px;font-weight:500;color:var(--r)}
 .p-open{font-family:'DM Mono',monospace;font-size:13px;color:var(--txt3)}
 .badge{display:inline-block;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;padding:3px 10px;border-radius:2px}
-.badge.won{background:rgba(106,184,58,0.12);color:var(--g);border:1px solid rgba(106,184,58,0.3)}
+.badge.won{background:rgba(0,230,118,0.12);color:var(--g);border:1px solid rgba(0,230,118,0.3)}
 .badge.lost{background:rgba(224,82,82,0.1);color:var(--r);border:1px solid rgba(224,82,82,0.2)}
 .badge.open{background:rgba(240,180,41,0.1);color:var(--y);border:1px solid rgba(240,180,41,0.2)}
-.badge.placed{background:rgba(106,184,58,0.07);color:#5a9e2f;border:1px solid rgba(106,184,58,0.2)}
+.badge.placed{background:rgba(0,230,118,0.07);color:#5a9e2f;border:1px solid rgba(0,230,118,0.2)}
 .bet-type{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.08em;text-transform:uppercase;color:var(--txt3)}
 .tourn-name{font-size:12px;color:var(--txt2)}
 .state-msg{text-align:center;padding:4rem 1rem;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:0.08em;color:var(--txt3)}
@@ -131,10 +131,10 @@ td.wager{font-family:'DM Mono',monospace;font-size:12px}
 .gate-box{background:var(--sur);border:1px solid var(--bdr);border-radius:6px;padding:2.5rem 2rem;max-width:440px;width:100%;text-align:center;position:relative;z-index:501}
 .gate-eyebrow{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--g);margin-bottom:1rem;display:flex;align-items:center;justify-content:center;gap:8px}
 .gate-eyebrow::before,.gate-eyebrow::after{content:'';width:20px;height:1px;background:var(--g)}
-.gate-title{font-family:'Bebas Neue',sans-serif;font-size:36px;letter-spacing:.04em;line-height:1;margin-bottom:.75rem}
+.gate-title{font-family:'Archivo',sans-serif;font-weight:800;font-stretch:94%;font-size:36px;letter-spacing:.04em;line-height:1;margin-bottom:.75rem}
 .gate-title span{color:var(--g)}
 .gate-sub{font-size:14px;color:var(--txt2);line-height:1.6;margin-bottom:1.75rem;font-weight:300}
-.gate-btn{display:block;width:100%;padding:14px 20px;background:var(--g);color:#080b07;font-family:'DM Mono',monospace;font-size:13px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;border-radius:3px;border:none;cursor:pointer;margin-bottom:.75rem;transition:opacity .2s}
+.gate-btn{display:block;width:100%;padding:14px 20px;background:var(--g);color:#050807;font-family:'DM Mono',monospace;font-size:13px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;border-radius:3px;border:none;cursor:pointer;margin-bottom:.75rem;transition:opacity .2s}
 .gate-btn:hover{opacity:.88}
 .gate-unlock{font-family:'DM Mono',monospace;font-size:10px;color:var(--txt3);letter-spacing:.06em;text-decoration:underline;cursor:pointer;background:none;border:none;padding:0;display:block;margin:0 auto}
 .gate-unlock:hover{color:var(--txt2)}
@@ -145,7 +145,7 @@ td.wager{font-family:'DM Mono',monospace;font-size:12px}
 
 /* ── FOOTER ── */
 footer{position:relative;z-index:2;border-top:1px solid var(--bdr2);padding:2rem 1.5rem;display:flex;justify-content:space-between;align-items:center;max-width:1200px;margin:0 auto}
-.foot-logo{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:0.08em;color:var(--txt2)}
+.foot-logo{font-family:'Archivo',sans-serif;font-weight:800;font-stretch:94%;font-size:18px;letter-spacing:0.08em;color:var(--txt2)}
 .foot-logo span{color:var(--g)}
 .foot-note{font-family:'DM Mono',monospace;font-size:11px;color:var(--txt3)}
 
@@ -175,9 +175,25 @@ footer{position:relative;z-index:2;border-top:1px solid var(--bdr2);padding:2rem
 @media(max-width:380px){
   .summary{grid-template-columns:repeat(2,1fr)}
 }
+@media(max-width:640px){body{font-size:16px}}
 </style>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-D398EHRP6Y"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-D398EHRP6Y');</script>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon-180x180.png">
+<link rel="stylesheet" href="se-theme.css">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://strokesedge.com/picks.html">
+<meta property="og:title" content="Pick Tracker — StrokesEdge">
+<meta property="og:description" content="Full pick tracker for StrokesEdge — every bet, every result, P&L, and ROI. Real money. Real picks. Full transparency. 2026 PGA Tour season.">
+<meta property="og:image" content="https://strokesedge.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@StrokesEdge">
+<meta name="twitter:title" content="Pick Tracker — StrokesEdge">
+<meta name="twitter:description" content="Full pick tracker for StrokesEdge — every bet, every result, P&L, and ROI. Real money. Real picks. Full transparency. 2026 PGA Tour season.">
+<meta name="twitter:image" content="https://strokesedge.com/og-image.png">
 </head>
 <body>
 <div class="cursor" id="cur"></div>
@@ -210,7 +226,7 @@ footer{position:relative;z-index:2;border-top:1px solid var(--bdr2);padding:2rem
     <h2 class="gate-title" style="margin-bottom:0.5rem">WEEKLY<br><span>ACCESS CODE</span></h2>
     <p class="gate-sub" style="margin-bottom:1.5rem">Find the code in this week's<br>StrokesEdge Substack newsletter.</p>
     <form id="gate-form" style="display:block">
-      <input type="text" id="gate-code" placeholder="Enter code" maxlength="20" style="width:100%;padding:12px 14px;background:rgba(255,255,255,.06);border:1px solid var(--bdr);border-radius:2px;color:var(--txt);font-family:'DM Sans',sans-serif;font-size:13px;margin-bottom:1rem;box-sizing:border-box;text-align:center;text-transform:uppercase;" autocomplete="off">
+      <input type="text" id="gate-code" placeholder="Enter code" maxlength="20" style="width:100%;padding:12px 14px;background:rgba(255,255,255,.06);border:1px solid var(--bdr);border-radius:2px;color:var(--txt);font-family:'Outfit',sans-serif;font-size:13px;margin-bottom:1rem;box-sizing:border-box;text-align:center;text-transform:uppercase;" autocomplete="off">
       <button type="submit" class="gate-btn" id="gate-unlock-btn">Unlock</button>
       <div id="gate-error" style="color:var(--r);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.06em;margin-top:1rem;display:none;text-align:center;text-transform:uppercase;">Invalid code. Check this week's newsletter.</div>
     </form>
@@ -267,7 +283,7 @@ footer{position:relative;z-index:2;border-top:1px solid var(--bdr2);padding:2rem
 <footer>
   <div class="foot-logo">Strokes<span>Edge</span></div>
   <div class="foot-note">Not financial advice. Gamble responsibly. All bets placed on BetRivers.</div>
-</footer>
+<p class="se-rg"><strong style="color:var(--txt2);font-weight:400">21+ only.</strong> Sports betting involves risk and no pick is guaranteed. If gambling is a problem, call 1-800-GAMBLER (US) for free, confidential help.</p></footer>
 
 <script>// ── Hamburger ──
 var hbg=document.getElementById('hamburger'),mob=document.getElementById('mobile-menu');
@@ -480,8 +496,8 @@ if(window.matchMedia('(hover:hover)').matches){
   document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
   (function loop(){rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(loop);})();
   document.querySelectorAll('a,button').forEach(function(el){
-    el.addEventListener('mouseenter',function(){ring.style.width='48px';ring.style.height='48px';ring.style.borderColor='rgba(106,184,58,0.6)';});
-    el.addEventListener('mouseleave',function(){ring.style.width='32px';ring.style.height='32px';ring.style.borderColor='rgba(106,184,58,0.4)';});
+    el.addEventListener('mouseenter',function(){ring.style.width='48px';ring.style.height='48px';ring.style.borderColor='rgba(0,230,118,0.6)';});
+    el.addEventListener('mouseleave',function(){ring.style.width='32px';ring.style.height='32px';ring.style.borderColor='rgba(0,230,118,0.4)';});
   });
 }
 

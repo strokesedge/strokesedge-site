@@ -1,0 +1,51 @@
+/* StrokesEdge site theme v3: mint on green-black. Loaded last on every inner page so it wins over each page's own inline styles. */
+:root{
+  --g:#00e676;--g2:#00b85c;--g3:#0b3d24;--r:#e05252;--y:#ffb547;--g-glow:rgba(0,230,118,.12);
+  --bg:#050807;--bg2:#09110d;--bg3:#0d1a14;--sur:#0d1a14;
+  --bdr:rgba(0,230,118,.16);--bdr2:rgba(232,239,233,.09);
+  --txt:#e8efe9;--txt2:#8da398;--txt3:#6b8076;
+  color-scheme:dark;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg)!important;color:var(--txt);font-family:'Outfit','Helvetica Neue',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+body::before{background-image:none!important}
+body::after{display:none!important}
+.cursor,.cursor-ring{display:none!important}
+@media(hover:hover){body,*{cursor:auto!important}a,button,summary,label,.hamburger,[role="button"]{cursor:pointer!important}}
+:focus-visible{outline:2px solid var(--g);outline-offset:3px}
+::selection{background:var(--g);color:#031008}
+
+/* nav: same look as the homepage */
+nav{background:rgba(5,8,7,.9)!important;border-bottom:1px solid var(--bdr2)!important}
+.nav-logo{font-size:20px!important;font-stretch:118%!important;letter-spacing:-.02em!important;text-transform:none!important}
+.nav-logo span{color:var(--g)}
+.nav-link,.nav-cta,.mobile-menu a{font-family:'DM Mono',monospace!important;letter-spacing:.08em}
+.nav-cta{border-radius:2px}
+.mobile-menu{background:rgba(5,8,7,.98)!important}
+
+/* display type: Archivo for headings, Instrument Serif italic for the accent word */
+h1,h2,.hero-title,.sec-title,.cta-title{letter-spacing:0!important;line-height:1}
+.hero-title span{display:block}
+h1 span,h2 span,.hero-title span,.sec-title span,.cta-title span{font-family:'Instrument Serif',Georgia,serif!important;font-style:italic;font-weight:400!important;font-stretch:100%!important;letter-spacing:0!important}
+
+/* filled mint buttons need dark text, white on mint is unreadable */
+.btn-primary,.btn-model,.btn,.lead-tag,.unlock-btn,button.unlock,.gate-btn,.cta-btn{color:#031008}
+.btn-primary:hover,.btn-model:hover{background:#33ff94}
+.btn-model-outline,.btn-ghost{color:var(--g)}
+
+/* footer: restyled in place (page-specific internal links stay) */
+footer{flex-wrap:wrap;border-top:1px solid var(--bdr2)!important;color:var(--txt2)}
+footer a{color:var(--txt2);text-decoration:none;transition:color .2s}
+footer a:hover{color:var(--g)}
+.se-rg{display:block;flex-basis:100%;width:100%;margin:14px 0 0;font:300 13px/1.7 'Outfit',sans-serif;color:var(--txt3);text-align:left}
+.se-rg a{color:var(--txt2);text-decoration:underline}
+
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+
+/* inline links in body copy default to browser blue on dark pages */
+a:not([class]){color:var(--g);text-underline-offset:3px}
+a:not([class]):hover{color:#33ff94}
+footer a:not([class]){color:var(--txt2)}
+.related a{color:var(--txt)}
+.toc a{color:var(--txt2)}
+.toc a:hover{color:var(--g)}

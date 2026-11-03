@@ -17,17 +17,17 @@
 <meta name="twitter:title" content="Course Guides — PGA Tour Venue Betting Profiles | StrokesEdge">
 <meta name="twitter:description" content="StrokesEdge course guides: stat-based betting profiles for every major PGA Tour venue. What stats actually predict winners, hole-by-hole breakdowns, and historical trends.">
 <meta name="twitter:image" content="https://strokesedge.com/og-image.png">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--g:#6ab83a;--g2:#3d7a18;--g3:#1a3a08;--r:#e05252;--y:#f0b429;--g-glow:rgba(106,184,58,0.12);--bg:#080b07;--bg2:#0c0f0b;--sur:#141a12;--bdr:rgba(106,184,58,0.18);--bdr2:rgba(255,255,255,0.07);--txt:#e6ede0;--txt2:#8a9e80;--txt3:#3a4a34;}
+:root{--g:#00e676;--g2:#00b85c;--g3:#0b3d24;--r:#e05252;--y:#ffb547;--g-glow:rgba(0,230,118,0.12);--bg:#050807;--bg2:#09110d;--sur:#0d1a14;--bdr:rgba(0,230,118,0.18);--bdr2:rgba(255,255,255,0.07);--txt:#e8efe9;--txt2:#8da398;--txt3:#6b8076;}
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--txt);font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.6;overflow-x:hidden}
+body{background:var(--bg);color:var(--txt);font-family:'Outfit',sans-serif;font-weight:300;line-height:1.6;overflow-x:hidden}
 body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:1;opacity:.6}
-body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(106,184,58,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(106,184,58,0.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;z-index:0}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,230,118,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,230,118,0.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;z-index:0}
 /* ── NAV ── */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1rem 1.5rem;border-bottom:1px solid var(--bdr2);background:rgba(8,11,7,.95);backdrop-filter:blur(16px)}
-.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.08em;color:var(--txt);text-decoration:none;flex-shrink:0}
+.nav-logo{font-family:'Archivo',sans-serif;font-weight:800;font-stretch:94%;font-size:22px;letter-spacing:.08em;color:var(--txt);text-decoration:none;flex-shrink:0}
 .nav-logo span{color:var(--g)}
 .nav-links{display:flex;align-items:center;gap:1.5rem}
 .nav-link{font-size:12px;color:var(--txt2);text-decoration:none;letter-spacing:.06em;text-transform:uppercase;transition:color .2s;white-space:nowrap}
@@ -51,7 +51,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .hero{padding:7rem 0 3rem}
 .eyebrow{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.14em;color:var(--g);text-transform:uppercase;margin-bottom:1.25rem;display:flex;align-items:center;gap:10px;opacity:0;animation:up .7s .1s forwards}
 .eyebrow::before{content:'';width:24px;height:1px;background:var(--g)}
-h1.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,9vw,88px);line-height:.92;letter-spacing:.03em;margin-bottom:.75rem;opacity:0;animation:up .7s .2s forwards}
+h1.hero-title{font-family:'Archivo',sans-serif;font-weight:800;font-stretch:94%;font-size:clamp(52px,9vw,88px);line-height:.92;letter-spacing:.03em;margin-bottom:.75rem;opacity:0;animation:up .7s .2s forwards}
 h1.hero-title span{color:var(--g);display:block}
 .hero-sub{font-size:16px;color:var(--txt2);line-height:1.85;max-width:580px;opacity:0;animation:up .7s .35s forwards}
 @keyframes up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
@@ -59,25 +59,25 @@ h1.hero-title span{color:var(--g);display:block}
 .filter-bar{display:flex;gap:.5rem;flex-wrap:wrap;margin:2.5rem 0 2rem;padding-bottom:1.5rem;border-bottom:1px solid var(--bdr2)}
 .filter-pill{font-family:'DM Mono',monospace;font-size:10px;padding:6px 14px;border:1px solid var(--bdr2);border-radius:20px;color:var(--txt2);background:transparent;cursor:pointer;letter-spacing:.06em;text-transform:uppercase;transition:all .2s}
 .filter-pill:hover{border-color:var(--bdr);color:var(--txt)}
-.filter-pill.active{border-color:var(--g);color:var(--g);background:rgba(106,184,58,.08)}
+.filter-pill.active{border-color:var(--g);color:var(--g);background:rgba(0,230,118,.08)}
 /* ── COURSE GRID ── */
 .courses-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1rem;margin-bottom:3rem}
 .course-card{background:var(--sur);border:1px solid var(--bdr2);border-radius:4px;overflow:hidden;transition:all .2s;text-decoration:none;display:block}
 .course-card:hover{border-color:var(--bdr);transform:translateY(-2px)}
 .course-card.featured{border-color:var(--g2)}
 .course-card.coming-soon{opacity:.5;pointer-events:none}
-.card-header{padding:1.25rem 1.25rem .75rem;border-bottom:1px solid var(--bdr2);background:rgba(106,184,58,.02);display:flex;justify-content:space-between;align-items:flex-start;gap:1rem}
+.card-header{padding:1.25rem 1.25rem .75rem;border-bottom:1px solid var(--bdr2);background:rgba(0,230,118,.02);display:flex;justify-content:space-between;align-items:flex-start;gap:1rem}
 .card-tournament{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--g);margin-bottom:5px}
 .card-name{font-size:18px;font-weight:400;color:var(--txt);line-height:1.2;margin-bottom:3px}
 .card-location{font-size:12px;color:var(--txt2)}
 .card-badge{font-family:'DM Mono',monospace;font-size:8px;padding:3px 9px;border-radius:2px;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;flex-shrink:0}
-.badge-live{background:rgba(106,184,58,.12);color:var(--g);border:1px solid rgba(106,184,58,.25)}
+.badge-live{background:rgba(0,230,118,.12);color:var(--g);border:1px solid rgba(0,230,118,.25)}
 .badge-soon{background:rgba(255,255,255,.04);color:var(--txt3);border:1px solid var(--bdr2)}
 .badge-major{background:rgba(240,180,41,.1);color:var(--y);border:1px solid rgba(240,180,41,.22)}
 .card-body{padding:1rem 1.25rem}
 .card-stats{display:flex;gap:1.5rem;margin-bottom:.75rem}
 .cs-item{display:flex;flex-direction:column;gap:2px}
-.cs-val{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--g);line-height:1;letter-spacing:.03em}
+.cs-val{font-family:'Archivo',sans-serif;font-weight:800;font-stretch:94%;font-size:22px;color:var(--g);line-height:1;letter-spacing:.03em}
 .cs-val.muted{color:var(--txt3)}
 .cs-label{font-family:'DM Mono',monospace;font-size:9px;color:var(--txt3);letter-spacing:.08em;text-transform:uppercase}
 .card-predictor{font-size:12px;color:var(--txt2);line-height:1.5;padding-top:.75rem;border-top:1px solid var(--bdr2)}
@@ -91,21 +91,26 @@ h1.hero-title span{color:var(--g);display:block}
 /* ── CTA ── */
 .cta-box{background:var(--bg2);border:1px solid var(--bdr);border-radius:4px;padding:3rem 2rem;text-align:center;margin:3rem 0;position:relative;overflow:hidden}
 .cta-box::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:50%;height:1px;background:linear-gradient(90deg,transparent,var(--g),transparent)}
-.cta-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,5vw,48px);letter-spacing:.04em;line-height:1;margin-bottom:.75rem;color:var(--txt)}
+.cta-title{font-family:'Archivo',sans-serif;font-weight:800;font-stretch:94%;font-size:clamp(28px,5vw,48px);letter-spacing:.04em;line-height:1;margin-bottom:.75rem;color:var(--txt)}
 .cta-title span{color:var(--g)}
 .cta-sub{font-size:15px;color:var(--txt2);max-width:420px;margin:0 auto 2rem;line-height:1.75}
-.btn-primary{display:inline-block;padding:13px 32px;background:var(--g);color:#fff;font-family:'DM Mono',monospace;font-size:13px;letter-spacing:.06em;text-decoration:none;border-radius:2px;transition:all .2s}
-.btn-primary:hover{background:#7acc44;transform:translateY(-2px)}
+.btn-primary{display:inline-block;padding:13px 32px;background:var(--g);color:#031008;font-family:'DM Mono',monospace;font-size:13px;letter-spacing:.06em;text-decoration:none;border-radius:2px;transition:all .2s}
+.btn-primary:hover{background:#33ff94;transform:translateY(-2px)}
 .btn-ghost{display:inline-block;padding:13px 32px;border:1px solid var(--bdr2);color:var(--txt2);font-family:'DM Mono',monospace;font-size:13px;letter-spacing:.06em;text-decoration:none;border-radius:2px;transition:all .2s;margin-left:.75rem}
 .btn-ghost:hover{border-color:var(--bdr);color:var(--txt)}
 footer{border-top:1px solid var(--bdr2);padding:2rem 1.5rem;display:flex;justify-content:space-between;align-items:center;max-width:1100px;margin:0 auto;position:relative;z-index:2}
-.foot-logo{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.08em;color:var(--txt2)}
+.foot-logo{font-family:'Archivo',sans-serif;font-weight:800;font-stretch:94%;font-size:18px;letter-spacing:.08em;color:var(--txt2)}
 .foot-logo span{color:var(--g)}
 .foot-note{font-family:'DM Mono',monospace;font-size:11px;color:var(--txt3)}
 @media(max-width:640px){h1.hero-title{font-size:clamp(44px,14vw,64px)}.courses-grid{grid-template-columns:1fr}footer{flex-direction:column;gap:1rem;text-align:center}}
 </style>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-D398EHRP6Y"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-D398EHRP6Y');</script>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon-180x180.png">
+<link rel="stylesheet" href="se-theme.css">
 </head>
 <body>
 
@@ -797,7 +802,7 @@ footer{border-top:1px solid var(--bdr2);padding:2rem 1.5rem;display:flex;justify
 <footer>
   <div class="foot-logo">Strokes<span>Edge</span></div>
   <div class="foot-note">Not financial advice. Gamble responsibly.</div>
-</footer>
+<p class="se-rg"><strong style="color:var(--txt2);font-weight:400">21+ only.</strong> Sports betting involves risk and no pick is guaranteed. If gambling is a problem, call 1-800-GAMBLER (US) for free, confidential help.</p></footer>
 
 <script>
 // ── Hamburger ──
