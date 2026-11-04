@@ -552,7 +552,9 @@ def build_course_page(details: dict, analysis_text: str, analysis_failed: bool) 
     title_tag = f"{course} Betting Guide — {tourn} Course Profile | StrokesEdge"
     meta_desc = (f"The complete {course} betting guide for {tourn_with_article}. "
                  f"Strokes gained stats, course fingerprint, and betting angles.")[:159]
-    canonical = f"https://strokesedge.com/course-{slug}.html"
+    # Extensionless on purpose: Cloudflare Pages 308-redirects NAME.html to /NAME, and a canonical
+    # must be the final URL (changed 2026-11-03 with Brian's approval).
+    canonical = f"https://strokesedge.com/course-{slug}"
 
     html = template
     html = re.sub(r"<title>.*?</title>", f"<title>{title_tag}</title>", html, count=1)
@@ -570,6 +572,13 @@ def build_course_page(details: dict, analysis_text: str, analysis_failed: bool) 
                   f'<meta name="twitter:title" content="{title_tag}">', html, count=1)
     html = re.sub(r'<meta name="twitter:description" content=".*?">',
                   f'<meta name="twitter:description" content="{meta_desc}">', html, count=1)
+    # Per-course share image; make_social_image() renders it after the page is written and falls back
+    # to the default og-image.png if that fails (added 2026-11-03).
+    og_image = f"https://strokesedge.com/og/course-{slug}.png"
+    html = re.sub(r'<meta property="og:image" content=".*?">',
+                  f'<meta property="og:image" content="{og_image}">', html, count=1)
+    html = re.sub(r'<meta name="twitter:image" content=".*?">',
+                  f'<meta name="twitter:image" content="{og_image}">', html, count=1)
 
     html = html.replace(
         '  <a href="courses.html">Course Guides</a>\n  <span>›</span>\n  Quail Hollow Club',
@@ -764,13 +773,13 @@ def update_courses_index(details: dict, top_stat: str, insight: str) -> tuple:
 def update_sitemap(slug: str) -> tuple:
     text, has_bom, had_crlf = read_text(SITEMAP_FILE)
 
-    if f"course-{slug}.html</loc>" in text:
+    if f"course-{slug}.html</loc>" in text or f"course-{slug}</loc>" in text:
         logger.info(f"sitemap.xml already has an entry for course-{slug}.html — skipping duplicate insert")
         return text, has_bom, had_crlf
 
     entry = (
         f'  <url>\n'
-        f'    <loc>https://strokesedge.com/course-{slug}.html</loc>\n'
+        f'    <loc>https://strokesedge.com/course-{slug}</loc>\n'
         f'    <lastmod>{date.today().isoformat()}</lastmod>\n'
         f'    <changefreq>yearly</changefreq>\n'
         f'    <priority>0.8</priority>\n'
@@ -778,10 +787,39 @@ def update_sitemap(slug: str) -> tuple:
     )
     marker = "  <url>\n    <loc>https://strokesedge.com/courses.html</loc>"
     idx = text.find(marker)
+    if idx == -1:  # sitemap.xml normalized to the extensionless form (2026-11-03)
+        idx = text.find(marker.replace("courses.html", "courses"))
     if idx == -1:
         raise RuntimeError("Could not find courses.html entry in sitemap.xml")
     close_idx = text.find("</url>", idx) + len("</url>\n\n")
     return text[:close_idx] + entry + text[close_idx:], has_bom, had_crlf
+
+
+def make_social_image(slug: str) -> None:
+    """Best effort: render this course's 1200x630 share image with tools/make_og_images.py (needs
+    Chrome and internet for the fonts). Never aborts the run. If no image gets made, the page falls back
+    to the default og-image.png so it never points at a missing file. Added 2026-11-03."""
+    page = SITE_DIR / f"course-{slug}.html"
+    png = SITE_DIR / "og" / f"course-{slug}.png"
+    try:
+        subprocess.run([sys.executable, str(REPO_ROOT / "tools" / "make_og_images.py"), "--only", f"course-{slug}"],
+                       cwd=REPO_ROOT, check=True, capture_output=True, text=True, timeout=240)
+    except Exception as e:
+        logger.warning(f"Social image generation failed ({e})")
+    if png.exists():
+        logger.info(f"Made social image og/course-{slug}.png")
+        return
+    try:
+        text, has_bom, had_crlf = read_text(page)
+        fallback = "https://strokesedge.com/og-image.png"
+        text = re.sub(r'<meta property="og:image" content=".*?">',
+                      f'<meta property="og:image" content="{fallback}">', text, count=1)
+        text = re.sub(r'<meta name="twitter:image" content=".*?">',
+                      f'<meta name="twitter:image" content="{fallback}">', text, count=1)
+        write_text(page, text, has_bom, had_crlf)
+        logger.warning("No social image was made, page now uses the default og-image.png")
+    except Exception as e:
+        logger.warning(f"Could not apply the default social image fallback: {e}")
 
 
 # ─────────────────────────────────────────────────────────────────────────
@@ -798,6 +836,9 @@ def git_commit_local(new_page_relpath: str, tourn: str, dates: str) -> bool:
     # why this step has never actually succeeded in production before.
     git("add", new_page_relpath, "Strokes Edge Website HTML/courses.html",
         "Strokes Edge Website HTML/sitemap.xml")
+    og_png = SITE_DIR / "og" / (Path(new_page_relpath).stem + ".png")
+    if og_png.exists():  # social image made by make_social_image() (2026-11-03)
+        git("add", og_png.relative_to(REPO_ROOT).as_posix())
     # Check the staged diff specifically, not overall repo status — an
     # unrelated unstaged/untracked file elsewhere (e.g. a WIP edit) would
     # otherwise make this look non-empty even though nothing relevant to
@@ -960,6 +1001,8 @@ def run(test_mode: bool) -> None:
             write_text(new_page_path, course_html, course_bom, course_crlf)
         write_text(COURSES_INDEX_FILE, courses_index_html, index_bom, index_crlf)
         write_text(SITEMAP_FILE, sitemap_html, sitemap_bom, sitemap_crlf)
+        if not page_already_exists:
+            make_social_image(details["slug"])
     except Exception as e:
         logger.error(f"FATAL: file write failed, aborting before any git action: {e}")
         send_email("StrokesEdge: Weekly course update FAILED — file write failed",

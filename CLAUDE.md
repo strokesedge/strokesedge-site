@@ -253,11 +253,10 @@ Every nav must have hamburger at `@media(max-width:860px)`.
 ## URLs, Canonicals and Social Images (added 2026-11-03)
 
 - **Cloudflare Pages 308-redirects every `NAME.html` to `/NAME`.** So the `<link rel="canonical">`, `og:url`, JSON-LD URLs and sitemap `<loc>` entries use the extensionless form (`https://strokesedge.com/analysis`), and the homepage is `https://strokesedge.com/`. Internal `href`s may keep `.html`.
-- **One exception:** `sitemap.xml` keeps `https://strokesedge.com/courses.html` as is. `weekly_course_update.py` (never modify it) inserts new course entries by searching for that exact string and fails without it.
-- **After `weekly_course_update.py` runs, and after building any new page by hand**, run both of these from the repo root (both are safe to re-run):
+- **`weekly_course_update.py` handles this itself for the course pages it creates** (changed 2026-11-03 with Brian's approval): extensionless canonical and og:url, an extensionless sitemap entry, and a per-course social image made by `tools/make_og_images.py` (best effort: if Chrome or the network is missing it falls back to the default `og-image.png` and logs a warning). The image is added to the same local commit. It also accepts either form of the `courses` and course entries already in `sitemap.xml`.
+- **For pages you build by hand (analysis pages), and as a safety net**, run both of these from the repo root (both are safe to re-run):
   1. `python tools/site_fixes_2026_11_03.py` rewrites `.html` canonicals / og:url / sitemap entries to the extensionless form and makes sure every nav has the Guides link.
-  2. `python tools/make_og_images.py` makes a 1200x630 social image for each new analysis and course page into `Strokes Edge Website HTML/og/` and points that page's `og:image` / `twitter:image` at it (needs Chrome and internet for fonts; `--force` redoes all, `--default` redoes `og-image.png`).
-- The weekly script writes `.html` canonicals for new course pages until step 1 is run. Until then Google may see a mismatch, which is harmless for a few days.
+  2. `python tools/make_og_images.py` makes a 1200x630 social image for each analysis and course page that lacks one into `Strokes Edge Website HTML/og/` and points that page's `og:image` / `twitter:image` at it (needs Chrome and internet for fonts; `--force` redoes all, `--default` redoes `og-image.png`).
 
 ---
 
@@ -386,7 +385,7 @@ Fix all issues found before pushing.
 
 ## Automated Weekly Script
 
-`weekly_course_update.py` runs every Sunday at 5pm automatically. It creates new course pages and updates courses.html and sitemap.xml. Never modify or delete this script. When manually updating the site, check `weekly_course_update.log` to see what the script last changed so you don't duplicate or conflict with its work.
+`weekly_course_update.py` runs every Sunday at 5pm automatically. It creates new course pages and updates courses.html and sitemap.xml. Never delete it, and do not change it without Brian's approval (it was changed once, 2026-11-03, for extensionless canonicals/sitemap entries and the social image step; keep its `--test` mode working). When manually updating the site, check `weekly_course_update.log` to see what the script last changed so you don't duplicate or conflict with its work.
 
 **Status note (added after the Rocket Classic 2026 incident where the Sunday run silently failed to push):** a failure/success notification system is being added to this script (email alert on both successful and failed runs, plus a retry on the GitHub push step specifically). Once that's confirmed live, treat a missing Sunday-night confirmation email as a signal the automation failed — don't assume it succeeded just because no error was reported to Brian directly. Until that notification system is confirmed working, manually check `weekly_course_update.log` and the actual GitHub commit history every Monday before doing manual updates, to confirm whether Sunday's run actually pushed or needs to be redone.
 
