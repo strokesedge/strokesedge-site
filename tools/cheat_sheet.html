@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>Strokes Gained Cheat Sheet | StrokesEdge</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600&display=swap">
+<style>
+@page{size:Letter;margin:0}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:8.5in;height:11in;background:#fff;color:#0c110e;font-family:'Outfit',sans-serif;font-weight:400;font-size:11.4px;line-height:1.48;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.page{position:relative;width:8.5in;height:11in;padding:.48in .52in .42in;overflow:hidden}
+.bar{position:absolute;left:0;top:0;right:0;height:.2in;background:#050807}
+.bar i{position:absolute;left:0;top:0;height:100%;width:1.6in;background:#00e676}
+header{display:flex;justify-content:space-between;align-items:flex-end;margin-top:.1in;border-bottom:2px solid #0c110e;padding-bottom:9px}
+h1{font:800 31px/.95 'Archivo',sans-serif;font-stretch:112%;letter-spacing:-.03em}
+h1 em{font:italic 400 1.06em/.95 'Instrument Serif',serif;color:#008f4a;letter-spacing:0}
+.brand{font:800 15px/1 'Archivo',sans-serif;font-stretch:118%;letter-spacing:-.02em;text-align:right}
+.brand b{color:#008f4a}
+.brand span{display:block;margin-top:5px;font:400 8.5px/1 'DM Mono',monospace;letter-spacing:.08em;color:#506247}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px 26px;margin-top:13px}
+h2{font:500 8.5px/1 'DM Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#008f4a;margin-bottom:6px;padding-bottom:4px;border-bottom:1px solid #cdd8c8}
+table{width:100%;border-collapse:collapse}
+td,th{padding:3.5px 5px;text-align:left;vertical-align:top;border-bottom:1px solid #e3eadf}
+th{font:500 8px/1.2 'DM Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:#506247}
+td:first-child{font-weight:600;white-space:nowrap}
+p{margin-bottom:5px}
+.f{font:500 9.6px/1.5 'DM Mono',monospace;background:#eef4ea;border-left:3px solid #00c864;padding:6px 8px;margin:4px 0 6px}
+ol,ul{padding-left:14px}li{margin-bottom:3px}
+.full{grid-column:1/-1}
+.callout{background:#050807;color:#e8efe9;padding:9px 12px;font:600 11px/1.4 'Outfit',sans-serif}
+.callout b{color:#00e676;font-weight:600}
+footer{position:absolute;left:.52in;right:.52in;bottom:.3in;border-top:1px solid #cdd8c8;padding-top:6px;display:flex;justify-content:space-between;font:400 8px/1.4 'DM Mono',monospace;color:#506247;letter-spacing:.02em}
+</style></head>
+<body><div class="page">
+<div class="bar"><i></i></div>
+<header>
+  <h1>Strokes Gained<br><em>Cheat Sheet.</em></h1>
+  <div class="brand">Strokes<b>Edge</b><span>PGA TOUR BETTING ANALYSIS</span></div>
+</header>
+
+<div class="grid">
+  <div>
+    <h2>1. The four categories</h2>
+    <table>
+      <tr><th>Category</th><th>Measures</th></tr>
+      <tr><td>Off the tee</td><td>Driving on par 4s and 5s: distance and accuracy.</td></tr>
+      <tr><td>Approach</td><td>Iron and long shots into the green.</td></tr>
+      <tr><td>Around the green</td><td>Chipping, pitching and bunker play.</td></tr>
+      <tr><td>Putting</td><td>Everything on the green.</td></tr>
+      <tr><td>Tee to green</td><td>Off the tee + approach + around the green.</td></tr>
+      <tr><td>Total</td><td>All four categories.</td></tr>
+    </table>
+  </div>
+  <div>
+    <h2>2. How to read a number</h2>
+    <p>Strokes gained compares each shot with the average result from the same spot for a reference field. <b>+0.50 per round</b> in a category means half a stroke better than average. A negative number is worse than average.</p>
+    <ul>
+      <li>Putting is the noisiest category. A hot putting week is a weaker signal than strong ball-striking.</li>
+      <li>Data providers use different baselines. Never mix numbers or thresholds from two sources.</li>
+      <li>A player with few recent rounds is unknown, not bad.</li>
+    </ul>
+  </div>
+
+  <div>
+    <h2>3. The odds math</h2>
+    <div class="f">Implied probability (+ odds) = 100 / (odds + 100)<br>Implied probability (- odds) = odds / (odds + 100)<br>Decimal odds D = 1 + profit / stake<br>Edge = your probability - implied probability<br>EV per $100 = 100 x (p x D - 1)</div>
+    <p><b>Example:</b> +1325 is decimal 14.25, so the implied chance is 100 / 1425 = <b>7.0%</b>. If you rate the player at 9%, the edge is +2.0 points and EV is +$28.25 per $100.</p>
+    <p>Every golf market adds up to more than 100%. The extra is the sportsbook's margin.</p>
+  </div>
+  <div>
+    <h2>4. The weekly process</h2>
+    <ol>
+      <li><b>Course.</b> Work out which categories have separated the field there.</li>
+      <li><b>Weights.</b> Set the weight for each category and course-fit factor.</li>
+      <li><b>Field.</b> Score every player and apply minimum thresholds. A player who fails can be a top 10 candidate, not an outright bet.</li>
+      <li><b>Price.</b> Compare the model's probability with the market price. No gap, no bet.</li>
+      <li><b>Size and log.</b> Fixed unit, every bet recorded, losers included.</li>
+    </ol>
+  </div>
+
+  <div class="full">
+    <h2>5. Weights change by course (published StrokesEdge examples)</h2>
+    <table>
+      <tr><th>Event</th><th>Approach</th><th>Off the tee</th><th>Course-fit approach</th><th>Driving distance fit</th><th>Around the green</th><th>Putting</th></tr>
+      <tr><td>World Wide Technology Championship (El Cardonal, par 72, 7,452 yd)</td><td>20%</td><td>14%</td><td>10%</td><td>10%</td><td>10%</td><td>8%</td></tr>
+      <tr><td>VidantaWorld Mexico Open (Vidanta Vallarta, par 71, 7,337 yd)</td><td>19%</td><td>13%</td><td>10%</td><td>9%</td><td>8%</td><td>9%</td></tr>
+    </table>
+    <p style="margin-top:5px">Both are long courses where approach shots come from a distance, so approach leads. On a shorter course the order can change.</p>
+  </div>
+
+  <div>
+    <h2>6. Common mistakes</h2>
+    <ul>
+      <li>Betting only favorites, whose prices already reflect their quality.</li>
+      <li>Trusting course history after a renovation or reroute.</li>
+      <li>Betting before the field and the weather are confirmed.</li>
+      <li>Ignoring the place terms on each-way bets.</li>
+      <li>Not shopping for the best price across sportsbooks.</li>
+    </ul>
+  </div>
+  <div>
+    <h2>7. Free tools</h2>
+    <ul>
+      <li><b>Golf odds calculator:</b> strokesedge.com/golf-odds-calculator</li>
+      <li><b>Each-way calculator:</b> strokesedge.com/each-way-calculator</li>
+      <li><b>Every bet, public:</b> strokesedge.com/results</li>
+      <li><b>Methodology:</b> strokesedge.com/methodology</li>
+    </ul>
+  </div>
+
+  <div class="full callout">Want the full model for every player in the field? The weekly workbook is <b>$7 per tournament</b>, or included in the <b>$21 monthly membership</b>. Free picks every tournament week at <b>strokesedge.com</b>.</div>
+</div>
+
+<footer><span>21+ only. Not financial advice. Gamble responsibly. If gambling is a problem, call 1-800-GAMBLER.</span><span>strokesedge.com</span></footer>
+</div></body></html>

@@ -128,7 +128,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var
     <a href="picks.html" class="nav-link">Pick Tracker</a>
     <a href="courses.html" class="nav-link">Courses</a>
     <a href="analysis.html" class="nav-link">Analysis</a><a href="pga-tour-betting-guide.html" class="nav-link">Guides</a>
-    <a href="https://strokesedge.substack.com" class="nav-cta" target="_blank" rel="noopener">Subscribe →</a>
+    <a href="https://strokesedge.substack.com" class="nav-cta" target="_blank" rel="noopener" data-signup>Subscribe →</a>
   </div>
   <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
@@ -138,7 +138,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var
   <a href="picks.html">Pick Tracker</a>
   <a href="courses.html">Courses</a>
   <a href="analysis.html">Analysis</a><a href="pga-tour-betting-guide.html">Guides</a>
-  <a href="https://strokesedge.substack.com" class="mob-cta" target="_blank" rel="noopener">Subscribe →</a>
+  <a href="https://strokesedge.substack.com" class="mob-cta" target="_blank" rel="noopener" data-signup>Subscribe →</a>
 </div>
 <main>
 <div class="eyebrow">Guide</div>
@@ -191,7 +191,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var
 <li>Small samples mislead. Treat a player with few recent rounds as unknown, not bad.</li>
 <li>Strokes gained describes the past. It does not know about injuries or equipment changes.</li>
 </ul>
-<div class="cta-box"><h2>Get the free picks every tournament week</h2><p>The weekly StrokesEdge picks article is free on Substack. The full model workbook is $7 per tournament.</p><a class="btn" href="https://strokesedge.substack.com" target="_blank" rel="noopener">Subscribe free →</a><a class="btn ghost" href="analysis.html">This week's analysis</a></div>
+<div class="cta-box"><h2>Get the free picks every tournament week</h2><p>The weekly StrokesEdge picks article is free on Substack. The full model workbook is $7 per tournament.</p><a class="btn" href="https://strokesedge.substack.com" target="_blank" rel="noopener" data-signup>Subscribe free →</a><a class="btn ghost" href="analysis.html">This week's analysis</a></div>
 <h2>FAQ</h2>
 <details class="faq-item"><summary>What does strokes gained mean in golf?</summary><p>Strokes gained measures how many strokes a player gains or loses on a shot or category compared with the average of a reference field. A positive number means better than average.</p></details>
 <details class="faq-item"><summary>Which strokes gained stat is most important for betting?</summary><p>It depends on the course. Approach is the most common predictor of finishing position, but off the tee, around the green and putting each take the lead at certain venues.</p></details>
@@ -205,8 +205,8 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var
   <div class="foot-cols">
     <div><div class="foot-logo">Strokes<span>Edge</span></div><p class="foot-blurb">Quantitative PGA Tour betting analysis. A strokes gained model, course guides and a public bet tracker.</p></div>
     <div><h3>Site</h3><a href="analysis.html">Analysis</a><a href="picks.html">Pick Tracker</a><a href="courses.html">Courses</a><a href="methodology.html">Methodology</a></div>
-    <div><h3>Guides</h3><a href="pga-tour-betting-guide.html">PGA Tour Betting Guide</a><a href="strokes-gained-explained.html">Strokes Gained Explained</a><a href="how-to-bet-on-golf.html">How to Bet on Golf</a><a href="results.html">Results</a><a href="about.html">About</a></div>
-    <div><h3>Follow</h3><a href="https://strokesedge.substack.com" target="_blank" rel="noopener">Substack</a><a href="https://x.com/StrokesEdge" target="_blank" rel="noopener">X / Twitter</a><a href="https://strokesedge.gumroad.com/l/buehoc" target="_blank" rel="noopener">Weekly model</a></div>
+    <div><h3>Guides</h3><a href="pga-tour-betting-guide.html">PGA Tour Betting Guide</a><a href="strokes-gained-explained.html">Strokes Gained Explained</a><a href="how-to-bet-on-golf.html">How to Bet on Golf</a><a href="results.html">Results</a><a href="weekly-picks.html">Weekly Picks</a><a href="golf-odds-calculator.html">Odds Calculator</a><a href="each-way-calculator.html">Each-Way Calculator</a><a href="about.html">About</a></div>
+    <div><h3>Follow</h3><a href="https://strokesedge.substack.com" target="_blank" rel="noopener" data-signup>Substack</a><a href="https://x.com/StrokesEdge" target="_blank" rel="noopener">X / Twitter</a><a href="https://strokesedge.gumroad.com/l/buehoc" target="_blank" rel="noopener">Weekly model</a></div>
   </div>
   <p class="foot-rg"><strong>21+ only. Not financial advice. Gamble responsibly.</strong> Sports betting involves risk and no pick is guaranteed. If gambling is a problem, call 1-800-GAMBLER (US) for free, confidential help.</p>
 </div>
@@ -216,5 +216,6 @@ if(hbg&&mob){hbg.addEventListener('click',function(e){e.stopPropagation();hbg.cl
 document.addEventListener('click',function(e){if(!hbg.contains(e.target)&&!mob.contains(e.target)){hbg.classList.remove('open');mob.classList.remove('open');}});}
 </script>
 
+<script src="se-signup.js" defer></script>
 </body>
 </html>

@@ -62,9 +62,14 @@ def info(path):
     h1 = re.search(r"<h1[^>]*>(.*?)</h1>", s, re.S)
     h1 = clean(h1.group(1)) if h1 else clean(re.search(r"<title>(.*?)</title>", s).group(1)).split(" \u2014 ")[0]
     h1 = h1.rstrip(". ")
-    meta = re.search(r'<div class="hero-meta[^"]*"[^>]*>(.*?)</div>', s, re.S)
+    meta = re.search(r'<div class="[^"]*hero-meta[^"]*"[^>]*>(.*?)</div>', s, re.S)
     meta = clean(meta.group(1)) if meta else ""
-    if name.startswith("course-"):
+    if re.search(r"-20\d\d-picks-", name):
+        base = re.sub(r"\s*(20\d\d )?(Model )?Picks$", "", h1.split(":")[0].strip())
+        year = re.search(r"(20\d\d)", h1)
+        eyebrow = "Picks and best bets"
+        title = base + (" " + year.group(1) if year else "") + " <em>best bets</em>"
+    elif name.startswith("course-"):
         eyebrow, title = "Course betting guide", h1 + " <em>betting guide</em>"
     else:
         year = re.search(r"(20\d\d)", name)
@@ -114,7 +119,8 @@ def main():
     force = "--force" in sys.argv
     only = sys.argv[sys.argv.index("--only") + 1] if "--only" in sys.argv else None
     os.makedirs(OUT, exist_ok=True)
-    pages = sorted(glob.glob(os.path.join(SITE, "analysis-*.html")) + glob.glob(os.path.join(SITE, "course-*.html")))
+    pages = sorted(glob.glob(os.path.join(SITE, "analysis-*.html")) + glob.glob(os.path.join(SITE, "course-*.html"))
+                   + glob.glob(os.path.join(SITE, "*-20??-picks-*.html")))
     done = 0
     for p in pages:
         slug = os.path.splitext(os.path.basename(p))[0]

@@ -11,3 +11,5 @@ weekly-model/**/state.json
 weekly-model/**/weights_proposal.md
 weekly-model/**/pga_tour_supplement.csv
 weekly-model/**/*.xlsx
+
+tools/__pycache__/

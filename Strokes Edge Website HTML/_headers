@@ -3,3 +3,7 @@
 
 /robots.txt
   Content-Type: text/plain
+
+# Downloads are for subscribers (linked from the welcome email), keep them out of search results
+/downloads/*
+  X-Robots-Tag: noindex

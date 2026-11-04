@@ -207,7 +207,7 @@ footer{position:relative;z-index:2;border-top:1px solid var(--bdr2);padding:2rem
     <a href="picks.html" class="nav-link active">Pick Tracker</a>
     <a href="courses.html" class="nav-link">Courses</a>
     <a href="analysis.html" class="nav-link">Analysis</a><a href="pga-tour-betting-guide.html" class="nav-link">Guides</a>
-    <a href="https://strokesedge.substack.com" class="nav-cta" target="_blank">Subscribe →</a>
+    <a href="https://strokesedge.substack.com" class="nav-cta" target="_blank" data-signup>Subscribe →</a>
   </div>
   <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
@@ -217,7 +217,7 @@ footer{position:relative;z-index:2;border-top:1px solid var(--bdr2);padding:2rem
   <a href="picks.html" class="active">Pick Tracker</a>
   <a href="courses.html">Courses</a>
   <a href="analysis.html">Analysis</a><a href="pga-tour-betting-guide.html">Guides</a>
-  <a href="https://strokesedge.substack.com" class="mob-cta" target="_blank">Subscribe →</a>
+  <a href="https://strokesedge.substack.com" class="mob-cta" target="_blank" data-signup>Subscribe →</a>
 </div>
 
 <!-- â•â•â• SUBSTACK GATE â•â•â• -->
@@ -230,7 +230,7 @@ footer{position:relative;z-index:2;border-top:1px solid var(--bdr2);padding:2rem
       <button type="submit" class="gate-btn" id="gate-unlock-btn">Unlock</button>
       <div id="gate-error" style="color:var(--r);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.06em;margin-top:1rem;display:none;text-align:center;text-transform:uppercase;">Invalid code. Check this week's newsletter.</div>
     </form>
-    <p class="gate-note" style="margin-top:1.5rem">Not subscribed yet? <a href="https://strokesedge.substack.com" target="_blank" style="color:var(--g);text-decoration:none">Get free weekly picks.</a></p>
+    <p class="gate-note" style="margin-top:1.5rem">Not subscribed yet? <a href="https://strokesedge.substack.com" target="_blank" style="color:var(--g);text-decoration:none" data-signup>Get free weekly picks.</a></p>
   </div>
 </div>
 
@@ -554,6 +554,7 @@ if(window.matchMedia('(hover:hover)').matches){
 
 loadSheet();
 </script>
+<script src="se-signup.js" defer></script>
 </body>
 </html>
 
