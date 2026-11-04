@@ -241,11 +241,23 @@ Nav is simplified — no dropdowns. Direct links only:
 - Pick Tracker → picks.html
 - Courses → courses.html
 - Analysis → analysis.html
+- Guides → pga-tour-betting-guide.html (added 2026-11-03)
 - Subscribe → https://strokesedge.substack.com (button style)
 
 Mobile menu: same links, same order.
 
 Every nav must have hamburger at `@media(max-width:860px)`.
+
+---
+
+## URLs, Canonicals and Social Images (added 2026-11-03)
+
+- **Cloudflare Pages 308-redirects every `NAME.html` to `/NAME`.** So the `<link rel="canonical">`, `og:url`, JSON-LD URLs and sitemap `<loc>` entries use the extensionless form (`https://strokesedge.com/analysis`), and the homepage is `https://strokesedge.com/`. Internal `href`s may keep `.html`.
+- **One exception:** `sitemap.xml` keeps `https://strokesedge.com/courses.html` as is. `weekly_course_update.py` (never modify it) inserts new course entries by searching for that exact string and fails without it.
+- **After `weekly_course_update.py` runs, and after building any new page by hand**, run both of these from the repo root (both are safe to re-run):
+  1. `python tools/site_fixes_2026_11_03.py` rewrites `.html` canonicals / og:url / sitemap entries to the extensionless form and makes sure every nav has the Guides link.
+  2. `python tools/make_og_images.py` makes a 1200x630 social image for each new analysis and course page into `Strokes Edge Website HTML/og/` and points that page's `og:image` / `twitter:image` at it (needs Chrome and internet for fonts; `--force` redoes all, `--default` redoes `og-image.png`).
+- The weekly script writes `.html` canonicals for new course pages until step 1 is run. Until then Google may see a mismatch, which is harmless for a few days.
 
 ---
 
@@ -339,6 +351,8 @@ Update every new tournament week (all static HTML, edit by hand):
 ## Pre-Deploy Audit — Run Before Every Commit
 
 **Head Tags**
+- Canonical and og:url are the extensionless form (see "URLs, Canonicals and Social Images")
+- Analysis and course pages point og:image / twitter:image at their own `og/<slug>.png`
 - Every page has specific `<meta name="description">`
 - Every page has correct `<title>` tag
 - Every page has `<link rel="canonical">` with correct URL
