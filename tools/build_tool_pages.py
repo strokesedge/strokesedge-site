@@ -243,4 +243,12 @@ if __name__ == "__main__":
                 "Strokes Gained <span>Cheat Sheet.</span>",
                 "A one-page reference for reading strokes gained and turning it into betting decisions.",
                 CHEAT_BODY, "Free download", faq=cheat_faq, related=REL, schema="WebPage")
-    print("built 3 pages")
+    render_page("404.html", "Page Not Found | StrokesEdge",
+                "That page does not exist or has moved. Use these links to find this week's analysis, the weekly picks, the guides and the free tools on StrokesEdge.",
+                "Page not <span>found.</span>",
+                "That address does not exist or has moved. Try one of these instead.",
+                '<ul><li><a href="analysis.html">This week&#39;s analysis</a></li><li><a href="weekly-picks.html">Weekly PGA Tour picks</a></li>'
+                '<li><a href="pga-tour-betting-guide.html">PGA Tour betting guide</a></li><li><a href="golf-odds-calculator.html">Golf odds calculator</a></li>'
+                '<li><a href="courses.html">Course guides</a></li><li><a href="index.html">Home</a></li></ul>',
+                "404", noindex=True, schema="WebPage")
+    print("built 4 pages (3 + 404)")
