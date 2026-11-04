@@ -19,7 +19,11 @@ GENERATE_SCHEDULE_STATE = os.path.join(QUEUE_DIR, "generate_schedule_state.json"
 # No picks/odds content ever — this stream never touches the tracker's
 # open-bet data. "recap" is the one category that touches the tracker at
 # all, and only settled (non-open) rows.
-CATEGORIES_DEFAULT = ["course_facts", "methodology", "course_fit", "weather"]
+# Switched 2026-11-03 at Brian's request: course conditions, weather, interesting course
+# facts, and sportsbook win odds for individual players. Methodology and course-fit
+# commentary are out of the default rotation. live_picks and recap still append
+# themselves when their own gates open.
+CATEGORIES_DEFAULT = ["course_conditions", "weather", "course_facts", "odds"]
 # Recap only runs Sunday evening through Monday, and only once
 # shared.tracker.is_tournament_complete() confirms every bet for the
 # tournament has settled — see content.py. Wed-Sat deliberately has no
@@ -119,6 +123,18 @@ LIVE_RESULT_PHRASES = [
     "lost our", "we lost", "we won", "hit our", "missed our", "profit",
 ]
 
+# ── Odds commentary (category "odds") ───────────────────────────────
+# Added 2026-11-03. Market information only: sportsbook win prices from
+# shared/market_odds.py, always attributed to the named book. Recommendation
+# language, anything about StrokesEdge picks or the model, and any price
+# not present in the source content are forbidden (see generator._odds_flag).
+ODDS_FORBIDDEN_WORDS = [
+    "pick", "picks", "best bet", "best bets", "value", "edge", "lock", "guarantee", "fade",
+    "should", "must", "model", "bet on", "betting on", "wager", "parlay", "unit", "units",
+    "stake", "+ev", "-ev", "sharp", "steam", "free money", "sure thing", "ticket",
+    "will win", "going to win", "to win it",
+]
+
 # ── Near-duplicate detection ─────────────────────────────────────────
 # Same approach and threshold as legacy_v1/queue_manager.py's
 # find_near_duplicate() (stdlib difflib, no embeddings call) — 0.75 was
@@ -133,6 +149,6 @@ DUPLICATE_CHECK_WINDOW = 15
 # Categories with no natural reason to name a specific player — the safe
 # fallback set when a candidate keeps colliding on the same player after
 # one regeneration attempt.
-NO_PLAYER_CATEGORIES = ["course_facts", "methodology", "weather"]
+NO_PLAYER_CATEGORIES = ["course_facts", "course_conditions", "weather"]
 PLAYER_DIVERSITY_LOOKBACK_POSTS = 10  # how many recent posted tweets to scan for player mentions
 PLAYER_DIVERSITY_BLOCK_RECENT = 4     # block a player if they appear in this many of the most-recent lookback

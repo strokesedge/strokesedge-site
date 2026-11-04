@@ -32,8 +32,9 @@ from config import (
     DUPLICATE_SIMILARITY_THRESHOLD, DUPLICATE_CHECK_WINDOW,
     NO_PLAYER_CATEGORIES, PLAYER_DIVERSITY_LOOKBACK_POSTS,
     PLAYER_DIVERSITY_BLOCK_RECENT, PLAYER_DIVERSITY_LOG, POSTED_LOG,
-    LIVE_FORBIDDEN_WORDS, LIVE_RESULT_PHRASES,
+    LIVE_FORBIDDEN_WORDS, LIVE_RESULT_PHRASES, ODDS_FORBIDDEN_WORDS,
 )
+from market_odds import BOOK_LABEL, player_display_names
 from content import available_categories, next_category, build_context
 
 SYSTEM_PROMPT = f"""You write tweets for @StrokesEdge, a PGA Tour golf betting analytics account.
@@ -45,7 +46,7 @@ VOICE RULES (strict):
 - No em dashes anywhere.
 - Standard sentence case. Not all-caps, not all-lowercase.
 - No AI-sounding parallel structure or tidy summary sentences.
-- Hard limit: 280 characters total. Target 230-250 characters, well under
+- Hard limit: 280 characters total. Target 200-230 characters, well under
   that limit — nobody reviews this stream before it posts, so anything that
   comes in over 280 gets discarded outright rather than trimmed, and that's
   a wasted slot. Leave real margin rather than writing right up to the edge.
@@ -123,7 +124,56 @@ ABSOLUTE RULES:
 OUTPUT FORMAT: a single tweet as plain text. Nothing else.
 """
 
+ODDS_SYSTEM_PROMPT = f"""You write tweets for @StrokesEdge, a PGA Tour golf analytics account.
+This is the fully automatic stream, nobody reviews these before they post, so the
+rules below are hard requirements.
+
+This slot shares sportsbook win odds for individual players at the {TOURNAMENT['name']} as plain
+market information.
+
+VOICE RULES (strict):
+- Data-forward and analytical. No emojis. No em dashes. Standard sentence case.
+- No AI-sounding parallel structure or tidy summary sentences.
+- Hard limit 280 characters. Target 190-220, one or two short sentences, quote at most three players. Over 280 is discarded.
+
+{POSITIVE_TONE_RULES}
+
+{SEO_RULES_LINK_FREE.format(tournament=TOURNAMENT['name'], hashtag=TOURNAMENT['hashtag'])}
+
+ABSOLUTE RULES:
+- NEVER include a link or URL.
+- Name {BOOK_LABEL} as the source of the prices, exactly as written, in every tweet.
+- Quote each price EXACTLY as written in the source, with its plus sign, and only for players
+  listed there. Do not round, convert, average or invent a number. Do not estimate chances
+  yourself: use the implied probability given, or leave it out.
+- This is market information only. NEVER recommend, rate or imply a bet. Do not use the words
+  pick, best bet, value, edge, lock, fade, should or must. Never mention StrokesEdge picks or
+  the model. Never say who will win or who is likely to win.
+- Describe what the market shows (who is favored, how tight the top of the board is, how long
+  the prices run). Do not call a price good, bad, cheap or high.
+- Do not guess dates, days or schedule. No result language.
+- Include either the hashtag {TOURNAMENT['hashtag']} or the phrase "{TOURNAMENT['name']}" in the visible
+  text, built in naturally.
+- Vary the angle between tweets: the favorite, a comparison of two or three names, how tight
+  the top of the board is, or how long the prices run.
+
+OUTPUT FORMAT: a single tweet as plain text. Nothing else.
+"""
+
 CATEGORY_INSTRUCTIONS = {
+    "odds": (
+        "Write one tweet sharing win odds for individual players at the {tournament} {year}, "
+        "using only the DraftKings prices below. Pick ONE angle (the favorite and the price, a "
+        "comparison of two or three players, how tight the top of the board is, or how long the "
+        "prices run). Copy every price and name exactly from the source. Name DraftKings as the "
+        "source. Pure market information, no recommendation."
+    ),
+    "course_conditions": (
+        "Write one tweet about the playing conditions at the course for {tournament} {year}: "
+        "grass and green surfaces, rough, fairway width, hazards, wind exposure or how the course "
+        "plays. Pull one specific condition from the source content below, keep the tone upbeat, "
+        "and do not mention picks, odds or betting."
+    ),
     "live_picks": (
         "Write one live-commentary tweet comparing StrokesEdge's published picks "
         "with the current {tournament} {year} leaderboard, using only the live "
@@ -133,7 +183,7 @@ CATEGORY_INSTRUCTIONS = {
         "claim must be copied from the pick lines or DERIVED FACTS below."
     ),
     "course_facts": (
-        "Write one tweet with a specific course fact or analytics detail for "
+        "Write one tweet with an interesting, specific fact about the course or the event for "
         "{tournament} {year} — par, yardage, a notable hole, historical scoring "
         "average, field size, or similar. Pull the specific number or detail "
         "from the source content below; do not generalize it away."
@@ -242,6 +292,40 @@ def _find_near_duplicate(text, recent_texts):
     return None
 
 
+def _odds_flag(text, context, recent_posted_texts=None):
+    """Safety net for the odds category. Allows sportsbook prices but only those present in the
+    source content, requires the named book, and forbids any recommendation or pick language."""
+    if contains_site_link(text):
+        return "contains a site link (forbidden in this stream)"
+    if len(text) > TWITTER_CHAR_LIMIT:
+        return f"over length ({len(text)} chars)"
+    lowered = text.lower()
+    for word in ODDS_FORBIDDEN_WORDS:
+        if re.search(r"(?<![a-z])" + re.escape(word) + r"(?![a-z])", lowered):
+            return f"contains forbidden word in odds commentary: {word!r}"
+    for phrase in LIVE_RESULT_PHRASES + STANDING_LANGUAGE_TRIGGER_PHRASES:
+        if phrase in lowered:
+            return f"contains result or standing language: {phrase!r}"
+    if BOOK_LABEL.lower() not in lowered:
+        return f"missing sportsbook attribution ({BOOK_LABEL})"
+    for price in re.findall(r"[+-]\d{3,5}", text):
+        if price not in context:
+            return f"contains a price not in the source content: {price!r}"
+    if "$" in text:
+        return "contains a money figure"
+    if REQUIRE_TOURNAMENT_REFERENCE and not _has_tournament_reference(text):
+        return "missing tournament reference"
+    allowed = _numeric_tokens(context) | {str(TOURNAMENT["year"])}
+    unknown = _numeric_tokens(text) - allowed
+    if unknown:
+        return f"contains number(s) not in the odds source content: {sorted(unknown)}"
+    if recent_posted_texts:
+        dup = _find_near_duplicate(text, recent_posted_texts)
+        if dup is not None:
+            return f"near-duplicate of a recently posted tweet: {dup[:80]!r}"
+    return None
+
+
 def _needs_flag(text, recent_posted_texts=None):
     """Returns a reason string if this tweet fails an automated check, else
     None. Every one of these is a hard stop, not a warning — see
@@ -307,20 +391,36 @@ def _log_diversity_event(category, text, player, action):
         }) + "\n")
 
 
-def _generate_for_category(category, context, recent_posted_texts):
+def _generate_once(category, context, recent_posted_texts, extra=""):
     instruction = CATEGORY_INSTRUCTIONS[category].format(
         tournament=TOURNAMENT["name"], year=TOURNAMENT["year"]
-    ) + f"\n\n{context}"
+    ) + f"\n\n{context}" + extra
 
     if category == "live_picks":
         raw = call_claude(LIVE_SYSTEM_PROMPT, instruction).strip()
         raw = re.sub(r'^"|"$', "", raw).strip()
         return raw, _live_flag(raw, context, recent_posted_texts)
 
+    if category == "odds":
+        raw = call_claude(ODDS_SYSTEM_PROMPT, instruction).strip()
+        raw = re.sub(r'^"|"$', "", raw).strip()
+        return raw, _odds_flag(raw, context, recent_posted_texts)
+
     raw = call_claude(SYSTEM_PROMPT, instruction).strip()
     raw = re.sub(r'^"|"$', "", raw).strip()
 
     return raw, _needs_flag(raw, recent_posted_texts)
+
+
+def _generate_for_category(category, context, recent_posted_texts):
+    """One generation, plus a single shorter retry when the draft is over 280 characters, so a
+    slot is not wasted on an otherwise clean tweet that just ran long."""
+    raw, flag = _generate_once(category, context, recent_posted_texts)
+    if flag and flag.startswith("over length"):
+        extra = (f"\n\nYour previous draft was too long ({len(raw)} characters). "
+                 "Rewrite it shorter, under 235 characters, keeping every figure exactly as given.")
+        raw, flag = _generate_once(category, context, recent_posted_texts, extra=extra)
+    return raw, flag
 
 
 def generate_slot(last_category, now=None):
@@ -340,6 +440,10 @@ def generate_slot(last_category, now=None):
     recent_posted_texts = _load_posted_texts(limit=DUPLICATE_CHECK_WINDOW)
 
     player_list = _get_player_list()
+    try:
+        player_list = sorted(set(player_list) | set(player_display_names()))
+    except Exception as e:
+        print(f"[generator] odds player names unavailable for diversity check: {e}")
     recent_players = _recent_posted_players(player_list)
     blocked_players = {p for p in recent_players[-PLAYER_DIVERSITY_BLOCK_RECENT:] if p}
 

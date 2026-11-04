@@ -10,8 +10,15 @@ to Task Scheduler, never posted anything for real).
 
 - Posts standalone tweets (never replies) via the X API on its own. No
   human ever reviews these before they post.
-- Categories: course facts/analytics, model methodology, general
-  course-fit commentary, weather notes, and post-tournament recaps.
+- Categories (switched 2026-11-03): course conditions, weather, interesting
+  course facts, and sportsbook win odds for individual players, plus live
+  picks-vs-leaderboard commentary during play and post-tournament recaps.
+  The **odds** category (`shared/market_odds.py`) is market information only:
+  DraftKings win prices from Data Golf's outrights feed, every price
+  attributed to the book, never a recommendation, never StrokesEdge picks or
+  model output. `generator._odds_flag` rejects any price not in the source,
+  any missing attribution, and any pick/value/edge/model language. Methodology
+  and course-fit commentary are out of the default rotation.
   Recap only runs Sunday evening through Monday, and only once the
   tracker CSV shows every bet for the tournament settled (won/lost/
   placed, none still "open") — it states the exact final record from

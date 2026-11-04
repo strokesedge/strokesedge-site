@@ -18,6 +18,7 @@ from html_utils import load_local_file
 from tracker import is_tournament_complete, get_settled_bets_for_tournament, summarize_final_results
 
 from live_picks import build_live_picks_context
+from market_odds import build_odds_context
 
 from config import CATEGORIES_DEFAULT, RECAP_WEEKDAYS, POSTED_LOG
 
@@ -115,6 +116,16 @@ def build_context(category):
     if category == "course_fit":
         return _analysis_and_course_context()
 
+    if category == "course_conditions":
+        return _analysis_and_course_context()
+
+    if category == "odds":
+        try:
+            return build_odds_context()
+        except Exception as e:
+            print(f"[content] odds context unavailable: {e}")
+            return None
+
     if category == "methodology":
         text = load_local_file(TOURNAMENT["methodology_file"], SITE_REPO)
         return f"METHODOLOGY PAGE CONTENT:\n{text[:4000]}" if text else None
@@ -126,7 +137,8 @@ def build_context(category):
         # has nothing to say this run; generator.py falls back rather
         # than let the model invent a forecast.
         text = load_local_file(TOURNAMENT["analysis_file"], SITE_REPO)
-        if not text or not _matches_current_tournament(text) or "weather" not in text.lower():
+        if (not text or not _matches_current_tournament(text)
+                or not any(k in text.lower() for k in ("weather", "wind", "forecast", "rain"))):
             return None
         return f"ANALYSIS PAGE CONTENT (contains weather section):\n{text[:4000]}"
 
