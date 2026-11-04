@@ -296,7 +296,7 @@ MEMBER_FAQ = [
 ]
 
 MEMBER_REL = [("methodology.html", "Methodology", "How the model works"),
-              ("results.html", "Results", "Every bet, wins and losses"),
+              ("picks.html", "Pick Tracker", "Every bet, wins and losses"),
               ("pga-tour-betting-guide.html", "PGA Tour betting guide", "Markets, odds and strategy")]
 
 if __name__ == "__main__":

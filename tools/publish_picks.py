@@ -230,7 +230,7 @@ def build_index(reg):
            ".pk strong{display:block;font:700 20px/1.25 'Archivo',sans-serif;font-stretch:104%;color:var(--txt);margin:8px 0 6px}"
            ".pk span{font-size:15px;color:var(--txt2)}")
     body = '<div class="pks">%s</div>' % cards + (
-        '<p>Every picks article is also emailed free before the event. <a href="results.html">See the public record</a> or read the '
+        '<p>Every picks article is also emailed free before the event. <a href="picks.html">See the public record</a> or read the '
         '<a href="pga-tour-betting-guide.html">PGA Tour betting guide</a>.</p>')
     render_page("weekly-picks.html", "Weekly PGA Tour Picks and Best Bets | StrokesEdge",
                 "Every StrokesEdge weekly PGA Tour picks article in one place: model best bets, fades and the course stats behind each pick, free before every event.",

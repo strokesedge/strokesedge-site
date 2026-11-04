@@ -7,3 +7,5 @@
 # The rules below handle path-level canonicalization.
 
 /index.html   /   301
+/results     /picks  301
+/results.html   /picks  301

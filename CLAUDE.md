@@ -238,7 +238,7 @@ Add a short FAQ block (3-5 Q&A pairs) near the bottom of every analysis page, ab
 Nav is simplified — no dropdowns. Direct links only:
 - Home → index.html
 - Methodology → methodology.html
-- Results → results.html (the public record; this slot read "Pick Tracker" until 2026-11-04. picks.html, the access-code tracker, is linked from footers and the results page)
+- Pick Tracker → picks.html (the public record plus the code-gated open bets; the separate Results page was merged into it 2026-11-05 and /results redirects here)
 - Courses → courses.html
 - Analysis → analysis.html
 - Guides → pga-tour-betting-guide.html (added 2026-11-03)
@@ -267,7 +267,8 @@ Every nav must have hamburger at `@media(max-width:860px)`.
 - **Weekly picks article on your own domain:** after the Substack post is LIVE, run `python tools/publish_picks.py <weekly-model folder>` (for example `world-wide-technology-championship`). It refuses to publish until the article appears in the Substack feed (never use `--force` before that, the repo is public), drops the access-code footer so the tracker code stays an email-only perk, writes the page, the `weekly-picks.html` archive, the sitemap entry and the social image. Then commit the new page, `weekly-picks.html`, `sitemap.xml`, `og/*.png` and `tools/picks_articles.json`. `--all` publishes every folder already on Substack.
 - **Analysis page gate (changed 2026-11-04):** the old "your@email.com / Unlock" box never sent the email anywhere. The cliff overlay now has the real signup (`Subscribe Free` opens the dialog) and an honor-system "Already subscribed? Show the full breakdown" button (`#cliff-unlock`, remembered in sessionStorage). The blurred content is still in the page source, so this is a signup funnel, not security. Real gating needs server-side access control. `tools/site_updates_2026_11_04.py` applies this to every analysis page and is safe to re-run on new ones.
 - **Membership page:** `membership.html` explains the free, $7 workbook and $21 membership options and links to the existing Gumroad and Buy Me a Coffee checkouts (built by `tools/build_tool_pages.py`). The homepage membership buttons point at it.
-- **Homepage record:** the "Every bet, in public" section reads the live tracker sheet and shows net result, ROI, cashed-lost, tournaments and a cumulative chart. The sheet lists the newest tournament first, so the chart reverses it to run oldest to newest.
+- **Pick Tracker (`picks.html`, rebuilt 2026-11-05 by `tools/build_tracker.py`):** the whole record is public: summary, cumulative chart (oldest to newest, the sheet lists the newest first), by bet type (the 60 free-text spellings are grouped), by tournament and every settled bet, all read live from the sheet and never filtered. Only "Open bets this week" is behind the weekly code. The weekly step is unchanged: add the new code to the `var validCodes=[...]` line in `picks.html` and never remove old ones (`build_tracker.py` reads the array back and preserves it, so re-running it never loses a code). The gate is a signup funnel, not security: the sheet itself is public. Result values in the sheet must be `open`, `won`, `placed` or `lost`; any other label (for example the typo "olost") is counted by payout and the page says so. Do not add a view that hides losing bets.
+- **Homepage record:** only a live count of settled bets and a link to the tracker. The net result, ROI and chart live on the tracker page.
 - Weekly checklist additions: run `publish_picks.py` after the Substack post, then update the homepage "This week" section.
 
 ---

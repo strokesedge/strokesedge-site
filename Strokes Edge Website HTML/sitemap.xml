@@ -29,14 +29,7 @@
     <priority>0.8</priority>
   </url>
 
-  <url>
-    <loc>https://strokesedge.com/results</loc>
-    <lastmod>2026-11-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
+<url>
     <loc>https://strokesedge.com/about</loc>
     <lastmod>2026-11-02</lastmod>
     <changefreq>yearly</changefreq>

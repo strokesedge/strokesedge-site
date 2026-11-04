@@ -180,18 +180,6 @@ h2 em{font:italic 400 1.05em/.9 var(--f-serif);color:var(--mint);letter-spacing:
 .lnk:hover{color:var(--bone);border-color:var(--bone)}
 @media(min-width:861px){.rec-grid{grid-template-columns:1.1fr .9fr;gap:72px}}
 
-.rec-top{display:grid;gap:14px;margin-bottom:28px}
-.rec-top p{margin:0;max-width:46ch;color:#b9c9bf;font-size:19px}
-.rec-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line2);border:1px solid var(--line2)}
-.rec-stats div{background:var(--panel);padding:22px 16px}
-.rec-stats b{display:block;font:800 clamp(30px,6vw,52px)/1 var(--f-display);font-stretch:110%;letter-spacing:-.03em;font-variant-numeric:tabular-nums;color:var(--bone)}
-.rec-stats b.pos{color:var(--mint)}
-.rec-stats b.neg{color:#e05252}
-.rec-stats span{font:400 11px/1.4 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
-.rec-chart{margin:14px 0 4px;background:var(--panel);border:1px solid var(--line2);padding:14px}
-.rec-chart svg{width:100%;height:auto;display:block}
-.rec-fallback{margin:0;font-size:14px;color:var(--dim)}
-@media(min-width:861px){.rec-top{grid-template-columns:1.1fr .9fr;align-items:end;gap:72px}.rec-stats{grid-template-columns:repeat(4,1fr)}}
 
 /* two paths */
 .paths{padding-block:96px 16px;position:relative}
@@ -270,13 +258,13 @@ footer{margin-top:96px;border-top:1px solid var(--line2);padding-block:40px 56px
     <nav class="nav" aria-label="Main">
       <a class="logo" href="index.html">Strokes<b>Edge</b></a>
       <div class="links">
-        <a href="index.html">Home</a><a href="methodology.html">Methodology</a><a href="results.html">Results</a><a href="courses.html">Courses</a><a href="analysis.html">Analysis</a><a href="pga-tour-betting-guide.html">Guides</a>
+        <a href="index.html">Home</a><a href="methodology.html">Methodology</a><a href="picks.html">Pick Tracker</a><a href="courses.html">Courses</a><a href="analysis.html">Analysis</a><a href="pga-tour-betting-guide.html">Guides</a>
         <a class="navbtn" href="https://strokesedge.substack.com" target="_blank" rel="noopener" data-signup>Subscribe →</a>
       </div>
       <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </nav>
     <div class="mob" id="mob">
-      <a href="index.html">Home</a><a href="methodology.html">Methodology</a><a href="results.html">Results</a><a href="courses.html">Courses</a><a href="analysis.html">Analysis</a><a href="pga-tour-betting-guide.html">Guides</a>
+      <a href="index.html">Home</a><a href="methodology.html">Methodology</a><a href="picks.html">Pick Tracker</a><a href="courses.html">Courses</a><a href="analysis.html">Analysis</a><a href="pga-tour-betting-guide.html">Guides</a>
       <a class="pri" href="https://strokesedge.substack.com" target="_blank" rel="noopener" data-signup>Subscribe →</a>
     </div>
   </div>
@@ -340,19 +328,12 @@ footer{margin-top:96px;border-top:1px solid var(--line2);padding-block:40px 56px
 </section>
 
 <section class="rec" id="record">
-  <div class="wrap">
-    <div class="rec-top">
-      <h2>Every bet, <em>in public.</em></h2>
-      <p>We log each bet with its odds, stake and result, losses included. These numbers come straight from the live tracker, so they change every week.</p>
+  <div class="wrap rec-grid">
+    <h2>Every bet, <em>in public.</em></h2>
+    <div>
+      <p>We log each bet with its odds, stake and result, losses included. <span id="betcount"></span></p>
+      <a class="lnk" href="picks.html">Open the pick tracker <span>→</span></a>
     </div>
-    <div class="rec-stats" id="rec-stats" aria-live="polite">
-      <div><b id="rs-net">&hellip;</b><span>Net result</span></div>
-      <div><b id="rs-roi">&hellip;</b><span>ROI on settled bets</span></div>
-      <div><b id="rs-rec">&hellip;</b><span>Cashed - lost</span></div>
-      <div><b id="rs-tn">&hellip;</b><span>Tournaments</span></div>
-    </div>
-    <div class="rec-chart" id="rec-chart"><p class="rec-fallback">The live record chart needs JavaScript. The full record is on the results page.</p></div>
-    <a class="lnk" href="results.html">See every bet and tournament <span>→</span></a>
   </div>
 </section>
 
@@ -429,7 +410,7 @@ footer{margin-top:96px;border-top:1px solid var(--line2);padding-block:40px 56px
   <div class="wrap fgrid">
     <div>
       <a class="logo" href="index.html">Strokes<b>Edge</b></a>
-      <div class="fl" style="margin-top:22px"><a href="analysis.html">Analysis</a><a href="pga-tour-betting-guide.html">Guides</a><a href="picks.html">Pick Tracker</a><a href="courses.html">Courses</a><a href="methodology.html">Methodology</a><a href="results.html">Results</a><a href="weekly-picks.html">Weekly Picks</a><a href="golf-odds-calculator.html">Odds Calculator</a><a href="each-way-calculator.html">Each-Way Calculator</a><a href="about.html">About</a><a href="https://x.com/StrokesEdge" target="_blank" rel="noopener">X</a></div>
+      <div class="fl" style="margin-top:22px"><a href="analysis.html">Analysis</a><a href="pga-tour-betting-guide.html">Guides</a><a href="picks.html">Pick Tracker</a><a href="courses.html">Courses</a><a href="methodology.html">Methodology</a><a href="weekly-picks.html">Weekly Picks</a><a href="golf-odds-calculator.html">Odds Calculator</a><a href="each-way-calculator.html">Each-Way Calculator</a><a href="about.html">About</a><a href="https://x.com/StrokesEdge" target="_blank" rel="noopener">X</a></div>
     </div>
     <p class="rg"><strong>21+ only. Not financial advice. Gamble responsibly.</strong> Sports betting involves risk and no pick is guaranteed. If gambling is a problem, call 1-800-GAMBLER (US) for free, confidential help.</p>
   </div>
@@ -562,34 +543,11 @@ footer{margin-top:96px;border-top:1px solid var(--line2);padding-block:40px 56px
   var D='https://docs.google.com/spreadsheets/d/e/2PACX-1vRn7eBjHWBs4nag5K5QHxnKiyeC-UEobNINAfjmEKsnBgX6aqm3lEZCY1i4lg5t5Lwy3I2p8ZLrR4Gc/pub?gid=0&single=true&output=csv';
   var NL=String.fromCharCode(10);
   function line(l){var r=[],c='',q=false;for(var i=0;i<l.length;i++){var ch=l[i];if(ch==='"'){q=!q}else if(ch===','&&!q){r.push(c);c=''}else{c+=ch}}r.push(c);return r}
-  function money(n){return (n<0?'-':'+')+'$'+Math.abs(n).toLocaleString('en-US',{maximumFractionDigits:0})}
   function paint(csv){
-    var L=csv.trim().split(NL),H=line(L[0]).map(function(h){return h.trim().toLowerCase()}),rows=[];
-    for(var i=1;i<L.length;i++){if(!L[i].trim())continue;var v=line(L[i]),o={};H.forEach(function(h,k){o[h]=(v[k]||'').trim()});if(o.player)rows.push(o)}
-    var settled=rows.filter(function(r){return (r.result||'open').toLowerCase()!=='open'});
-    if(!settled.length)return;
-    var wag=0,ret=0,lost=0,cashed=0,tn={};
-    settled.forEach(function(r){var w=parseFloat(r.wager)||0,p=parseFloat(r.payout)||0;wag+=w;ret+=p;if((r.result||'').toLowerCase()==='lost')lost++;else cashed++;tn[r.tournament]=1});
-    var net=ret-wag,roi=wag>0?net/wag*100:0;
-    var e=function(id){return document.getElementById(id)};
-    e('rs-net').textContent=money(net);e('rs-net').className=net>=0?'pos':'neg';
-    e('rs-roi').textContent=(roi>=0?'+':'')+roi.toFixed(1)+'%';e('rs-roi').className=roi>=0?'pos':'neg';
-    e('rs-rec').textContent=cashed+'-'+lost;
-    e('rs-tn').textContent=Object.keys(tn).length;
-    /* the sheet lists the newest tournament first, so reverse to chart oldest to newest */
-    var cum=0,pts=[0];settled.slice().reverse().forEach(function(r){cum+=(parseFloat(r.payout)||0)-(parseFloat(r.wager)||0);pts.push(cum)});
-    var W=1000,Hh=190,P=34,mn=Math.min.apply(null,pts),mx=Math.max.apply(null,pts);if(mn===mx){mn-=1;mx+=1}
-    function X(k){return P+k*(W-2*P)/(pts.length-1)}function Y(v){return Hh-P-(v-mn)*(Hh-2*P)/(mx-mn)}
-    var d=pts.map(function(v,k){return (k?'L':'M')+X(k).toFixed(1)+' '+Y(v).toFixed(1)}).join(' ');
-    var last=pts.length-1,z=Y(0);
-    var svg='<svg viewBox="0 0 '+W+' '+Hh+'" role="img" aria-label="Cumulative net result across '+settled.length+' settled bets, ending at '+money(net)+'">'
-      +'<line x1="'+P+'" x2="'+(W-P)+'" y1="'+z.toFixed(1)+'" y2="'+z.toFixed(1)+'" stroke="rgba(232,239,233,.2)" stroke-dasharray="4 4"/>'
-      +'<path d="'+d+'" fill="none" stroke="#00e676" stroke-width="2.5" stroke-linejoin="round"/>'
-      +'<circle cx="'+X(last).toFixed(1)+'" cy="'+Y(net).toFixed(1)+'" r="5" fill="#00e676"/>'
-      +'<text x="'+P+'" y="16" fill="#8da398" font-size="13" font-family="DM Mono,monospace">'+money(mx)+'</text>'
-      +'<text x="'+P+'" y="'+(Hh-8)+'" fill="#8da398" font-size="13" font-family="DM Mono,monospace">'+money(mn)+'</text>'
-      +'<text x="'+(W-P)+'" y="'+(Hh-8)+'" text-anchor="end" fill="#8da398" font-size="13" font-family="DM Mono,monospace">'+settled.length+' settled bets, oldest to newest</text></svg>';
-    e('rec-chart').innerHTML=svg;
+    var L=csv.trim().split(NL),H=line(L[0]).map(function(h){return h.trim().toLowerCase()}),n=0;
+    for(var i=1;i<L.length;i++){if(!L[i].trim())continue;var v=line(L[i]),o={};H.forEach(function(h,k){o[h]=(v[k]||'').trim()});
+      if(o.player&&(o.result||'open').toLowerCase()!=='open')n++}
+    if(n>0)document.getElementById('betcount').textContent=n+' settled bets are on the pick tracker so far.';
   }
   fetch(D).then(function(r){if(!r.ok)throw 0;return r.text()}).then(paint).catch(function(){
     fetch('https://corsproxy.io/?'+encodeURIComponent(D)).then(function(r){return r.text()}).then(paint).catch(function(){})});
