@@ -182,7 +182,7 @@ h2 em{font:italic 400 1.05em/.9 var(--f-serif);color:var(--mint);letter-spacing:
 
 
 /* two paths */
-.paths{padding-block:96px 16px;position:relative}
+.paths{padding-block:96px 16px;position:relative;overflow:hidden}
 .paths::before{content:"";position:absolute;left:50%;top:40%;width:min(1100px,120vw);height:700px;transform:translate(-50%,-50%);background:radial-gradient(closest-side,rgba(0,230,118,.14),transparent 70%);pointer-events:none}
 .paths-in{position:relative}
 .two{display:grid;gap:12px;margin-top:34px}
@@ -285,35 +285,35 @@ footer{margin-top:96px;border-top:1px solid var(--line2);padding-block:40px 56px
     <div class="stage" aria-hidden="true">
       <div class="fallback"></div>
       <canvas id="ball"></canvas>
-      <div class="call c1"><b>20%</b>SG: Approach</div>
-      <div class="call c2"><b>14%</b>Off the tee</div>
-      <div class="call c3"><b>7,452</b>Yards · Par 72</div>
+<!--WEEK:callouts-->      <div class="call c1"><b>20%</b>SG: Approach</div>
+      <div class="call c2"><b>14%</b>SG: Off the Tee</div>
+      <div class="call c3"><b>7,452</b>Yards · Par 72</div><!--/WEEK:callouts-->
     </div>
   </div>
-  <div class="wrap"><div class="src"><span>El Cardonal · Nov 5 to 8</span><span>Built on Data Golf strokes gained data</span><span>21+ · Gamble responsibly</span></div></div>
+  <div class="wrap"><div class="src"><span><!--WEEK:src-->El Cardonal · Nov 5 to 8<!--/WEEK:src--></span><span>Built on Data Golf strokes gained data</span><span>21+ · Gamble responsibly</span></div></div>
 </section>
 
-<section class="desk" id="desk">
+<!--WEEK:desk--><section class="desk" id="desk">
   <div class="wrap">
     <div class="desk-h">
       <div><div class="eb">This week</div><h2>World Wide Technology <em>Championship</em></h2></div>
-      <p>El Cardonal at Diamante, Cabo San Lucas, Mexico. A long Tiger Woods design on paspalum greens, so the model leans on approach play and the tee ball.</p>
+      <p>El Cardonal at Diamante, Cabo San Lucas, Mexico. The model puts the most weight on SG: Approach (20%) and SG: Off the Tee (14%) this week.</p>
     </div>
     <div class="bento">
       <div class="cell b-w arm" id="weights">
         <h3>How the model weights this course</h3>
         <div class="gauge"><span>SG: Approach</span><b>20%</b><div class="ticks"><i style="--w:100%"></i></div></div>
-        <div class="gauge"><span>SG: Off the tee</span><b>14%</b><div class="ticks"><i style="--w:70%"></i></div></div>
-        <div class="gauge"><span>Course-fit approach</span><b>10%</b><div class="ticks"><i style="--w:50%"></i></div></div>
-        <div class="gauge"><span>Driving distance fit</span><b>10%</b><div class="ticks"><i style="--w:50%"></i></div></div>
-        <div class="gauge"><span>SG: Around the green</span><b>10%</b><div class="ticks"><i style="--w:50%"></i></div></div>
+        <div class="gauge"><span>SG: Off the Tee</span><b>14%</b><div class="ticks"><i style="--w:70%"></i></div></div>
+        <div class="gauge"><span>Course-Fit Approach</span><b>10%</b><div class="ticks"><i style="--w:50%"></i></div></div>
+        <div class="gauge"><span>Driving Distance Fit</span><b>10%</b><div class="ticks"><i style="--w:50%"></i></div></div>
+        <div class="gauge"><span>SG: Around the Green</span><b>10%</b><div class="ticks"><i style="--w:50%"></i></div></div>
       </div>
       <div class="cell b-f"><h3>The course</h3><div class="facts"><div class="fact"><b>72</b><span>Par</span></div><div class="fact"><b>7,452</b><span>Yards</span></div><div class="fact"><b>Nov 5</b><span>Round 1</span></div></div></div>
       <a class="cell go b-a" href="analysis-world-wide-technology-championship-2026.html"><div><small>Free</small><strong>Read the full analysis</strong></div><span class="arrow">↗</span></a>
       <a class="cell go b-c" href="course-el-cardonal.html"><div><small>Course guide</small><strong>El Cardonal at Diamante betting guide</strong></div><span class="arrow">↗</span></a>
     </div>
   </div>
-</section>
+</section><!--/WEEK:desk-->
 
 <section class="ed" id="method">
   <div class="wrap ed-grid">
@@ -383,7 +383,7 @@ footer{margin-top:96px;border-top:1px solid var(--line2);padding-block:40px 56px
     <div class="eb">Read next</div>
     <h2>Start <em>here.</em></h2>
     <div class="read-grid">
-      <a class="feat" href="analysis-world-wide-technology-championship-2026.html"><div><small>This week · Nov 5 to 8</small><strong>World Wide Technology Championship picks and analysis</strong></div><span class="arrow">↗</span></a>
+      <!--WEEK:feat--><a class="feat" href="analysis-world-wide-technology-championship-2026.html"><div><small>This week · Nov 5 to 8</small><strong>World Wide Technology Championship picks and analysis</strong></div><span class="arrow">↗</span></a><!--/WEEK:feat-->
       <div class="sml">
         <a href="pga-tour-betting-guide.html"><small>Guide</small><strong>PGA Tour betting guide</strong><p>Markets, odds, each-way terms and a repeatable process.</p></a>
         <a href="strokes-gained-explained.html"><small>Guide</small><strong>Strokes gained explained</strong><p>What each category measures and how to use it.</p></a>
@@ -410,7 +410,7 @@ footer{margin-top:96px;border-top:1px solid var(--line2);padding-block:40px 56px
   <div class="wrap fgrid">
     <div>
       <a class="logo" href="index.html">Strokes<b>Edge</b></a>
-      <div class="fl" style="margin-top:22px"><a href="analysis.html">Analysis</a><a href="pga-tour-betting-guide.html">Guides</a><a href="picks.html">Pick Tracker</a><a href="courses.html">Courses</a><a href="methodology.html">Methodology</a><a href="weekly-picks.html">Weekly Picks</a><a href="golf-odds-calculator.html">Odds Calculator</a><a href="each-way-calculator.html">Each-Way Calculator</a><a href="about.html">About</a><a href="https://x.com/StrokesEdge" target="_blank" rel="noopener">X</a></div>
+      <div class="fl" style="margin-top:22px"><a href="analysis.html">Analysis</a><a href="pga-tour-betting-guide.html">Guides</a><a href="picks.html">Pick Tracker</a><a href="courses.html">Courses</a><a href="methodology.html">Methodology</a><a href="weekly-picks.html">Weekly Picks</a><a href="golf-odds-calculator.html">Odds Calculator</a><a href="each-way-calculator.html">Each-Way Calculator</a><a href="about.html">About</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="https://x.com/StrokesEdge" target="_blank" rel="noopener">X</a></div>
     </div>
     <p class="rg"><strong>21+ only. Not financial advice. Gamble responsibly.</strong> Sports betting involves risk and no pick is guaranteed. If gambling is a problem, call 1-800-GAMBLER (US) for free, confidential help.</p>
   </div>

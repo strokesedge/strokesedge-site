@@ -44,6 +44,25 @@ def add_guides(s):
     return re.sub(r'<a href="analysis\.html"[^>]*>Analysis</a>', repl, s)
 
 
+TABLE = re.compile(r"<table\b[^>]*>.*?</table>", re.S)
+
+
+def wrap_tables(s):
+    """Wide tables must scroll inside their own box on phones (added 2026-11-05 after the phone check).
+    Tables already inside a *wrap container are left alone."""
+    out, last = [], 0
+    for m in TABLE.finditer(s):
+        before = s[max(0, m.start() - 200):m.start()]
+        w = re.findall(r'<div class="([^"]*)"[^>]*>\s*$', before)
+        if w and "wrap" in w[-1]:
+            continue
+        out.append(s[last:m.start()])
+        out.append('<div class="tablewrap">' + m.group(0) + "</div>")
+        last = m.end()
+    out.append(s[last:])
+    return "".join(out)
+
+
 for path in sorted(glob.glob(os.path.join(SITE, "*.html"))):
     name = os.path.basename(path)
     if name == "favicon-head-snippet.html":
@@ -52,6 +71,7 @@ for path in sorted(glob.glob(os.path.join(SITE, "*.html"))):
     t = fix_head(s)
     before = t.count(GUIDE)
     t = add_guides(t)
+    t = wrap_tables(t)
     added = t.count(GUIDE) - before
     if added:
         stats["nav"] += 1

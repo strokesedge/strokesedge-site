@@ -72,7 +72,7 @@ for path in sorted(glob.glob(os.path.join(SITE, "*.html"))):
     if name == "favicon-head-snippet.html":
         continue
     s = open(path, encoding="utf-8", newline="").read()
-    t = fix_nav(name, s)
+    t = s  # nav step retired 2026-11-05: Results was merged back into "Pick Tracker" (see site_updates_2026_11_05.py)
     if FORM.search(t):
         t = FORM.sub(lambda m: BUTTON, t)
         t = GATE_JS.sub(lambda m: NEW_JS, t)

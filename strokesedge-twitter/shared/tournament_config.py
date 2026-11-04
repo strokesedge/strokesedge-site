@@ -48,7 +48,7 @@ COURSE_STATS = {
 MODEL_WEIGHTS = [
     ("SG: Approach", 20),
     ("SG: Off the Tee", 14),
-    ("Course-Fit Approach Component", 10),
+    ("Course-Fit Approach", 10),
     ("Driving Distance Fit", 10),
     ("SG: Around the Green", 10),
 ]

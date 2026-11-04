@@ -363,7 +363,7 @@ footer a:hover{color:var(--g)}
   <h2>Who has <span>won here.</span></h2>
   <p class="body-text">Detroit Golf Club has hosted the Rocket Classic every year since 2019; 2026 is the 8th playing. <strong>Every score below was posted on the old par-72 routing</strong> — with the 2026 restoration removing two par 5s (four total strokes of par across the field over 72 holes), this year's winning score will not be directly comparable to the range below.</p>
 
-  <table class="hist-table">
+  <div class="tablewrap"><table class="hist-table">
     <thead>
       <tr><th>Year</th><th>Winner</th><th>Score</th><th>To Par</th><th>Margin</th></tr>
     </thead>
@@ -376,7 +376,7 @@ footer a:hover{color:var(--g)}
       <tr><td>2020</td><td>Bryson DeChambeau</td><td>265</td><td>-23</td><td>3 strokes</td></tr>
       <tr><td>2019</td><td>Nate Lashley</td><td>263</td><td>-25</td><td>6 strokes</td></tr>
     </tbody>
-  </table>
+  </table></div>
 
   <p class="body-text" style="font-size:13px;color:var(--txt3)">Cam Davis is the only multi-time winner (2021, 2024). Given the thin, now-outdated historical sample, course history carries just 2% weight in this week's model — see Section 02.</p>
 </section>
@@ -390,7 +390,7 @@ footer a:hover{color:var(--g)}
   <p class="body-text">Composite scores from the StrokesEdge Detroit Golf Club regression. Weights: SG:APP (20%), SG:PUTT (17%), SG:ARG (13%), Course-Fit Approach (10%), Course-Fit Short Game (8%), plus 9 secondary factors down to Course Experience (1%). All inputs from Data Golf's 2026 season data, blended 60/40 with a computed L30-day recent-form window.</p>
   <p class="body-text">The L2 filter requires SG: Approach ≥ -0.05, SG: Putting ≥ -0.10, Scrambling % ≥ 55, and Driving Accuracy ≥ -0.10. 52 of 134 scored players clear all four gates. The top three model outputs are shown below.</p>
 
-  <table>
+  <div class="tablewrap"><table>
     <thead>
       <tr><th>Rk</th><th>Player</th><th>Score</th><th>APP</th><th>PUTT</th><th>ARG</th><th>Edge</th><th>L2</th></tr>
     </thead>
@@ -426,7 +426,7 @@ footer a:hover{color:var(--g)}
         <td><span class="tag-pass">PASS</span></td>
       </tr>
     </tbody>
-  </table>
+  </table></div>
 
   <p class="body-text" style="font-size:13px;color:var(--txt3)">52 of 134 scored players clear every L2 gate (13 additional players sit on the Watch List, outside regression, for insufficient Data Golf sample). The full ranked field, L3 value screen against sportsbook odds, complete picks card, fades, and DFS lineups are in the Substack newsletter.</p>
 </section>
@@ -474,7 +474,7 @@ footer a:hover{color:var(--g)}
 <footer>
   <a href="index.html">Home</a> · <a href="methodology.html">Methodology</a> · <a href="picks.html">Pick Tracker</a> · <a href="courses.html">Courses</a> · <a href="analysis.html">Analysis</a><a href="pga-tour-betting-guide.html">Guides</a> · <a href="course-detroit-golf-club.html">Detroit Golf Club Guide</a> · <a href="https://strokesedge.substack.com" target="_blank" data-signup>Substack</a>
   <p style="margin-top:1rem">© 2026 StrokesEdge · Independent quantitative golf betting analytics</p>
-<p class="se-rg"><strong style="color:var(--txt2);font-weight:400">21+ only.</strong> Sports betting involves risk and no pick is guaranteed. If gambling is a problem, call 1-800-GAMBLER (US) for free, confidential help.</p></footer>
+<p class="se-rg"><strong style="color:var(--txt2);font-weight:400">21+ only.</strong> Sports betting involves risk and no pick is guaranteed. If gambling is a problem, call 1-800-GAMBLER (US) for free, confidential help. <a href="privacy.html">Privacy</a> and <a href="terms.html">Terms</a>.</p></footer>
 
 <script>
 // Cursor
