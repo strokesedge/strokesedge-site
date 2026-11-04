@@ -195,7 +195,7 @@ function render(rows){
    +'<div><b>'+won+'-'+lost+'</b><span>Cashed - lost</span></div>'
    +'<div><b>'+Object.keys(tn).length+'</b><span>Tournaments</span></div></div>';
   // cumulative net by settled bet, in sheet order
-  var cum=0,pts=[0];settled.forEach(function(b){cum+=b.p-b.w;pts.push(cum);});
+  var cum=0,pts=[0];settled.slice().reverse().forEach(function(b){cum+=b.p-b.w;pts.push(cum);});/* the sheet lists the newest tournament first, so reverse to run the chart oldest to newest */
   var W=720,H=260,P=34,mn=Math.min.apply(null,pts),mx=Math.max.apply(null,pts);if(mn===mx){mn-=1;mx+=1;}
   function X(i){return P+i*(W-2*P)/(pts.length-1);}function Y(v){return H-P-(v-mn)*(H-2*P)/(mx-mn);}
   var d=pts.map(function(v,i){return(i?'L':'M')+X(i).toFixed(1)+' '+Y(v).toFixed(1);}).join(' ');
@@ -210,7 +210,7 @@ function render(rows){
   // by tournament (sheet order)
   var order=[],by={};settled.forEach(function(b){if(!by[b.t]){by[b.t]={n:0,w:0,p:0};order.push(b.t);}by[b.t].n++;by[b.t].w+=b.w;by[b.t].p+=b.p;});
   var h='<tr><th>Tournament</th><th>Bets</th><th>Staked</th><th>Net</th></tr>';
-  order.slice().reverse().forEach(function(t){var o=by[t],n=o.p-o.w;h+='<tr><td>'+e(t)+'</td><td>'+o.n+'</td><td>$'+o.w.toFixed(0)+'</td><td style="color:'+(n<0?'#e05252':'#00e676')+'">'+money(n)+'</td></tr>';});
+  order.forEach(function(t){var o=by[t],n=o.p-o.w;h+='<tr><td>'+e(t)+'</td><td>'+o.n+'</td><td>$'+o.w.toFixed(0)+'</td><td style="color:'+(n<0?'#e05252':'#00e676')+'">'+money(n)+'</td></tr>';});
   document.getElementById('by-tourn').innerHTML=h;
   // by bet type
   var ty={},tord=[];settled.forEach(function(b){var k=b.type||'Other';if(!ty[k]){ty[k]={n:0,w:0,p:0,c:0};tord.push(k);}ty[k].n++;ty[k].w+=b.w;ty[k].p+=b.p;if(b.res!=='lost')ty[k].c++;});
