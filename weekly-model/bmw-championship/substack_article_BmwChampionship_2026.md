@@ -1,5 +1,6 @@
 === SEO METADATA — copy into Substack ===
 ARTICLE TITLE:   BMW Championship 2026 Picks: Model Best Bets and Fades for Bellerive Country Club
+SUBTITLE:        Approach and off-the-tee play lead the model at Bellerive. Best bets, fades and a +1600 value play for the 2026 BMW Championship. (129 chars)
 SEO TITLE:       BMW Championship 2026 Picks, Best Bets & Odds | Bellerive (57 chars)
 SEO DESCRIPTION: 2026 BMW Championship picks, best bets, and odds at Bellerive Country Club. Quant model flags a +1600 value play and fades a +300 favorite. Free analysis. (154 chars)
 EMAIL SUBJECT:   BMW Championship picks are live: Xander at +1600 is the play (60 chars)

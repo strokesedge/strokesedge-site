@@ -1,5 +1,6 @@
 === SEO METADATA — copy into Substack ===
 ARTICLE TITLE:   Bank of Utah Championship 2026 Picks: Model Best Bets and Fades for Black Desert Resort
+SUBTITLE:        Approach and off-the-tee play lead the model at Black Desert Resort. Best bets, fades and a +8000 value play for the 2026 Bank of Utah Championship. (148 chars)
 SEO TITLE:       Bank of Utah Championship 2026 Picks, Best Bets & Odds (54 chars, manually trimmed from 76)
 SEO DESCRIPTION: 2026 Bank of Utah Championship picks, best bets, and odds at Black Desert. Quant model flags a +8000 value play and fades a +1600 favorite. Free analysis. (154 chars, manually trimmed from 161)
 EMAIL SUBJECT:   Bank of Utah picks: Seamus Power +8000 is the play (50 chars, manually trimmed from 69)

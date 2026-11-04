@@ -31,7 +31,7 @@ def _skeleton():
 
 
 def render_page(slug, title, desc, h1, lede, body, eyebrow, faq=None, related=None, extra_css="",
-                extra_js="", schema=None, meta="", noindex=False, og_image=None, article_dates=None):
+                extra_js="", schema=None, meta="", noindex=False, og_image=None, article_dates=None, subtitle=None):
     """Writes SITE/<slug>.html and returns the path. h1 may contain <span>accent</span>."""
     assert len(title) <= 60, (slug, len(title))
     assert 110 <= len(desc) <= 160, (slug, len(desc))
@@ -69,6 +69,8 @@ def render_page(slug, title, desc, h1, lede, body, eyebrow, faq=None, related=No
                       "mainEntityOfPage": url, "image": og,
                       "datePublished": d.get("published", ""), "dateModified": d.get("modified", d.get("published", "")),
                       "author": org, "publisher": pub})
+        if subtitle:
+            graph[-1]["alternativeHeadline"] = subtitle
     else:
         graph.append({"@type": "WebPage", "name": title, "description": desc, "url": url, "publisher": org})
     graph.append({"@type": "BreadcrumbList", "itemListElement": [

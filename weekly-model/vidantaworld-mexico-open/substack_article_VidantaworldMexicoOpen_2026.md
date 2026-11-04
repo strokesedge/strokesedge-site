@@ -1,5 +1,6 @@
 === SEO METADATA — copy into Substack ===
 ARTICLE TITLE:   VidantaWorld Mexico Open 2026 Picks: Model Best Bets and Fades for Vidanta Vallarta
+SUBTITLE:        Approach and off-the-tee play lead the model at Vidanta Vallarta. Best bets, fades and a +6500 value play for the 2026 VidantaWorld Mexico Open. (144 chars)
 SEO TITLE:       VidantaWorld Mexico Open 2026 Picks, Best Bets & Odds (53 chars)
 SEO DESCRIPTION: 2026 VidantaWorld Mexico Open picks, best bets, and odds at Vidanta Vallarta. Quant model flags a +6500 value play and fades a +1200 favorite. Free analysis. (157 chars)
 EMAIL SUBJECT:   VidantaWorld Mexico Open picks are live: Gordon at +6500 is the play (68 chars)

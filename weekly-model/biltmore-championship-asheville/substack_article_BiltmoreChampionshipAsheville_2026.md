@@ -1,5 +1,6 @@
 === SEO METADATA — copy into Substack ===
 ARTICLE TITLE:   Biltmore Championship Asheville 2026 Picks: Model Best Bets and Fades for The Cliffs at Walnut Cove
+SUBTITLE:        Approach and off-the-tee play lead the model at The Cliffs. Best bets, fades and a +3000 value play for the 2026 Biltmore Championship Asheville. (145 chars)
 SEO TITLE:       Biltmore Championship 2026 Picks & Odds | Walnut Cove (53 chars)
 SEO DESCRIPTION: 2026 Biltmore Championship picks, best bets, and odds at Walnut Cove. Quant model flags a +3000 value play and fades a +1600 favorite. Free analysis. (149 chars)
 EMAIL SUBJECT:   Biltmore picks are live: Corey at +3000 (39 chars)

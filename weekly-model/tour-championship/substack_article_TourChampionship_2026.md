@@ -1,5 +1,6 @@
 === SEO METADATA — copy into Substack ===
 ARTICLE TITLE:   TOUR Championship 2026 Picks: Model Best Bets and Fades for East Lake Golf Club
+SUBTITLE:        Approach and off-the-tee play lead the model at East Lake. Best bets, fades and a +3300 value play for the 2026 TOUR Championship. (130 chars)
 SEO TITLE:       TOUR Championship 2026 Picks, Best Bets & Odds | East Lake (58 chars)
 SEO DESCRIPTION: 2026 TOUR Championship picks, best bets, and odds at East Lake Golf Club. Quant model flags a +3300 value play and fades a +1000 favorite. Free analysis. (153 chars)
 EMAIL SUBJECT:   TOUR Championship picks are live: Hideki at +3300 is the play (61 chars)

@@ -1,5 +1,6 @@
 === SEO METADATA — copy into Substack ===
 ARTICLE TITLE: Baycurrent Classic 2026 Picks: Model Best Bets and Fades for Yokohama Country Club (West Course)
+SUBTITLE:        Approach and off-the-tee play lead the model at Yokohama Country Club (West Course). Best bets, fades and a +4000 value play for the 2026 Baycurrent Classic. (157 chars)
 SEO TITLE: Baycurrent Classic 2026 Picks, Best Bets & Odds | Yokohama
 SEO DESCRIPTION: 2026 Baycurrent Classic picks, best bets, and odds at Yokohama Country Club. Quant model flags a +4000 value play and fades a +1600 favorite. Free analysis.
 EMAIL SUBJECT: Baycurrent picks: Keefer +4000 is the play

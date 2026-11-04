@@ -2693,6 +2693,8 @@ SLUG_STOPWORDS = {"the", "of", "a", "an"}
 def _short_course_name(course_name: str) -> str:
     if not course_name:
         return course_name
+    if " at " in course_name:  # "El Cardonal at Diamante" -> "El Cardonal" (2026-11-04)
+        course_name = course_name.split(" at ", 1)[0].strip()
     for suf in COURSE_NAME_SUFFIXES_TO_STRIP:
         if course_name.endswith(suf):
             return course_name[: -len(suf)].strip()
@@ -2721,16 +2723,70 @@ def _player_first_name(player_name: str) -> str:
     return player_name.split()[0] if player_name else player_name
 
 
-def build_seo_fields(event: dict, year: int, article_title: str, l3: dict, l2_results: dict, metrics: dict) -> dict:
+STAT_PHRASES = {
+    "sg_app_blend": "Approach play", "sg_ott_blend": "Off-the-tee play", "sg_putt_blend": "Putting",
+    "sg_arg_blend": "Short-game play", "cf_approach_comp": "Course-fit approach", "cf_short_comp": "Course-fit short game",
+    "driving_distance_adjustment": "Driving distance", "driving_accuracy_adjustment": "Driving accuracy",
+    "course_history_adjustment": "Course history", "course_experience_adjustment": "Course experience",
+    "bob_pct": "Birdie-making", "dba_pct": "Bogey avoidance", "scrambling_pct": "Scrambling",
+    "gir_pct": "Greens in regulation", "prox_150_200_fw": "Long-iron proximity",
+}
+
+
+def _stat_phrase(key: str) -> str:
+    return STAT_PHRASES.get(key) or key.replace("_", " ")
+
+
+def _event_abbrev(name: str) -> str:
+    """'World Wide Technology Championship' -> 'WWT'; three words -> first two; shorter names unchanged."""
+    words = name.split()
+    if len(words) >= 4:
+        return "".join(w[0].upper() for w in words[:-1])
+    if len(words) == 3:
+        return " ".join(words[:2])
+    return name
+
+
+def _last_name(player_name: str) -> str:
+    if "," in player_name:
+        return player_name.split(",", 1)[0].strip()
+    return player_name.split()[-1] if player_name else player_name
+
+
+def _first_that_fits(candidates, lo, hi, label, slug):
+    """Candidates run longest and richest first; the first one inside [lo, hi] wins. Only if none fits is
+    there a loud error (and the closest candidate is returned)."""
+    for c in candidates:
+        if lo <= len(c) <= hi:
+            return c
+    best = min(candidates, key=lambda c: min(abs(len(c) - lo), abs(len(c) - hi)))
+    logger.error(f"[{slug}] no {label} candidate fits {lo}-{hi} chars, closest is {len(best)}: {best!r}")
+    return best
+
+
+def build_dfs_subtitle(event: dict, year: int, course_name: str) -> str:
+    name, short = event["event_name"], _short_course_name(course_name)
+    return _first_that_fits([
+        f"A GPP lineup, a cash lineup and the chalk to fade for the {year} {name}. DraftKings salaries and model scores at {short}.",
+        f"A GPP lineup, a cash lineup and the chalk to fade for the {name}. DraftKings salaries and model scores at {short}.",
+        f"A GPP lineup, a cash lineup and the chalk to fade at {short}, with the full DraftKings salary board.",
+    ], 80, 160, "DFS subtitle", event["slug"])
+
+
+def build_seo_fields(event: dict, year: int, article_title: str, l3: dict, l2_results: dict, metrics: dict,
+                     weights=None) -> dict:
+    name = event["event_name"]
+    slug = event["slug"]
     course_name = event.get("course_name") or "TBD"
     short_course = _short_course_name(course_name)
 
-    seo_title = f"{event['event_name']} {year} Picks, Best Bets & Odds | {course_name}"
-    if len(seo_title) > 60:
-        seo_title = f"{event['event_name']} {year} Picks, Best Bets & Odds | {short_course}"
-    if len(seo_title) > 60:
-        logger.error(f"[{event['slug']}] SEO title still {len(seo_title)} chars (>60) even with short course "
-                     f"name {short_course!r} — trim manually before publishing: {seo_title!r}")
+    seo_title = _first_that_fits([
+        f"{name} {year} Picks, Best Bets & Odds | {course_name}",
+        f"{name} {year} Picks, Best Bets & Odds | {short_course}",
+        f"{name} {year} Picks, Best Bets & Odds",
+        f"{name} {year} Picks & Odds",
+        f"{name} Picks & Odds",
+    ], 20, 60, "SEO title", slug)
 
     def odds_val(dg_id):
         try:
@@ -2761,20 +2817,24 @@ def build_seo_fields(event: dict, year: int, article_title: str, l3: dict, l2_re
     fade_odds = _fmt_plain_odds(odds_val(fade_id)) if fade_id is not None else None
 
     if value_odds and fade_odds:
-        seo_description = (f"{year} {event['event_name']} picks, best bets, and odds at {course_name}. "
-                            f"Quant model flags a {value_odds} value play and fades a {fade_odds} favorite. "
-                            f"Free analysis.")
+        desc_candidates = [
+            f"{year} {name} picks, best bets, and odds at {course_name}. Quant model flags a {value_odds} value play and fades a {fade_odds} favorite. Free analysis.",
+            f"{year} {name} picks, best bets, and odds at {short_course}. Quant model flags a {value_odds} value play and fades a {fade_odds} favorite. Free analysis.",
+            f"{year} {name} picks and odds at {short_course}. Quant model flags a {value_odds} value play and fades a {fade_odds} favorite. Free analysis.",
+            f"{year} {name} picks and odds. Model flags a {value_odds} value play and fades a {fade_odds} favorite at {short_course}. Free analysis.",
+            f"{year} {name} picks and odds at {short_course}. Free analysis.",
+        ]
     else:
         # Real, if rare, case (thin field, no short favorites this week) —
         # never fabricate odds just to fill the template.
-        logger.info(f"[{event['slug']}] SEO description: no qualifying value play and/or fade this week "
+        logger.info(f"[{slug}] SEO description: no qualifying value play and/or fade this week "
                      f"(value_id={value_id}, fade_id={fade_id}) — using odds-free fallback")
-        seo_description = (f"{year} {event['event_name']} picks, best bets, and odds at {course_name}. "
-                            f"Quant model course-fit rankings and full picks card. Free analysis.")
-
-    if not (50 <= len(seo_description) <= 160):
-        logger.error(f"[{event['slug']}] SEO description is {len(seo_description)} chars, outside the "
-                     f"50-160 rule — trim/expand manually before publishing: {seo_description!r}")
+        desc_candidates = [
+            f"{year} {name} picks, best bets, and odds at {course_name}. Quant model course-fit rankings and full picks card. Free analysis.",
+            f"{year} {name} picks, best bets, and odds at {short_course}. Quant model course-fit rankings and full picks card. Free analysis.",
+            f"{year} {name} picks and odds at {short_course}. Quant model course-fit rankings. Free analysis.",
+        ]
+    seo_description = _first_that_fits(desc_candidates, 50, 160, "SEO description", slug)
 
     # Falls back to the top overall L1-ranked L2-pass player when no
     # positive-edge value pick exists this week — tags/email subject
@@ -2788,44 +2848,72 @@ def build_seo_fields(event: dict, year: int, article_title: str, l3: dict, l2_re
     if headline_id is not None:
         headline_name_full = _player_first_last(metrics[headline_id]["player_name"])
         headline_first = _player_first_name(metrics[headline_id]["player_name"])
+        headline_last = _last_name(metrics[headline_id]["player_name"])
     else:
-        headline_name_full = None
-        headline_first = None
+        headline_name_full = headline_first = headline_last = None
 
-    # Email Subject — under 50 chars preferred (advisory, not a hard
-    # length gate like SEO title/description above), must name something
-    # specific (player + odds) rather than generic hype copy.
-    if headline_first and value_odds:
-        email_subject = f"{event['event_name']} picks are live: {headline_first} at {value_odds} is the play"
-    elif headline_first:
-        email_subject = f"{event['event_name']} picks are live: {headline_first} is the play"
+    # Email Subject: under 50 chars, names something specific (player + odds), never generic hype.
+    abbr = _event_abbrev(name)
+    if headline_last and value_odds:
+        subj = [f"{name} picks are live: {headline_first} at {value_odds} is the play",
+                f"{abbr} picks are live: {headline_last} at {value_odds} is the play",
+                f"{abbr} picks live: {headline_last} at {value_odds} is the play",
+                f"{abbr} picks: {headline_last} at {value_odds}"]
+    elif headline_last:
+        subj = [f"{name} picks are live: {headline_first} is the play",
+                f"{abbr} picks are live: {headline_last} is the play",
+                f"{abbr} picks live: {headline_last} is the play"]
     else:
-        email_subject = f"{event['event_name']} picks are live: full card inside"
-    if len(email_subject) > 50:
-        logger.info(f"[{event['slug']}] Email subject is {len(email_subject)} chars (>50 preferred) — "
-                     f"{email_subject!r}")
+        subj = [f"{name} picks are live: full card inside", f"{abbr} picks are live: full card inside"]
+    email_subject = _first_that_fits(subj, 15, 50, "email subject", slug)
+
+    # Subtitle (Substack's separate subtitle field, shown under the title, in email previews and in search
+    # snippets). Code-templated from real numbers: the two heaviest model weights and the value play.
+    stat_line = None
+    if weights:
+        top = sorted(weights, key=lambda w: -w["weight_pct"])
+        top = [w for w in top if w["key"] not in ("course_history_adjustment", "course_experience_adjustment")][:2]
+        SG_BARE = {"sg_app_blend": "Approach", "sg_ott_blend": "Off-the-tee", "sg_arg_blend": "Short-game", "sg_putt_blend": "Putting"}
+        if len(top) == 2 and top[0]["key"] in SG_BARE and top[1]["key"] in SG_BARE:
+            stat_line = f"{SG_BARE[top[0]['key']]} and {SG_BARE[top[1]['key']].lower()} play lead the model at {short_course}"
+        elif len(top) == 2:
+            stat_line = f"{_stat_phrase(top[0]['key'])} and {_stat_phrase(top[1]['key']).lower()} lead the model at {short_course}"
+        elif len(top) == 1:
+            stat_line = f"{_stat_phrase(top[0]['key'])} leads the model at {short_course}"
+    sub = []
+    if stat_line and value_odds:
+        sub += [f"{stat_line}. Best bets, fades and a {value_odds} value play for the {year} {name}.",
+                f"{stat_line}. Best bets, fades and a {value_odds} value play for the {name}.",
+                f"{stat_line}. Best bets, fades and a {value_odds} value play."]
+    if value_odds:
+        sub += [f"Model best bets and fades at {short_course}, with a {value_odds} value play for the {name}."]
+    sub += [f"Model best bets, fades and course-fit stats for the {year} {name} at {short_course}.",
+            f"Model best bets, fades and course-fit stats for the {name}."]
+    subtitle = _first_that_fits(sub, 80, 160, "subtitle", slug)
 
     # Tags — exactly 5, fixed order, last slot is the headline player's
     # full name (First Last), never left blank.
-    tags = ["Golf", event["event_name"], "Golf Betting", "PGA Tour", headline_name_full or "TBD"]
+    tags = ["Golf", name, "Golf Betting", "PGA Tour", headline_name_full or "TBD"]
 
-    # Post URL Slug — event['slug'] is already Data Golf's own
-    # lowercase-hyphenated tournament slug (e.g. "bmw-championship"), so
-    # it's reused directly rather than re-derived, same "don't duplicate
-    # a value that already exists" discipline as elsewhere in this file.
-    post_url_slug = f"{event['slug']}-{year}-picks-best-bets-{_slugify(short_course)}"
-    if len(post_url_slug) > 60:
-        logger.info(f"[{event['slug']}] Post URL slug is {len(post_url_slug)} chars (>60) — {post_url_slug!r}")
+    # Post URL Slug — event['slug'] is already Data Golf's own lowercase-hyphenated tournament slug,
+    # reused directly. Under 60 chars: add the short course name only when it fits.
+    post_url_slug = _first_that_fits([
+        f"{slug}-{year}-picks-best-bets-{_slugify(short_course)}",
+        f"{slug}-{year}-picks-best-bets",
+        f"{slug}-{year}-picks",
+    ], 15, 60, "post URL slug", slug)
 
     return {
-        "article_title": article_title, "seo_title": seo_title, "seo_description": seo_description,
-        "email_subject": email_subject, "tags": tags, "post_url_slug": post_url_slug,
+        "article_title": article_title, "subtitle": subtitle, "seo_title": seo_title,
+        "seo_description": seo_description, "email_subject": email_subject, "tags": tags,
+        "post_url_slug": post_url_slug,
     }
 
 
 def render_seo_block(seo: dict) -> str:
     return ("=== SEO METADATA — copy into Substack ===\n"
             f"ARTICLE TITLE:   {seo['article_title']}\n"
+            f"SUBTITLE:        {seo['subtitle']} ({len(seo['subtitle'])} chars)\n"
             f"SEO TITLE:       {seo['seo_title']} ({len(seo['seo_title'])} chars)\n"
             f"SEO DESCRIPTION: {seo['seo_description']} ({len(seo['seo_description'])} chars)\n"
             f"EMAIL SUBJECT:   {seo['email_subject']} ({len(seo['email_subject'])} chars)\n"
@@ -2882,7 +2970,7 @@ def generate_substack_article(event: dict, ctx: dict) -> Path:
     # Claude-written hook, same discipline as the lead sentence below.
     title = f"{event['event_name']} {year} Picks: Model Best Bets and Fades for {event.get('course_name') or 'TBD'}"
 
-    seo = build_seo_fields(event, year, title, l3, l2_results, metrics)
+    seo = build_seo_fields(event, year, title, l3, l2_results, metrics, ctx.get("weights"))
     logger.info(f"[{event['slug']}] {render_seo_block(seo)}")
 
     # Guaranteed lead sentence, not left to the Claude-written intro_hook to
@@ -3135,10 +3223,17 @@ def generate_dfs_article(event: dict, ctx: dict) -> Path | None:
          "for floor and consistency."),
     ]
 
+    dfs_title = f"{event['event_name']} {year} DFS Picks: Best DraftKings Lineups for {course_name}"
+    dfs_subtitle = build_dfs_subtitle(event, year, course_name)
     sections = [
+        "=== POST FIELDS — copy into Substack ===",
+        f"ARTICLE TITLE:   {dfs_title}",
+        f"SUBTITLE:        {dfs_subtitle} ({len(dfs_subtitle)} chars)",
+        "========================================",
+        "",
         # Fixed title format (Brian, 2026-08-18) — proven to drive Google
         # search traffic, must not vary week to week.
-        f"# {event['event_name']} {year} DFS Picks: Best DraftKings Lineups for {course_name}",
+        f"# {dfs_title}",
         f"### {course_name} · {location} · {start_date} · DraftKings Main Slate · ${DFS_SALARY_CAP:,} Salary Cap",
         "",
         lead_sentence,

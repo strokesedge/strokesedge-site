@@ -310,12 +310,17 @@ Use the full official course name every time. This format is proven to drive Goo
 
 ## StrokesEdge Article SEO Fields (Generate Every Week)
 
-Applies to the picks/Substack article specifically (the one actually published to Substack, where these fields get pasted in) — not the DFS or recap articles. Claude Code must generate all six fields every time it produces an article, labeled and ready to copy-paste directly into Substack.
+Applies to the picks/Substack article specifically (the one actually published to Substack, where these fields get pasted in) — not the DFS or recap articles. Claude Code must generate all seven fields (the six below plus the subtitle) every time it produces an article, labeled and ready to copy-paste directly into Substack.
 
 ### 1. Article Title
 `[Tournament Name] [Year] Picks: Model Best Bets and Fades for [Full Course Name]`
 
 Same value as the "StrokesEdge Article Title Format" rule above — not a separate thing to independently generate.
+
+### 1b. Subtitle (Substack's separate subtitle field, 80 to 160 characters)
+Added 2026-11-04. Shown under the title, in email previews and in search snippets, so it must carry real search terms and a real number. Format: `[Top two model weights] lead the model at [Short Course Name]. Best bets, fades and a [+odds] value play for the [Year] [Tournament].`
+Example: "Approach and off-the-tee play lead the model at El Cardonal. Best bets, fades and a +10000 value play for the 2026 World Wide Technology Championship."
+Rules: code-templated from the real weights and the real value-play odds, never invented. Falls back to shorter forms (drop the year, drop the stat line, drop the odds) until it fits 80 to 160 characters. DFS articles get a title and subtitle block too (`POST FIELDS`).
 
 ### 2. SEO Title (must be under 60 characters)
 Format: `[Tournament] [Year] Picks, Best Bets & Odds | [Short Course Name]`
@@ -344,16 +349,19 @@ Format: `[tournament-name]-[year]-picks-best-bets-[short-course-name]`
 Example: "bmw-championship-2026-picks-best-bets-bellerive"
 Rules: All lowercase. Hyphens only. Drop filler words. Keep tournament name, year, "picks", "best-bets", and short course name. Under 60 characters total.
 
-Output all six fields at the top of every article run in this format:
+Output all seven fields at the top of every article run in this format:
 
 ```
 ARTICLE TITLE:
+SUBTITLE:
 SEO TITLE:
 SEO DESCRIPTION:
 EMAIL SUBJECT:
 TAGS:
 POST URL:
 ```
+
+**Fit rules enforced in code (2026-11-04):** every field has tiered fallbacks, so none can exceed its limit. The course name is shortened ("El Cardonal at Diamante" becomes "El Cardonal"); the SEO title drops the course, then "Best Bets", until it is 60 characters or fewer; the email subject uses the event abbreviation and the player's last name (for example "WWT picks live: Silverman at +10000 is the play"); the slug drops the course name when it would pass 60 characters. If nothing fits, the pipeline logs a loud error rather than silently truncating.
 
 **Enforced in code** (Brian, 2026-08-18): `build_seo_fields()` / `render_seo_block()` in `weekly_model_pipeline.py`, called from `generate_substack_article()`. The block is prepended to the top of the generated `.md` file (delete it before pasting the article body into Substack) and logged to `weekly_model_pipeline.log`.
 

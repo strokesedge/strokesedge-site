@@ -99,7 +99,7 @@ def inline(t):
     return t
 
 
-def convert(body):
+def convert(body, subtitle=None):
     """Returns (lede_text, meta_text, body_html, faq_list)."""
     lines = body.split("\n")
     if lines and lines[0].startswith("# "):
@@ -177,12 +177,12 @@ def convert(body):
             para.append(s)
         if para:
             text_p = " ".join(para)
-            if lede is None and not out:
+            if lede is None and not out and not subtitle:
                 lede = re.sub(r"\*\*", "", text_p)
             else:
                 out.append("<p>%s</p>" % inline(text_p))
     flush()
-    return lede or "", meta, '<div class="art">' + "\n".join(out) + "</div>", faq
+    return (subtitle or lede or ""), meta, '<div class="art">' + "\n".join(out) + "</div>", faq
 
 
 # ----------------------------------------------------------------------------- pipeline
@@ -258,7 +258,8 @@ def publish(event_dir, force=False, feed=None):
         print("NOT published on Substack yet, skipping %s (use --force to override)" % slug)
         return None
     date = hit[1] if hit else datetime.now()
-    lede, meta, body_html, faq = convert(body)
+    subtitle = seo.get("SUBTITLE")
+    lede, meta, body_html, faq = convert(body, subtitle)
     fname = page_slug + ".html"
     d = seo.get("SEO DESCRIPTION", "")
     if len(d) > 160:  # the pipeline's own SEO block can run long, trim at a word boundary like Google would
@@ -270,7 +271,7 @@ def publish(event_dir, force=False, feed=None):
     path = render_page(fname, seo.get("SEO TITLE", title)[:60], seo["SEO DESCRIPTION"], h1,
                        esc(lede) if lede else esc(seo["SEO DESCRIPTION"]), body_html, "Picks and best bets",
                        faq=faq, related=related_for(slug),
-                       extra_css=CSS, schema="Article", meta=esc(meta_line), og_image=HOST + "og/%s.png" % page_slug,
+                       extra_css=CSS, schema="Article", subtitle=subtitle, meta=esc(meta_line), og_image=HOST + "og/%s.png" % page_slug,
                        article_dates={"published": date.strftime("%Y-%m-%d")})
     out = open(path, encoding="utf-8").read()
     if code and code in out:

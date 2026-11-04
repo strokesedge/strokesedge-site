@@ -1,5 +1,6 @@
 === SEO METADATA — copy into Substack ===
 ARTICLE TITLE:   Butterfield Bermuda Championship 2026 Picks: Model Best Bets and Fades for Port Royal Golf Course
+SUBTITLE:        Approach and putting play lead the model at Port Royal. Best bets, fades and a +3300 value play for the 2026 Butterfield Bermuda Championship. (142 chars)
 SEO TITLE:       Butterfield Bermuda Championship 2026 Picks, Best Bets & Odds | Port Royal (74 chars)
 SEO DESCRIPTION: 2026 Butterfield Bermuda Championship picks, best bets, and odds at Port Royal Golf Course. Quant model flags a +3300 value play and fades a +1200 favorite. Free analysis. (171 chars)
 EMAIL SUBJECT:   Butterfield Bermuda Championship picks are live: Austin at +3300 is the play (76 chars)
