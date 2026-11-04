@@ -13,6 +13,12 @@ One command for the weekly site update, so nothing is done by hand twice.
   python tools/weekly_site_update.py publish <weekly-model folder>
       Run AFTER the Substack post is live. Publishes the picks article page on strokesedge.com
       (refuses if it is not on the Substack feed) and rebuilds the archive and social image.
+      Then refreshes the analysis page to the article (refresh_analysis_page.py --posted), adds related
+      links and runs the audit.
+
+  python tools/weekly_site_update.py recaps <weekly-model folder>
+      Run AFTER the Monday recap is on Substack. Publishes every new recap on the site (publish_recaps.py),
+      rebuilds weekly-recaps.html, links the pages and runs the audit.
 
 Example: python tools/weekly_site_update.py prepare world-wide-technology-championship
 """
@@ -258,7 +264,7 @@ def prepare(a):
     else:
         print("Access code:", code, "-", picks_new if code is None or len(picks_new) < 200 else "")
     for label, cmd in (("social images", ["tools/make_og_images.py"]), ("canonicals and nav", ["tools/site_fixes_2026_11_03.py"]),
-                       ("analysis gate", ["tools/site_updates_2026_11_04.py"]), ("signup wiring", ["tools/add_signup.py"])):
+                       ("analysis gate", ["tools/site_updates_2026_11_04.py"]), ("related links", ["tools/add_related_links.py"]), ("signup wiring", ["tools/add_signup.py"])):
         print("%-20s %s" % (label + ":", run(cmd)))
     audit = subprocess.run([sys.executable, os.path.join(HERE, "audit_site.py")], cwd=ROOT, capture_output=True, text=True)
     print("%-20s %s" % ("site audit:", audit.stdout.strip().replace("\n", "\n" + " " * 21)))
@@ -279,19 +285,41 @@ def prepare(a):
     print("      python tools/weekly_site_update.py publish", a.event)
 
 
+def finish_checks():
+    """Link the new pages both ways, wire signup, then audit."""
+    for label, cmd in (("related links", ["tools/add_related_links.py"]), ("signup wiring", ["tools/add_signup.py"])):
+        print("%-20s %s" % (label + ":", run(cmd)))
+    audit = subprocess.run([sys.executable, os.path.join(HERE, "audit_site.py")], cwd=ROOT, capture_output=True, text=True)
+    print("%-20s %s" % ("site audit:", audit.stdout.strip().replace("\n", "\n" + " " * 21)))
+
+
 def publish(a):
+    """After the Substack picks post is live: picks page on the site, analysis page matched to the article, links, audit."""
     r = subprocess.run([sys.executable, os.path.join(HERE, "publish_picks.py"), a.event], cwd=ROOT)
-    if r.returncode == 0:
-        print("\nNext: review the new page, then commit the page, weekly-picks.html, sitemap.xml, og/ images and tools/picks_articles.json.")
+    if r.returncode != 0:
+        return
+    page = os.path.join(SITE, "analysis-%s-%s.html" % (a.event, a.year))
+    if os.path.exists(page):
+        print("\nRefreshing the analysis page to match the article (needs DATAGOLF_API_KEY, skip with Ctrl+C if absent)")
+        subprocess.run([sys.executable, os.path.join(HERE, "refresh_analysis_page.py"), a.event, "--year", a.year, "--posted"], cwd=ROOT)
+    finish_checks()
+    print("\nNext: review, then commit the picks page, the analysis page, weekly-picks.html, sitemap.xml, og/ images and tools/picks_articles.json.")
+
+
+def recaps(a):
+    """After the Monday recap is on Substack: publish it (and any other new recap) on the site."""
+    subprocess.run([sys.executable, os.path.join(HERE, "publish_recaps.py")], cwd=ROOT)
+    finish_checks()
+    print("\nNext: review, then commit the recap page(s), weekly-recaps.html, sitemap.xml, og/ images and tools/recaps.json.")
 
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("command", choices=["prepare", "publish"])
+    ap.add_argument("command", choices=["prepare", "publish", "recaps"])
     ap.add_argument("event", help="folder name under weekly-model/, for example world-wide-technology-championship")
     ap.add_argument("--year", default="2026")
     ap.add_argument("--analysis", help="analysis page file name if it does not follow analysis-<event>-<year>.html")
     ap.add_argument("--hashtag")
     ap.add_argument("--dry-run", action="store_true")
     args = ap.parse_args()
-    (prepare if args.command == "prepare" else publish)(args)
+    {"prepare": prepare, "publish": publish, "recaps": recaps}[args.command](args)

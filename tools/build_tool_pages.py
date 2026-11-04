@@ -228,7 +228,7 @@ REL = [("pga-tour-betting-guide.html", "PGA Tour Betting Guide", "Markets, odds 
        ("how-to-bet-on-golf.html", "How to Bet on Golf", "A first-timer's walkthrough")]
 
 MEMBER_CSS = r"""
-.plans{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:1.5rem 0 1rem}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:1.5rem 0 1rem}
 .plan{background:var(--sur);border:1px solid var(--bdr);border-radius:4px;padding:26px 24px;display:flex;flex-direction:column;gap:14px}
 .plan small{font:400 11px/1.3 'DM Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--g)}
 .plan h3{margin:0;font:800 clamp(28px,4vw,40px)/1 'Archivo',sans-serif;font-stretch:108%;letter-spacing:-.02em;color:var(--txt)}
@@ -238,14 +238,14 @@ MEMBER_CSS = r"""
 .free-line{background:var(--bg2);border:1px solid var(--bdr2);border-radius:4px;padding:18px 22px;display:flex;flex-wrap:wrap;gap:12px 22px;align-items:center;justify-content:space-between}
 .free-line p{margin:0;color:var(--txt)}
 .cmp td:not(:first-child),.cmp th:not(:first-child){text-align:center}
-@media(max-width:860px){.plans{grid-template-columns:1fr}}
+@media(max-width:960px){.plans{grid-template-columns:1fr}}
 """
 
 MEMBER_BODY = r"""
 <h2>Free, single workbook or membership</h2>
 <div class="tablewrap"><table class="cmp">
 <tr><th></th><th>Free newsletter</th><th>Workbook</th><th>Membership</th></tr>
-<tr><td>Price</td><td>Free</td><td>$7 per tournament</td><td>$21 per month</td></tr>
+<tr><td>Price</td><td>Free</td><td>$7 per tournament</td><td>$21 per month or $199 per year</td></tr>
 <tr><td>Weekly picks article</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
 <tr><td>Course breakdown and key stats</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
 <tr><td>Full-field model rankings and picks card</td><td>No</td><td>One tournament</td><td>Every main event</td></tr>
@@ -265,6 +265,12 @@ MEMBER_BODY = r"""
     <p>The workbook for every main event, billed monthly. It costs less than single workbooks once you want more than three tournaments in a month.</p>
     <a class="btn" href="https://buymeacoffee.com/strokesedge/membership" target="_blank" rel="noopener">Join for $21 a month &rarr;</a>
   </div>
+  <div class="plan" id="annual">
+    <small>Best value</small>
+    <h3>Annual<span>$199/yr</span></h3>
+    <p>The same membership billed once a year. Twelve monthly payments cost $252, so the annual plan saves $53, about 21 percent.</p>
+    <a class="btn" href="https://buymeacoffee.com/strokesedge/membership" target="_blank" rel="noopener">Join for $199 a year &rarr;</a>
+  </div>
 </div>
 <div class="free-line"><p>Not ready? The weekly picks article is free.</p><a class="btn ghost" href="https://strokesedge.substack.com" data-signup>Get the free picks &rarr;</a></div>
 
@@ -281,7 +287,7 @@ MEMBER_BODY = r"""
 <p>The workbook is a research tool. It shows how the model scores every player and where it sees value. It does not tell you what to bet, and no pick is guaranteed. You must be 21 or older to bet.</p>
 
 <h2>How checkout works</h2>
-<p>The $7 workbook is sold through Gumroad as a one-time purchase. The $21 membership runs through Buy Me a Coffee and is billed monthly, and you manage or cancel it yourself from your Buy Me a Coffee account. Both are handled by those companies, so StrokesEdge never sees your card details. Questions about an order? Email <a href="mailto:strokesedge@gmail.com">strokesedge@gmail.com</a>.</p>
+<p>The $7 workbook is sold through Gumroad as a one-time purchase. The $21 monthly membership and the $199 annual membership run through Buy Me a Coffee, billed monthly or yearly depending on the plan you pick, and you manage or cancel it yourself from your Buy Me a Coffee account. Both are handled by those companies, so StrokesEdge never sees your card details. Questions about an order? Email <a href="mailto:strokesedge@gmail.com">strokesedge@gmail.com</a>.</p>
 """
 
 MEMBER_FAQ = [
@@ -289,6 +295,8 @@ MEMBER_FAQ = [
      "Seven sheets: Cover, Dashboard, Picks Card, Value Screen, Model Rankings, Watch List and Model Weights. Together they show the model's score for every player in the field, the picks and fades, and the weights used for that course."),
     ("What is the difference between the $7 workbook and the $21 membership?",
      "The $7 workbook covers one tournament. The $21 membership includes the workbook for every main event while you are a member. Buying single workbooks costs more once you want more than three tournaments in a month."),
+    ("Is there an annual membership?",
+     "Yes. The annual membership is $199 a year through Buy Me a Coffee. Twelve monthly payments of $21 cost $252, so the annual plan saves $53, about 21 percent."),
     ("Are the weekly picks free?",
      "Yes. The weekly picks article is free by email before each PGA Tour event. The workbook adds the full-field rankings and the data behind the picks."),
     ("Who is the workbook for?",

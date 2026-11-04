@@ -54,7 +54,7 @@ for name in pages:
         for label, href in (("Pick Tracker", "picks.html"), ("Guides", "pga-tour-betting-guide.html")):
             if label not in navt or href not in navt:
                 bad(name, "nav is missing %s" % label)
-        if "results.html" in h:
+        if h.split("#")[0].split("?")[0].split("/")[-1] == "results.html":
             bad(name, "still links to the removed results.html")
         if 'href="privacy.html"' not in h or 'href="terms.html"' not in h:
             bad(name, "footer is missing Privacy/Terms")
