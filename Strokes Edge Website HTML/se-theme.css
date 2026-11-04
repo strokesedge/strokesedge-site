@@ -49,3 +49,7 @@ footer a:not([class]){color:var(--txt2)}
 .related a{color:var(--txt)}
 .toc a{color:var(--txt2)}
 .toc a:hover{color:var(--g)}
+
+/* analysis-page gate: honest unlock button (replaces the old email box that never sent the email anywhere) */
+.cliff-link{display:inline-block;margin-top:16px;background:none;border:0;padding:6px 4px;color:var(--txt2);font:400 12px/1.4 'DM Mono',monospace;letter-spacing:.06em;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.cliff-link:hover{color:var(--txt)}

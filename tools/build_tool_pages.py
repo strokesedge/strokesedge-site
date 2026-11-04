@@ -227,6 +227,78 @@ REL = [("pga-tour-betting-guide.html", "PGA Tour Betting Guide", "Markets, odds 
        ("strokes-gained-explained.html", "Strokes Gained Explained", "The stat behind the model"),
        ("how-to-bet-on-golf.html", "How to Bet on Golf", "A first-timer's walkthrough")]
 
+MEMBER_CSS = r"""
+.plans{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:1.5rem 0 1rem}
+.plan{background:var(--sur);border:1px solid var(--bdr);border-radius:4px;padding:26px 24px;display:flex;flex-direction:column;gap:14px}
+.plan small{font:400 11px/1.3 'DM Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--g)}
+.plan h3{margin:0;font:800 clamp(28px,4vw,40px)/1 'Archivo',sans-serif;font-stretch:108%;letter-spacing:-.02em;color:var(--txt)}
+.plan h3 span{font:400 13px/1 'DM Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--txt2);margin-left:8px}
+.plan p{margin:0}
+.plan .btn{margin:6px 0 0;text-align:center;align-self:flex-start}
+.free-line{background:var(--bg2);border:1px solid var(--bdr2);border-radius:4px;padding:18px 22px;display:flex;flex-wrap:wrap;gap:12px 22px;align-items:center;justify-content:space-between}
+.free-line p{margin:0;color:var(--txt)}
+.cmp td:not(:first-child),.cmp th:not(:first-child){text-align:center}
+@media(max-width:860px){.plans{grid-template-columns:1fr}}
+"""
+
+MEMBER_BODY = r"""
+<h2>Free, single workbook or membership</h2>
+<div class="tablewrap"><table class="cmp">
+<tr><th></th><th>Free newsletter</th><th>Workbook</th><th>Membership</th></tr>
+<tr><td>Price</td><td>Free</td><td>$7 per tournament</td><td>$21 per month</td></tr>
+<tr><td>Weekly picks article</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+<tr><td>Course breakdown and key stats</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+<tr><td>Full-field model rankings and picks card</td><td>No</td><td>One tournament</td><td>Every main event</td></tr>
+<tr><td>DraftKings salary next to each player's score</td><td>No</td><td>Yes</td><td>Yes</td></tr>
+</table></div>
+
+<div class="plans" id="workbook">
+  <div class="plan">
+    <small>One tournament</small>
+    <h3>Workbook<span>$7</span></h3>
+    <p>The full model workbook for a single tournament, as a one-time purchase. No subscription.</p>
+    <a class="btn" href="https://strokesedge.gumroad.com/l/buehoc" target="_blank" rel="noopener">Get the workbook for $7 &rarr;</a>
+  </div>
+  <div class="plan" id="membership">
+    <small>Every main event</small>
+    <h3>Membership<span>$21/mo</span></h3>
+    <p>The workbook for every main event, billed monthly. It costs less than single workbooks once you want more than three tournaments in a month.</p>
+    <a class="btn" href="https://buymeacoffee.com/strokesedge/membership" target="_blank" rel="noopener">Join for $21 a month &rarr;</a>
+  </div>
+</div>
+<div class="free-line"><p>Not ready? The weekly picks article is free.</p><a class="btn ghost" href="https://strokesedge.substack.com" data-signup>Get the free picks &rarr;</a></div>
+
+<h2>What is inside the workbook</h2>
+<ul>
+<li><strong>Cover.</strong> The top picks at a glance, the fades and the matchups, with a glossary of every stat.</li>
+<li><strong>Dashboard.</strong> The top players by model score in one chart.</li>
+<li><strong>Picks Card.</strong> Every pick tier with odds, model rank, edge, the reasoning and whether the player clears the course thresholds.</li>
+<li><strong>Value Screen.</strong> Players who clear the thresholds, sorted by the gap between the model's probability and the market's.</li>
+<li><strong>Model Rankings.</strong> The full field, one row per player, with every input to the score and the DraftKings salary beside the name.</li>
+<li><strong>Watch List.</strong> Players outside the regression, such as LIV or DP World players with too little data, with the reason for each.</li>
+<li><strong>Model Weights.</strong> The weight on each stat for that course, where the data comes from and the thresholds used.</li>
+</ul>
+<p>The workbook is a research tool. It shows how the model scores every player and where it sees value. It does not tell you what to bet, and no pick is guaranteed. You must be 21 or older to bet.</p>
+
+<h2>How checkout works</h2>
+<p>The $7 workbook is sold through Gumroad as a one-time purchase. The $21 membership runs through Buy Me a Coffee and is billed monthly, and you manage or cancel it yourself from your Buy Me a Coffee account. Both are handled by those companies, so StrokesEdge never sees your card details. Questions about an order? Email <a href="mailto:strokesedge@gmail.com">strokesedge@gmail.com</a>.</p>
+"""
+
+MEMBER_FAQ = [
+    ("What is in the StrokesEdge workbook?",
+     "Seven sheets: Cover, Dashboard, Picks Card, Value Screen, Model Rankings, Watch List and Model Weights. Together they show the model's score for every player in the field, the picks and fades, and the weights used for that course."),
+    ("What is the difference between the $7 workbook and the $21 membership?",
+     "The $7 workbook covers one tournament. The $21 membership includes the workbook for every main event while you are a member. Buying single workbooks costs more once you want more than three tournaments in a month."),
+    ("Are the weekly picks free?",
+     "Yes. The weekly picks article is free by email before each PGA Tour event. The workbook adds the full-field rankings and the data behind the picks."),
+    ("Who is the workbook for?",
+     "People who want to see how a course-specific strokes gained model scores every player, not just the top picks. It is for research and entertainment, not financial advice."),
+]
+
+MEMBER_REL = [("methodology.html", "Methodology", "How the model works"),
+              ("results.html", "Results", "Every bet, wins and losses"),
+              ("pga-tour-betting-guide.html", "PGA Tour betting guide", "Markets, odds and strategy")]
+
 if __name__ == "__main__":
     render_page("golf-odds-calculator.html", "Golf Odds Calculator: Implied Probability & Payout",
                 "Free golf odds calculator: convert American, decimal and fractional odds, see implied win probability and payout, and check your edge against the price.",
@@ -251,4 +323,9 @@ if __name__ == "__main__":
                 '<li><a href="pga-tour-betting-guide.html">PGA Tour betting guide</a></li><li><a href="golf-odds-calculator.html">Golf odds calculator</a></li>'
                 '<li><a href="courses.html">Course guides</a></li><li><a href="index.html">Home</a></li></ul>',
                 "404", noindex=True, schema="WebPage")
-    print("built 4 pages (3 + 404)")
+    render_page("membership.html", "StrokesEdge Membership: Weekly Golf Model Workbook",
+                "Get the StrokesEdge weekly model workbook for $7 a tournament or $21 a month: full-field rankings, course-fit data, picks card and value screen.",
+                "StrokesEdge <span>Membership.</span>",
+                "The weekly picks are free. The workbook shows how the model scores every player in the field.",
+                MEMBER_BODY, "Membership", faq=MEMBER_FAQ, related=MEMBER_REL, extra_css=MEMBER_CSS, schema="WebPage")
+    print("built 5 pages (3 + 404 + membership)")

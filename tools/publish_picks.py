@@ -222,7 +222,7 @@ def build_index(reg):
     reg = sorted(reg, key=lambda r: r["date"], reverse=True)
     cards = "".join(
         '<a class="pk" href="%s"><small>%s</small><strong>%s</strong><span>%s</span></a>'
-        % (r["file"], datetime.strptime(r["date"], "%Y-%m-%d").strftime("%b %d, %Y").replace(" 0", " "), esc(r["title"]), esc(r["summary"]))
+        % (r["file"] + ".html", datetime.strptime(r["date"], "%Y-%m-%d").strftime("%b %d, %Y").replace(" 0", " "), esc(r["title"]), esc(r["summary"]))
         for r in reg)
     css = (".pks{display:grid;gap:12px;margin:1.5rem 0 2rem}.pk{display:block;text-decoration:none;background:var(--sur);"
            "border:1px solid var(--bdr2);border-radius:4px;padding:20px 22px}.pk:hover{border-color:var(--bdr)}"
