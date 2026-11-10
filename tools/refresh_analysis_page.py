@@ -91,8 +91,16 @@ def build(p, ev, metrics, l1, l2, l3, tiers, posted):
     passers = sorted((d for d, r in l2.items() if r["pass"] and d in l3), key=lambda d: l3[d]["l1_score"], reverse=True)
     rank = {d: i + 1 for i, d in enumerate(passers)}
 
+    # Components that are identical for every player carry no signal (for example the course-fit columns at a
+    # venue the Tour has never played), so they must never be cited as a strength.
+    _vals = {}
+    for _d in l1:
+        for _k, _v in l1[_d]["components"].items():
+            _vals.setdefault(_k, set()).add(round(float(_v["value"]), 9))
+    dead = {k for k, v in _vals.items() if len(v) <= 1}
+
     def comps(d, n=2, by="weight"):
-        c = l1[d]["components"]
+        c = {k: v for k, v in l1[d]["components"].items() if k not in dead}
         if by == "percentile":
             top = sorted(sorted(c.items(), key=lambda kv: -kv[1]["weight_pct"])[:3], key=lambda kv: -kv[1]["percentile"])[:n]
         else:

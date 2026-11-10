@@ -11,12 +11,12 @@ change.
 """
 
 TOURNAMENT = {
-    "name": "World Wide Technology Championship",
+    "name": "Austin Championship presented by Compliance Solutions",
     "year": 2026,
-    "course_file": "course-el-cardonal.html",
-    "analysis_file": "analysis-world-wide-technology-championship-2026.html",
+    "course_file": "course-fazio-canyons.html",
+    "analysis_file": "analysis-austin-championship-presented-by-compliance-solutions-2026.html",
     "methodology_file": "methodology.html",
-    "hashtag": "#WWTChampionship",
+    "hashtag": "#AustinChampionship",
 }
 
 # site pages live under "Strokes Edge Website HTML/" inside the repo, not
@@ -35,9 +35,9 @@ SITE_REPO = r"C:\Users\bkopp\strokesedge-site\Strokes Edge Website HTML"
 # rather than guessed (chart_gen.py treats both as optional).
 COURSE_STATS = {
     "par": 72,
-    "yardage": 7452,
-    "location": "Cabo San Lucas, Mexico",
-    "designer": "Tiger Woods",
+    "yardage": 7451,
+    "location": "Austin, TX",
+    "designer": "Tom Fazio",
 }
 
 # Full StrokesEdge model workbook ran for this event (real Data Golf
@@ -47,8 +47,8 @@ COURSE_STATS = {
 # Matter This Week" section as published, matching the live site exactly.
 MODEL_WEIGHTS = [
     ("SG: Approach", 20),
-    ("SG: Off the Tee", 14),
-    ("Course-Fit Approach", 10),
-    ("Driving Distance Fit", 10),
+    ("SG: Off the Tee", 12),
     ("SG: Around the Green", 10),
+    ("Scrambling %", 6),
+    ("Proximity 150-200 yds", 6),
 ]

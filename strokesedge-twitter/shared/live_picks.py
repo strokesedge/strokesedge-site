@@ -52,7 +52,7 @@ def load_published_picks():
     if TOURNAMENT["name"].lower() not in text[:2000].lower():
         return None
 
-    m = re.search(r"## 04 .*?Full Picks Card(.*?)(?=\n## 05)", text, re.S)
+    m = re.search(r"## \d\d .*?Full Picks Card(.*?)(?=\n## )", text, re.S)
     if not m:
         return None
     picks, tier = [], None
