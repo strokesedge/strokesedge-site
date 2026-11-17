@@ -7,7 +7,7 @@
   color-scheme:dark;
 }
 html{scroll-behavior:smooth}
-body{background:var(--bg)!important;color:var(--txt);font-family:'Outfit','Helvetica Neue',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+body{background:var(--bg)!important;color:var(--txt);font-family:'Outfit','Helvetica Neue',sans-serif;font-weight:400;-webkit-font-smoothing:antialiased}
 body::before{background-image:none!important}
 body::after{display:none!important}
 .cursor,.cursor-ring{display:none!important}
