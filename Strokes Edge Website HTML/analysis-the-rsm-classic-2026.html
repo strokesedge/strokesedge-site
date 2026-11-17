@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon-180x180.png">
+<meta name="description" content="2026 RSM Classic picks preview: the renovated Seaside Course at Sea Island, par 70 at 7,157 yards, approach and putting model angles and preliminary rankings from the StrokesEdge quant model.">
+<title>The RSM Classic 2026 Analysis — StrokesEdge</title>
+<link rel="canonical" href="https://strokesedge.com/analysis-the-rsm-classic-2026">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://strokesedge.com/analysis-the-rsm-classic-2026">
+<meta property="og:title" content="The RSM Classic 2026 Analysis — StrokesEdge">
+<meta property="og:description" content="Renovated Seaside Course breakdown, approach and putting angles and preliminary model rankings for the 2026 RSM Classic at Sea Island.">
+<meta property="og:image" content="https://strokesedge.com/og/analysis-the-rsm-classic-2026.png">
+<meta property="og:site_name" content="StrokesEdge">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The RSM Classic 2026 Analysis — StrokesEdge">
+<meta name="twitter:description" content="Renovated Seaside Course breakdown and preliminary model rankings for the 2026 RSM Classic.">
+<meta name="twitter:image" content="https://strokesedge.com/og/analysis-the-rsm-classic-2026.png">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D398EHRP6Y"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-D398EHRP6Y');</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is par at Sea Island for the 2026 RSM Classic?", "acceptedAnswer": {"@type": "Answer", "text": "Par 70 at 7,157 yards for the renovated Seaside Course. The tournament is played over the Seaside and Plantation courses at Sea Island Golf Club."}}, {"@type": "Question", "name": "Was Seaside renovated before the 2026 RSM Classic?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. A restoration led by Love Golf Design reopened Seaside on October 19, 2026, adding about 152 yards, rebuilding the greens, restoring the bunkers and installing new paspalum tees, fairways and rough. Pre-renovation Seaside history is not directly comparable, so the model down-weights it."}}, {"@type": "Question", "name": "Who is the StrokesEdge model's top-ranked player for the RSM Classic?", "acceptedAnswer": {"@type": "Answer", "text": "On the preliminary run, Andrew Novak (L1 88.2), followed by Austin Smotherman and Doug Ghim. Rankings are preliminary because Data Golf had not yet published its course-fit data, and no odds or edges are shown until a verified sportsbook board is available."}}, {"@type": "Question", "name": "When is the 2026 RSM Classic?", "acceptedAnswer": {"@type": "Answer", "text": "November 19 to 22, 2026, at Sea Island Golf Club in St. Simons Island, Georgia, with a $7.4 million purse."}}, {"@type": "Question", "name": "Who is the defending champion of the RSM Classic?", "acceptedAnswer": {"@type": "Answer", "text": "Sami Valimaki is the defending champion."}}]}</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --g:#00e676;--g2:#00b85c;--g3:#0b3d24;--r:#e05252;--y:#ffb547;--blue:#4a9eff;
+  --g-glow:rgba(0,230,118,0.12);
+  --bg:#050807;--bg2:#09110d;--sur:#0d1a14;
+  --bdr:rgba(0,230,118,0.18);--bdr2:rgba(255,255,255,0.07);
+  --txt:#e8efe9;--txt2:#8da398;--txt3:#6b8076;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--txt);font-family:'Outfit',sans-serif;font-weight:300;line-height:1.6;overflow-x:hidden}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:1;opacity:.6}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,230,118,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,230,118,0.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;z-index:0}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1rem 1.5rem;border-bottom:1px solid var(--bdr2);background:rgba(8,11,7,.95);backdrop-filter:blur(16px)}
+.nav-logo{font-family:'Archivo',sans-serif;font-weight:800;font-stretch:94%;font-size:22px;letter-spacing:.08em;color:var(--txt);text-decoration:none}
+.nav-logo span{color:var(--g)}
+.nav-links{display:flex;align-items:center;gap:1.5rem}
+.nav-link{font-size:12px;color:var(--txt2);text-decoration:none;letter-spacing:.06em;text-transform:uppercase;transition:color .2s}
+.nav-link:hover,.nav-link.active{color:var(--txt)}
+.nav-cta{font-family:'DM Mono',monospace;font-size:12px;padding:8px 18px;border:1px solid var(--g);border-radius:2px;color:var(--g);text-decoration:none;letter-spacing:.06em;transition:all .2s;white-space:nowrap}
+.nav-cta:hover{background:var(--g-glow)}
+.hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:none;border:none;cursor:pointer;padding:6px;z-index:201}
+.hamburger span{display:block;width:22px;height:2px;background:var(--txt2);border-radius:2px;transition:all .25s}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);background:var(--g)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);background:var(--g)}
+.mobile-menu{display:none;position:fixed;top:57px;left:0;right:0;background:rgba(8,11,7,.98);backdrop-filter:blur(16px);border-bottom:1px solid var(--bdr2);z-index:99;flex-direction:column;padding:1rem 1.5rem 1.5rem;max-height:80vh;overflow-y:auto}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'DM Mono',monospace;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--txt2);text-decoration:none;padding:.7rem 0;border-bottom:1px solid var(--bdr2);transition:color .2s;display:block}
+.mobile-menu a:hover{color:var(--txt)}
+.mobile-menu a.active{color:var(--g)}
+.mob-cta{border-bottom:none!important;margin-top:.5rem;padding:.85rem 1rem!important;border:1px solid var(--g)!important;border-radius:2px;color:var(--g)!important;text-align:center}
+@media(max-width:860px){.nav-link,.nav-cta{display:none}.hamburger{display:flex}}
+
+.wrap{max-width:900px;margin:0 auto;padding:0 1.5rem;position:relative;z-index:2}
+.hero{padding:7rem 0 2rem}
+.eyebrow{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.14em;color:var(--g);text-transform:uppercase;margin-bottom:1.5rem;display:flex;align-items:center;gap:10px}
+.eyebrow::before{content:'';width:24px;height:1px;background:var(--g)}
+.major-badge{display:inline-block;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;color:var(--y);text-transform:uppercase;border:1px solid rgba(240,180,41,.3);padding:4px 10px;border-radius:2px;margin-bottom:1rem;background:rgba(240,180,41,.05)}
+.hero-title{font-family:'Archivo',sans-serif;font-weight:800;font-stretch:94%;font-size:clamp(60px,10vw,100px);line-height:.92;letter-spacing:.02em;color:var(--txt);margin-bottom:1.2rem}
+.hero-title span{color:var(--g)}
+.hero-meta{font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.08em;color:var(--txt2);text-transform:uppercase;margin-bottom:1.5rem}
+.hero-sub{font-size:16px;color:var(--txt2);max-width:680px;line-height:1.7;font-weight:300}
+.divider{height:1px;background:var(--bdr);margin:2.5rem 0}
+section{padding:2rem 0 1rem}
+.sec-num{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.16em;color:var(--txt3);text-transform:uppercase;margin-bottom:.75rem}
+h2{font-family:'Archivo',sans-serif;font-weight:800;font-stretch:94%;font-size:clamp(32px,5vw,46px);color:var(--txt);line-height:1;margin-bottom:1.5rem}
+h2 span{color:var(--g)}
+.body-text{font-size:15px;color:var(--txt2);line-height:1.75;margin-bottom:1.25rem;font-weight:300}
+.body-text strong{color:var(--txt);font-weight:500}
+.body-text a{color:var(--g);text-decoration:none}
+.body-text a:hover{text-decoration:underline}
+
+.stat-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--bdr2);border:1px solid var(--bdr2);border-radius:4px;overflow:hidden;margin:1.5rem 0}
+.stat-cell{background:var(--sur);padding:1rem .75rem;text-align:center}
+.stat-n{font-family:'Archivo',sans-serif;font-weight:800;font-stretch:94%;font-size:26px;color:var(--g);line-height:1}
+.stat-l{font-family:'DM Mono',monospace;font-size:9px;color:var(--txt3);letter-spacing:.08em;text-transform:uppercase;margin-top:.35rem;line-height:1.4}
+@media(max-width:640px){.stat-grid{grid-template-columns:repeat(3,1fr)}}
+
+.callout{border-left:2px solid var(--g);padding:1rem 1.25rem;background:rgba(0,230,118,.05);margin-bottom:1rem;border-radius:0 4px 4px 0}
+.callout-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;color:var(--g);text-transform:uppercase;margin-bottom:.5rem}
+.callout-text{font-size:14px;color:var(--txt2);line-height:1.7;font-weight:300}
+.callout.fade{border-left-color:var(--r);background:rgba(224,82,82,.05)}
+.callout.fade .callout-label{color:var(--r)}
+.callout.note{border-left-color:var(--y);background:rgba(240,180,41,.05)}
+.callout.note .callout-label{color:var(--y)}
+
+/* Weight bars */
+.weight-grid{display:flex;flex-direction:column;gap:.75rem;margin:1.5rem 0}
+.w-row{display:grid;grid-template-columns:180px 1fr 60px;gap:1rem;align-items:center}
+.w-label{font-family:'DM Mono',monospace;font-size:11px;color:var(--txt2);letter-spacing:.04em}
+.w-label.fade-stat{color:var(--r)}
+.w-bar-track{height:6px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden}
+.w-bar-fill{height:100%;background:var(--g);border-radius:3px;transition:width .3s}
+.w-bar-fill.fade{background:var(--r)}
+.w-pct{font-family:'DM Mono',monospace;font-size:11px;color:var(--txt3);text-align:right}
+@media(max-width:640px){.w-row{grid-template-columns:140px 1fr 50px}}
+
+/* Model table */
+table{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:13px}
+thead tr{border-bottom:1px solid var(--g)}
+th{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;color:var(--g);text-transform:uppercase;padding:.6rem .5rem;text-align:left;font-weight:400}
+td{padding:.55rem .5rem;color:var(--txt2);border-bottom:1px solid rgba(255,255,255,.04)}
+tr:hover td{background:rgba(0,230,118,.03)}
+.cg{color:var(--g)!important;font-weight:500}
+.cy{color:var(--y)!important}
+.cr{color:var(--r)!important}
+.cb{color:var(--blue)!important}
+.tag-pass{font-family:'DM Mono',monospace;font-size:9px;background:rgba(0,230,118,.12);color:var(--g);padding:2px 6px;border-radius:2px;letter-spacing:.06em}
+.tag-fail{font-family:'DM Mono',monospace;font-size:9px;background:rgba(224,82,82,.12);color:var(--r);padding:2px 6px;border-radius:2px;letter-spacing:.06em}
+.tag-soft{font-family:'DM Mono',monospace;font-size:9px;background:rgba(240,180,41,.12);color:var(--y);padding:2px 6px;border-radius:2px;letter-spacing:.06em}
+
+.divider-picks{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.28em;color:var(--txt3);text-align:center;margin:2rem 0;text-transform:uppercase}
+
+/* Course history table */
+.hist-table{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:13px}
+.hist-table th{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;color:var(--g);text-transform:uppercase;padding:.6rem .5rem;text-align:left;border-bottom:1px solid var(--g)}
+.hist-table td{padding:.5rem;border-bottom:1px solid rgba(255,255,255,.04);color:var(--txt2)}
+.hist-table tr:hover td{background:rgba(0,230,118,.03)}
+.sg-high{color:var(--g);font-weight:500}
+.sg-mid{color:var(--y)}
+.sg-low{color:var(--txt3)}
+.sg-neg{color:var(--r)}
+
+/* Archive cards */
+.archive-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin-top:1.5rem}
+.archive-card{background:var(--sur);border:1px solid var(--bdr2);border-radius:4px;padding:1.1rem 1.25rem;text-decoration:none;transition:border-color .2s,background .2s;display:block}
+.archive-card:hover{border-color:var(--g2);background:rgba(0,230,118,.04)}
+.archive-card-event{font-family:'Archivo',sans-serif;font-weight:800;font-stretch:94%;font-size:18px;color:var(--txt);letter-spacing:.02em}
+.archive-card-meta{font-family:'DM Mono',monospace;font-size:11px;color:var(--txt3);margin-top:4px}
+.archive-card-link{font-family:'DM Mono',monospace;font-size:11px;color:var(--g);margin-top:10px;display:flex;align-items:center;gap:4px}
+
+.cta-strip{background:rgba(0,230,118,.06);border:1px solid var(--bdr);border-radius:4px;padding:2rem;margin:2rem 0;text-align:center}
+.cta-strip h3{font-family:'Archivo',sans-serif;font-weight:800;font-stretch:94%;font-size:28px;color:var(--txt);margin-bottom:.5rem}
+.cta-strip p{font-size:14px;color:var(--txt2);margin-bottom:1.25rem}
+.cta-strip a{font-family:'DM Mono',monospace;font-size:12px;color:var(--g);text-decoration:none;border:1px solid var(--g);padding:10px 22px;border-radius:2px;letter-spacing:.06em;transition:all .2s;display:inline-block}
+.cta-strip a:hover{background:var(--g-glow)}
+.disclaimer{font-family:'DM Mono',monospace;font-size:10px;color:var(--txt3);text-align:center;padding:1.5rem 0;letter-spacing:.06em}
+footer{border-top:1px solid var(--bdr2);padding:1.5rem;text-align:center;font-family:'DM Mono',monospace;font-size:11px;color:var(--txt3);letter-spacing:.06em;position:relative;z-index:2}
+footer a{color:var(--txt3);text-decoration:none;transition:color .2s}
+footer a:hover{color:var(--g)}
+@media(hover:hover){*{cursor:none}html{cursor:none}
+.cursor{position:fixed;width:8px;height:8px;background:var(--g);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .1s,opacity .2s;mix-blend-mode:screen}}
+
+/* top bar strip */
+.top-bar{background:var(--bg2);border:1px solid var(--bdr2);border-radius:4px;padding:1rem 1.5rem;margin:0 0 2rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
+.top-bar-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--txt3)}
+.top-bar-link{font-family:'DM Mono',monospace;font-size:11px;color:var(--g);text-decoration:none;letter-spacing:.06em;border:1px solid var(--bdr);padding:8px 14px;border-radius:2px;white-space:nowrap;transition:background .2s}
+.top-bar-link:hover{background:var(--g-glow)}
+
+/* ── MODEL SALES ── */
+.model-sales{max-width:900px;margin:0 auto 3rem;padding:0 1.5rem;text-align:center;position:relative;z-index:2}
+.model-sales-copy{font-size:15px;color:var(--txt2);margin-bottom:1.5rem}
+.model-sales-buttons{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn-model{display:inline-block;padding:13px 28px;background:var(--g);color:#031008;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.06em;text-decoration:none;border-radius:2px;border:1px solid var(--g);transition:all .2s}
+.btn-model:hover{background:#33ff94;transform:translateY(-2px)}
+.btn-model-outline{background:transparent;color:var(--g)}
+.btn-model-outline:hover{background:rgba(0,230,118,.1)}
+
+/* ── CONTENT CLIFF GATE ── */
+.cliff-section{position:relative;margin-bottom:3rem}
+.cliff-blurred{filter:blur(8px);pointer-events:none;user-select:none}
+.cliff-overlay{position:absolute;inset:0;display:none;z-index:300;align-items:center;justify-content:center;background:linear-gradient(180deg,transparent 0%,rgba(8,11,7,0.85) 50%,rgba(8,11,7,0.95) 100%);min-height:300px}
+.cliff-overlay.active{display:flex}
+.cliff-overlay.hidden{display:none}
+.cliff-box{background:transparent;text-align:center;max-width:400px;padding:0}
+.cliff-title{font-size:16px;color:var(--txt);line-height:1.6;margin-bottom:1.5rem}
+.cliff-label{font-family:'DM Mono',monospace;font-size:10px;color:var(--txt3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:1rem}
+.cliff-btn{display:block;width:100%;max-width:240px;margin:0 auto 1rem;padding:12px 24px;background:var(--g);color:#031008;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.06em;text-decoration:none;border-radius:2px;border:none;cursor:pointer;transition:all .2s}
+.cliff-btn:hover{background:#33ff94}
+.cliff-form{margin-top:1.5rem;display:none}
+.cliff-form.active{display:block}
+.cliff-form input{width:100%;max-width:240px;padding:10px 14px;background:rgba(255,255,255,.05);border:1px solid var(--bdr);border-radius:2px;color:var(--txt);font-family:'Outfit',sans-serif;font-size:13px;margin-bottom:10px;display:block;margin-left:auto;margin-right:auto}
+.cliff-form input::placeholder{color:var(--txt3)}</style>
+<link rel="stylesheet" href="se-theme.css">
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">Strokes<span>Edge</span></a>
+  <div class="nav-links">
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="methodology.html" class="nav-link">Methodology</a>
+    <a href="picks.html" class="nav-link">Pick Tracker</a>
+    <a href="courses.html" class="nav-link">Courses</a>
+    <a href="analysis.html" class="nav-link active">Analysis</a><a href="pga-tour-betting-guide.html" class="nav-link">Guides</a>
+    <a href="https://strokesedge.substack.com" class="nav-cta" target="_blank" data-signup>Subscribe →</a>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html">Home</a>
+  <a href="methodology.html">Methodology</a>
+  <a href="picks.html">Pick Tracker</a>
+  <a href="courses.html">Courses</a>
+  <a href="analysis.html" class="active">Analysis</a> · <a href="pga-tour-betting-guide.html">Guides</a>
+  <a href="https://strokesedge.substack.com" class="mob-cta" target="_blank" data-signup>Subscribe →</a>
+</div>
+
+<div class="wrap">
+
+<div class="top-bar">
+  <div class="top-bar-label">Analysis · The RSM Classic 2026 · Sea Island (Seaside + Plantation) · Nov 19–22</div>
+  <a href="picks.html" class="top-bar-link">Live Pick Tracker →</a>
+</div>
+
+<section class="hero">
+  <div class="major-badge">FEDEXCUP FALL · $7.4M Purse · PRELIMINARY MODEL</div>
+  <div class="eyebrow">Sea Island Golf Club · Seaside and Plantation Courses · St. Simons Island, GA</div>
+  <h1 class="hero-title">The RSM<span>Classic.</span></h1>
+  <div class="hero-meta">Seaside Course · Par 70 · 7,157 yards · Nov 19–22, 2026 · $7.4M purse · 147-player field</div>
+  <p class="hero-sub">Seaside was restored in 2026 and reopened October 19, so this is effectively a new golf course. Pre-renovation history is not comparable, which leaves current form, approach play and putting to do the work.</p>
+</section>
+
+<!-- ═══ COURSE OVERVIEW ═══ -->
+<section>
+  <div class="sec-num">01 — Course Overview</div>
+  <h2>Seaside, <span>restored for 2026.</span></h2>
+  <p class="body-text">The RSM Classic is played over the Seaside and Plantation courses at Sea Island Golf Club. Seaside was restored in 2026 by Love Golf Design and reopened on October 19. The work added about 152 yards (the course now plays 7,157 yards at par 70, against 7,005 before), rebuilt the greens, restored the bunkers and installed new paspalum tees, fairways and rough. The purse is $7.4 million and Sami Valimaki is the defending champion.</p>
+  <p class="body-text"><strong>What decides the leaderboard:</strong> nobody can say for certain, because the renovated Seaside has no Tour scoring history. Rebuilt greens and a longer layout should raise the value of approach play and putting, and the model leans on those skills and on current form. Plantation was not part of the renovation, but Data Golf blends both courses in its course-fit and history numbers, so we treat those as partly pre-renovation as well.</p>
+
+  <div class="stat-grid">
+    <div class="stat-cell"><div class="stat-n">Par 70</div><div class="stat-l">Seaside<br>par</div></div>
+    <div class="stat-cell"><div class="stat-n">7,157</div><div class="stat-l">Seaside<br>yardage</div></div>
+    <div class="stat-cell"><div class="stat-n">130</div><div class="stat-l">Players<br>scored by model</div></div>
+    <div class="stat-cell"><div class="stat-n">$7.4M</div><div class="stat-l">Total<br>purse</div></div>
+    <div class="stat-cell"><div class="stat-n">+152</div><div class="stat-l">Yards added<br>by the restoration</div></div>
+  </div>
+
+  <div class="callout note">
+    <div class="callout-label">Renovated course: pre-renovation history is not comparable</div>
+    <div class="callout-text">Past Seaside results came on a different course, so course history and experience are capped at 5% combined this week, and Data Golf's four course-fit components are cut to half their usual weight. Treat any Seaside history in the data as pre-renovation. These rankings are also preliminary: Data Golf had not yet published its RSM course-fit data when this page was built, so those factors are left out for now and the page will be refreshed when the data lands. For the full breakdown, see the <a href="course-sea-island-seaside.html">Seaside Course Guide</a>.</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ WHAT STATS MATTER ═══ -->
+<section>
+  <div class="sec-num">02 — What Stats Matter This Week</div>
+  <h2>Approach and putting <span>lead the model.</span></h2>
+  <p class="body-text">Preliminary StrokesEdge model run for this event (live Data Golf field and skill ratings, blended 50% skill-ratings baseline and 50% computed L30 form, a higher recent-form share than usual because course history is unusable). 130 players had enough data to be scored and 31 cleared the Winner DNA gates; the rest of the field sits on the Watch List.</p>
+
+  <div class="weight-grid">
+    <div class="w-row"><div class="w-label">SG: Approach</div><div class="w-bar-track"><div class="w-bar-fill" style="width:100%"></div></div><div class="w-pct">32%</div></div>
+    <div class="w-row"><div class="w-label">SG: Putting</div><div class="w-bar-track"><div class="w-bar-fill" style="width:44%"></div></div><div class="w-pct">14%</div></div>
+    <div class="w-row"><div class="w-label">SG: Around the Green</div><div class="w-bar-track"><div class="w-bar-fill" style="width:28%"></div></div><div class="w-pct">9%</div></div>
+    <div class="w-row"><div class="w-label">SG: Off the Tee</div><div class="w-bar-track"><div class="w-bar-fill" style="width:22%"></div></div><div class="w-pct">7%</div></div>
+    <div class="w-row"><div class="w-label">Birdie or Better %</div><div class="w-bar-track"><div class="w-bar-fill" style="width:22%"></div></div><div class="w-pct">7%</div></div>
+    <div class="w-row"><div class="w-label">Double Bogey Avoidance %</div><div class="w-bar-track"><div class="w-bar-fill" style="width:13%"></div></div><div class="w-pct">4%</div></div>
+    <div class="w-row"><div class="w-label">Greens in Regulation %</div><div class="w-bar-track"><div class="w-bar-fill" style="width:13%"></div></div><div class="w-pct">4%</div></div>
+    <div class="w-row"><div class="w-label">Scrambling %</div><div class="w-bar-track"><div class="w-bar-fill" style="width:13%"></div></div><div class="w-pct">4%</div></div>
+    <div class="w-row"><div class="w-label fade-stat">Course-Fit and Driving-Fit (halved, data pending)</div><div class="w-bar-track"><div class="w-bar-fill fade" style="width:44%"></div></div><div class="w-pct">14%</div></div>
+    <div class="w-row"><div class="w-label fade-stat">Course History + Experience (pre-renovation)</div><div class="w-bar-track"><div class="w-bar-fill fade" style="width:16%"></div></div><div class="w-pct">5%</div></div>
+  </div>
+
+  <p class="body-text" style="font-size:13px;color:var(--txt3)">The course-fit and driving-fit factors were cut from 28% to 14% because Data Golf builds them partly from past results at the course, and Seaside is new. Data Golf's RSM version of those numbers was not published when this page was built, so they are left out of the preliminary ranking and the remaining weights are rescaled. A Bermuda-only putting split and a 125-175 yard proximity measure are not available in the data, so neither is used.</p>
+
+  <div class="callout">
+    <div class="callout-label">Winner DNA gates this week</div>
+    <div class="callout-text">A player must clear SG: Approach of -0.05 or better and SG: Putting of -0.10 or better, plus floors for greens in regulation and double-bogey avoidance that most of the field clears, to qualify for outright and longshot tiers. A player with a missing gate stat is not assumed to pass. Players who miss a gate stay eligible only for finish markets.</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ TOP 3 COURSE FITS (FREE) ═══ -->
+<section>
+  <div class="sec-num">03 — Top 3 Course Fits</div>
+  <h2>Whose stat profile <span>fits this week.</span></h2>
+  <p class="body-text">Stat profile only, no odds or pick tiers here, that's below the gate in Section 06. These are the preliminary model's top 3 ranked players by L1 score.</p>
+
+  <div class="tablewrap"><table>
+    <thead><tr><th>Player</th><th>Stat Profile</th><th>Why It Fits</th></tr></thead>
+    <tbody>
+      <tr><td style="color:var(--txt);font-weight:500">Andrew Novak</td><td class="cg">99th pctile App, 91st pctile Putt</td><td>Preliminary model rank #1, L1 88.2. SG: Approach +0.968 (99th percentile), SG: Putting +0.476 (91st percentile)</td></tr>
+      <tr><td style="color:var(--txt);font-weight:500">Austin Smotherman</td><td class="cg">98th pctile App, 93rd pctile OTT</td><td>Preliminary model rank #2, L1 87.1. SG: Approach +0.934 (98th percentile), SG: Putting +0.454 (88th percentile)</td></tr>
+      <tr><td style="color:var(--txt);font-weight:500">Doug Ghim</td><td class="cg">98th pctile ARG, 93rd pctile App</td><td>Preliminary model rank #3, L1 86.6. SG: Approach +0.648 (93rd percentile), SG: Putting +0.288 (82nd percentile)</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ FEATURED PICK (FREE) ═══ -->
+<section>
+  <div class="sec-num">04 — Featured Pick</div>
+  <h2>The model's <span>early leader.</span></h2>
+  <div class="callout">
+    <div class="callout-label">Andrew Novak</div>
+    <div class="callout-text">The preliminary model's top-ranked player, built on SG: Approach +0.968 (99th percentile) and SG: Putting +0.476 (91st percentile). This is a ranking, not a bet: prices and edges come once a verified sportsbook board is available. <a href="https://strokesedge.substack.com" target="_blank" data-signup>Full breakdown on Substack →</a></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ ARCHIVE ═══ -->
+<section>
+  <div class="sec-num">05 — Analysis Archive</div>
+  <h2>Previous <span>weeks.</span></h2>
+  <p class="body-text">Every past week's analysis stays live as its own standalone page. Results tracked publicly at <a href="picks.html">strokesedge.com/picks.html</a>.</p>
+  <div class="archive-grid">
+    <a href="analysis-austin-championship-presented-by-compliance-solutions-2026.html" class="archive-card">
+      <div class="archive-card-event">Austin Championship 2026</div>
+      <div class="archive-card-meta">Fazio Canyons · Austin, TX · Nov 12–15</div>
+      <div class="archive-card-link">View archive →</div>
+    </a>
+    <a href="analysis-world-wide-technology-championship-2026.html" class="archive-card">
+      <div class="archive-card-event">World Wide Technology Championship 2026</div>
+      <div class="archive-card-meta">El Cardonal at Diamante · Cabo San Lucas, Mexico · Nov 5–8</div>
+      <div class="archive-card-link">View archive →</div>
+    </a>
+    <a href="analysis-vidantaworld-mexico-open-2026.html" class="archive-card">
+      <div class="archive-card-event">VidantaWorld Mexico Open 2026</div>
+      <div class="archive-card-meta">Vidanta Vallarta · Nuevo Nayarit, Mexico · Oct 29–Nov 1</div>
+      <div class="archive-card-link">View archive →</div>
+    </a>
+    <a href="analysis-butterfield-bermuda-championship-2026.html" class="archive-card">
+      <div class="archive-card-event">Butterfield Bermuda Championship 2026</div>
+      <div class="archive-card-meta">Port Royal Golf Course · Southampton, Bermuda · Oct 22–25</div>
+      <div class="archive-card-link">View archive →</div>
+    </a>
+    <a href="analysis-baycurrent-classic-2026.html" class="archive-card">
+      <div class="archive-card-event">Baycurrent Classic 2026</div>
+      <div class="archive-card-meta">Yokohama Country Club · Yokohama, Japan · Oct 8–11</div>
+      <div class="archive-card-link">View archive →</div>
+    </a>
+    <a href="analysis-bank-of-utah-championship-2026.html" class="archive-card">
+      <div class="archive-card-event">Bank of Utah Championship 2026</div>
+      <div class="archive-card-meta">Black Desert Resort · Ivins, UT · Oct 1–4</div>
+      <div class="archive-card-link">View archive →</div>
+    </a>
+    <a href="analysis-presidents-cup-2026.html" class="archive-card">
+      <div class="archive-card-event">Presidents Cup 2026</div>
+      <div class="archive-card-meta">Medinah Country Club · Medinah, IL · Sep 24–27</div>
+      <div class="archive-card-link">View archive →</div>
+    </a>
+    <a href="analysis-biltmore-championship-asheville-2026.html" class="archive-card">
+      <div class="archive-card-event">Biltmore Championship Asheville 2026</div>
+      <div class="archive-card-meta">The Cliffs at Walnut Cove · Arden, NC · Sep 17–20</div>
+      <div class="archive-card-link">View archive →</div>
+    </a>
+    <a href="analysis-tour-championship-2026.html" class="archive-card">
+      <div class="archive-card-event">TOUR Championship 2026</div>
+      <div class="archive-card-meta">East Lake Golf Club · Atlanta, GA · Aug 27–30</div>
+      <div class="archive-card-link">View archive →</div>
+    </a>
+    <a href="analysis-bmw-championship-2026.html" class="archive-card">
+      <div class="archive-card-event">BMW Championship 2026</div>
+      <div class="archive-card-meta">Bellerive Country Club · St. Louis, MO · Aug 20–23</div>
+      <div class="archive-card-link">View archive →</div>
+    </a>
+    <a href="analysis-fedex-st-jude-championship-2026.html" class="archive-card">
+      <div class="archive-card-event">FedEx St. Jude Championship 2026</div>
+      <div class="archive-card-meta">TPC Southwind · Memphis, TN · Aug 13–16</div>
+      <div class="archive-card-link">View archive →</div>
+    </a>
+    <a href="analysis-wyndham-2026.html" class="archive-card">
+      <div class="archive-card-event">Wyndham Championship 2026</div>
+      <div class="archive-card-meta">Sedgefield Country Club · Greensboro, NC · Aug 6–9</div>
+      <div class="archive-card-link">View archive →</div>
+    </a>
+    <a href="analysis-rocket-classic-2026.html" class="archive-card">
+      <div class="archive-card-event">Rocket Classic 2026</div>
+      <div class="archive-card-meta">Detroit Golf Club · Detroit, MI · Jul 30–Aug 2</div>
+      <div class="archive-card-link">View archive →</div>
+    </a>
+    <a href="analysis-3m-open-2026.html" class="archive-card">
+      <div class="archive-card-event">3M Open 2026</div>
+      <div class="archive-card-meta">TPC Twin Cities · Blaine, MN · Jul 23–26</div>
+      <div class="archive-card-link">View archive →</div>
+    </a>
+    <a href="analysis-open-championship-2026.html" class="archive-card">
+      <div class="archive-card-event">The Open Championship 2026</div>
+      <div class="archive-card-meta">Royal Birkdale · Southport, England · Jul 16–19</div>
+      <div class="archive-card-link">View archive →</div>
+    </a>
+    <a href="analysis-scottish-open-2026.html" class="archive-card">
+      <div class="archive-card-event">Scottish Open 2026</div>
+      <div class="archive-card-meta">Renaissance Club · North Berwick, Scotland · Jul 10–13</div>
+      <div class="archive-card-link">View archive →</div>
+    </a>
+    <a href="analysis-pga-2026.html" class="archive-card">
+      <div class="archive-card-event">PGA Championship 2026</div>
+      <div class="archive-card-meta">Aronimink Golf Club · Wayne, PA · May 14–17</div>
+      <div class="archive-card-link">View archive →</div>
+    </a>
+    <a href="analysis-truist-2026.html" class="archive-card">
+      <div class="archive-card-event">Truist Championship 2026</div>
+      <div class="archive-card-meta">Quail Hollow · Charlotte, NC · May 7–10</div>
+      <div class="archive-card-link">View archive →</div>
+    </a>
+    <a href="analysis-cadillac-2026.html" class="archive-card">
+      <div class="archive-card-event">Cadillac Championship 2026</div>
+      <div class="archive-card-meta">Blue Monster / Doral · Miami, FL · Apr 30–May 3</div>
+      <div class="archive-card-link">View archive →</div>
+    </a>
+    <a href="analysis-heritage-2026.html" class="archive-card">
+      <div class="archive-card-event">RBC Heritage 2026</div>
+      <div class="archive-card-meta">Harbour Town · Hilton Head, SC · Apr 16–19</div>
+      <div class="archive-card-link">View archive →</div>
+    </a>
+    <a href="analysis-masters-2026.html" class="archive-card">
+      <div class="archive-card-event">Masters 2026</div>
+      <div class="archive-card-meta">Augusta National · Augusta, GA · Apr 9–12</div>
+      <div class="archive-card-link">View archive →</div>
+    </a>
+    <a href="analysis-valero-2026.html" class="archive-card">
+      <div class="archive-card-event">Valero Texas Open 2026</div>
+      <div class="archive-card-meta">TPC San Antonio · Apr 2–6</div>
+      <div class="archive-card-link">View archive →</div>
+    </a>
+    <a href="analysis-cj-cup-byron-nelson-2025.html" class="archive-card">
+      <div class="archive-card-event">CJ Cup Byron Nelson 2025</div>
+      <div class="archive-card-meta">TPC Craig Ranch · McKinney, TX · May 2025</div>
+      <div class="archive-card-link">View archive →</div>
+    </a>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ MODEL SALES SECTION ═══ -->
+<div class="model-sales">
+  <div class="model-sales-copy">Want the full model breakdown?<br><strong style="color:var(--txt)">$7 per tournament — Weekly Model Workbook&nbsp;&nbsp;&nbsp;$21/month — Monthly Membership</strong></div>
+  <div class="model-sales-buttons">
+    <a href="https://strokesedge.gumroad.com/l/buehoc" target="_blank" class="btn-model">Get Weekly Model — $7</a>
+    <a href="https://buymeacoffee.com/strokesedge/membership" target="_blank" class="btn-model btn-model-outline">Monthly Membership — $21/mo</a>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══ CONTENT CLIFF GATE ═══ -->
+<div class="cliff-section">
+  <div class="cliff-overlay" id="cliff-overlay">
+    <div class="cliff-box">
+      <div class="cliff-title">Get the full model breakdown free every week.<br>Subscribe to StrokesEdge on Substack.</div>
+      <div class="cliff-label">Full model rankings · Complete picks card · Fades</div>
+      <a href="https://strokesedge.substack.com" target="_blank" class="cliff-btn" data-signup>Subscribe Free →</a>
+      <button type="button" class="cliff-link" id="cliff-unlock">Already subscribed? Show the full breakdown</button>
+    </div>
+  </div>
+
+  <div class="cliff-blurred" id="cliff-content">
+    <!-- ═══ PRELIMINARY RANKINGS ═══ -->
+    <section>
+      <div class="sec-num">06 — Preliminary Model Rankings</div>
+      <h2>Where the model <span>stands today.</span></h2>
+      <p class="body-text">Preliminary StrokesEdge model output for the RSM Classic: rankings and gates only. There are no odds, edges or picks yet, because those wait for a verified sportsbook board, and the rankings will be refreshed when Data Golf publishes its course-fit data for this event. Skill values are on Data Golf's scale, blended 50/50 with trailing-30-day form.</p>
+
+      <div class="tablewrap"><table>
+        <thead>
+          <tr><th>#</th><th>Player</th><th>L1</th><th>App</th><th>OTT</th><th>ARG</th><th>Putt</th><th>Gate</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td style="color:var(--txt);font-weight:500">Andrew Novak</td><td>88.2</td><td>+0.968</td><td>+0.161</td><td>+0.097</td><td>+0.476</td><td>PASS</td></tr>
+          <tr><td>2</td><td style="color:var(--txt);font-weight:500">Austin Smotherman</td><td>87.1</td><td>+0.934</td><td>+0.669</td><td>-0.057</td><td>+0.454</td><td>PASS</td></tr>
+          <tr><td>3</td><td style="color:var(--txt);font-weight:500">Doug Ghim</td><td>86.6</td><td>+0.648</td><td>+0.326</td><td>+0.534</td><td>+0.288</td><td>PASS</td></tr>
+          <tr><td>4</td><td style="color:var(--txt);font-weight:500">Chris Kirk</td><td>83.5</td><td>+1.023</td><td>-0.271</td><td>+0.309</td><td>+0.359</td><td>PASS</td></tr>
+          <tr><td>5</td><td style="color:var(--txt);font-weight:500">Greyson Sigg</td><td>81.2</td><td>+0.560</td><td>+0.326</td><td>+0.119</td><td>-0.024</td><td>PASS</td></tr>
+          <tr><td>6</td><td style="color:var(--txt);font-weight:500">Denny McCarthy</td><td>79.6</td><td>+0.602</td><td>-0.403</td><td>+0.622</td><td>+0.250</td><td>PASS</td></tr>
+          <tr><td>7</td><td style="color:var(--txt);font-weight:500">Jackson Koivun</td><td>79.2</td><td>+0.493</td><td>+0.259</td><td>+0.067</td><td>+0.375</td><td>PASS</td></tr>
+          <tr><td>8</td><td style="color:var(--txt);font-weight:500">Blades Brown</td><td>77.7</td><td>+0.358</td><td>+0.832</td><td>-0.029</td><td>+0.446</td><td>PASS</td></tr>
+          <tr><td>9</td><td style="color:var(--txt);font-weight:500">Ben James</td><td>77.0</td><td>+0.693</td><td>+0.875</td><td>-0.123</td><td>-0.024</td><td>PASS</td></tr>
+          <tr><td>10</td><td style="color:var(--txt);font-weight:500">Eric Cole</td><td>75.5</td><td>+0.922</td><td>-0.346</td><td>+0.214</td><td>+0.073</td><td>PASS</td></tr>
+          <tr><td>11</td><td style="color:var(--txt);font-weight:500">Brian Harman</td><td>74.8</td><td>+0.492</td><td>+0.020</td><td>+0.163</td><td>+0.100</td><td>FAIL</td></tr>
+          <tr><td>12</td><td style="color:var(--txt);font-weight:500">Matt Wallace</td><td>74.4</td><td>+0.495</td><td>+0.174</td><td>+0.226</td><td>-0.073</td><td>FAIL</td></tr>
+          <tr><td>13</td><td style="color:var(--txt);font-weight:500">Pierceson Coody</td><td>74.3</td><td>+0.752</td><td>+0.407</td><td>+0.058</td><td>-0.157</td><td>FAIL</td></tr>
+          <tr><td>14</td><td style="color:var(--txt);font-weight:500">Kensei Hirata</td><td>73.5</td><td>+0.342</td><td>-0.034</td><td>-0.055</td><td>+0.456</td><td>PASS</td></tr>
+          <tr><td>15</td><td style="color:var(--txt);font-weight:500">Keegan Bradley</td><td>72.5</td><td>+0.468</td><td>+0.256</td><td>+0.165</td><td>-0.048</td><td>FAIL</td></tr>
+          <tr><td>16</td><td style="color:var(--txt);font-weight:500">Karl Vilips</td><td>72.5</td><td>+0.520</td><td>-0.520</td><td>+0.343</td><td>+0.002</td><td>PASS</td></tr>
+          <tr><td>17</td><td style="color:var(--txt);font-weight:500">Davis Thompson</td><td>72.4</td><td>+0.692</td><td>-0.061</td><td>+0.073</td><td>-0.054</td><td>PASS</td></tr>
+          <tr><td>18</td><td style="color:var(--txt);font-weight:500">Jordan Smith</td><td>72.2</td><td>+0.310</td><td>+0.750</td><td>+0.407</td><td>-0.109</td><td>FAIL</td></tr>
+          <tr><td>19</td><td style="color:var(--txt);font-weight:500">Michael Thorbjornsen</td><td>71.9</td><td>+0.360</td><td>+0.531</td><td>+0.128</td><td>-0.016</td><td>FAIL</td></tr>
+          <tr><td>20</td><td style="color:var(--txt);font-weight:500">Taylor Moore</td><td>71.3</td><td>+0.698</td><td>-0.757</td><td>-0.238</td><td>+0.891</td><td>PASS</td></tr>
+        </tbody>
+      </table></div>
+
+      <p class="body-text" style="font-size:13px;color:var(--txt3)">Gate = the Winner DNA filter. FAIL means the player is limited to finish markets, or has a gate stat that is not available. Ranks will move once the course-fit data lands. The complete picks card, with odds and fades, goes out on the StrokesEdge Substack once prices are verified.</p>
+    </section>
+
+    <div class="cta-strip">
+      <h3>Full card. Every pick. Zero cost.</h3>
+      <p>The RSM Classic picks card, full field notes, and bankroll sizing will be in the Substack newsletter once prices are verified. Free subscribers get everything.</p>
+      <a href="https://strokesedge.substack.com" target="_blank" data-signup>Subscribe on Substack →</a>
+    </div>
+  </div><!-- end cliff-content -->
+</div><!-- end cliff-section -->
+
+<!-- ═══ FAQ ═══ -->
+<section>
+  <div class="sec-num">07 — FAQ</div>
+  <h2>Quick <span>answers.</span></h2>
+  <div class="callout">
+    <div class="callout-label">What is par at Sea Island for the 2026 RSM Classic?</div>
+    <div class="callout-text">Par 70 at 7,157 yards for the renovated Seaside Course. The tournament is played over the Seaside and Plantation courses at Sea Island Golf Club.</div>
+  </div>
+  <div class="callout">
+    <div class="callout-label">Was Seaside renovated before the 2026 RSM Classic?</div>
+    <div class="callout-text">Yes. A restoration led by Love Golf Design reopened Seaside on October 19, 2026, adding about 152 yards, rebuilding the greens, restoring the bunkers and installing new paspalum tees, fairways and rough. Pre-renovation Seaside history is not directly comparable, so the model down-weights it.</div>
+  </div>
+  <div class="callout">
+    <div class="callout-label">Who is the StrokesEdge model&#x27;s top-ranked player for the RSM Classic?</div>
+    <div class="callout-text">On the preliminary run, Andrew Novak (L1 88.2), followed by Austin Smotherman and Doug Ghim. Rankings are preliminary because Data Golf had not yet published its course-fit data, and no odds or edges are shown until a verified sportsbook board is available.</div>
+  </div>
+  <div class="callout">
+    <div class="callout-label">When is the 2026 RSM Classic?</div>
+    <div class="callout-text">November 19 to 22, 2026, at Sea Island Golf Club in St. Simons Island, Georgia, with a $7.4 million purse.</div>
+  </div>
+  <div class="callout">
+    <div class="callout-label">Who is the defending champion of the RSM Classic?</div>
+    <div class="callout-text">Sami Valimaki is the defending champion.</div>
+  </div>
+  </section>
+
+<div class="divider"></div>
+
+<div class="disclaimer">
+  <p>Not financial advice. Gamble responsibly.</p>
+  <p>Past performance does not guarantee future results.</p>
+</div>
+
+
+<!--RELATED-LINKS-->
+<style>.se-more{margin:2.5rem 0 3rem}.se-more h2{font:700 20px/1.2 'Archivo',sans-serif;margin:0 0 1rem;color:var(--txt)}.se-more div{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}.se-more a{display:block;text-decoration:none;background:var(--sur);border:1px solid var(--bdr2);border-radius:4px;padding:16px 18px}.se-more a:hover{border-color:var(--bdr)}.se-more small{display:block;font:400 10px/1.3 'DM Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--g);margin-bottom:6px}.se-more strong{display:block;font:600 16px/1.3 'Outfit',sans-serif;color:var(--txt)}</style><section class="se-more"><h2>Keep reading</h2><div><a href="course-sea-island-seaside.html"><small>Course guide</small><strong>What the course rewards</strong></a><a href="picks.html"><small>Pick tracker</small><strong>Every settled bet, wins and losses</strong></a><a href="golf-betting-odds-explained.html"><small>Guide</small><strong>Golf betting odds explained</strong></a><a href="outright-vs-top-10-golf-betting.html"><small>Guide</small><strong>Outright vs top 10 bets</strong></a></div></section>
+<!--/RELATED-LINKS-->
+</div>
+
+<footer>
+  <a href="index.html">Home</a> · <a href="methodology.html">Methodology</a> · <a href="picks.html">Pick Tracker</a> · <a href="courses.html">Courses</a> · <a href="analysis.html">Analysis</a> · <a href="pga-tour-betting-guide.html">Guides</a> · <a href="course-sea-island-seaside.html">Seaside Course Guide</a> · <a href="https://strokesedge.substack.com" target="_blank" data-signup>Substack</a>
+  <p style="margin-top:1rem">© 2026 StrokesEdge · Independent quantitative golf betting analytics</p>
+<p class="se-rg"><strong style="color:var(--txt2);font-weight:400">21+ only.</strong> Sports betting involves risk and no pick is guaranteed. If gambling is a problem, call 1-800-GAMBLER (US) for free, confidential help. <a href="privacy.html">Privacy</a> and <a href="terms.html">Terms</a>.</p></footer>
+
+<script>
+// Cursor
+var cur=document.getElementById('cursor');
+if(cur){document.addEventListener('mousemove',function(e){cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px';});}
+
+// ── Hamburger ──
+var hbg=document.getElementById('hamburger'),mob=document.getElementById('mobile-menu');
+if(hbg&&mob){
+  hbg.addEventListener('click',function(e){
+    e.stopPropagation();
+    hbg.classList.toggle('open');
+    mob.classList.toggle('open');
+  });
+  document.addEventListener('click',function(e){
+    if(!hbg.contains(e.target)&&!mob.contains(e.target)){
+      hbg.classList.remove('open');
+      mob.classList.remove('open');
+    }
+  });
+}
+
+// ── Content cliff gate ──
+(function(){
+  var overlay=document.getElementById('cliff-overlay');
+  var btn=document.getElementById('cliff-unlock');
+  var GATE_KEY='se_analysis_unlocked';
+  function isUnlocked(){
+    try{return sessionStorage.getItem(GATE_KEY)==='1';}catch(e){return false;}
+  }
+  function unlock(){
+    try{sessionStorage.setItem(GATE_KEY,'1');}catch(e){}
+    if(overlay)overlay.classList.add('hidden');
+  }
+  if(!isUnlocked()&&overlay){
+    overlay.classList.add('active');
+    if(btn)btn.addEventListener('click',unlock);
+  } else if(overlay){
+    overlay.classList.add('hidden');
+  }
+})();
+</script>
+
+<script src="se-signup.js" defer></script>
+</body>
+</html>

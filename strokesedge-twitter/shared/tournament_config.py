@@ -11,12 +11,12 @@ change.
 """
 
 TOURNAMENT = {
-    "name": "Austin Championship presented by Compliance Solutions",
+    "name": "The RSM Classic",
     "year": 2026,
-    "course_file": "course-fazio-canyons.html",
-    "analysis_file": "analysis-austin-championship-presented-by-compliance-solutions-2026.html",
+    "course_file": "course-sea-island-seaside.html",
+    "analysis_file": "analysis-the-rsm-classic-2026.html",
     "methodology_file": "methodology.html",
-    "hashtag": "#AustinChampionship",
+    "hashtag": "#TheRSMClassic",
 }
 
 # site pages live under "Strokes Edge Website HTML/" inside the repo, not
@@ -34,10 +34,9 @@ SITE_REPO = r"C:\Users\bkopp\strokesedge-site\Strokes Edge Website HTML"
 # not published as a specific number/hole on the course page, so left out
 # rather than guessed (chart_gen.py treats both as optional).
 COURSE_STATS = {
-    "par": 72,
-    "yardage": 7451,
-    "location": "Austin, TX",
-    "designer": "Tom Fazio",
+    "par": 70,
+    "yardage": 7157,
+    "location": "St. Simons Island, GA",
 }
 
 # Full StrokesEdge model workbook ran for this event (real Data Golf
@@ -46,9 +45,9 @@ COURSE_STATS = {
 # trail). Top 5 weights, transcribed from analysis.html's "What Stats
 # Matter This Week" section as published, matching the live site exactly.
 MODEL_WEIGHTS = [
-    ("SG: Approach", 20),
-    ("SG: Off the Tee", 12),
-    ("SG: Around the Green", 10),
-    ("Scrambling %", 6),
-    ("Proximity 150-200 yds", 6),
+    ("SG: Approach", 32),
+    ("SG: Putting", 14),
+    ("SG: Around the Green", 9),
+    ("SG: Off the Tee", 7),
+    ("Birdie or Better %", 7),
 ]

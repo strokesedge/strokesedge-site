@@ -200,6 +200,29 @@ FACTOR_CATALOG = {
     "rough_recovery_over150": "Rough Recovery, >150yd, SG-per-shot (Data Golf approach-skill)",
 }
 
+def apply_event_overrides(state: dict) -> None:
+    """Per-event overrides stored in state.json["overrides"] (added 2026-11-16 for The RSM Classic,
+    whose Seaside Course was renovated in 2026). Persisting them in state means a scheduled firing
+    that runs later, without any environment variables, still uses the approved basis.
+      sg_blend_skill / sg_blend_l30 : replace the 60/40 SG blend for this event only.
+      pre_renovation_labels         : relabel course-history and course-fit factors as pre-renovation data.
+    Mutates module globals and FACTOR_CATALOG, so call it before build_player_metrics()/workbooks."""
+    global SG_BLEND_SKILL_WEIGHT, SG_BLEND_L30_WEIGHT
+    ov = state.get("overrides") or {}
+    if "sg_blend_skill" in ov and "sg_blend_l30" in ov:
+        SG_BLEND_SKILL_WEIGHT, SG_BLEND_L30_WEIGHT = float(ov["sg_blend_skill"]), float(ov["sg_blend_l30"])
+        for k, name in (("sg_app_blend", "SG: Approach"), ("sg_putt_blend", "SG: Putting"),
+                        ("sg_arg_blend", "SG: Around the Green"), ("sg_ott_blend", "SG: Off the Tee")):
+            FACTOR_CATALOG[k] = _blend_label(name)
+    if ov.get("pre_renovation_labels"):
+        for k in ("cf_approach_comp", "cf_short_comp", "driving_accuracy_adjustment",
+                  "driving_distance_adjustment", "course_history_adjustment", "course_experience_adjustment"):
+            if "pre-renovation" not in FACTOR_CATALOG[k]:
+                FACTOR_CATALOG[k] = FACTOR_CATALOG[k].replace(
+                    "(Data Golf player-decompositions)",
+                    "(Data Golf player-decompositions; any Seaside history in it is pre-renovation)")
+
+
 # Par-3 Scoring Average and Par-4/5 Scoring Average are deliberately NOT in
 # this catalog. Checked directly against Data Golf's API while building
 # this: historical-raw-data/rounds is round-level only (birdies/bogies/
@@ -3496,6 +3519,10 @@ def _step_weights_proposed(event: dict, state: dict, test_mode: bool) -> bool:
     return True
 
 
+def _norm_event(name: str) -> str:
+    return re.sub(r"[^a-z0-9]", "", (name or "").lower().replace("the ", "", 1))
+
+
 def _step_weights_approved(event: dict, state: dict, test_mode: bool) -> None:
     if test_mode:
         logger.info(f"[{event['slug']}] TEST MODE — would run L1/L2 regression now; nothing written.")
@@ -3508,6 +3535,22 @@ def _step_weights_approved(event: dict, state: dict, test_mode: bool) -> None:
         skill_ratings = dg_skill_ratings()
         approach_skill = dg_approach_skill()
         decompositions = dg_player_decompositions(event["tour"])
+        if (state.get("overrides") or {}).get("require_matching_decompositions"):
+            # Data Golf keeps serving the previous event's decompositions until it publishes the new
+            # event's. Using them would score this week on last week's course fit (seen 2026-11-16:
+            # still Austin). Hold and retry next firing instead of running on the wrong event.
+            got = (decompositions or {}).get("event_name", "")
+            if _norm_event(got) != _norm_event(event["event_name"]):
+                if (state.get("overrides") or {}).get("allow_draft_without_decompositions"):
+                    logger.warning(f"[{event['slug']}] player-decompositions are for '{got}'; Brian approved a "
+                                   f"DRAFT run without course-fit/history data (those factors left out)")
+                    decompositions = None
+                    state["draft_without_decompositions"] = True
+                else:
+                    logger.info(f"[{event['slug']}] player-decompositions still for '{got}', not "
+                                f"'{event['event_name']}' - holding L1/L2, will retry next firing")
+                    return
+        apply_event_overrides(state)
         as_of = date.today()
         l30_by_id, rate_by_id = compute_l30_window_stats(event["tour"], as_of)
         metrics = build_player_metrics(event, field, skill_ratings, approach_skill, decompositions,
@@ -3622,7 +3665,72 @@ def _build_and_deliver(event: dict, state: dict, market_data: dict) -> None:
     logger.info(f"[{event['slug']}] COMPLETE — workbook emailed")
 
 
+def _build_rankings_only(event: dict, state: dict) -> None:
+    """Rankings + gates workbook with NO odds, edges or picks, for weeks where Brian has said pricing
+    waits for a verified FanDuel/DraftKings board (state overrides.rankings_only). Emails it with the
+    course-fit audit note. The event stays at l1l2_complete; remove the flag to build the priced workbook."""
+    from openpyxl import Workbook
+    apply_event_overrides(state)
+    metrics = _int_keyed(state["metrics"])
+    l1 = _int_keyed(state["l1_results"])
+    l2 = _int_keyed(state["l2_results"])
+    weights = state["weights"]
+    wb = Workbook()
+    ws = wb.active
+    ws.title = "Model Rankings"
+    ws.append([f"STROKESEDGE - {event['event_name']} {event['start_date'][:4]} | MODEL RANKINGS (NO PRICING)"])
+    ws.append(["Rankings and L2 gates only. No odds, edges or picks until a verified FanDuel/DraftKings board is available."])
+    if state.get("draft_without_decompositions"):
+        ws.append(["DRAFT: Data Golf had not published RSM course-fit data. Course-fit, driving-fit, course history and "
+                   "experience factors are LEFT OUT and the remaining weights rescaled. Re-run when Data Golf updates."])
+    ws.append([f"SG blend: {round(SG_BLEND_SKILL_WEIGHT * 100)}% DG skill ratings / {round(SG_BLEND_L30_WEIGHT * 100)}% computed L30 "
+               f"({state.get('l30_window_note', '')}). Seaside course history is pre-renovation and down-weighted."])
+    ws.append([])
+    keys = [w["key"] for w in weights]
+    ws.append(["RK", "PLAYER", "L1 SCORE", "L2 GATE", "WEIGHT COVERAGE %"] + [f"{k} ({w['weight_pct']:g}%)" for k, w in zip(keys, weights)])
+    ranked = sorted((d for d in l1 if l1[d]["l1_score"] is not None), key=lambda d: -l1[d]["l1_score"])
+    for i, d in enumerate(ranked, 1):
+        f = metrics[d]["factors"]
+        ws.append([i, metrics[d]["player_name"], l1[d]["l1_score"], "PASS" if l2[d]["pass"] else "FAIL",
+                   l1[d]["weight_coverage_pct"]] + [f.get(k) for k in keys])
+    ws2 = wb.create_sheet("Model Weights")
+    ws2.append(["FACTOR", "WEIGHT %", "RATIONALE"])
+    for w in weights:
+        ws2.append([FACTOR_CATALOG.get(w["key"], w["key"]), round(w["weight_pct"], 2), w["rationale"]])
+    ws2.append([])
+    ws2.append(["L2 GATES"])
+    for g in state["gates"]:
+        ws2.append([g["key"], f"{g['operator']} {g['value']:g}", g["rationale"]])
+    ws2.append([])
+    ws2.append(["Not financial advice. Gamble responsibly. | strokesedge.com/picks.html"])
+    name = re.sub("[^A-Za-z0-9]", "", event["event_name"])
+    path = Path(__file__).parent / event["slug"] / f"StrokesEdge_{name}_{event['start_date'][:4]}_RANKINGS_ONLY.xlsx"
+    wb.save(path)
+    n = len(l2)
+    n_pass = sum(1 for r in l2.values() if r["pass"])
+    audit_path = Path(__file__).parent / event["slug"] / "fit_component_audit.md"
+    audit = audit_path.read_text(encoding="utf-8") if audit_path.exists() else "(audit file missing)"
+    flag = ""
+    if n and n_pass / n > 0.60:
+        flag = (f"\n!! {n_pass / n:.0%} of the field passes the L2 gates (over 60%). Gates left as approved; "
+                f"flagged per instructions.\n")
+    send_email(f"StrokesEdge: {event['event_name']} rankings and gates (no pricing)",
+               f"Rankings and L2 gates only, built on the revised pre-renovation basis. No odds, edges or picks.\n"
+               f"{'DRAFT: course-fit and history factors were left out because Data Golf had not published RSM data.' if state.get('draft_without_decompositions') else ''}\n\n"
+               f"{n} players scored, {n_pass} pass L2 ({n_pass / n:.0%}).{flag}\n"
+               f"--- STEP 2 AUDIT: course-fit components ---\n{audit}\n",
+               attachment_paths=[path])
+    state["rankings_only_delivered"] = True
+    logger.info(f"[{event['slug']}] rankings-only workbook saved and emailed: {path} ({n_pass}/{n} pass L2)")
+
+
 def _step_l1l2_complete(event: dict, state: dict, test_mode: bool) -> None:
+    if (state.get("overrides") or {}).get("rankings_only"):
+        if not state.get("rankings_only_delivered") and not test_mode:
+            _build_rankings_only(event, state)
+        else:
+            logger.info(f"[{event['slug']}] rankings-only mode - not building priced workbook until the flag is removed")
+        return
     market_data = check_markets(event["tour"])
     if not market_data["outrights_ready"]:
         logger.info(f"[{event['slug']}] odds not yet live for all consumed outright markets — retry next firing")
