@@ -11,6 +11,7 @@ Updates (the same tier selections the Substack article uses, from weekly-model/<
   * section 04: the featured pick (largest positive win edge among the model's top five)
   * section 06: the full picks card (tiers, odds, why), its intro and footnote
   * the FAQ answer "Who is favored", both the visible text and the page's FAQ structured data
+For events on or after 2027-01-21 (paid launch) the picks card is removed from the page entirely, not refreshed.
 --posted switches "publish before Thursday" wording to "now in the newsletter" once the Substack post is live.
 Needs DATAGOLF_API_KEY (live odds). It edits only the analysis page, never commits or pushes.
 """
@@ -175,13 +176,43 @@ def build(p, ev, metrics, l1, l2, l3, tiers, posted):
                 "matchups": len(tiers["matchup"])}}
 
 
+# Paid launch (2026-11-16): for events on or after this date the full picks card is paid, so the analysis
+# page must not contain it at all (a CSS blur is not protection, the text is in the page source).
+# Keep equal to PAYWALL_START_DATE in weekly-model/weekly_model_pipeline.py.
+PAYWALL_START_DATE = "2027-01-21"
+
+
+def paywall_active(start_date):
+    return (start_date or "") >= PAYWALL_START_DATE
+
+
+_CLIFF_RX = re.compile(r'<div class="cliff-blurred" id="cliff-content">.*?</div><!-- end cliff-content -->', re.S)
+_CLIFF_EMPTY = ('<div class="cliff-blurred" id="cliff-content" aria-hidden="true" style="min-height:320px">'
+                '</div><!-- end cliff-content -->')
+
+
+def strip_paid_card(s):
+    """Remove everything behind the content cliff (the full picks card, fade rows and the free-Substack strip)
+    from an analysis page. The gate overlay and its paid pitch stay; an empty fixed-height placeholder keeps the
+    overlay from collapsing. The sessionStorage honor-unlock is switched off since there is nothing to reveal."""
+    s, k = _CLIFF_RX.subn(lambda m: _CLIFF_EMPTY, s, count=1)
+    if k != 1:
+        if 'id="cliff-content"' in s:
+            raise SystemExit("could not strip the cliff content (unexpected markup)")
+        raise SystemExit("no content cliff found on this page")
+    s = s.replace("if(!isUnlocked()&&overlay){", "if(overlay){")
+    if "Full Picks Card" in s:
+        raise SystemExit("SAFETY: 'Full Picks Card' still in the page after stripping, aborted")
+    return s
+
+
 def section(s, marker):
     i = s.index(marker)
     j = s.index("</section>", i)
     return i, j
 
 
-def apply(page, data, posted, dry):
+def apply(page, data, posted, dry, paywalled=False):
     s = open(page, encoding="utf-8", newline="").read()
     crlf = "\r\n" in s
     s = s.replace("\r\n", "\n")
@@ -212,14 +243,17 @@ def apply(page, data, posted, dry):
     seg = sub_in(seg, r'<div class="callout-text">.*?</div>',
                  '<div class="callout-text">%sFull odds, tier, and reasoning in the picks card below the gate. %s</div>' % (esc(data["feat_text"]), link))
     s = s[:i] + seg + s[j:]
-    # 06 card
-    i, j = section(s, "06 — Full Picks Card")
-    seg = s[i:j]
-    seg = sub_in(seg, r'<p class="body-text">.*?</p>', '<p class="body-text">%s</p>' % esc(data["intro06"]))
-    seg = sub_in(seg, r"<tbody>.*?</tbody>", "<tbody>\n" + data["card"] + "\n        </tbody>")
-    if posted:
-        seg = seg.replace("publish free on the StrokesEdge Substack", "are free on the StrokesEdge Substack")
-    s = s[:i] + seg + s[j:]
+    # 06 card (paid events: removed from the page entirely instead of refreshed)
+    if paywalled:
+        s = strip_paid_card(s)
+    else:
+        i, j = section(s, "06 — Full Picks Card")
+        seg = s[i:j]
+        seg = sub_in(seg, r'<p class="body-text">.*?</p>', '<p class="body-text">%s</p>' % esc(data["intro06"]))
+        seg = sub_in(seg, r"<tbody>.*?</tbody>", "<tbody>\n" + data["card"] + "\n        </tbody>")
+        if posted:
+            seg = seg.replace("publish free on the StrokesEdge Substack", "are free on the StrokesEdge Substack")
+        s = s[:i] + seg + s[j:]
     if posted:
         s = s.replace("publish on the Substack newsletter before Thursday's first tee shot", "are in the Substack newsletter now")
     # FAQ visible + structured data
@@ -253,6 +287,7 @@ if __name__ == "__main__":
     ap.add_argument("--year", default="2026")
     ap.add_argument("--posted", action="store_true")
     ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("--paywall", action="store_true", help="force the paid-launch layout (no picks card in the page), for testing")
     a = ap.parse_args()
     page = os.path.join(SITE, "analysis-%s-%s.html" % (a.event, a.year))
     if not os.path.exists(page):
@@ -260,5 +295,6 @@ if __name__ == "__main__":
     p, ev, metrics, l1, l2, l3, tiers = load(a.event)
     data = build(p, ev, metrics, l1, l2, l3, tiers, a.posted)
     print(json.dumps(data["summary"], indent=1, ensure_ascii=False))
-    k = apply(page, data, a.posted, a.dry_run)
+    paywalled = a.paywall or paywall_active(ev.get("start_date"))
+    k = apply(page, data, a.posted, a.dry_run, paywalled)
     print("%s %d sections on %s" % ("would update" if a.dry_run else "updated", k, os.path.basename(page)))

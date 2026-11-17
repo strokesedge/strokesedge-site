@@ -255,6 +255,20 @@ def prepare(a):
         print("\n[dry run] homepage would change:", new_home != home, "| tweet config would change:", new_cfg != open(TWEET_CFG, encoding="utf-8", newline="").read())
         print("[dry run] access code:", code, "->", picks_new if picks_new.startswith("already") or not picks_new.startswith("<") and len(picks_new) < 90 else "would be added to picks.html")
         return
+    # Paid launch: for events on or after 2027-01-21 the analysis page must not carry the full picks card at
+    # all, so strip it now, before anything is pushed (publish later re-applies the same rule).
+    try:
+        st = json.load(open(os.path.join(event_dir, "state.json"), encoding="utf-8"))
+    except Exception:
+        st = {}
+    from refresh_analysis_page import paywall_active, strip_paid_card
+    if paywall_active(st.get("start_date")):
+        raw = open(analysis, encoding="utf-8", newline="").read()
+        if 'id="cliff-content"' in raw and "Full Picks Card" in raw:
+            crlf = "\r\n" in raw
+            out = strip_paid_card(raw.replace("\r\n", "\n"))
+            open(analysis, "w", encoding="utf-8", newline="").write(out.replace("\n", "\r\n") if crlf else out)
+            print("Paid event: removed the full picks card from", os.path.basename(analysis))
     open(home_p, "w", encoding="utf-8", newline="").write(new_home)
     open(TWEET_CFG, "w", encoding="utf-8", newline="").write(new_cfg)
     print("\nWrote: homepage This-week block, hero callouts, date line and Read-next card; tweet config.")
