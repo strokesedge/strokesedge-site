@@ -29,7 +29,7 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--g:#00e676;--g2:#00b85c;--g3:#0b3d24;--r:#e05252;--y:#ffb547;--g-glow:rgba(0,230,118,0.12);--bg:#050807;--bg2:#09110d;--bg3:#0d1a14;--sur:#0d1a14;--bdr:rgba(0,230,118,0.18);--bdr2:rgba(255,255,255,0.07);--txt:#e8efe9;--txt2:#8da398;--txt3:#6b8076}
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--txt);font-family:'Outfit',sans-serif;font-weight:300;line-height:1.7;overflow-x:hidden}
+body{background:var(--bg);color:var(--txt);font-family:'Outfit',sans-serif;font-weight:400;line-height:1.7;overflow-x:hidden}
 body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,230,118,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,230,118,0.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;z-index:0}
 nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1rem 1.5rem;border-bottom:1px solid var(--bdr2);background:rgba(8,11,7,0.95);backdrop-filter:blur(16px)}
 .nav-logo{font-family:'Archivo',sans-serif;font-weight:800;font-stretch:94%;font-size:22px;letter-spacing:0.08em;color:var(--txt);text-decoration:none}
@@ -64,14 +64,14 @@ h1 span{color:var(--g)}
 .toc a:hover{color:var(--g)}
 h2{font-family:'Archivo',sans-serif;font-weight:800;font-stretch:94%;font-size:clamp(28px,4vw,40px);letter-spacing:.04em;line-height:1.05;margin:3rem 0 1rem;color:var(--txt)}
 h3{font-size:17px;font-weight:400;color:var(--txt);margin:1.75rem 0 .5rem}
-p{font-size:16px;color:var(--txt2);margin-bottom:1.1rem}
+p{font-size:17px;color:var(--txt2);margin-bottom:1.1rem}
 p strong,li strong{color:var(--txt);font-weight:400}
 ul,ol{margin:0 0 1.25rem 1.3rem;color:var(--txt2);font-size:16px}
 li{margin-bottom:.45rem}
 a{color:var(--g)}
 .callout{background:rgba(0,230,118,.05);border-left:2px solid var(--g);padding:1rem 1.25rem;margin:1.5rem 0;border-radius:0 3px 3px 0}
 .callout p{margin:0;color:var(--txt)}
-table{width:100%;border-collapse:collapse;margin:1.25rem 0 1.75rem;font-size:14px}
+table{width:100%;border-collapse:collapse;margin:1.25rem 0 1.75rem;font-size:15px}
 th,td{padding:.7rem .8rem;text-align:left;border-bottom:1px solid var(--bdr2)}
 th{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--g);font-weight:400}
 td{color:var(--txt2)}
@@ -119,12 +119,14 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-D398EHRP6Y');</script>
 <style>
 .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:1.5rem 0 1rem}
-.plan{background:var(--sur);border:1px solid var(--bdr);border-radius:4px;padding:26px 24px;display:flex;flex-direction:column;gap:14px}
+.plan{background:var(--sur);border:1px solid var(--bdr);border-radius:4px;padding:34px 28px;display:flex;flex-direction:column;gap:16px;position:relative}
+.plan.featured{border:2px solid var(--g)}
+.plan .badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--g);color:#031008;font:700 11px/1 'DM Mono',monospace;letter-spacing:.12em;text-transform:uppercase;padding:6px 14px;border-radius:2px;white-space:nowrap}
 .plan small{font:400 11px/1.3 'DM Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--g)}
 .plan h3{margin:0;font:800 clamp(28px,4vw,40px)/1 'Archivo',sans-serif;font-stretch:108%;letter-spacing:-.02em;color:var(--txt)}
-.plan h3 span{font:400 13px/1 'DM Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--txt2);margin-left:8px}
-.plan p{margin:0}
-.plan .btn{margin:6px 0 0;text-align:center;align-self:flex-start}
+.plan h3 span{display:block;font:800 36px/1.1 'Archivo',sans-serif;letter-spacing:0;text-transform:none;color:var(--g);margin:10px 0 0}
+.plan p{margin:0;font-size:17px;line-height:1.6;color:var(--txt)}
+.plan .btn{margin:8px 0 0;text-align:center;align-self:stretch;padding:16px 12px;font-size:14px}
 .free-line{background:var(--bg2);border:1px solid var(--bdr2);border-radius:4px;padding:18px 22px;display:flex;flex-wrap:wrap;gap:12px 22px;align-items:center;justify-content:space-between}
 .free-line p{margin:0;color:var(--txt)}
 .cmp td:not(:first-child),.cmp th:not(:first-child){text-align:center}
@@ -172,19 +174,20 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var
   <div class="plan">
     <small>One tournament</small>
     <h3>Weekly Pass<span>$10</span></h3>
-    <p>The full model workbook for a single tournament, as a one-time purchase. No subscription.</p>
+    <p>The full model workbook for one tournament. One-time purchase, no subscription.</p>
     <a class="btn" href="https://buy.stripe.com/eVqfZg5No9lr5eU1R64Rq02" target="_blank" rel="noopener">Get the Weekly Pass for $10 &rarr;</a>
   </div>
-  <div class="plan" id="membership">
+  <div class="plan featured" id="membership">
+    <div class="badge">Most popular</div>
     <small>Every main event</small>
     <h3>Membership<span>$19.99/mo</span></h3>
-    <p>The workbook for every main event, billed monthly. It costs less than single passes once you want two tournaments in a month.</p>
+    <p>The workbook for every main event, billed monthly. Cheaper than two Weekly Passes.</p>
     <a class="btn" href="https://buy.stripe.com/eVq00idfQ8hn6iY67m4Rq03" target="_blank" rel="noopener">Join for $19.99 a month &rarr;</a>
   </div>
   <div class="plan" id="annual">
     <small>Best value</small>
     <h3>Annual<span>$150/yr</span></h3>
-    <p>The same membership billed once a year. Twelve monthly payments cost $239.88, so the annual plan saves $89.88, about 37 percent.</p>
+    <p>The same membership, billed once a year. Save $89.88 over paying monthly.</p>
     <a class="btn" href="https://buy.stripe.com/28E5kC5No8hn9va1R64Rq01" target="_blank" rel="noopener">Join for $150 a year &rarr;</a>
   </div>
 </div>
