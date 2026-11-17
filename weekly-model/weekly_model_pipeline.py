@@ -2289,6 +2289,25 @@ def render_top_model_outputs_section(event: dict, ctx: dict, win_idx: dict, rank
     return "\n".join(lines)
 
 
+# Paid launch (Brian, 2026-11-16): from The American Express 2027 (Jan 21-24) onward, both articles
+# carry Substack's paywall divider. Picks article: immediately before the full picks card section
+# (any Card at a Glance style summary must sit BELOW the divider, next to the card). DFS article:
+# immediately before the DFS picks content. Earlier events are built exactly as before.
+PAYWALL_START_DATE = "2027-01-21"
+PAYWALL_STANDARD_LINE = ("The full card below is for paid subscribers and members. Members are strokesedge.com "
+                         "membership holders, and they receive a complimentary Substack paid subscription "
+                         "with their membership.")
+PAYWALL_MARKER = "=== SUBSTACK PAYWALL DIVIDER (in the Substack editor: type /paywall here) ==="
+
+
+def paywall_block(event: dict) -> list:
+    """Standard line + divider marker, as article lines; empty for events before the paid launch.
+    tools/publish_picks.py strips both lines from the free site page, so keep them as-is."""
+    if (event.get("start_date") or "") < PAYWALL_START_DATE:
+        return []
+    return [PAYWALL_STANDARD_LINE, "", PAYWALL_MARKER, ""]
+
+
 ACCESS_CODE_OVERRIDES = {"baycurrent-classic": "BAYC2026",
                          "butterfield-bermuda-championship": "BERMUDA2026"}
 
@@ -3034,6 +3053,7 @@ def generate_substack_article(event: dict, ctx: dict) -> Path:
         narrative["weather_narrative"],
         "",
         render_top_model_outputs_section(event, ctx, win_idx, ranked, rank_of, writeups),
+        *paywall_block(event),
         render_full_picks_card_section(event, ctx, win_idx, rank_of, writeups),
         "## 05 — Course History Note",
         "",
@@ -3265,6 +3285,7 @@ def generate_dfs_article(event: dict, ctx: dict) -> Path | None:
         "",
         narrative["slate_setup"],
         "",
+        *paywall_block(event),
         "## 02 — GPP Lineup",
         "",
         render_dfs_lineup_table(lineups["gpp"], dfs_index, rank_of, metrics),

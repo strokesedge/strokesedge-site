@@ -69,7 +69,7 @@ def find_on_substack(article_title, items):
 
 
 # ----------------------------------------------------------------------------- markdown
-def parse_article(path):
+def parse_article(path, flag=False):
     raw = open(path, encoding="utf-8").read().replace("\r\n", "\n")
     m = re.search(r"=== SEO METADATA.*?===+\n(.*?)\n=+\n", raw, re.S)
     seo = {}
@@ -82,12 +82,35 @@ def parse_article(path):
         body = raw
     code = re.search(r"access code this week:\s*(\S+)", raw)
     body = body.strip("\n")
+    # Paid launch (2026-11-16): a paywalled article (it carries the Substack paywall divider marker,
+    # which the pipeline emits for events on or after 2027-01-21) is published here only down to the
+    # divider. The paid-subscriber line above the marker is dropped too, publish() adds the closing
+    # call to action instead. Articles without the marker (every earlier event) are untouched.
+    paywalled = False
+    mk = re.search(r"^=== SUBSTACK PAYWALL DIVIDER.*?===[ 	]*$", body, re.M)
+    if mk:
+        paywalled = True
+        body = body[:mk.start()]
+        body = re.sub(r"\n*The full card below is for paid subscribers and members\..*\s*$", "", body)
     # drop the access-code / links footer
     cut = body.find("Pick tracker access code")
     if cut != -1:
         hr = body.rfind("\n---", 0, cut)
         body = body[:hr if hr != -1 else cut]
+    if flag:
+        return seo, body.strip(), (code.group(1) if code else None), paywalled
     return seo, body.strip(), (code.group(1) if code else None)
+
+
+PAYWALL_CTA = ("The full picks card and DFS breakdown are for paid subscribers and members. Get them on Substack "
+               "(https://strokesedge.substack.com/subscribe) or with a site membership "
+               "(https://strokesedge.com/membership), which also includes the weekly model workbook.")
+
+
+def cta_html():
+    t = html.escape(PAYWALL_CTA, quote=False)
+    t = re.sub(r"https://[^\s)]+", lambda m: '<a href="%s">%s</a>' % (m.group(0), m.group(0)), t)
+    return '<div class="callout"><p>%s</p></div>' % t
 
 
 def inline(t):
@@ -246,7 +269,7 @@ def publish(event_dir, force=False, feed=None):
     if not arts:
         print("no substack_article_*.md in", event_dir)
         return None
-    seo, body, code = parse_article(arts[-1])
+    seo, body, code, paywalled = parse_article(arts[-1], flag=True)
     title = seo.get("ARTICLE TITLE")
     page_slug = seo.get("POST URL")
     if not (title and page_slug):
@@ -260,6 +283,8 @@ def publish(event_dir, force=False, feed=None):
     date = hit[1] if hit else datetime.now()
     subtitle = seo.get("SUBTITLE")
     lede, meta, body_html, faq = convert(body, subtitle)
+    if paywalled:
+        body_html += "\n" + cta_html()
     fname = page_slug + ".html"
     d = seo.get("SEO DESCRIPTION", "")
     if len(d) > 160:  # the pipeline's own SEO block can run long, trim at a word boundary like Google would
