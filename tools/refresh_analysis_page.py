@@ -38,6 +38,17 @@ def esc(x):
     return html.escape(str(x), quote=False)
 
 
+_MD = {}
+
+
+def fin(p, d):
+    """Finish-market prices from the same Data Golf board the workbook uses. A finish-market row never shows the
+    outright price (2026-11-17 standard)."""
+    t10 = p._fmt_odds(p._odds_index(_MD, "outrights_top_10").get(d))
+    t20 = p._fmt_odds(p._odds_index(_MD, "outrights_top_20").get(d))
+    return "Top 10 %s, Top 20 %s" % (t10, t20)
+
+
 def load(slug):
     sys.path.insert(0, WEEKLY)
     os.chdir(WEEKLY)
@@ -50,6 +61,8 @@ def load(slug):
         raise SystemExit("state.json has no model results for %s yet" % slug)
     metrics, l1, l2 = p._int_keyed(st["metrics"]), p._int_keyed(st["l1_results"]), p._int_keyed(st["l2_results"])
     md = p.check_markets(ev["tour"])
+    global _MD
+    _MD = md
     if not md["outrights_ready"]:
         raise SystemExit("outright odds are not live, cannot refresh")
     l3 = p.compute_l3(l1, md)
@@ -150,7 +163,7 @@ def build(p, ev, metrics, l1, l2, l3, tiers, posted):
     for d in tiers["top10_top20"]:
         e = l3[d]["win_edge_pct"]
         tail = ("%+.2f%% outright edge, so finish markets only" % e) if (e is not None and e < 0) else ("%+.2f%% win edge" % e)
-        row("tag-soft", "TOP 10 / TOP 20", name(d), fmt(d), "Model rank #%d, L1 %.1f. %s, %s" % (rank[d], l3[d]["l1_score"], long_bits(d, 2), tail))
+        row("tag-soft", "TOP 10 / TOP 20", name(d), fin(p, d), "Model rank #%d, L1 %.1f. %s, %s" % (rank[d], l3[d]["l1_score"], long_bits(d, 2), tail))
     for m in tiers["matchup"]:
         a, b = m["favor"], m["against"]
         row("tag-soft", "MATCHUP", "%s over %s" % (name(a), name(b)), "—",
@@ -158,7 +171,7 @@ def build(p, ev, metrics, l1, l2, l3, tiers, posted):
                 p._player_last_name(metrics[a]["player_name"]) if hasattr(p, "_player_last_name") else name(a).split()[-1], l3[a]["l1_score"],
                 name(b).split()[-1], l3[b]["l1_score"]))
     for d in tiers["fade"]:
-        row("tag-fail", "FADE", name(d), fmt(d), "%+.2f%% win edge. Fade outright only, still viable in Top 10/20 markets." % l3[d]["win_edge_pct"])
+        row("tag-fail", "FADE", name(d), fmt(d), "%+.2f%% win edge. Fade outright winner only. The finish markets remain viable (%s)." % (l3[d]["win_edge_pct"], fin(p, d)))
 
     fav = min((d for d in l3 if l3[d].get("win_odds") not in (None, "")), key=lambda d: float(l3[d]["win_odds"]))
     intro06 = ("Full StrokesEdge model workbook output, live Data Golf field, skill ratings, and sportsbook odds. %s is the betting favorite at %s, "

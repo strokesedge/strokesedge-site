@@ -422,11 +422,33 @@ def is_skippable(name: str) -> bool:
 # ─────────────────────────────────────────────────────────────────────────
 # Concurrent-event detection
 # ─────────────────────────────────────────────────────────────────────────
+# Display-name fixes for events whose Data Golf course string is a raw join of several venues, and verified
+# course context fed to the article narrative prompts so Claude does not improvise course history.
+# Keyed by lowercase event name. Added 2026-11-17 for The RSM Classic (Sea Island, renovated Seaside).
+COURSE_NAME_OVERRIDES = {
+    "the rsm classic": "Sea Island Golf Club (Seaside and Plantation Courses)",
+}
+COURSE_CONTEXT_NOTES = {
+    "the rsm classic": ("The field plays two Sea Island courses, Seaside and Plantation. Seaside was restored by "
+                        "Love Golf Design and reopened October 19, 2026: about 152 yards were added (now 7,157 yards, "
+                        "par 70), the greens were rebuilt, the bunkers restored, and new paspalum tees, fairways and "
+                        "rough were installed. Plantation was not part of the renovation. Results on the old Seaside "
+                        "are not comparable to this week's course. Sami Valimaki is the defending champion. Do not "
+                        "state anything else about this venue's history, past winners, or how the two courses are "
+                        "rotated across rounds."),
+}
+
+
+def _course_context_block(event: dict) -> str:
+    note = COURSE_CONTEXT_NOTES.get((event.get("event_name") or "").lower())
+    return ("\nVERIFIED COURSE CONTEXT (use only this for course history and storyline): " + note + "\n") if note else ""
+
+
 def _make_event(entry: dict, tour: str, is_main: bool, event_type: str) -> dict:
     return {
         "event_id": entry.get("event_id"),
         "event_name": entry["event_name"],
-        "course_name": entry.get("course"),
+        "course_name": COURSE_NAME_OVERRIDES.get(entry["event_name"].lower(), entry.get("course")),
         "location": entry.get("location"),
         "start_date": entry.get("start_date"),
         "latitude": entry.get("latitude"),
@@ -2309,7 +2331,8 @@ def paywall_block(event: dict) -> list:
 
 
 ACCESS_CODE_OVERRIDES = {"baycurrent-classic": "BAYC2026",
-                         "butterfield-bermuda-championship": "BERMUDA2026"}
+                         "butterfield-bermuda-championship": "BERMUDA2026",
+                         "the-rsm-classic": "RSM2026"}
 
 
 def weekly_access_code(event: dict, year: int) -> str:
@@ -2320,6 +2343,13 @@ def weekly_access_code(event: dict, year: int) -> str:
         return ACCESS_CODE_OVERRIDES[event["slug"]]
     first_word = re.sub(r"[^A-Za-z]", "", event["event_name"].split()[0]).upper()
     return f"{first_word[:4]}{year}"
+
+
+def _fix_double_the(text: str) -> str:
+    """Event names that start with 'The' (The RSM Classic) collide with templates that already say 'The'/'the'."""
+    text = re.sub(r"\b(The \d{4}) The ", r"\1 ", text)
+    text = re.sub(r"\b(\d{4}) The ", r"\1 ", text)
+    return re.sub(r"\b([Tt]he) The ", r"\1 ", text)
 
 
 def render_faq_section(event: dict, year: int, course_facts: dict, extra_qas: list) -> str:
@@ -2403,7 +2433,7 @@ PAR: {par}
 YARDAGE: {yardage}
 WEATHER: {weather_text}
 TOP MODEL PICK: {top_pick_name} ({top_pick_odds}), L1 score {top_pick_l1:.1f}, {top_pick_reason}
-COURSE HISTORY FACTOR WEIGHT THIS WEEK: {course_history_weight}
+COURSE HISTORY FACTOR WEIGHT THIS WEEK: {course_history_weight}{course_context}
 
 VOICE RULES — non-negotiable:
 - No em dashes anywhere in the prose.
@@ -2452,6 +2482,7 @@ def generate_article_narrative(event: dict, ctx: dict, weather: dict | None, ran
         top_pick_name=metrics[top_id]["player_name"], top_pick_odds=_fmt_odds(win_idx.get(top_id)),
         top_pick_l1=l1_results[top_id]["l1_score"], top_pick_reason=top_reason,
         course_history_weight=f"{course_hist_w:g}%" if course_hist_w is not None else "not weighted this week",
+        course_context=_course_context_block(event),
     )
     body = json.dumps({
         # Was 1200 — too tight for the same reason generate_pick_writeups()
@@ -2605,7 +2636,7 @@ SHORT: <1 sentence, different wording from LONG>
 """
 
 
-def generate_pick_writeups(player_data: dict) -> dict:
+def generate_pick_writeups(player_data: dict, prompt_template: str | None = None) -> dict:
     """player_data: dg_id -> citation dict from _pick_citation_data(). One
     Claude call covering every player needed in the article at once —
     covers ALL of them in a single call specifically so the model can vary
@@ -2628,8 +2659,20 @@ def generate_pick_writeups(player_data: dict) -> dict:
         )
         edge_str = f"{d['edge_pct']:+.2f}%" if d["edge_pct"] is not None else "not available"
         l1_str = f"{d['l1_score']:.1f}" if d["l1_score"] is not None else "unavailable"
-        blocks.append(f"ID {i}: {d['name']}. L1 score {l1_str}. Edge {edge_str}. Stats: {stat_lines}.")
-    prompt = PICK_WRITEUP_PROMPT.format(player_blocks="\n".join(blocks))
+        extra = ""
+        if d.get("rank"):
+            extra += f" Model rank #{d['rank']}."
+            if d["rank"] <= 3:
+                extra += " TOP3: needs a full LONG."
+            else:
+                extra += " Not top 3: LONG can be one sentence."
+        if d.get("weakest"):
+            w_ = d["weakest"]
+            extra += f" Weakest weighted stat: {w_['label']} {w_['value']} ({w_['percentile']} percentile)."
+        if d.get("fade"):
+            extra += " FADE: priced too short, outright winner market only."
+        blocks.append(f"ID {i}: {d['name']}. L1 score {l1_str}. Edge {edge_str}. Stats: {stat_lines}.{extra}")
+    prompt = (prompt_template or PICK_WRITEUP_PROMPT).format(player_blocks="\n".join(blocks))
 
     body = json.dumps({
         # 4000 was the original budget and looked plenty on paper (11
@@ -2651,7 +2694,7 @@ def generate_pick_writeups(player_data: dict) -> dict:
         # and silently accepted it. Fixed below with a stop_reason check
         # and a terminal-punctuation validation; 12000 gives real headroom
         # on top of that so the retry path is rarely needed.
-        "model": CLAUDE_MODEL_WEIGHTS, "max_tokens": 12000,
+        "model": CLAUDE_MODEL_WEIGHTS, "max_tokens": 32000,
         "messages": [{"role": "user", "content": prompt}],
     }).encode("utf-8")
     req = urllib.request.Request(
@@ -2816,7 +2859,7 @@ def build_dfs_subtitle(event: dict, year: int, course_name: str) -> str:
 
 
 def build_seo_fields(event: dict, year: int, article_title: str, l3: dict, l2_results: dict, metrics: dict,
-                     weights=None) -> dict:
+                     weights=None, card_hint: dict | None = None) -> dict:
     name = event["event_name"]
     slug = event["slug"]
     course_name = event.get("course_name") or "TBD"
@@ -2877,6 +2920,35 @@ def build_seo_fields(event: dict, year: int, article_title: str, l3: dict, l2_re
             f"{year} {name} picks and odds at {short_course}. Quant model course-fit rankings. Free analysis.",
         ]
     seo_description = _first_that_fits(desc_candidates, 50, 160, "SEO description", slug)
+
+    # 2026-11-17 standard: SEO title carries tournament, year, picks, odds and best bets (60 chars max); the meta
+    # description is 150-160 chars naming the top three card leaders, the best value play with odds, and the fades.
+    if card_hint:
+        seo_title = _first_that_fits([
+            f"{name} {year} Picks, Odds & Best Bets | {short_course}",
+            f"{name} {year} Picks, Odds & Best Bets",
+            f"{_event_abbrev(name)} {year} Picks, Odds & Best Bets",
+        ], 20, 60, "SEO title", slug)
+        cands = []
+        for names_key in ("leaders", "leaders_last"):
+            for n_fades in (2, 1, 3):
+                for place in (f" at {short_course}", ""):
+                    for tail in (" Free analysis.", ""):
+                        lead = card_hint[names_key]
+                        if len(lead) >= 3:
+                            lead_txt = f"{lead[0]}, {lead[1]} and {lead[2]} lead the card"
+                        else:
+                            lead_txt = ", ".join(lead) + " lead the card"
+                        fd = card_hint["fades_last" if names_key == "leaders_last" else "fades"][:n_fades]
+                        fd_txt = (" and ".join(fd) if len(fd) < 3 else ", ".join(fd[:-1]) + " and " + fd[-1])
+                        val = ""
+                        if card_hint.get("value"):
+                            vn = card_hint["value_last"] if names_key == "leaders_last" else card_hint["value"]
+                            val = f", {vn} ({card_hint['value_odds']}) is the best value play"
+                        fades = f", fades {fd_txt}" if fd_txt else ""
+                        cands.append(f"{year} {(name[4:] if name.startswith('The ') else name)} picks, odds and best bets{place}: {lead_txt}{val}{fades}.{tail}")
+        cands = [c for x in cands for c in (x, x.replace("is the best value play", "is the value play"))]
+        seo_description = _first_that_fits(cands, 150, 160, "SEO description", slug)
 
     # Falls back to the top overall L1-ranked L2-pass player when no
     # positive-edge value pick exists this week — tags/email subject
@@ -2964,7 +3036,537 @@ def render_seo_block(seo: dict) -> str:
             "==========================================")
 
 
+# ─────────────────────────────────────────────────────────────────────────
+# Picks article v2 (Brian, 2026-11-17): the 12-section standard first set by the optimized RSM Classic 2026
+# article. Every figure printed here comes from the same ctx the workbook is built from, and every odds
+# figure is registered so verify_article_v2() can match it against the workbook cell by cell.
+# The old generator stays below as generate_substack_article_legacy() for reference only.
+# ─────────────────────────────────────────────────────────────────────────
+STAKE_UNITS = {"ew_winner": 1.0, "longshot_value": 0.5, "top10_top20": 1.0, "matchup": 1.0, "fade": 0.0}
+MEMBERSHIP_URL = "https://strokesedge.com/membership"
+MEMBERSHIP_LINE = f"Membership, including the full model workbook every week: {MEMBERSHIP_URL}"
+LAST_FREE_CARD_NOTE = ("The last free full card. This week's RSM Classic full picks card is the last one StrokesEdge "
+                       "will publish for free. When the season restarts at The American Express in January, the full "
+                       "card and the DFS content move to paid subscribers and site members. The weekly preview, "
+                       "course breakdown, and key stats stay free.")
+LAST_FREE_CARD_EVENTS = {("the rsm classic", 2026)}
+
+
+def _paid_event(event: dict) -> bool:
+    return (event.get("start_date") or "") >= PAYWALL_START_DATE
+
+
+def _strip_em_dashes(text: str) -> str:
+    """No em dashes in article prose. Headings (# lines) and the === metadata rows are structural and keep theirs."""
+    out = []
+    for ln in text.split("\n"):
+        if ln.startswith("#") or ln.startswith("==="):
+            out.append(ln)
+        else:
+            out.append(re.sub(r"\s*—\s*", ", ", ln))
+    return "\n".join(out)
+
+
+def _workbook_snapshot(path) -> dict:
+    """Read the finished workbook back: Model Rankings rows (odds, probability, edge, L2 gate), Value Screen L1
+    scores and the Watch List size. This is the source of truth the verification report checks the article against."""
+    from openpyxl import load_workbook
+    wb = load_workbook(path, data_only=True)
+
+    def table(ws, anchor):
+        hdr = None
+        for r in range(1, ws.max_row + 1):
+            if ws.cell(row=r, column=1).value == anchor:
+                hdr = r
+                break
+        if hdr is None:
+            return []
+        heads = [ws.cell(row=hdr, column=c).value for c in range(1, ws.max_column + 1)]
+        rows = []
+        for r in range(hdr + 1, ws.max_row + 1):
+            first = ws.cell(row=r, column=1).value
+            if first in (None, ""):
+                break
+            rows.append({str(h): ws.cell(row=r, column=c + 1).value for c, h in enumerate(heads) if h})
+        return rows
+
+    rankings = table(wb["Model Rankings"], "RK")
+    value = table(wb["Value Screen"], "RK")
+    watch = 0
+    ws = wb["Watch List"]
+    for r in range(1, ws.max_row + 1):
+        if ws.cell(row=r, column=1).value == "PLAYER":
+            for rr in range(r + 1, ws.max_row + 1):
+                v = ws.cell(row=rr, column=1).value
+                if v in (None, "") or str(v).startswith(("Not financial", "STROKESEDGE")):
+                    break
+                watch += 1
+            break
+    return {"rankings": {str(r["PLAYER"]): r for r in rankings}, "value": {str(r["PLAYER"]): r for r in value},
+            "n_rankings": len(rankings), "n_watch": watch}
+
+
+PICK_WRITEUP_PROMPT_V2 = """You are writing player-by-player betting analysis for a StrokesEdge Substack picks article. For EACH player listed below, write TWO pieces of analysis: a LONG version used in the Top Model Outputs section (only the model's top three get one) and a SHORT version used on the full picks card. They must not reuse the same sentences.
+
+RULES, strict and not stylistic suggestions:
+- Cite ONLY the specific stat values given below for each player. Never invent a number, never invent a stat not listed for that player.
+- Only claim a stat is "the best in the field" or any other superlative if that stat entry says FIELD BEST.
+- LONG: 3-4 sentences giving the percentile-backed case FOR the player and the case AGAINST him. The case against must use the "Weakest weighted stat" given, or the edge, or the price. Do not invent a weakness.
+- SHORT: 2-3 sentences. It must state the player's model rank (written like "model rank #3"), his edge, and at least one stat with its percentile. Do not restate the odds.
+- A player marked FADE is priced too short for his model profile. Never describe a FADE player as a top pick, a play, or a bet. Frame it as a price problem for the outright market only.
+- Vary the opening word and sentence shape across players. No two writeups start the same way.
+- No em dashes anywhere. No "not just X, but Y" patterns. Uneven rhythm. Concise and data-forward, no hype or gut-feel language.
+
+PLAYERS:
+{player_blocks}
+
+Respond with exactly one block per player, this format, nothing else:
+ID: <id number>
+LONG: <3-4 sentences>
+SHORT: <2-3 sentences>
+"""
+
+ARTICLE_NARRATIVE_PROMPT_V2 = """You are the voice behind StrokesEdge, a quantitative PGA Tour golf betting brand publishing on Substack. Write ONLY the four narrative blocks below for this week's picks article. No headers, nothing else.
+
+TOURNAMENT: {event_name}
+COURSE: {course_name}
+LOCATION: {location}
+PAR: {par}
+YARDAGE: {yardage}
+WEATHER: {weather_text}
+MODEL UNIVERSE: {n_scored} players scored, {n_pass} pass all four Winner DNA gates
+TOP MODEL PICK: {top_pick_name} ({top_pick_odds}), L1 score {top_pick_l1:.1f}
+HEAVIEST MODEL WEIGHTS: {top_weights}
+COURSE HISTORY + EXPERIENCE WEIGHT THIS WEEK: {course_history_weight} combined, COURSE-FIT COMPONENTS: {fit_weight} combined{course_context}
+CARD PLAYERS (percentiles in the scored field, the ONLY player facts you may use):
+{card_table}
+
+BLOCKS:
+- COURSE_QUIRK: ONE short paragraph (3-4 sentences) on the course quirk that makes this week hard to model. Use only the VERIFIED COURSE CONTEXT if one is given; otherwise stay general. Do not compare how the courses play (turf, green speed, difficulty), do not say "half the field" or describe any rotation, and do not state course history or past winners.
+- WEATHER_NARRATIVE: ONE paragraph on what this forecast does to the model's assumptions, naming which card players it helps and which it hurts, using only the percentiles in the card table above.
+- COURSE_HISTORY_NOTE: 3-5 sentences on why course history is weighted the way it is this week, in the model's own terms (the weights above). FACT you must respect: Data Golf's course-fit components are built partly from past results at the course (they were exactly zero at a course with no Tour history), so they are not independent of course history and are reduced for the same reason. Never say the fit components measure yardage, turf, wind or any physical course demand. Do not state past winners or past results.
+- CLOSING: 2-4 sentences on the single stat or tension that drives this week's model (for example how much weight sits on one category versus another). Do not restate the top pick's odds.
+
+STYLE, non-negotiable:
+- No em dashes anywhere. No tidy summary sentence closing each block. No hype, no gut feel. Concise and data-forward.
+- Across the four blocks include 1 to 3 human touches in total: an abrupt transition, a sentence that trails off, or a thought that complicates an earlier point. Do not overdo it.
+- If you state par or yardage, use ONLY the PAR/YARDAGE above.
+
+Respond in exactly this format:
+
+COURSE_QUIRK: <paragraph>
+
+WEATHER_NARRATIVE: <paragraph>
+
+COURSE_HISTORY_NOTE: <paragraph>
+
+CLOSING: <paragraph>
+"""
+
+
+def _call_claude_fields(prompt: str, keys: tuple, max_tokens: int = 8000, timeout: int = 120) -> dict:
+    api_key = os.environ.get("ANTHROPIC_API_KEY")
+    if not api_key:
+        raise RuntimeError("ANTHROPIC_API_KEY environment variable is not set")
+    body = json.dumps({"model": CLAUDE_MODEL_WEIGHTS, "max_tokens": max_tokens,
+                       "messages": [{"role": "user", "content": prompt}]}).encode("utf-8")
+    req = urllib.request.Request("https://api.anthropic.com/v1/messages", data=body,
+                                 headers={"x-api-key": api_key, "anthropic-version": "2023-06-01",
+                                          "content-type": "application/json"}, method="POST")
+    last = {}
+    for attempt in range(2):
+        with urllib.request.urlopen(req, timeout=timeout) as resp:
+            result = json.loads(resp.read().decode("utf-8"))
+        if result.get("stop_reason") == "max_tokens":
+            logger.error(f"Article narrative v2 hit max_tokens (attempt {attempt + 1}/2), retrying")
+            continue
+        raw = "".join(b.get("text", "") for b in result.get("content", []))
+        parts = {}
+        for key in keys:
+            m = re.search(rf"{key}:\s*(.+?)(?=\n[A-Z_]+:|\Z)", raw, re.S)
+            v = m.group(1).strip() if m else ""
+            parts[key.lower()] = v if (v and _looks_complete(v)) else ""
+        last = parts
+        if all(parts[k.lower()] for k in keys):
+            return parts
+        logger.error(f"Article narrative v2 empty/truncated field(s) "
+                     f"{[k for k in keys if not parts[k.lower()]]} (attempt {attempt + 1}/2)")
+    raise RuntimeError(f"Article narrative v2 missing field(s): {[k for k in keys if not last.get(k.lower())]}")
+
+
+def _citation_v2(dg_id, metrics, l1_results, l3, field_bests, rank_of, is_fade) -> dict:
+    d = _pick_citation_data(dg_id, metrics, l1_results, l3, field_bests)
+    comps = {k: v for k, v in l1_results.get(dg_id, {}).get("components", {}).items()
+             if v.get("value") is not None and v.get("weight_pct", 0) >= 5}
+    if comps:
+        k, v = min(comps.items(), key=lambda kv: kv[1]["percentile"])
+        d["weakest"] = {"label": FACTOR_CATALOG.get(k, k).split(" (")[0], "value": _fmt_factor_value(v["value"]),
+                        "percentile": _ordinal(v["percentile"])}
+    d["rank"] = rank_of.get(dg_id)
+    d["fade"] = is_fade
+    return d
+
+
+def _pct_of(l1_results, dg_id, key):
+    c = l1_results.get(dg_id, {}).get("components", {}).get(key)
+    return _ordinal(c["percentile"]) if c and c.get("percentile") is not None else "n/a"
+
+
+def _first_fail(ctx, metrics, l1_results, l2_results):
+    """The highest-L1 player who fails the gates, with the gate that failed and by how much."""
+    order = sorted(l1_results, key=lambda d: l1_results[d]["l1_score"], reverse=True)
+    for i, d in enumerate(order, 1):
+        r = l2_results.get(d, {})
+        if not r.get("pass"):
+            bad = [x for x in r.get("detail", []) if "FAIL" in x or "unavailable" in x]
+            text = "it misses a gate"
+            if bad:
+                m = re.match(r"(\w+) (>=|<=|>|<) (\S+) -> FAIL \(actual (\S+)\)", bad[0])
+                u = re.match(r"(\w+): unavailable", bad[0])
+                if m:
+                    text = (f"it fails the {FACTOR_CATALOG.get(m.group(1), m.group(1)).split(' (')[0]} gate at "
+                            f"{m.group(4)} against a {m.group(3)} threshold")
+                elif u:
+                    text = f"it has no {FACTOR_CATALOG.get(u.group(1), u.group(1)).split(' (')[0]} reading, which counts as a fail"
+            return {"id": d, "rank": i, "l1": l1_results[d]["l1_score"], "detail": text}
+    return None
+
+
+def verify_article_v2(event, article_md, ctx, figs, unverified_notes) -> str:
+    """Match every registered odds/probability/edge/L1 figure and the L2 pass count against the finished workbook."""
+    snap = _workbook_snapshot(ctx["workbook_path"])
+    rk, vs = snap["rankings"], snap["value"]
+    seen, uniq = set(), []
+    for f in figs:
+        key = tuple(sorted((k, str(v)) for k, v in f.items()))
+        if key not in seen:
+            seen.add(key)
+            uniq.append(f)
+    figs = uniq
+    lines = [f"BUILD VERIFICATION: {event['event_name']} {event.get('start_date', '')[:4]} "
+             f"(workbook {Path(ctx['workbook_path']).name})", ""]
+    bad = 0
+    col = {"win": "WIN ODDS (FD)", "top10": "TOP 10 ODDS (FD)", "top20": "TOP 20 ODDS (FD)"}
+    lines.append("Odds figures (player | market | article | workbook | result)")
+    for f in figs:
+        if f["kind"] != "odds":
+            continue
+        row = rk.get(f["name"])
+        wbv = str(row.get(col[f["market"]])) if row else "MISSING"
+        ok = row is not None and wbv.strip() == f["text"].strip()
+        bad += (not ok)
+        lines.append(f"  {f['name']} | {f['market']} | {f['text']} | {wbv} | {'OK' if ok else 'MISMATCH'}")
+    lines.append("")
+    lines.append("Probability, edge and L1 figures (top 3 and matchups)")
+    for f in figs:
+        if f["kind"] == "prob":
+            row = rk.get(f["name"])
+            wbv = row.get("MDL PROB%") if row else None
+            ok = wbv is not None and abs(float(wbv) - f["value"]) < 0.006
+        elif f["kind"] == "edge":
+            row = rk.get(f["name"])
+            wbv = row.get("WIN EDGE") if row else None
+            ok = wbv is not None and abs(float(wbv) - f["value"]) < 0.006
+        elif f["kind"] == "l1":
+            row = vs.get(f["name"])
+            wbv = row.get("L1 SCORE") if row else None
+            if wbv is None:
+                lines.append(f"  {f['name']} | L1 {f['value']:.1f} | not in the workbook's Value Screen | UNVERIFIED")
+                unverified_notes.append(f"L1 score for {f['name']} (not a workbook cell for L2-fail players)")
+                continue
+            ok = abs(float(wbv) - f["value"]) < 0.06
+        else:
+            continue
+        bad += (not ok)
+        lines.append(f"  {f['name']} | {f['kind']} | article {f['value']:.2f} | workbook {wbv} | {'OK' if ok else 'MISMATCH'}")
+    n_pass_wb = sum(1 for r in rk.values() if str(r.get("L2 GATE")).strip().upper() == "PASS")
+    n_scored_wb = snap["n_rankings"]
+    stated = [f for f in figs if f["kind"] == "pass_count"][0]["value"]
+    ok = stated == n_pass_wb
+    bad += (not ok)
+    lines += ["", f"L2 pass count: article {stated} of {[f for f in figs if f['kind'] == 'scored'][0]['value']} scored | "
+              f"workbook gate column {n_pass_wb} PASS of {n_scored_wb} rows | {'OK' if ok else 'MISMATCH'}"]
+    fs = [f for f in figs if f["kind"] == "field_size"][0]["value"]
+    lines.append(f"Field size: article {fs} | workbook rankings {n_scored_wb} + watch list {snap['n_watch']} = "
+                 f"{n_scored_wb + snap['n_watch']} | {'OK' if fs == n_scored_wb + snap['n_watch'] else 'MISMATCH'}")
+    bad += (fs != n_scored_wb + snap["n_watch"])
+    # any odds-looking token in the article that is not a workbook odds cell of a card player
+    allowed = set()
+    for f in figs:
+        if f["kind"] == "odds":
+            allowed.add(f["text"].strip())
+    stray = sorted({t for t in re.findall(r"(?<![\d.])[+-]\d{3,5}(?![\d.%])", article_md.split("\n\n", 1)[-1]) if t not in allowed})
+    lines.append("Odds-like tokens in the article not backed by a registered workbook cell: " + (", ".join(stray) or "none"))
+    n_pct = len(re.findall(r"\d+(?:st|nd|rd|th) percentile", article_md))
+    lines.append(f"Percentiles cited: {n_pct}. Percentiles are computed in the model run (state.json), not workbook cells, "
+                 f"so they are listed as unverified against the workbook.")
+    if unverified_notes:
+        lines += ["", "Left out or unverified:"] + [f"  - {n}" for n in unverified_notes]
+    lines += ["", f"RESULT: {'ALL REGISTERED FIGURES MATCH THE WORKBOOK' if not bad and not stray else str(bad + len(stray)) + ' ISSUE(S), SEE ABOVE'}"]
+    return "\n".join(lines)
+
+
 def generate_substack_article(event: dict, ctx: dict) -> Path:
+    metrics, l1_results, l2_results, l3 = ctx["metrics"], ctx["l1_results"], ctx["l2_results"], ctx["l3"]
+    market_data, tiers = ctx["market_data"], ctx["tiers"]
+    win_idx = _odds_index(market_data, "outrights_win")
+    t10_idx = _odds_index(market_data, "outrights_top_10")
+    t20_idx = _odds_index(market_data, "outrights_top_20")
+    ranked = sorted((d for d in l3 if l2_results.get(d, {}).get("pass")), key=lambda d: l3[d]["l1_score"], reverse=True)
+    rank_of = {d: i + 1 for i, d in enumerate(ranked)}
+    paid = _paid_event(event)
+    year = date.fromisoformat(event["start_date"]).year
+    name = event["event_name"]
+    course = event.get("course_name") or "TBD"
+    short_course = _short_course_name(course)
+    figs, unverified = [], []
+    snap = _workbook_snapshot(ctx["workbook_path"])
+    n_scored, n_pass = len(l1_results), sum(1 for d in l1_results if l2_results.get(d, {}).get("pass"))
+    field_size = snap["n_rankings"] + snap["n_watch"]
+    figs += [{"kind": "scored", "value": n_scored}, {"kind": "pass_count", "value": n_pass},
+             {"kind": "field_size", "value": field_size}]
+    unverified.append("Cut line: not in the workbook or any pipeline source, so it is not stated in the article.")
+    unverified.append("Round-by-round course rotation for this week: not in the pipeline data, so it is not stated.")
+
+    def nm(d):  # "Last, First" for card lines (parsed by the live-picks tweets), "First Last" in prose
+        return metrics[d]["player_name"]
+
+    def fl(d):
+        return _player_first_last(metrics[d]["player_name"])
+
+    def reg_odds(d, market, text):
+        figs.append({"kind": "odds", "name": nm(d), "market": market, "text": text})
+        return text
+
+    def win(d):
+        return reg_odds(d, "win", _fmt_odds(win_idx.get(d)))
+
+    def fin(d):
+        a = reg_odds(d, "top10", _fmt_odds(t10_idx.get(d)))
+        b = reg_odds(d, "top20", _fmt_odds(t20_idx.get(d)))
+        return f"Top 10 {a}, Top 20 {b}"
+
+    # ---- writeups (one Claude call, same retry/fallback discipline as before) ----
+    top3 = ranked[:3]
+    card_ids = list(dict.fromkeys(top3 + tiers["ew_winner"] + tiers["longshot_value"] + tiers["top10_top20"] + tiers["fade"]))
+    field_bests = _compute_field_bests(l1_results)
+    cites = {d: _citation_v2(d, metrics, l1_results, l3, field_bests, rank_of, d in tiers["fade"]) for d in card_ids}
+    try:
+        writeups = generate_pick_writeups(cites, prompt_template=PICK_WRITEUP_PROMPT_V2)
+    except Exception as e:
+        logger.error(f"Pick writeup generation failed entirely, falling back to templated citations: {e}")
+        writeups = {}
+    for d in [x for x in card_ids if x not in writeups]:
+        logger.error(f"[{event['slug']}] templated fallback for {nm(d)}")
+        fb = player_rationale(d, metrics, l1_results, l2_results, l3, n=2)
+        writeups[d] = {"long": fb, "short": fb}
+
+    # ---- narrative (course quirk, weather, course history, closing) ----
+    weather = fetch_weather_summary(event)
+    top_w = sorted(ctx["weights"], key=lambda w: -w["weight_pct"])
+    hist_w = sum(w["weight_pct"] for w in ctx["weights"] if w["key"] in ("course_history_adjustment", "course_experience_adjustment"))
+    fit_w = sum(w["weight_pct"] for w in ctx["weights"] if w["key"] in
+                ("cf_approach_comp", "cf_short_comp", "driving_accuracy_adjustment", "driving_distance_adjustment"))
+    card_table = "\n".join(
+        f"{fl(d)}: Approach {_pct_of(l1_results, d, 'sg_app_blend')}, Off the tee {_pct_of(l1_results, d, 'sg_ott_blend')}, "
+        f"Around the green {_pct_of(l1_results, d, 'sg_arg_blend')}, Putting {_pct_of(l1_results, d, 'sg_putt_blend')} percentile"
+        + (" (FADE)" if d in tiers["fade"] else "") for d in card_ids)
+    wtxt = ("forecast unavailable this run, write generically" if not weather else
+            f"wind {weather['wind_mph_range'][0]}-{weather['wind_mph_range'][1]} mph (gusts to {weather['gust_mph_max']}), "
+            f"temps {weather['temp_f_range'][0]}-{weather['temp_f_range'][1]}F, {weather['precip_days']} day(s) with meaningful rain")
+    facts = ctx.get("course_facts", {})
+    prompt = ARTICLE_NARRATIVE_PROMPT_V2.format(
+        event_name=name, course_name=course, location=event.get("location") or "unknown", weather_text=wtxt,
+        par=facts.get("par") or "unknown", yardage=facts.get("yardage") or "unknown", n_scored=n_scored, n_pass=n_pass,
+        top_pick_name=fl(ranked[0]), top_pick_odds=_fmt_odds(win_idx.get(ranked[0])), top_pick_l1=l1_results[ranked[0]]["l1_score"],
+        top_weights=", ".join(f"{FACTOR_CATALOG.get(w['key'], w['key']).split(' (')[0]} {w['weight_pct']:g}%" for w in top_w[:4]),
+        course_history_weight=f"{hist_w:g}%", fit_weight=f"{fit_w:g}%", course_context=_course_context_block(event),
+        card_table=card_table)
+    narr = _call_claude_fields(prompt, ("COURSE_QUIRK", "WEATHER_NARRATIVE", "COURSE_HISTORY_NOTE", "CLOSING"))
+
+    # ---- SEO fields (title + description rules updated 2026-11-17) ----
+    value_pool = [d for d in ranked if (l3[d]["win_edge_pct"] or -999) > 0]
+    value_id = max(value_pool, key=lambda d: l3[d]["win_edge_pct"]) if value_pool else None
+    leaders = tiers["ew_winner"][:3] or ranked[:3]
+    fades = tiers["fade"]
+    title = f"{name} {year} Picks: Model Best Bets and Fades for {course}"
+    seo = build_seo_fields(event, year, title, l3, l2_results, metrics, ctx.get("weights"),
+                           card_hint={"leaders": [fl(d) for d in leaders], "leaders_last": [_last_name(nm(d)) for d in leaders],
+                                      "value": fl(value_id) if value_id else None,
+                                      "value_last": _last_name(nm(value_id)) if value_id else None,
+                                      "value_odds": win(value_id) if value_id else None,
+                                      "fades": [fl(d) for d in fades], "fades_last": [_last_name(nm(d)) for d in fades]})
+    seo = {k: (_fix_double_the(v) if isinstance(v, str) else v) for k, v in seo.items()}
+    logger.info(f"[{event['slug']}] {render_seo_block(seo)}")
+
+    # ---- intro ----
+    start = date.fromisoformat(event["start_date"])
+    when = start.strftime("%A, %B %d, %Y").replace(" 0", " ")
+    meta_bits = [course, event.get("location") or "TBD", event.get("start_date")]
+    if facts.get("par"):
+        meta_bits.append(f"Par {facts['par']}")
+    if facts.get("yardage"):
+        meta_bits.append(f"{facts['yardage']:,} Yds")
+    ew_txt = ", ".join(f"{fl(d)} ({win(d)})" for d in tiers["ew_winner"]) or "none this week"
+    fade_txt = ", ".join(f"{fl(d)} ({win(d)})" for d in fades) or "none this week"
+    intro = [f"The {year} {name} starts {when} at {course}, {event.get('location') or 'TBD'}."]
+    if value_id:
+        figs.append({"kind": "edge", "name": nm(value_id), "value": float(l3[value_id]["win_edge_pct"])})
+        intro.append(f"The model's best value play is {fl(value_id)} at {win(value_id)}, a {l3[value_id]['win_edge_pct']:+.2f} point "
+                     f"edge over the market. The E/W leaders are {ew_txt}. The fades, outright winner only, are {fade_txt}.")
+    else:
+        intro.append(f"The E/W leaders are {ew_txt}. The fades, outright winner only, are {fade_txt}.")
+    if paid:
+        intro.append(f"This week's full card is for paid subscribers and members. Membership, including the full model workbook "
+                     f"every week: {MEMBERSHIP_URL}")
+    if (name.lower(), year) in LAST_FREE_CARD_EVENTS:
+        intro.append(LAST_FREE_CARD_NOTE)
+    intro.append(narr["course_quirk"])
+    intro.append(f"The field is {field_size} players, {n_scored} of them scored by the model and {snap['n_watch']} on the watch list.")
+
+    # ---- Quick Picks ----
+    qp = ["## Quick Picks", ""]
+    if tiers["ew_winner"]:
+        qp.append("- **E/W Winner (1 unit):** " + "; ".join(f"{fl(d)} {win(d)}" for d in tiers["ew_winner"]))
+    if tiers["longshot_value"]:
+        qp.append("- **Longshot / Value (0.5 unit):** " + "; ".join(f"{fl(d)} {win(d)}" for d in tiers["longshot_value"]))
+    if tiers["top10_top20"]:
+        qp.append("- **Top 10 / Top 20 (1 unit):** " + "; ".join(f"{fl(d)} ({fin(d)})" for d in tiers["top10_top20"]))
+    if tiers["matchup"]:
+        qp.append("- **Matchups (1 unit):** " + "; ".join(f"{fl(m['favor'])} over {fl(m['against'])}" for m in tiers["matchup"]))
+    if tiers["fade"]:
+        qp.append("- **Fade, outright winner only (0 units):** " + "; ".join(f"{fl(d)} {win(d)}" for d in tiers["fade"]))
+    quick = "\n".join(qp)
+
+    # ---- model framework (universe first, then weights, then gates) ----
+    ff = _first_fail(ctx, metrics, l1_results, l2_results)
+    uni = (f"**The model universe.** {n_scored} players were scored and {n_pass} pass all four Winner DNA gates "
+           f"({n_pass / n_scored * 100:.0f}% of the scored field).")
+    if ff:
+        uni += (f" The highest-ranked player who fails is {fl(ff['id'])}, ranked #{ff['rank']} by L1 score at {ff['l1']:.1f}: "
+                f"{ff['detail']}. A strong composite score does not clear the gates by itself, and a failing player is limited to "
+                f"finish markets.")
+        figs.append({"kind": "l1", "name": nm(ff["id"]), "value": float(ff["l1"])})
+    fw = render_model_framework_section(ctx).split("\n")
+    framework = "\n".join([fw[0], "", uni, ""] + fw[2:])
+
+    weather_sec = render_weather_section(weather) + "\n\n" + narr["weather_narrative"]
+    # Top Model Outputs
+    tmo = ["## 03 — Top Model Outputs", ""]
+    for d in top3:
+        figs += [{"kind": "prob", "name": nm(d), "value": float(l3[d]["mdl_prob_pct"])},
+                 {"kind": "l1", "name": nm(d), "value": float(l1_results[d]["l1_score"])}]
+        e = l3[d]["win_edge_pct"]
+        if e is not None:
+            figs.append({"kind": "edge", "name": nm(d), "value": float(e)})
+        tmo += [f"**{fl(d)} ({win(d)})**",
+                f"Model rank #{rank_of[d]}, L1 score {l1_results[d]['l1_score']:.1f}, win probability {l3[d]['mdl_prob_pct']:.2f}%"
+                + (f", edge {e:+.2f}%." if e is not None else "."), writeups[d]["long"], ""]
+    # Full Picks Card
+    card = ["## 04 — Full Picks Card", ""]
+    for key, label in (("ew_winner", "E/W WINNER"), ("longshot_value", "LONGSHOT / VALUE")):
+        if tiers[key]:
+            card.append(f"**{label}**")
+            for d in tiers[key]:
+                e = l3[d]["win_edge_pct"]
+                if e is not None:
+                    figs.append({"kind": "edge", "name": nm(d), "value": float(e)})
+                card.append(f"- {nm(d)} ({win(d)}): {writeups[d]['short']}")
+            card.append("")
+    if tiers["top10_top20"]:
+        card.append("**TOP 10 / TOP 20**")
+        for d in tiers["top10_top20"]:
+            card.append(f"- {nm(d)} ({fin(d)}): {writeups[d]['short']}")
+        card.append("")
+    card.append("**MATCHUPS**")
+    if tiers["matchup"]:
+        for m in tiers["matchup"]:
+            f_, o_ = m["favor"], m["against"]
+            figs += [{"kind": "l1", "name": nm(f_), "value": float(l1_results[f_]["l1_score"])},
+                     {"kind": "l1", "name": nm(o_), "value": float(l1_results[o_]["l1_score"])}]
+            card.append(f"- {nm(f_)} over {nm(o_)}: the model favors {fl(f_)} (L1 {l1_results[f_]['l1_score']:.1f}) over "
+                        f"{fl(o_)} (L1 {l1_results[o_]['l1_score']:.1f}) while the market prices it the other way. The matchup "
+                        f"price is not in the workbook, so check it at your book.")
+    elif not market_data.get("matchups_ready"):
+        card.append("- Matchup odds were never posted this week, so there are no matchup markets to evaluate.")
+    else:
+        card.append("- No matchups where the model disagreed with the market this week.")
+    card.append("")
+    card.append("**FADE**")
+    if tiers["fade"]:
+        for d in tiers["fade"]:
+            e = l3[d]["win_edge_pct"]
+            if e is not None:
+                figs.append({"kind": "edge", "name": nm(d), "value": float(e)})
+            card.append(f"- {nm(d)} ({win(d)}): Fade outright winner only. The finish markets remain viable ({fin(d)}). "
+                        f"{writeups[d]['short']}")
+    else:
+        card.append("- No short favorites (odds +2000 or shorter, negative edge) identified this week.")
+    card.append("")
+    # Staking
+    n = {k: len(tiers[k]) for k in ("ew_winner", "longshot_value", "top10_top20", "matchup", "fade")}
+    total = sum(n[k] * STAKE_UNITS[k] for k in n)
+    parts = [f"{n['ew_winner']} E/W at 1 unit = {n['ew_winner'] * 1:g}", f"{n['longshot_value']} longshot at 0.5 = {n['longshot_value'] * 0.5:g}",
+             f"{n['top10_top20']} Top 10 / Top 20 at 1 = {n['top10_top20'] * 1:g}", f"{n['matchup']} matchup at 1 = {n['matchup'] * 1:g}",
+             f"{n['fade']} fades at 0 = 0"]
+    staking = ["## 05 — Staking the Card", "",
+               "Standard stakes: E/W Winner 1 unit, Longshot / Value 0.5 unit, Top 10 / Top 20 1 unit, Matchup 1 unit, Fades 0.", "",
+               "This week's card: " + "; ".join(parts) + f". Total at full stakes: {total:g} units.", "",
+               "Venue adjustment: none in effect this week.", ""]
+    history = ["## 06 — Course History Note", "", narr["course_history_note"], ""]
+    number = ["## 07 — The Number That Runs This Model", "", narr["closing"], ""]
+
+    # FAQ (6-7 questions)
+    if (name.lower(), year) in LAST_FREE_CARD_EVENTS:
+        free_a = ("Free this week. It is the last free full card: from The American Express in January the full card and "
+                  "the DFS content are for paid subscribers and members, while the weekly preview stays free.")
+    elif paid:
+        free_a = f"The preview is free. The full card is for paid subscribers and members: {MEMBERSHIP_URL}"
+    else:
+        free_a = "The full card is free this week."
+    top_name = fl(ranked[0])
+    faq = ["## FAQ", "",
+           f"**When is the {name}?**", f"The {year} {name} starts {when}.", "",
+           f"**What course is the {name} played at?**",
+           f"{course}, {event.get('location') or 'TBD'}" + (f", par {facts['par']}, {facts['yardage']:,} yards." if facts.get("par") and facts.get("yardage") else "."), "",
+           f"**Who is the model's top-ranked player for the {name}?**",
+           f"{top_name} ({win(ranked[0])}), L1 score {l1_results[ranked[0]]['l1_score']:.1f}.", "",
+           f"**Who is the best longshot at the {name}?**",
+           (f"{fl(value_id)} at {win(value_id)}, a {l3[value_id]['win_edge_pct']:+.2f} point model edge." if value_id else "No positive-edge longshot cleared the gates this week."), "",
+           f"**Who does the model fade at the {name}?**",
+           ("Outright winner only: " + fade_txt + ". Their finish markets remain viable." if fades else "No fades this week."), "",
+           "**How does the StrokesEdge model score players?**",
+           f"{top_w[0]['weight_pct']:g}% of the score is {FACTOR_CATALOG.get(top_w[0]['key'], top_w[0]['key']).split(' (')[0]}, "
+           f"and four Winner DNA gates set who is eligible for outright bets.", "",
+           "**Is the full card free or paid this week?**", free_a]
+
+    close = ["---",
+             f"Pick tracker access code this week: {weekly_access_code(event, year)}  ·  Unlock it at {SITE_LINKS['picks']}",
+             f"Full betting record: {SITE_LINKS['picks']}  ·  Analysis: {SITE_LINKS['analysis']}  ·  Methodology: {SITE_LINKS['methodology']}",
+             f"Weekly model workbook: {SITE_LINKS['gumroad']} ($7)",
+             MEMBERSHIP_LINE, "",
+             "Not financial advice. Gamble responsibly."]
+
+    body = [render_seo_block(seo), "", f"# {title}", "  ·  ".join(str(b) for b in meta_bits), ""]
+    for p in intro:
+        body += [p, ""]
+    if not paid:
+        body += [quick, ""]
+    body += [framework, "", weather_sec, "", "\n".join(tmo)]
+    if paid:
+        body += paywall_block(event) + [quick, ""]
+    body += ["\n".join(card), "\n".join(staking), "\n".join(history), "\n".join(number), "\n".join(faq), ""] + close
+    article_md = _strip_em_dashes(_fix_double_the("\n".join(body)))
+
+    out_path = event_dir(event["slug"]) / f"substack_article_{_pascal_slug(event['slug'])}_{year}.md"
+    out_path.write_text(article_md, encoding="utf-8")
+    report = verify_article_v2(event, article_md, ctx, figs, unverified)
+    (event_dir(event["slug"]) / "build_report.txt").write_text(report, encoding="utf-8")
+    logger.info(f"[{event['slug']}] Substack article saved: {out_path}\n{report}")
+    return out_path
+
+
+def generate_substack_article_legacy(event: dict, ctx: dict) -> Path:
     metrics, l1_results, l2_results, l3 = ctx["metrics"], ctx["l1_results"], ctx["l2_results"], ctx["l3"]
     market_data = ctx["market_data"]
     tiers = ctx["tiers"]
@@ -3073,7 +3675,7 @@ def generate_substack_article(event: dict, ctx: dict) -> Path:
         "",
         "Not financial advice. Gamble responsibly.",
     ]
-    article_md = "\n".join(sections)
+    article_md = _fix_double_the("\n".join(sections))
 
     out_path = event_dir(event["slug"]) / f"substack_article_{_pascal_slug(event['slug'])}_{year}.md"
     out_path.write_text(article_md, encoding="utf-8")
@@ -3323,7 +3925,7 @@ def generate_dfs_article(event: dict, ctx: dict) -> Path | None:
         "Not financial advice. Gamble responsibly. DFS lineups reflect model output and salary "
         "efficiency, not guarantees of performance.",
     ]
-    article_md = "\n".join(sections)
+    article_md = _fix_double_the("\n".join(sections))
 
     out_path = event_dir(event["slug"]) / f"dfs_article_{_pascal_slug(event['slug'])}_{year}.md"
     out_path.write_text(article_md, encoding="utf-8")
@@ -3636,6 +4238,7 @@ def _build_and_deliver(event: dict, state: dict, market_data: dict) -> None:
     except Exception as e:
         logger.error(f"[{event['slug']}] workbook build failed: {e}")
         return
+    ctx["workbook_path"] = workbook_path
 
     passers = [d for d, r in l2_results.items() if r["pass"] and d in l1_results and l1_results[d]["l1_score"] is not None]
     top_pick = metrics[max(passers, key=lambda d: l1_results[d]["l1_score"])]["player_name"] if passers else "none"

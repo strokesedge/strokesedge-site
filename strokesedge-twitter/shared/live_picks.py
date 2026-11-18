@@ -63,7 +63,7 @@ def load_published_picks():
             tier = header.group(1).strip()
             continue
         if tier in TIER_LABELS:
-            entry = re.match(r"^- ([^()]+?) \(\s*[+-]?\d+\s*\)", line)
+            entry = re.match(r"^- ([^()]+?) \(\s*(?:[+-]?\d+|Top 10 [+-]?\d+, Top 20 [+-]?\d+)\s*\)", line)
             if entry:
                 picks.append({"tier": tier, "tier_label": TIER_LABELS[tier], "dg_name": entry.group(1).strip()})
     return picks or None

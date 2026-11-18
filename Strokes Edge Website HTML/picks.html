@@ -346,7 +346,7 @@ document.addEventListener('click',function(e){if(!hbg.contains(e.target)&&!mob.c
   $('led-q').addEventListener('input',drawLedger);$('led-res').addEventListener('change',drawLedger);
 
   /* open bets: behind the weekly code (a signup funnel, not security: the sheet itself is public) */
-  var validCodes=['SCOTTISH26','OPEN2026','3MOPEN26','ROCKET2026','WYNDHAM26','WYNDHAM 2026','STJUDE26','FEDEX2026','BMW26','BMW2026','TOUR2026','BILTMORE26','PRESIDENTS26','UTAH26','BAYCURRENT26','BAYC2026','BERMUDA2026','VIDA2026','WORL2026','AUST2026'];
+  var validCodes=['SCOTTISH26','OPEN2026','3MOPEN26','ROCKET2026','WYNDHAM26','WYNDHAM 2026','STJUDE26','FEDEX2026','BMW26','BMW2026','TOUR2026','BILTMORE26','PRESIDENTS26','UTAH26','BAYCURRENT26','BAYC2026','BERMUDA2026','VIDA2026','WORL2026','AUST2026','RSM2026'];
   var KEY='se_picks_unlocked';
   function unlocked(){try{return sessionStorage.getItem(KEY)==='1'}catch(e){return false}}
   function showOpen(){
