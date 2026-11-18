@@ -67,3 +67,15 @@ footer a:not([class]){color:var(--txt2)}
   .b-type,.b-odds,.b-stake{min-width:0}
   .b-name{min-width:0;overflow-wrap:anywhere}
 }
+
+/* Dropdown nav (added Nov 17, 2026) */
+.nav-drop{position:relative}
+.nav-drop-btn{background:none;border:none;cursor:pointer;font-family:inherit;display:flex;align-items:center;gap:5px;padding:0}
+.nav-caret{font-size:9px;color:var(--g)}
+.nav-menu{position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(4px);min-width:236px;background:rgba(8,11,7,.98);border:1px solid var(--bdr2);border-radius:4px;padding:.5rem 0;opacity:0;visibility:hidden;transition:opacity .18s,transform .18s;z-index:120;box-shadow:0 18px 40px rgba(0,0,0,.45)}
+.nav-menu::before{content:'';position:absolute;top:-14px;left:0;right:0;height:14px}
+.nav-drop:hover .nav-menu,.nav-drop:focus-within .nav-menu,.nav-drop.open .nav-menu{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+.nav-menu a{display:block;padding:.55rem 1.1rem;font-size:13px;color:var(--txt2);text-decoration:none;white-space:nowrap;letter-spacing:.02em}
+.nav-menu a:hover{color:var(--txt);background:rgba(0,230,118,.06)}
+.mobile-menu .mob-head{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--g);padding:1rem 0 .2rem}
+@media(max-width:860px){.nav-drop{display:none}}
