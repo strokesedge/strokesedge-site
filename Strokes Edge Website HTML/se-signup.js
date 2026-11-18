@@ -106,3 +106,28 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
   window.addEventListener('hashchange', function () { if (location.hash === '#subscribe') open('hash'); });
 })();
+
+/* Dropdown nav behaviour (added Nov 17, 2026): click/tap toggle for touch, Escape and outside click close. Hover and keyboard focus are handled in CSS. */
+(function () {
+  'use strict';
+  function closeAll(except) {
+    document.querySelectorAll('.nav-drop.open').forEach(function (d) {
+      if (d === except) return;
+      d.classList.remove('open');
+      var b = d.querySelector('.nav-drop-btn');
+      if (b) b.setAttribute('aria-expanded', 'false');
+    });
+  }
+  document.querySelectorAll('.nav-drop-btn').forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var drop = btn.closest('.nav-drop');
+      var was = drop.classList.contains('open');
+      closeAll(drop);
+      drop.classList.toggle('open', !was);
+      btn.setAttribute('aria-expanded', String(!was));
+    });
+  });
+  document.addEventListener('click', function () { closeAll(null); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeAll(null); });
+})();

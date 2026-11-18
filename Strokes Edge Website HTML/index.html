@@ -248,6 +248,17 @@ footer{margin-top:96px;border-top:1px solid var(--line2);padding-block:40px 56px
 @media(max-width:640px){body{font-size:16px}.cell{padding:18px}}
 @media(max-width:380px){h1{font-size:46px}.btn{padding:17px 16px;font-size:12px}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+
+/* Dropdown nav (added Nov 17, 2026) */
+.nav-drop{position:relative}
+.links .nav-drop-btn{font:400 13px/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--dim);background:none;border:0;cursor:pointer;display:flex;align-items:center;gap:5px;padding:0}
+.links .nav-drop-btn:hover{color:var(--bone)}
+.nav-caret{font-size:9px;color:var(--mint)}
+.links .nav-menu{position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(4px);min-width:236px;background:#0b100d;border:1px solid var(--line2);border-radius:4px;padding:8px 0;opacity:0;visibility:hidden;transition:opacity .18s,transform .18s;z-index:120;box-shadow:0 18px 40px rgba(0,0,0,.45)}
+.links .nav-menu::before{content:'';position:absolute;top:-14px;left:0;right:0;height:14px}
+.links .nav-drop:hover .nav-menu,.links .nav-drop:focus-within .nav-menu,.links .nav-drop.open .nav-menu{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+.links .nav-menu a{display:block;padding:9px 18px;white-space:nowrap}
+.mob .mob-head{font:400 10px/1 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--mint);padding:16px 0 2px}
 </style>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-D398EHRP6Y"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-D398EHRP6Y');</script>
@@ -258,13 +269,45 @@ footer{margin-top:96px;border-top:1px solid var(--line2);padding-block:40px 56px
     <nav class="nav" aria-label="Main">
       <a class="logo" href="index.html">Strokes<b>Edge</b></a>
       <div class="links">
-        <a href="index.html">Home</a><a href="methodology.html">Methodology</a><a href="picks.html">Pick Tracker</a><a href="courses.html">Courses</a><a href="analysis.html">Analysis</a> · <a href="the-approach-shot.html">The Approach Shot</a> · <a href="pga-tour-betting-guide.html">Guides</a> · <a href="membership.html">Membership</a>
+        <div class="nav-drop">
+          <button type="button" class="nav-drop-btn" aria-expanded="false" aria-haspopup="true">Picks <span class="nav-caret">▾</span></button>
+          <div class="nav-menu">
+            <a href="analysis.html">This Week's Analysis</a>
+            <a href="picks.html">Pick Tracker</a>
+            <a href="weekly-picks.html">Weekly Picks</a>
+          </div>
+        </div>
+        <a href="courses.html">Courses</a>
+        <div class="nav-drop">
+          <button type="button" class="nav-drop-btn" aria-expanded="false" aria-haspopup="true">Learn <span class="nav-caret">▾</span></button>
+          <div class="nav-menu">
+            <a href="the-approach-shot.html">The Approach Shot</a>
+            <a href="pga-tour-betting-guide.html">Betting Guides</a>
+            <a href="how-to-bet-on-golf.html">How to Bet on Golf</a>
+            <a href="strokes-gained-explained.html">Strokes Gained Explained</a>
+            <a href="methodology.html">Methodology</a>
+            <a href="golf-odds-calculator.html">Odds Calculator</a>
+          </div>
+        </div>
+        <a href="membership.html">Membership</a>
         <a class="navbtn" href="https://strokesedge.substack.com" target="_blank" rel="noopener" data-signup>Subscribe →</a>
       </div>
       <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </nav>
     <div class="mob" id="mob">
-      <a href="index.html">Home</a><a href="methodology.html">Methodology</a><a href="picks.html">Pick Tracker</a><a href="courses.html">Courses</a><a href="analysis.html">Analysis</a> · <a href="the-approach-shot.html">The Approach Shot</a> · <a href="pga-tour-betting-guide.html">Guides</a> · <a href="membership.html">Membership</a>
+      <span class="mob-head">Picks</span>
+      <a href="analysis.html">This Week's Analysis</a>
+      <a href="picks.html">Pick Tracker</a>
+      <a href="weekly-picks.html">Weekly Picks</a>
+      <a href="courses.html">Courses</a>
+      <span class="mob-head">Learn</span>
+      <a href="the-approach-shot.html">The Approach Shot</a>
+      <a href="pga-tour-betting-guide.html">Betting Guides</a>
+      <a href="how-to-bet-on-golf.html">How to Bet on Golf</a>
+      <a href="strokes-gained-explained.html">Strokes Gained Explained</a>
+      <a href="methodology.html">Methodology</a>
+      <a href="golf-odds-calculator.html">Odds Calculator</a>
+      <a href="membership.html">Membership</a>
       <a class="pri" href="https://strokesedge.substack.com" target="_blank" rel="noopener" data-signup>Subscribe →</a>
     </div>
   </div>
