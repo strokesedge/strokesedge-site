@@ -132,6 +132,13 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var
 .free-line{background:var(--bg2);border:1px solid var(--bdr2);border-radius:4px;padding:18px 22px;display:flex;flex-wrap:wrap;gap:12px 22px;align-items:center;justify-content:space-between}
 .free-line p{margin:0;color:var(--txt)}
 .cmp td:not(:first-child),.cmp th:not(:first-child){text-align:center}
+.bf-deal{background:linear-gradient(180deg,var(--bg3),var(--bg2));border:2px solid var(--g);border-radius:4px;padding:32px 28px 26px;margin:2rem 0 0;position:relative}
+.bf-deal .badge{position:absolute;top:-14px;left:28px;background:var(--g);color:#031008;font:700 11px/1 'DM Mono',monospace;letter-spacing:.12em;text-transform:uppercase;padding:6px 14px;border-radius:2px;white-space:nowrap}
+.bf-deal h2{margin:0 0 10px;font:800 clamp(26px,3.5vw,36px)/1.05 'Archivo',sans-serif;letter-spacing:-.02em;color:var(--txt)}
+.bf-deal h2 span{color:var(--g)}
+.bf-deal p{margin:0 0 12px;font-size:17px;line-height:1.6;color:var(--txt)}
+.bf-deal p.small{font-size:14px;line-height:1.55;color:var(--txt2);margin-bottom:0}
+.bf-deal .btn{margin:6px 0 14px}
 @media(max-width:960px){.plans{grid-template-columns:1fr}}
 </style>
 <link rel="stylesheet" href="se-theme.css?v=20261117">
@@ -186,6 +193,15 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var
 <h1>StrokesEdge <span>Membership.</span></h1>
 <p class="lede">The weekly picks are free. The workbook shows how the model scores every player in the field.</p>
 <img class="page-hero" src="strokesedge-membership-workbook.webp" alt="Inside the StrokesEdge membership: a laptop running golf betting analytics beside the weekly model workbook and a golf ball" width="1600" height="900" loading="eager" fetchpriority="high" decoding="async">
+
+<div class="bf-deal" id="black-friday">
+  <div class="badge">Limited time &middot; Ends November 30</div>
+  <h2>Black Friday Deal: <span>3 months for the price of 1</span></h2>
+  <p>Sign up for the monthly membership before December and get three months for the price of one. Enter the code <strong>BLACKFRIDAY</strong> at checkout: month one bills at $19.99 and months two and three bill $0, so the three months cost $19.99 total.</p>
+  <p>The deal covers everything published through the end of February 2027: the Hero World Challenge (Dec 3-6), the Grant Thornton Invitational (Dec 11-13), the PNC Championship (Dec 17-20), The American Express in January, and every event after that through February. Membership also includes a complimentary paid Substack subscription when the paid articles launch in January.</p>
+  <a class="btn" href="https://buy.stripe.com/4gM6oGgs2gNTazefHW4Rq04" target="_blank" rel="noopener">Get the Black Friday deal &rarr;</a>
+  <p class="small">Monthly membership renews at $19.99 a month after the third month unless cancelled. The BLACKFRIDAY code can be redeemed until 11:59 p.m. ET on November 30, 2026.</p>
+</div>
 
 <div class="plans" id="workbook">
   <div class="plan">
